@@ -1,1 +1,12 @@
 /bin/
+
+# Archivos LOG
+/*.log
+
+# Archivos PDDL
+/*.pddl
+/!domain.pddl #excepto el dominio
+
+# Archivos TXT
+/*.txt
+/!ejecutar.txt #excepto ejecutar
