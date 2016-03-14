@@ -16,13 +16,7 @@ public class Saludar extends OneShotBehaviour {
 		System.out.println("My name local is "+myAgent.getLocalName());
 		System.out.println("“My GUID is "+myAgent.getAID().getName());
 		
-		Object[] args = myAgent.getArguments();
-		if (args != null) {
-			System.out.println("My arguments are:");
-			for (int i = 0; i < args.length; ++i) {
-			System.out.println("- "+args[i]);
-		}
-	}
+		myAgent.doDelete();
 	}
 
 }
