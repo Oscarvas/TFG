@@ -1,5 +1,6 @@
 package gui;
 
+import acciones.Saludar;
 import jade.gui.GuiAgent;
 import jade.gui.GuiEvent;
 
@@ -12,15 +13,12 @@ public class Main extends GuiAgent{
 		
 	}
 	protected void setup(){
-		System.out.println("Hello World. ");
-		System.out.println("My name local is "+getLocalName());
-		System.out.println("“My GUID is "+getAID().getName());
-		
-		doDelete(); //finaliza al agente y hace la llamada al metodo takedown
+		addBehaviour( new Saludar(this) );
+		//doDelete(); //finaliza al agente y hace la llamada al metodo takedown, si se activa parece que no hace el comportamiento de saludar
 	}
 	
 	protected void takeDown() {
-		System.out.println("Bye...");
+		System.out.println("Agent "+getAID().getName()+" terminated");
 	}
 
 }
