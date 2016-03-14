@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Mapa>
+    
+    <localizacion id="Castillo" >
+        <esSegura> </esSegura>
+        <conectadoCon>Bosque Pueblo Lago ElCruce</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Pueblo" > 
+        <conectadoCon>Castillo</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Montana" >
+        <conectadoCon>Bosque Lago</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Lago" >
+        <conectadoCon>Castillo Montana ElCruce</conectadoCon>
+    </localizacion>
+    
+	<localizacion id="Bosque" >
+        <conectadoCon>Castillo Montana ElCruce</conectadoCon>
+    </localizacion>
+    
+    
+	<localizacion id="ElCruce" >
+        <conectadoCon>Castillo Bosque Lago</conectadoCon>
+    </localizacion>
+        
+</Mapa>
