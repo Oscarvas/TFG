@@ -4,7 +4,7 @@
 /*.log
 
 # Archivos PDDL
-/*.pddl
+#/*.pddl
 /!domain.pddl #excepto el dominio
 
 # Archivos TXT
