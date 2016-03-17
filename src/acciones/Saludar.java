@@ -13,9 +13,10 @@ public class Saludar extends OneShotBehaviour {
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
-		System.out.println("\nMy name local is "+myAgent.getLocalName()+"-------------------------------------------------------------------");
+		myAgent.waitUntilStarted();
+		System.out.println("\nMi nombre es "+myAgent.getLocalName()+"-------------------------------------------------------------------");
 		
-		String[] args = { "domain.pddl", myAgent.getLocalName() + ".pddl" };
+		String[] args = { "domainOld.pddl", myAgent.getLocalName() + ".pddl" };
 
 		String ff = JavaFF.crearPlan(args);
 		String[] cadena = ff.split("\n");

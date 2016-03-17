@@ -18,7 +18,7 @@ public class Main extends GuiAgent{
 	}
 	
 	protected void takeDown() {
-		System.out.println("El agente "+getAID().getName()+" ha finalizado");
+		System.out.println("El agente "+getLocalName()+" ha finalizado");
 	}
 
 }
