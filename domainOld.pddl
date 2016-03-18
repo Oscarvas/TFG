@@ -11,9 +11,7 @@
 	
 	(:predicates
 		(adyacente ?l1 ?l2)
-		(enLoc ?per ?loc)
-		(locSegura ?loc)
-		
+		(enLoc ?per ?loc)		
 		(estaLibre ?per)
 		
 		(conPrinc ?d ?p)
@@ -39,7 +37,6 @@
 			(vivo ?pers)
 			(adyacente ?locOrig ?locDest)
 			(enLoc ?pers ?locOrig)
-			(esSecundario ?pers)
 			(estaLibre ?pers)
 			(not (esHeroe ?pers)))
 		:effect (and
@@ -53,7 +50,6 @@
 	(:action moverPersonajeConPrincesa
 		:parameters (?per ?p ?locOrig ?locDest)
 		:precondition (and
-			(esSecundario ?per)
 			(esPrincesa ?p)
 			(vivo ?per)
 			(adyacente ?locOrig ?locDest)
@@ -69,24 +65,11 @@
 
 
 ;; batalla entre caballero y dragon
-	(:action batalla
+	(:action combateHeroico
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			
 			(not (= ?p1 ?p2))
-			(not (esPrincesa ?p1))
-			(enLoc ?p1 ?loc)
-			(enLoc ?p2 ?loc)
-			(vivo ?p1)
-			(vivo ?p2))
-		:effect 
-			(not (vivo ?p2))
-	)
-;; batalla entre caballero y dragon
-	(:action escapar
-		:parameters (?p1 ?p2 ?loc)
-		:precondition (and			
-			(not (= ?p1 ?p2))
-			(esPrincesa ?p1)
+			(esCaballero ?p1)
 			(esDragon ?p2)
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
@@ -95,6 +78,20 @@
 		:effect 
 			(not (vivo ?p2))
 	)
+
+;; batalla entre caballero y dragon
+	(:action ajusteDeCuentas
+		:parameters (?p1 ?p2 ?loc)
+		:precondition (and			
+			(not (= ?p1 ?p2))
+			(enLoc ?p1 ?loc)
+			(enLoc ?p2 ?loc)
+			(vivo ?p1)
+			(vivo ?p2))
+		:effect
+			(putote ?p1)
+	)
+
 ;; batalla entre caballero y dragon
 	(:action golpeDeEstado
 		:parameters (?p1 ?p2 ?loc)
@@ -102,6 +99,7 @@
 			(not (= ?p1 ?p2))
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
+			(putote ?p1)
 			(esRey ?p2)
 			(vivo ?p1)
 			(vivo ?p2))
@@ -157,8 +155,8 @@
 		:precondition (and
 			(esCaballero ?c)
 			(esPrincesa ?p)
-			(enLoc ?c ?loc)
 			(conPrinc ?c ?p)
+			(enLoc ?c ?loc)
 			(esCasa ?p ?loc))
 		:effect (and
 			(not (secuestrada ?p))
@@ -181,4 +179,18 @@
 		:effect 
 			(esHeroe ?c)
 	)	
+;; batalla entre caballero y dragon
+	(:action escapar
+		:parameters (?p1 ?p2 ?loc)
+		:precondition (and			
+			(not (= ?p1 ?p2))
+			(esPrincesa ?p1)
+			(esDragon ?p2)
+			(enLoc ?p1 ?loc)
+			(enLoc ?p2 ?loc)
+			(vivo ?p1)
+			(vivo ?p2))
+		:effect 
+			(libre ?p2)
+	)
 )
