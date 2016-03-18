@@ -11,14 +11,7 @@
 	
 	(:predicates
 		(adyacente ?l1 ?l2)
-		(enLoc ?per ?loc)		
-		(estaLibre ?per)
-		
-		(conPrinc ?d ?p)
-		(conPrinc ?v ?p)
-		
-		(esPrincipal ?per)
-		(esSecundario ?per)
+		(enLoc ?per ?loc)
 		(esRey ?r)
 		(esPrincesa ?p)
 		(esCaballero ?c)
@@ -86,6 +79,7 @@
 			(not (= ?p1 ?p2))
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
+			(esCaballero ?p2)
 			(vivo ?p1)
 			(vivo ?p2))
 		:effect
@@ -191,6 +185,6 @@
 			(vivo ?p1)
 			(vivo ?p2))
 		:effect 
-			(libre ?p2)
+			(libre ?p1)
 	)
 )
