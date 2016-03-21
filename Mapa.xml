@@ -4,15 +4,15 @@
  
  	<!-- Isla Egeria -->
     <localizacion id="Egeria" >
-        <conectadoCon>Tesqua EgeriaBosque</conectadoCon>
+        <conectadoCon>Tesqua Caligo</conectadoCon>
     </localizacion>
     
-    <localizacion id="EgeriaBosque" >
-        <conectadoCon>Egeria EgeriaTown</conectadoCon>
+    <localizacion id="Caligo" ><!-- Bosque -->
+        <conectadoCon>Egeria Turis</conectadoCon>
     </localizacion>
     
-    <localizacion id="EgeriaTown" >
-        <conectadoCon>EgeriaBosque</conectadoCon>
+    <localizacion id="Turis" ><!-- Pueblo -->
+        <conectadoCon>Caligo</conectadoCon>
     </localizacion>
     
     <!-- Isla Illuc -->
@@ -22,10 +22,10 @@
     </localizacion>
     
     <localizacion id="Hospital" >
-        <conectadoCon>Illuc BosqueMagico</conectadoCon>
+        <conectadoCon>Illuc Sagren</conectadoCon>
     </localizacion>
     
-    <localizacion id="BosqueMagico" >
+    <localizacion id="Sagren" ><!-- Bosque -->
         <conectadoCon>Hospital</conectadoCon>
     </localizacion>
     
@@ -53,40 +53,44 @@
     </localizacion>
     
     <localizacion id="Cruce" >
-        <conectadoCon>LagoInibi CastilloTesqua</conectadoCon>
+        <conectadoCon>Inibi Ignis</conectadoCon>
     </localizacion>
     
-    <localizacion id="LagoInibi" >
-        <conectadoCon>MontanaFatum Cruce CastilloLucta</conectadoCon>
+    <localizacion id="Inibi" ><!-- Lago -->
+        <conectadoCon>Fatum Cruce Segrex</conectadoCon>
     </localizacion>
     
-    <localizacion id="MontanaFatum" >
-        <conectadoCon>LagoInibi</conectadoCon>
+    <localizacion id="Fatum" ><!-- Montana -->
+        <conectadoCon>Inibi</conectadoCon>
     </localizacion>
     
-    <localizacion id="CastilloTesqua" >
-        <conectadoCon>Cruce BosqueIllunis PuebloEgestas</conectadoCon>
+    <localizacion id="Ignis" ><!-- Castillo -->
+        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
     </localizacion>
     
-    <localizacion id="BosqueIllunis" >
-        <conectadoCon>CastilloTesqua</conectadoCon>
+    <localizacion id="Illunis" ><!-- Bosque -->
+        <conectadoCon>Ignis</conectadoCon>
     </localizacion>
     
-    <localizacion id="PuebloEgestas" >
-        <conectadoCon>CastilloTesqua Biblioteca</conectadoCon>
+    <localizacion id="Egestas" ><!-- Pueblo -->
+        <conectadoCon>Ignis Biblioteca</conectadoCon>
     </localizacion>
     
     <!-- Region de Lucta -->
-    <localizacion id="CastilloLucta" >
-        <conectadoCon>LagoInibi PuebloLucta</conectadoCon>
+    <localizacion id="Segrex" > <!-- Castillo -->
+        <conectadoCon>Inibi Lucta</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Lucta" ><!-- Pueblo -->
+        <conectadoCon>Segrex Nordrassil</conectadoCon>
     </localizacion>
     
     <localizacion id="Biblioteca" >
-        <conectadoCon>PuebloEgestas Nordrassil</conectadoCon>
+        <conectadoCon>Egestas Nordrassil</conectadoCon>
     </localizacion>
     
-    <localizacion id="Nordrassil" >
-        <conectadoCon>PuebloLucta Biblioteca Sastreria</conectadoCon>
+    <localizacion id="Nordrassil" ><!-- Bosque -->
+        <conectadoCon>Lucta Biblioteca Sastreria</conectadoCon>
     </localizacion>
     
     <!-- Region de Scruthor -->
@@ -99,14 +103,14 @@
     </localizacion>
     
     <localizacion id="Establos" >
-        <conectadoCon>Herreria CastilloTesqua Pantano</conectadoCon>
+        <conectadoCon>Herreria Ignis Pantano</conectadoCon>
     </localizacion>
     
     <localizacion id="Pantano" >
         <conectadoCon>Establos Scruthor</conectadoCon>
     </localizacion>
     
-    <localizacion id="Scruthor" >
+    <localizacion id="Scruthor" ><!-- Pueblo -->
         <conectadoCon>Pantano Sastreria</conectadoCon>
     </localizacion>
         
