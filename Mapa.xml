@@ -1,31 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Mapa>
-    
-    <localizacion id="Castillo" >
-        <esSegura> </esSegura>
-        <conectadoCon>Bosque Pueblo Lago ElCruce</conectadoCon>
+ 
+ 	<!-- Isla Egeria -->
+    <localizacion id="Egeria" >
+        <conectadoCon>Tesqua EgeriaBosque</conectadoCon>
     </localizacion>
     
-    <localizacion id="Pueblo" > 
-        <conectadoCon>Castillo</conectadoCon>
+    <localizacion id="EgeriaBosque" >
+        <conectadoCon>Egeria EgeriaTown</conectadoCon>
     </localizacion>
     
-    <localizacion id="Montana" >
-        <conectadoCon>Bosque Lago</conectadoCon>
+    <localizacion id="EgeriaTown" >
+        <conectadoCon>EgeriaBosque</conectadoCon>
     </localizacion>
     
-    <localizacion id="Lago" >
-        <conectadoCon>Castillo Montana ElCruce</conectadoCon>
+    <localizacion id="EgeriaTown" >
+        <conectadoCon>EgeriaBosque</conectadoCon>
     </localizacion>
     
-	<localizacion id="Bosque" >
-        <conectadoCon>Castillo Montana ElCruce</conectadoCon>
+    <!-- Isla Illuc -->
+    
+    <localizacion id="Illuc" >
+        <conectadoCon>Tesqua Hospital</conectadoCon>
     </localizacion>
     
+    <localizacion id="Hospital" >
+        <conectadoCon>Illuc BosqueMagico</conectadoCon>
+    </localizacion>
     
-	<localizacion id="ElCruce" >
-        <conectadoCon>Castillo Bosque Lago</conectadoCon>
+    <localizacion id="BosqueMagico" >
+        <conectadoCon>Hospital</conectadoCon>
+    </localizacion>
+    
+    <!-- Isla Tragus -->
+    <localizacion id="Tragus" >
+        <conectadoCon>Tesqua Cuevas</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Cuevas" >
+        <conectadoCon>Tragus Minas</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Minas" >
+        <conectadoCon>Cuevas</conectadoCon>
+    </localizacion>
+    
+    <!-- Continente Acua -->
+    <!-- Region de Tesqua -->
+    <localizacion id="Tesqua" ><!-- Puerto -->
+        <conectadoCon>Taberna</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Taberna" >
+        <conectadoCon>Tesqua Cruce</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Cruce" >
+        <conectadoCon>LagoInibi CastilloTesqua</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="LagoInibi" >
+        <conectadoCon>MontanaFatum Cruce CastilloLucta</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="MontanaFatum" >
+        <conectadoCon>LagoInibi</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="CastilloTesqua" >
+        <conectadoCon>Cruce BosqueIllunis PuebloEgestas</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="BosqueIllunis" >
+        <conectadoCon>CastilloTesqua</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="PuebloEgestas" >
+        <conectadoCon>CastilloTesqua Biblioteca</conectadoCon>
+    </localizacion>
+    
+    <!-- Region de Lucta -->
+    <localizacion id="CastilloLucta" >
+        <conectadoCon>LagoInibi PuebloLucta</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Biblioteca" >
+        <conectadoCon>PuebloEgestas Nordrassil</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Nordrassil" >
+        <conectadoCon>PuebloLucta Biblioteca Sastreria</conectadoCon>
+    </localizacion>
+    
+    <!-- Region de Scruthor -->
+    <localizacion id="Sastreria" >
+        <conectadoCon>Nordrassil Herreria Scruthor</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Herreria" >
+        <conectadoCon>Sastreria Establos</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Establos" >
+        <conectadoCon>Herreria CastilloTesqua Pantano</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Pantano" >
+        <conectadoCon>Establos Scruthor</conectadoCon>
+    </localizacion>
+    
+    <localizacion id="Scruthor" >
+        <conectadoCon>Pantano Sastreria</conectadoCon>
     </localizacion>
         
 </Mapa>
