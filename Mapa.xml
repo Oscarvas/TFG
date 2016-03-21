@@ -103,15 +103,15 @@
     </localizacion>
     
     <localizacion id="Establos" >
-        <conectadoCon>Herreria Ignis Pantano</conectadoCon>
+        <conectadoCon>Herreria Ignis Echidna</conectadoCon>
     </localizacion>
     
-    <localizacion id="Pantano" >
+    <localizacion id="Echidna" ><!-- Pantano -->
         <conectadoCon>Establos Scruthor</conectadoCon>
     </localizacion>
     
     <localizacion id="Scruthor" ><!-- Pueblo -->
-        <conectadoCon>Pantano Sastreria</conectadoCon>
+        <conectadoCon>Echidna Sastreria</conectadoCon>
     </localizacion>
         
 </Mapa>
