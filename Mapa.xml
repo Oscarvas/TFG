@@ -15,10 +15,6 @@
         <conectadoCon>EgeriaBosque</conectadoCon>
     </localizacion>
     
-    <localizacion id="EgeriaTown" >
-        <conectadoCon>EgeriaBosque</conectadoCon>
-    </localizacion>
-    
     <!-- Isla Illuc -->
     
     <localizacion id="Illuc" >
