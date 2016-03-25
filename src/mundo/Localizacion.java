@@ -1,4 +1,4 @@
-package entorno;
+package mundo;
 
 import java.util.ArrayList;
 public class Localizacion {

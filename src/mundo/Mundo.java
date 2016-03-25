@@ -1,4 +1,4 @@
-package main;
+package mundo;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -11,9 +11,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import entorno.Estado;
-import entorno.Localizacion;
-import entorno.Mapa;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
@@ -30,13 +27,13 @@ import jade.wrapper.PlatformController;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Main extends GuiAgent{
+public class Mundo extends GuiAgent{
 	
 	private Mapa mapa;
 	private Estado estado;
 	private int comando = Vocabulario.STANDBY;
 	
-	public Main(){
+	public Mundo(){
 		this.estado = new Estado();
 		this.mapa = Mapa.getMapa();
 	}
