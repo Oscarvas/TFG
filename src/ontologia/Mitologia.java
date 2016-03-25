@@ -4,7 +4,9 @@ package ontologia;
  * Enumerado de las zonas
 Esta clase guardara la referencia a la raza propia de cada region del mapa
 asi como los atributos predefinidos de cada raza y que afectaran al desarrollo de cada personaje
-durante su historia
+durante su historia.
+Formato:
+	Zona	Raza	vida,fuerza,destreza,inteligencia,codicia	RegionesInternas
 */
 public enum Mitologia {
 	EGERIA	("Egerian"	,5,5,2,2,1,new String[]{"Turis", "Caligo", "Egeria"}),
