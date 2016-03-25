@@ -11,7 +11,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import acciones.*;
 import entorno.Estado;
 import entorno.Localizacion;
 import entorno.Mapa;
@@ -25,23 +24,23 @@ import jade.gui.GuiAgent;
 import jade.gui.GuiEvent;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.wrapper.AgentController;
+import jade.wrapper.ControllerException;
+import jade.wrapper.PlatformController;
+import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Main extends GuiAgent{
 	
 	private Mapa mapa;
 	private Estado estado;
+	private int comando = Vocabulario.STANDBY;
 	
 	public Main(){
 		this.estado = new Estado();
 		this.mapa = Mapa.getMapa();
 	}
 
-	@Override
-	protected void onGuiEvent(GuiEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	protected void setup(){
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
@@ -77,6 +76,36 @@ public class Main extends GuiAgent{
 			fe.printStackTrace();
 		}
 	}
+	
+	@Override
+	protected void onGuiEvent(GuiEvent evento) {
+		// TODO Auto-generated method stub
+		comando = evento.getType();
+		if (comando == Vocabulario.SALIR) {
+	         doDelete();
+	         System.exit(0);
+	    }
+		if (comando == Vocabulario.CREAR_AGENTE){
+			try {
+				PlatformController container = getContainerController();
+				
+				AgentController guest;
+				if (evento.getParameter(2).equals(null))
+					guest = container.createNewAgent((String)evento.getParameter(0), (String) evento.getParameter(1), null);
+				else
+					guest = container.createNewAgent((String)evento.getParameter(0), (String) evento.getParameter(1), (String[])evento.getParameter(2));
+				
+				guest.start();
+				
+			} catch (ControllerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+		}
+		
+	}
+	
 	private class ToPDDLfile extends CyclicBehaviour {
 
 		public void action() {
