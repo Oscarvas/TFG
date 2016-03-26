@@ -12,7 +12,7 @@ public class Perro extends Personaje {
 		name = "toby";
 	}
 	
-	protected void Setup(){
+	protected void setup(){
 		// aqui se añade el behaviour
 		addBehaviour(new Saludar(this, name));
 		//addBehaviour(new Batalla(this, gato));

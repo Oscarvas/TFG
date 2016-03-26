@@ -12,7 +12,7 @@ public class Gato extends Personaje{
 		name = "garfield";
 	}
 	
-	protected void Setup(){
+	protected void setup(){
 		addBehaviour(new Saludar(this, name));
 	}
 
