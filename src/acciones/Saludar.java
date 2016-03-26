@@ -15,20 +15,20 @@ public class Saludar extends OneShotBehaviour {
 	public void action() {
 		// TODO Auto-generated method stub
 		myAgent.waitUntilStarted(); // myAgent sera el agente que "salude"
-		System.out.println("\nMi nombre "+this.hey+" es "+myAgent.getLocalName()+"-------------------------------------------------------------------");
-		
-		String[] args = { "domainOld.pddl", myAgent.getLocalName() + ".pddl" };
-
-		String ff = JavaFF.crearPlan(args);
-		String[] cadena = ff.split("\n");
-
-		for (String sigAccion : cadena) {
+		System.out.println("Soy "+hey+" usurpando a "+myAgent.getLocalName());
+	
+//		String[] args = { "domainOld.pddl", myAgent.getLocalName() + ".pddl" };
+//
+//		String ff = JavaFF.crearPlan(args);
+//		String[] cadena = ff.split("\n");
+//
+//		for (String sigAccion : cadena) {
 //			String[] accionActual = sigAccion.split(" ");
 //			String accion = accionActual[0];	
-			
-			System.out.println(sigAccion);
-			
-		}
+//			
+//			System.out.println(sigAccion);
+//			
+//		}
 		
 		myAgent.doDelete();
 	}
