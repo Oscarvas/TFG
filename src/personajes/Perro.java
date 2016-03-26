@@ -13,6 +13,7 @@ public class Perro extends Personaje {
 	}
 	
 	protected void setup(){
+		doSuspend();
 		// aqui se añade el behaviour
 		addBehaviour(new Saludar(this, name));
 		//addBehaviour(new Batalla(this, gato));

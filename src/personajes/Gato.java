@@ -13,6 +13,7 @@ public class Gato extends Personaje{
 	}
 	
 	protected void setup(){
+		doSuspend();
 		addBehaviour(new Saludar(this, name));
 	}
 
