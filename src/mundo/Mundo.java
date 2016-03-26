@@ -98,7 +98,7 @@ public class Mundo extends GuiAgent{
 				PlatformController container = getContainerController();
 				
 				AgentController guest;
-				java.util.Iterator param = evento.getAllParameter();
+				Iterator param = evento.getAllParameter();
 				String nomb= (String)param.next();
 				String clas=(String)param.next();
 				if (!param.hasNext())

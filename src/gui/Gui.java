@@ -113,6 +113,11 @@ public class Gui extends JFrame {
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setLocation((int) (xFrame-dialog.getWidth()), yFrame);
 		dialog.setVisible(true);
+		
+		DialogMiniMapa minimapa = new DialogMiniMapa();
+		minimapa.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		minimapa.setLocation((int) (xFrame+this.getWidth()), yFrame);
+		minimapa.setVisible(true);
 	}
 	
 	public static void setHistoria(String hist){
