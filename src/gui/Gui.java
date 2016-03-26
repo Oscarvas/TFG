@@ -24,7 +24,7 @@ import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
 
-	private JPanel contentPane;
+	private Libro contentPane;
 	private Mundo myAgent;
 
 	/**
@@ -36,7 +36,7 @@ public class Gui extends JFrame {
 		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 362, 212);
+		setBounds(100, 100, 500, 510);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -103,7 +103,7 @@ public class Gui extends JFrame {
 				dialog.setVisible(true);				
 			}
 		});
-		contentPane = new JPanel();
+		contentPane = new Libro();
 		setContentPane(contentPane);
 		this.setLocationRelativeTo(null);
 	}
