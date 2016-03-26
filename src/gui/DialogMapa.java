@@ -16,7 +16,7 @@ public class DialogMapa extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogMapa() {
-		setBounds(100, 100, 1024, 768);
+		setBounds(100, 100, 956, 700);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

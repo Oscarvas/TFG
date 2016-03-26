@@ -106,6 +106,13 @@ public class Gui extends JFrame {
 		textAreaHistoria.setOpaque(false);
 		contentPane.add(textAreaHistoria, BorderLayout.NORTH);
 		this.setLocationRelativeTo(null);
+		int xFrame = this.getX();
+		int yFrame = this.getY();
+		
+		NuevoPersonaje dialog = new NuevoPersonaje(myAgent);
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setLocation((int) (xFrame-dialog.getWidth()), yFrame);
+		dialog.setVisible(true);
 	}
 	
 	public static void setHistoria(String hist){
