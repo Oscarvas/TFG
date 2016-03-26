@@ -11,7 +11,7 @@ public class Libro extends JPanelBackground {
 	 */
 	public Libro() {
 		super();
-		this.setBackground("resources/images/bookBkgrd.jpg");
+		this.setBackground("resources/images/OnePage.png");
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new BorderLayout(0, 0));
 	}

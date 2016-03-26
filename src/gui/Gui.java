@@ -20,12 +20,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
 
 	private Libro contentPane;
 	private Mundo myAgent;
+	private static JTextArea textAreaHistoria;
 
 	/**
 	 * Create the frame.
@@ -36,7 +40,7 @@ public class Gui extends JFrame {
 		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 510);
+		setBounds(100, 100, 500, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -105,7 +109,19 @@ public class Gui extends JFrame {
 		});
 		contentPane = new Libro();
 		setContentPane(contentPane);
+		
+		textAreaHistoria = new JTextArea();
+		textAreaHistoria.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
+		textAreaHistoria.setEditable(false);
+		textAreaHistoria.setOpaque(false);
+		contentPane.add(textAreaHistoria, BorderLayout.NORTH);
 		this.setLocationRelativeTo(null);
+	}
+	
+	public static void setHistoria(String hist){
+		String acumulado = textAreaHistoria.getText();
+		acumulado+=hist;
+		textAreaHistoria.setText(acumulado);
 	}
 
 }
