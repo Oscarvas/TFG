@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -80,31 +81,17 @@ public class Gui extends JFrame {
 		});
 		mnMapa.add(mntmMostrarMapa);
 		
-		JMenu mnHistoria = new JMenu("Historia");
-		menuBar.add(mnHistoria);
+		JMenuItem mntmIniciar = new JMenuItem("Iniciar");
+		mntmIniciar.setIcon(new ImageIcon(Gui.class.getResource("/images/icon.png")));
+		menuBar.add(mntmIniciar);
 		
-		JMenuItem mntmIniciarHistoria = new JMenuItem("Iniciar Historia");
-		mnHistoria.add(mntmIniciarHistoria);
-		mntmIniciarHistoria.addActionListener(new ActionListener() {
+		mntmIniciar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				GuiEvent ge = new GuiEvent(this, Vocabulario.INICIAR_HISTORIA);
 	            mundo.postGuiEvent(ge);
-			}
-		});
-		
-		JMenuItem mntmVerHistoria = new JMenuItem("Ver Historia");
-		mnHistoria.add(mntmVerHistoria);
-		mntmVerHistoria.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				DialogHistoria dialog = new DialogHistoria();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);				
 			}
 		});
 		contentPane = new Libro();
