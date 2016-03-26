@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 import javaff.JavaFF;
@@ -15,7 +16,8 @@ public class Saludar extends OneShotBehaviour {
 	public void action() {
 		// TODO Auto-generated method stub
 		myAgent.waitUntilStarted(); // myAgent sera el agente que "salude"
-		System.out.println("Soy "+hey+" usurpando a "+myAgent.getLocalName());
+		//System.out.println("Soy "+hey+" usurpando a "+myAgent.getLocalName());
+		Gui.setHistoria("Soy "+hey+" usurpando a "+myAgent.getLocalName()+"\n");
 	
 //		String[] args = { "domainOld.pddl", myAgent.getLocalName() + ".pddl" };
 //
