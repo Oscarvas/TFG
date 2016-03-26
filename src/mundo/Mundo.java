@@ -2,6 +2,7 @@ package mundo;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
@@ -21,9 +23,12 @@ import jade.gui.GuiAgent;
 import jade.gui.GuiEvent;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.util.leap.Iterator;
 import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
+import jade.wrapper.StaleProxyException;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -32,10 +37,14 @@ public class Mundo extends GuiAgent{
 	private Mapa mapa;
 	private Estado estado;
 	private int comando = Vocabulario.STANDBY;
+	transient protected Gui myGui;
+	private ArrayList<String> agentes; 
 	
 	public Mundo(){
 		this.estado = new Estado();
 		this.mapa = Mapa.getMapa();
+		agentes = new ArrayList<String>();
+		
 	}
 
 	protected void setup(){
@@ -52,6 +61,8 @@ public class Mundo extends GuiAgent{
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		myGui = new Gui(this);
+	    myGui.setVisible(true);
 
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());
@@ -87,18 +98,35 @@ public class Mundo extends GuiAgent{
 				PlatformController container = getContainerController();
 				
 				AgentController guest;
-				if (evento.getParameter(2).equals(null))
-					guest = container.createNewAgent((String)evento.getParameter(0), (String) evento.getParameter(1), null);
+				java.util.Iterator param = evento.getAllParameter();
+				String nomb= (String)param.next();
+				String clas=(String)param.next();
+				if (!param.hasNext())
+					guest = container.createNewAgent(nomb, clas, null);
 				else
-					guest = container.createNewAgent((String)evento.getParameter(0), (String) evento.getParameter(1), (String[])evento.getParameter(2));
-				
+					guest = container.createNewAgent(nomb, clas,(String[])param.next());
 				guest.start();
+				agentes.add(nomb);
 				
 			} catch (ControllerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 				
+		}
+		if (comando == Vocabulario.INICIAR_HISTORIA){
+			ContainerController container = getContainerController();
+			for (String agen : agentes){
+				try {
+					container.getAgent(agen).activate();
+				} catch (StaleProxyException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ControllerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 	}

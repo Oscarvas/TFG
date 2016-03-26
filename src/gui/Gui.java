@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import jade.core.Agent;
+import jade.gui.GuiEvent;
+import mundo.Mundo;
+import ontologia.Vocabulario;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -19,27 +25,15 @@ import javax.swing.JMenuItem;
 public class Gui extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui frame = new Gui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Mundo myAgent;
 
 	/**
 	 * Create the frame.
+	 * @param mundo 
 	 */
-	public Gui() {
+	public Gui(Mundo mundo) {
+		myAgent = mundo;
+		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 362, 212);
@@ -56,7 +50,7 @@ public class Gui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NuevoPersonaje dialog = new NuevoPersonaje();
+				NuevoPersonaje dialog = new NuevoPersonaje(myAgent);
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
@@ -87,6 +81,15 @@ public class Gui extends JFrame {
 		
 		JMenuItem mntmIniciarHistoria = new JMenuItem("Iniciar Historia");
 		mnHistoria.add(mntmIniciarHistoria);
+		mntmIniciarHistoria.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				GuiEvent ge = new GuiEvent(this, Vocabulario.INICIAR_HISTORIA);
+	            mundo.postGuiEvent(ge);
+			}
+		});
 		
 		JMenuItem mntmVerHistoria = new JMenuItem("Ver Historia");
 		mnHistoria.add(mntmVerHistoria);
