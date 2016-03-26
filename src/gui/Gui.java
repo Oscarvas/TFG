@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -82,6 +83,8 @@ public class Gui extends JFrame {
 		mnMapa.add(mntmMostrarMapa);
 		
 		JMenuItem mntmIniciar = new JMenuItem("Iniciar");
+		mntmIniciar.setMaximumSize(new Dimension(70, 32767));
+		mntmIniciar.setPreferredSize(new Dimension(0, 2));
 		mntmIniciar.setIcon(new ImageIcon(Gui.class.getResource("/images/icon.png")));
 		menuBar.add(mntmIniciar);
 		
