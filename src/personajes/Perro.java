@@ -7,10 +7,10 @@ import acciones.Saludar;
 public class Perro extends Personaje {
 	String name;
 	
-	public Perro(){
-		super(new Random().nextInt(100 + 1) + 15);
-		name = "toby";
-	}
+//	public Perro(){
+//		super(new Random().nextInt(100 + 1) + 15);
+//		name = "toby";
+//	}
 	
 	protected void setup(){
 		doSuspend();

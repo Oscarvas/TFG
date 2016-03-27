@@ -45,9 +45,9 @@ public class Personaje extends Agent {
 
 	}
 	
-	public Personaje(int vida) {
-		this.vida = vida;
-	}
+//	public Personaje(int vida) {
+//		this.vida = vida;
+//	}
 	
 	public Logger getLogger() {
 		return logger;
