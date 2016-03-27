@@ -3,7 +3,8 @@
 <Objetivos>
     <!-- Realeza -->
     <personaje tipo="Rey" >
-        <objetivo>(procrear Rey) (avaro Rey)</objetivo>
+        <objetivo>(procrear Rey)</objetivo>
+        <objetivo>(avaro Rey)</objetivo>
     </personaje>
     <!-- • Genera Recompensas por objetivos.
 • Otorga ‘Fama’ y ‘Conocimiento’ a héroes correspondientes.
@@ -12,7 +13,9 @@
      -->
     
     <personaje tipo="Princesa" >
-        <objetivo>(casarse Caballero Princesa)(enamorarse Monstruo) (almaLibre Princesa)</objetivo>
+        <objetivo>(casarse Caballero Princesa)</objetivo>
+        <objetivo>(enamorarse Monstruo)</objetivo>
+        <objetivo>(almaLibre Princesa)</objetivo>
     </personaje>
     <!-- • Enamorarse y casarse con Héroes.
 • Enamorarse y casarse con Monstruos (no rescatable).
@@ -22,7 +25,9 @@
     
     <!-- Heroes -->
     <personaje tipo="Caballero" >
-        <objetivo>(esHeroe Caballero) (casarse Caballero Princesa) (convertirseEnRey Caballero)</objetivo>
+        <objetivo>(esHeroe Caballero)</objetivo>
+        <objetivo>(casarse Caballero Princesa)</objetivo>
+        <objetivo>(reinar Caballero)</objetivo>
     </personaje>
     <!-- o Rescatan Princesas.
 o Matan Monstruos.
@@ -33,7 +38,9 @@ o Casarse con Princesas.
      -->
     
     <personaje tipo="Mago" >
-        <objetivo>(sabio Mago) (archivado Mago) (esHeroe Mago)</objetivo>
+        <objetivo>(sabio Mago)</objetivo>
+        <objetivo>(archivado Mago)</objetivo>
+        <objetivo>(esHeroe Mago)</objetivo>
     </personaje>
     <!-- o Rescatan Princesas.
 o Matan Monstruos.
@@ -44,7 +51,9 @@ o Compiten contra otros Héroes.
      -->
     
     <personaje tipo="Druida" >
-        <objetivo>(encantar Monstruo) (competir Druida Villano) (esHeroe Druida)</objetivo>
+        <objetivo>(encantar Monstruo)</objetivo>
+        <objetivo>(competir Druida Villano)</objetivo>
+        <objetivo>(esHeroe Druida)</objetivo>
     </personaje>
     <!-- o Rescatan Princesas.
 o Matan Monstruos.
@@ -60,7 +69,8 @@ o Habla con los animales.
     
     <!-- Monstruos -->
     <personaje tipo="Dragon" >
-        <objetivo>(conPrinc Dragon Princesa) (enLoc Dragon Cuevas)</objetivo>
+        <objetivo>(conPrinc Dragon Princesa)</objetivo>
+        <objetivo>(enLoc Dragon Cuevas)</objetivo>
     </personaje>
    <!--  o Secuestrar princesas.
 o Almacenar oro (objetos brillantes).
