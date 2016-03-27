@@ -30,6 +30,7 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
 import ontologia.Vocabulario;
+import pnjs.LoaderPnjs;
 
 @SuppressWarnings("serial")
 public class Mundo extends GuiAgent{
@@ -63,6 +64,13 @@ public class Mundo extends GuiAgent{
 		}
 		myGui = new Gui(this);
 	    myGui.setVisible(true);
+	    
+	    try {
+			new LoaderPnjs(this);
+		} catch (ControllerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());

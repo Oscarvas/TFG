@@ -42,7 +42,7 @@ public class Gui extends JFrame {
 		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 700);
+		setBounds(100, 100, 570, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -101,6 +101,7 @@ public class Gui extends JFrame {
 		setContentPane(contentPane);
 		
 		textAreaHistoria = new JTextArea();
+		textAreaHistoria.setLineWrap(true);
 		textAreaHistoria.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
 		textAreaHistoria.setEditable(false);
 		textAreaHistoria.setOpaque(false);
@@ -122,7 +123,7 @@ public class Gui extends JFrame {
 	
 	public static void setHistoria(String hist){
 		String acumulado = textAreaHistoria.getText();
-		acumulado+=hist;
+		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
 	}
 

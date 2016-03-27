@@ -10,6 +10,6 @@ public interface Vocabulario {
 	public static final String[] CLASES = {"Rey","Princesa","Caballero","Mago","Druida","Villano"};
 	public static final String[] CASTILLOS = {"Illunis","Segrex"};
 	public static final String[] LAGOS = {"Inibi","Echidna"};
-	public static final String[] BOSQUES = {"Caligo","Sagren","Nordrassil"};
+	public static final String[] BOSQUES = {"Caligo","Sagren","Nordrassil","Illunis"};
 	public static final String[] PUEBLOS = {"Egeria","Turis","Illuc","Tragus","Tesqua","Egestas","Lucta","Scruthor"};
 }
