@@ -1,17 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Objetivos>
+    <!-- Realeza -->
+    <personaje tipo="Rey" >
+        <objetivo>(procrear Rey) (avaro Rey)</objetivo>
+    </personaje>
+    <!-- • Genera Recompensas por objetivos.
+• Otorga ‘Fama’ y ‘Conocimiento’ a héroes correspondientes.
+• Generador de Princesas.
+• Si el Heroe fracasa, intenta rescatar a la princesa.
+     -->
     
+    <personaje tipo="Princesa" >
+        <objetivo>(casarse Caballero Princesa)(enamorarse Monstruo) (almaLibre Princesa)</objetivo>
+    </personaje>
+    <!-- • Enamorarse y casarse con Héroes.
+• Enamorarse y casarse con Monstruos (no rescatable).
+• Cambia de Arquetipo según se casa.
+• Se escapa y es libre.
+     -->
+    
+    <!-- Heroes -->
     <personaje tipo="Caballero" >
-        <objetivo>(and (esHeroe Caballero) (salvada Princesa))</objetivo>
+        <objetivo>(esHeroe Caballero) (casarse Caballero Princesa) (convertirseEnRey Caballero)</objetivo>
     </personaje>
+    <!-- o Rescatan Princesas.
+o Matan Monstruos.
+o Obtienen ‘Fama’ lo que los convierte en ‘Leyenda’.
+o Se convierten en Rey
+o Compiten contra otros Héroes.
+o Casarse con Princesas.
+     -->
     
-    <personaje tipo="Dragon" >
-        <objetivo>(and (conPrinc Dragon Princesa) (enLoc Dragon Montana))</objetivo>
+    <personaje tipo="Mago" >
+        <objetivo>(sabio Mago) (archivado Mago) (esHeroe Mago)</objetivo>
     </personaje>
+    <!-- o Rescatan Princesas.
+o Matan Monstruos.
+o Recolectan objetos magicos.
+o Obtienen ‘Conocimientos’ lo que los convierte en ‘Sabios’.
+o Pasan a trabajar para el Rey, obtienen titulo de ‘Archivado’.
+o Compiten contra otros Héroes.
+     -->
     
+    <personaje tipo="Druida" >
+        <objetivo>(encantar Monstruo) (competir Druida Villano) (esHeroe Druida)</objetivo>
+    </personaje>
+    <!-- o Rescatan Princesas.
+o Matan Monstruos.
+o Inspiran miedo en otros Héroes.
+o Compite contra el Villano.
+o Habla con los animales.
+     -->
+    
+    <!-- Antagonistas -->
     <personaje tipo="Villano" >
-        <objetivo>(and (not (vivo Dragon)))</objetivo>
+        <objetivo>(not (vivo Dragon))</objetivo>
     </personaje>
+    
+    <!-- Monstruos -->
+    <personaje tipo="Dragon" >
+        <objetivo>(conPrinc Dragon Princesa) (enLoc Dragon Cuevas)</objetivo>
+    </personaje>
+   <!--  o Secuestrar princesas.
+o Almacenar oro (objetos brillantes).
+o Proveedor de material magico.
+     -->
+    
+    <personaje tipo="Serpiente" >
+        <objetivo>(impedirPaso Lago)</objetivo>
+    </personaje>
+   <!--  o Proteger progenie (huevos, material magico).
+o Alimentarse (de Personajes).
+o Impide atravesar el Lago.
+     -->
+    
+    <personaje tipo="Troll" >
+        <objetivo>(impedirPaso Cruce)</objetivo>
+    </personaje>
+   <!--  o Cobrar peaje (objetos brillantes).
+o Distraible para cruzar.
+o Te persigue (hasta matarte o cobrar peaje).
+     -->
+    
+    <personaje tipo="Fantasma" >
+        <objetivo>(derrocar Rey)</objetivo>
+    </personaje>
+   <!--  o Roba comida (objetos comestibles).
+o Venga sy muerte, derroca al Rey.
+o Asusta a la gente. -->
+    
     
 </Objetivos>
