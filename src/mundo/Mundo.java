@@ -109,10 +109,11 @@ public class Mundo extends GuiAgent{
 				Iterator param = evento.getAllParameter();
 				String nomb= (String)param.next();
 				String clas=(String)param.next();
+				String[] args = {(String)param.next(),(String)param.next(),(String)param.next(),(String)param.next(),(String)param.next(),(String)param.next()};
 				if (!param.hasNext())
 					guest = container.createNewAgent(nomb, clas, null);
 				else
-					guest = container.createNewAgent(nomb, clas,(String[])param.next());
+					guest = container.createNewAgent(nomb, clas,args);
 				guest.start();
 				agentes.add(nomb);
 				

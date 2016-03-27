@@ -65,30 +65,30 @@ public class NuevoPersonaje extends JDialog {
 		clases.setBounds(86, 42, 133, 20);
 		contentPanel.add(clases);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-		spinner.setBounds(86, 101, 133, 20);
-		contentPanel.add(spinner);
+		JSpinner spVida = new JSpinner();
+		spVida.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spVida.setBounds(86, 101, 133, 20);
+		contentPanel.add(spVida);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-		spinner_1.setBounds(86, 132, 133, 20);
-		contentPanel.add(spinner_1);
+		JSpinner spFuerza = new JSpinner();
+		spFuerza.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spFuerza.setBounds(86, 132, 133, 20);
+		contentPanel.add(spFuerza);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-		spinner_2.setBounds(86, 163, 133, 20);
-		contentPanel.add(spinner_2);
+		JSpinner spDestreza = new JSpinner();
+		spDestreza.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spDestreza.setBounds(86, 163, 133, 20);
+		contentPanel.add(spDestreza);
 		
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-		spinner_3.setBounds(86, 194, 133, 20);
-		contentPanel.add(spinner_3);
+		JSpinner spInteligencia = new JSpinner();
+		spInteligencia.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spInteligencia.setBounds(86, 194, 133, 20);
+		contentPanel.add(spInteligencia);
 		
-		JSpinner spinner_4 = new JSpinner();
-		spinner_4.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-		spinner_4.setBounds(86, 225, 133, 20);
-		contentPanel.add(spinner_4);
+		JSpinner spCodicia = new JSpinner();
+		spCodicia.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+		spCodicia.setBounds(86, 225, 133, 20);
+		contentPanel.add(spCodicia);
 		
 		JLabel lblVida = new JLabel("Vida");
 		lblVida.setBounds(10, 104, 46, 14);
@@ -131,6 +131,11 @@ public class NuevoPersonaje extends JDialog {
 				            ge.addParameter(txtNombre.getText());
 				            ge.addParameter("personajes."+clases.getSelectedItem());
 				            ge.addParameter(razas.getSelectedItem());
+				            ge.addParameter(spVida.getValue());
+				            ge.addParameter(spFuerza.getValue());
+				            ge.addParameter(spDestreza.getValue());
+				            ge.addParameter(spInteligencia.getValue());
+				            ge.addParameter(spCodicia.getValue());
 				            mundo.postGuiEvent(ge);
 						}
 			            txtNombre.setText("");//vaciando el cuadro de txto al darle ok
