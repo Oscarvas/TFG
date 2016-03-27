@@ -6,17 +6,17 @@ Esta clase guardara la referencia a la raza propia de cada region del mapa
 asi como los atributos predefinidos de cada raza y que afectaran al desarrollo de cada personaje
 durante su historia.
 Formato:
-	Zona	Raza	vida,fuerza,destreza,inteligencia,codicia	RegionesInternas
+	Raza	Zona	vida,fuerza,destreza,inteligencia,codicia	RegionesInternas
 */
 public enum Mitologia {
-	EGERIA	("Egerian"	,5,5,2,2,1,new String[]{"Turis", "Caligo", "Egeria"}),
-	ILLUC	("Illidar"	,4,2,5,6,2,new String[]{"Sagren","Hospital","Illuc"}),
-	TRAGUS	("Trag"		,1,6,4,3,4,new String[]{"Minas","Cuevas","Tragus"}),
-	LUCTA	("Lucs"		,3,1,6,5,3,new String[]{"Segrex","Lucta","Biblioteca","Nordrassil"}),
-	TESQUA	("Tesq"		,6,4,1,1,6,new String[]{"Tesqua","Taberna","Cruce","Fatum","Inibi","Egestas","Ignis","Illunis"}),
-	SCRUTHOR("Scrull"	,2,3,3,4,5,new String[]{"Sastreria","Establos","Herreria","Echidna","Scruthor"});
+	EGERIAN	("Egeria"	,5,5,2,2,1,new String[]{"Turis", "Caligo", "Egeria"}),
+	ILLIDAR	("Illuc"	,4,2,5,6,2,new String[]{"Sagren","Hospital","Illuc"}),
+	TRAG	("Tragus"	,1,6,4,3,4,new String[]{"Minas","Cuevas","Tragus"}),
+	LUCS	("Lucta"	,3,1,6,5,3,new String[]{"Segrex","Lucta","Biblioteca","Nordrassil"}),
+	TESQ	("Tesqua"	,6,4,1,1,6,new String[]{"Tesqua","Taberna","Cruce","Fatum","Inibi","Egestas","Ignis","Illunis"}),
+	SCRULL("Scruthor"	,2,3,3,4,5,new String[]{"Sastreria","Establos","Herreria","Echidna","Scruthor"});
 	
-	private final String raza;
+	private final String zona;
 	private final int vida;
 	private final int fuerza;
 	private final int destreza;
@@ -24,8 +24,8 @@ public enum Mitologia {
 	private final int codicia;
 	private final String[] regiones;
 	
-	Mitologia(String raza,int vida,int fuerza, int destreza, int inteligencia, int codicia,String[] regiones){
-		this.raza = raza;
+	Mitologia(String zona,int vida,int fuerza, int destreza, int inteligencia, int codicia,String[] regiones){
+		this.zona = zona;
 		this.vida = vida;
 		this.fuerza = fuerza;
 		this.destreza = destreza;
@@ -34,8 +34,8 @@ public enum Mitologia {
 		this.regiones = regiones;
 	}
 
-	public String getRaza() {
-		return raza;
+	public String getZona() {
+		return zona;
 	}
 
 	public int getVida() {
