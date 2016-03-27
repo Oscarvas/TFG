@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -21,6 +23,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class NuevoPersonaje extends JDialog {
@@ -53,15 +57,27 @@ public class NuevoPersonaje extends JDialog {
 		lblClase.setBounds(10, 76, 46, 14);
 		contentPanel.add(lblClase);
 		
-		JComboBox razas = new JComboBox(Vocabulario.RAZAS);
+		JComboBox razas = new JComboBox();
 		razas.setBounds(86, 73, 133, 20);
 		contentPanel.add(razas);
+		ComboBoxModel[] models = new ComboBoxModel[Vocabulario.RAZAS.length];
+		models[0] = new DefaultComboBoxModel(Vocabulario.RAZAS_REY);
 		
 		JLabel lblClase_1 = new JLabel("Clase");
 		lblClase_1.setBounds(10, 45, 46, 14);
 		contentPanel.add(lblClase_1);
 		
 		JComboBox clases = new JComboBox(Vocabulario.CLASES);
+		clases.setSelectedIndex(-1);
+		clases.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				if(!clases.getSelectedItem().equals("Rey"))
+					razas.setModel(new DefaultComboBoxModel<>(Vocabulario.RAZAS));
+				else
+					razas.setModel(models[0]);
+					
+			}
+		});
 		clases.setBounds(86, 42, 133, 20);
 		contentPanel.add(clases);
 		

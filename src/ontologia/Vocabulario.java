@@ -7,6 +7,7 @@ public interface Vocabulario {
 	public static final int CREAR_AGENTE = 1;
 	public static final int INICIAR_HISTORIA = 2;
 	public static final String[] RAZAS = {"Egerian","Illidar","Trag","Lucs","Tesq","Scrull"};
+	public static final String[] RAZAS_REY = {"Lucs","Tesq"};
 	public static final String[] CLASES = {"Rey","Princesa","Caballero","Mago","Druida","Villano"};
 	public static final String[] CASTILLOS = {"Ignis","Segrex"};
 	public static final String[] LAGOS = {"Inibi","Echidna"};
