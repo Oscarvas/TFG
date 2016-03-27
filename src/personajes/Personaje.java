@@ -10,6 +10,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javaff.JavaFF;
 
@@ -17,45 +18,79 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.omg.PortableServer.ServantRetentionPolicyValue;
 
 import objetos.Item;
+import ontologia.Mitologia;
+import ontologia.Vocabulario;
 import acciones.*;
 
 
+@SuppressWarnings("serial")
 public class Personaje extends Agent {
 
+	private Mitologia raza; 
 	private int vida;
-	private ArrayList<Par> objetos;
-
-	private String localizacion;
+	private int fuerza;
+	private int destreza;
+	private int inteligencia;
+	private int codicia;
+	private String localizacion;	
 
 	private AID agenteMundo;
 
 	private Logger logger;
 
-	class Par {
-
-		private Item objeto;
-		private int numero;
-
-		public Par(Item objeto, int numero) {
-			this.objeto = objeto;
-			this.numero = numero;
-		}
-
-	}
 	
 //	public Personaje(int vida) {
 //		this.vida = vida;
 //	}
+	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+		String loc[] = raza.getRegiones() ;
+		setRaza(raza);
+		setVida(vida * raza.getVida());
+		setFuerza(fuerza * raza.getFuerza());
+		setDestreza(destreza * raza.getDestreza());
+		setInteligencia(inteligencia * raza.getInteligencia());
+		setCodicia(codicia * raza.getCodicia());
+		if (!rey)
+			setLocalizacion(loc[new Random().nextInt(loc.length)]);
+		else{
+			if (raza.getZona().equalsIgnoreCase("Tesqua"))
+				setLocalizacion(Vocabulario.CASTILLOS[0]);
+			if (raza.getZona().equalsIgnoreCase("Lucta"))
+				setLocalizacion(Vocabulario.CASTILLOS[1]);
+		}
+	}
+	
+	public void iniciarMonstruo(){
+		setVida(new Random().nextInt(100 + 1) + 15);
+		String clase = getClass().getName().substring(11);
+		
+		switch (clase) {
+		case "Dragon":
+			setLocalizacion("Cuevas");
+			break;
+		case "Fantasma":
+			setLocalizacion(Vocabulario.CASTILLOS[new Random().nextInt(Vocabulario.CASTILLOS.length)]);
+			break;
+		case "Serpiente":
+			setLocalizacion(Vocabulario.LAGOS[new Random().nextInt(Vocabulario.LAGOS.length)]);
+			break;
+		case "Troll":
+			setLocalizacion("Cruce");
+			break;
+
+		default:
+			break;
+		}
+
+	}
 	
 	public Logger getLogger() {
 		return logger;
 	}
 	
-	public int getVida() {
-		return this.vida;
-	}
 
 	public void añadirVida(int vida) {
 		this.vida += vida;
@@ -73,47 +108,7 @@ public class Personaje extends Agent {
 
 		}
 	}
-}
 	
-	/*
-	public Personaje(int vida, String localizacion) {
-
-		this.vida = vida;
-		this.objetos = new ArrayList<Par>();
-		this.localizacion = localizacion;
-		PropertyConfigurator.configure("log4j.properties");
-		logger = Logger.getLogger(getClass().getName().substring(11));
-		//logger.addAppender(new FileAppender());
-	}
-
-	public String marcaDeClase() {
-
-		String clase = getClass().getName().substring(11);
-
-		if (clase.equalsIgnoreCase("Dragon"))
-			clase = "#";
-
-		else if (clase.equalsIgnoreCase("Rey"))
-			clase = "-";
-
-		else if (clase.equalsIgnoreCase("Princesa"))
-			clase = "*";
-
-		else if (clase.equalsIgnoreCase("Caballero"))
-			clase = "+";
-
-		return clase;
-	}
-
-	public void avisarInicio() {
-
-		ACLMessage confirmacion = new ACLMessage(ACLMessage.CONFIRM);
-		confirmacion.setContent(AgenteDirector.INICIO);
-		confirmacion.addReceiver(new AID("director", AID.ISLOCALNAME));
-		send(confirmacion);
-
-	}
-
 	public void localizarPersonaje() {
 
 		DFAgentDescription template = new DFAgentDescription();
@@ -146,66 +141,17 @@ public class Personaje extends Agent {
 		}
 
 	}
-
+	public boolean estaMuerto() {
+		return this.vida <= 0;
+	}
+	
 	public int getVida() {
 		return this.vida;
 	}
-
-	public void añadirVida(int vida) {
-		this.vida += vida;
-
-		if (this.vida <= 0) {
-			this.vida = 0;
-
-			ACLMessage muerto = new ACLMessage(ACLMessage.INFORM);
-			muerto.addReceiver(agenteMundo);
-			muerto.setConversationId("Muerto");
-			muerto.setContent(getLocalName());
-			send(muerto);
-			MessageTemplate mt = MessageTemplate.MatchConversationId("Muerto");
-			blockingReceive(mt);
-
-		}
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
-
-	public boolean estaMuerto() {
-		return this.vida == 0;
-	}
-
-	public void añadirObjeto(Item objeto) {
-
-		for (int i = 0; i < this.objetos.size(); i++) {
-
-			if (objeto.getId().equalsIgnoreCase(
-					this.objetos.get(i).objeto.getId()))
-				this.objetos.get(i).numero++;
-
-			else {
-				Par par = new Par(objeto, 1);
-				this.objetos.add(par);
-			}
-		}
-	}
-
-	public boolean elimObjeto(String id) {
-
-		boolean ok = false;
-
-		for (int i = 0; i < this.objetos.size(); i++) {
-			if (this.objetos.get(i).objeto.getId().equalsIgnoreCase(id)) {
-				if (this.objetos.get(i).numero == 0)
-					this.objetos.remove(i);
-				else
-					this.objetos.get(i).numero--;
-
-				ok = true;
-				break;
-			}
-		}
-
-		return ok;
-	}
-
+	
 	public String getLocalizacion() {
 		return this.localizacion;
 	}
@@ -213,6 +159,60 @@ public class Personaje extends Agent {
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
 	}
+
+	public Mitologia getRaza() {
+		return raza;
+	}
+
+	public void setRaza(Mitologia raza) {
+		this.raza = raza;
+	}
+
+	public int getFuerza() {
+		return fuerza;
+	}
+
+	public void setFuerza(int fuerza) {
+		this.fuerza = fuerza;
+	}
+
+	public int getDestreza() {
+		return destreza;
+	}
+
+	public void setDestreza(int destreza) {
+		this.destreza = destreza;
+	}
+
+	public int getInteligencia() {
+		return inteligencia;
+	}
+
+	public void setInteligencia(int inteligencia) {
+		this.inteligencia = inteligencia;
+	}
+
+	public int getCodicia() {
+		return codicia;
+	}
+
+	public void setCodicia(int codicia) {
+		this.codicia = codicia;
+	}
+}
+	
+	/*
+	public Personaje(int vida, String localizacion) {
+
+		this.vida = vida;
+		this.objetos = new ArrayList<Par>();
+		this.localizacion = localizacion;
+		PropertyConfigurator.configure("log4j.properties");
+		logger = Logger.getLogger(getClass().getName().substring(11));
+		//logger.addAppender(new FileAppender());
+	}	
+
+	
 
 	public Logger getLogger() {
 		return logger;
