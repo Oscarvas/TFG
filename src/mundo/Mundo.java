@@ -3,6 +3,7 @@ package mundo;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,6 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import mundo.Localizacion;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
@@ -154,7 +156,6 @@ public class Mundo extends GuiAgent{
 				String[] mensaje = receive.getContent().split(" ");
 				String clase = mensaje[0];
 				String nombrePersonaje = mensaje[1];
-				String nombrePrincesa = mensaje[2];
 				String problema = "";
 
 				problema += "(define (problem " + clase + ")" + "\n";
@@ -192,16 +193,28 @@ public class Mundo extends GuiAgent{
 							if (eElement.getAttribute("tipo").equalsIgnoreCase(
 									clase)) {
 
-								String cadena = eElement
+								int numObjetivos = eElement.getElementsByTagName("objetivo").getLength();
+								ArrayList<String> objetivos = new ArrayList<String>();
+								for(int i=0;i<numObjetivos;i++){
+									objetivos.add(eElement
 										.getElementsByTagName("objetivo")
-										.item(0).getTextContent();
+										.item(i).getTextContent());
+								}
+								String cadena = objetivos.get(new Random().nextInt(objetivos.size()));
 
 								String objetivo = cadena
-										.replace("Dragon", nombrePersonaje)
+										.replace("Rey", nombrePersonaje)
+										.replace("Princesa", nombrePersonaje)
 										.replace("Caballero", nombrePersonaje)
-										.replace("Princesa", nombrePrincesa);
+										.replace("Druida", nombrePersonaje)
+										.replace("Mago", nombrePersonaje)
+										.replace("Villano", nombrePersonaje)
+										.replace("Dragon", nombrePersonaje)
+										.replace("Serpiente", nombrePersonaje)
+										.replace("Troll", nombrePersonaje)
+										.replace("Fantasma", nombrePersonaje);
 
-								problema += "(:goal \n" + objetivo + "\n)"
+								problema += "(:goal " + objetivo + " )"
 										+ "\n)";
 							}
 						}
