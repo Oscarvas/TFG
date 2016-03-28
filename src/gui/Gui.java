@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import jade.core.Agent;
@@ -42,7 +43,7 @@ public class Gui extends JFrame {
 		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 570, 700);
+		setBounds(100, 100, 700, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -100,12 +101,21 @@ public class Gui extends JFrame {
 		contentPane = new Libro();
 		setContentPane(contentPane);
 		
+		
+		
 		textAreaHistoria = new JTextArea();
 		textAreaHistoria.setLineWrap(true);
 		textAreaHistoria.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
 		textAreaHistoria.setEditable(false);
 		textAreaHistoria.setOpaque(false);
-		contentPane.add(textAreaHistoria, BorderLayout.NORTH);
+//		JScrollPane scrollPane = new JScrollPane(textAreaHistoria);
+//		scrollPane.setOpaque(false);
+//		contentPane.add(scrollPane, BorderLayout.CENTER);
+//		Este codigo habilita la barra de scroll vertical para el area de texto, se queda comentado porque no tiene transparencia
+		contentPane.add(textAreaHistoria, BorderLayout.CENTER);
+		
+		
+		
 		this.setLocationRelativeTo(null);
 		int xFrame = this.getX();
 		int yFrame = this.getY();
