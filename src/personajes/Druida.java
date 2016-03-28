@@ -1,5 +1,6 @@
 package personajes;
 
+import gui.Gui;
 import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
@@ -11,5 +12,8 @@ public class Druida extends Personaje {
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), false);
 		}
+		localizarPersonaje();
+		mandarCrearArchivo();
+		Gui.setHistoria(getLocalName()+" el druida pensó que era buena idea transformarse conejo en estas fechas.");
 	}
 }

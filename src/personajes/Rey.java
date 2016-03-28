@@ -1,5 +1,6 @@
 package personajes;
 
+import gui.Gui;
 import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
@@ -11,5 +12,8 @@ public class Rey extends Personaje {
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
 		}
+		localizarPersonaje();
+		mandarCrearArchivo();
+		Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
 	}
 }
