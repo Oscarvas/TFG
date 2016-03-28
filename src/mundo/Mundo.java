@@ -13,7 +13,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import mundo.Localizacion;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
@@ -27,7 +26,6 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.util.leap.Iterator;
 import jade.wrapper.AgentController;
-import jade.wrapper.ContainerController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
@@ -42,12 +40,12 @@ public class Mundo extends GuiAgent{
 	private Estado estado;
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
-	private ArrayList<String> agentes; 
+	private ArrayList<AgentController> agentes;
 	
 	public Mundo(){
 		this.estado = new Estado();
 		this.mapa = Mapa.getMapa();
-		agentes = new ArrayList<String>();
+		agentes = new ArrayList<AgentController>();
 		
 	}
 
@@ -115,8 +113,7 @@ public class Mundo extends GuiAgent{
 				String clas=(String)param.next();
 				String[] args = {(String)param.next(),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next())};
 				guest = container.createNewAgent(nomb, clas,args);
-				guest.start();
-				agentes.add(nomb);
+				agentes.add(guest);
 				
 			} catch (ControllerException e) {
 				// TODO Auto-generated catch block
@@ -125,18 +122,15 @@ public class Mundo extends GuiAgent{
 				
 		}
 		if (comando == Vocabulario.INICIAR_HISTORIA){
-			ContainerController container = getContainerController();
-			for (String agen : agentes){
+			for (AgentController agen : agentes){
 				try {
-					container.getAgent(agen).activate();
+					agen.start();
 				} catch (StaleProxyException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ControllerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			agentes.clear();
 		}
 		
 	}
