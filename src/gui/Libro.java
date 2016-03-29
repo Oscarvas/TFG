@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class Libro extends JPanelBackground {
 
 	/**

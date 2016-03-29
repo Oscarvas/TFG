@@ -5,7 +5,7 @@ import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 import javaff.JavaFF;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class Saludar extends OneShotBehaviour {
 	private String hey;
 	public Saludar(Agent a, String name) { 

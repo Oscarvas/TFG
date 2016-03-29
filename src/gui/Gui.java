@@ -1,19 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-
-import jade.core.Agent;
 import jade.gui.GuiEvent;
 import mundo.Mundo;
 import ontologia.Vocabulario;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
@@ -21,7 +13,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.ImageIcon;

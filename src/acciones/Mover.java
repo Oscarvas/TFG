@@ -1,7 +1,6 @@
 package acciones;
 
 import jade.core.AID;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import personajes.Personaje;
