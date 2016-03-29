@@ -88,7 +88,7 @@ public class Mundo extends GuiAgent{
 	protected void takeDown() {
 		try {
 			DFService.deregister(this);
-			System.out.println("La bonita historia ha finalizado...");
+			System.out.println("Mientras tu estas aquí, la Legión Ardiente se dirige hacia Azeroth con un descomunal ejército...");
 
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
