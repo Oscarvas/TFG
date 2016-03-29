@@ -66,6 +66,13 @@ o Habla con los animales.
     <personaje tipo="Villano" >
         <objetivo>(not (vivo Dragon))</objetivo>
     </personaje>
+   <!--  • Derrocar al Rey.
+• Casarse con la Princesa.
+• Almacenar oro (objetos brillantes).
+• Matar ‘Caballeros'.
+• Robar a los ‘Magos'.
+• Confundir y distraer a los Personajes.
+     -->
     
     <!-- Monstruos -->
     <personaje tipo="Dragon" >
