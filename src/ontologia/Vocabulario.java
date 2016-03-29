@@ -13,4 +13,6 @@ public interface Vocabulario {
 	public static final String[] LAGOS = {"Inibi","Echidna"};
 	public static final String[] BOSQUES = {"Caligo","Sagren","Nordrassil","Illunis"};
 	public static final String[] PUEBLOS = {"Egeria","Turis","Illuc","Tragus","Tesqua","Egestas","Lucta","Scruthor"};
+	public static final int SALARIO = 40;
+	public static final int SALARIO_REY = 100;
 }
