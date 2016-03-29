@@ -14,19 +14,12 @@ import java.util.Random;
 
 import javaff.JavaFF;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-import org.omg.PortableServer.ServantRetentionPolicyValue;
-
-import objetos.Item;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import acciones.*;
 
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class Personaje extends Agent {
 
 	private Mitologia raza; 
@@ -36,15 +29,8 @@ public class Personaje extends Agent {
 	private int inteligencia;
 	private int codicia;
 	private String localizacion;	
-
 	private AID agenteMundo;
 
-	private Logger logger;
-
-	
-//	public Personaje(int vida) {
-//		this.vida = vida;
-//	}
 	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		String loc[] = raza.getRegiones() ;
 		setRaza(raza);
@@ -86,11 +72,6 @@ public class Personaje extends Agent {
 		}
 
 	}
-	
-	public Logger getLogger() {
-		return logger;
-	}
-	
 
 	public void añadirVida(int vida) {
 		this.vida += vida;
@@ -141,6 +122,7 @@ public class Personaje extends Agent {
 		}
 
 	}
+	
 	public boolean estaMuerto() {
 		return this.vida <= 0;
 	}
@@ -148,6 +130,7 @@ public class Personaje extends Agent {
 	public int getVida() {
 		return this.vida;
 	}
+	
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
@@ -200,100 +183,55 @@ public class Personaje extends Agent {
 		this.codicia = codicia;
 	}
 	
-//	public void planificar(String princesa) throws Exception {
-//
-//		boolean ok;
-//		boolean falloSecuestro = false;
-//
-//		do {
-//			ok = true;
-//
-//			mandarCrearArchivo();
-//			String[] args = { "domain.pddl", getLocalName() + ".pddl" };
-//
-//			String ff = JavaFF.crearPlan(args);
-//			String[] cadena = ff.split("\n");
-//
-//			for (String sigAccion : cadena) {
-//				String[] accionActual = sigAccion.split(" ");
-//				String accion = accionActual[0];
-//
-//				if (estaMuerto())
-//					break;
-//
-//				if (!accionActual[1].equalsIgnoreCase(getLocalName())) {
-//					ok = false;
-//					break;
-//				}
-//
-//				else if (accion.equalsIgnoreCase("moverprincipal")
-//						|| accion.equalsIgnoreCase("moversecundario")) {
-//					new Mover(this, accionActual[2], accionActual[3],
-//							agenteMundo).execute();
-//				}
-//
-//				else if (accion.equalsIgnoreCase("secuestrar")) {
-//					if ( ! new Secuestrar(this, accionActual[2], agenteMundo).execute() ) {
-//						falloSecuestro = true;
-//						break;
-//					}
-//				}
-//				
-//				else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
-//					ACLMessage moverPrincesa = new ACLMessage(
-//							ACLMessage.REQUEST);
-//					moverPrincesa.setConversationId("Mover-Princesa");
-//					moverPrincesa.setReplyWith("mover-princesa"
-//							+ System.currentTimeMillis());
-//					moverPrincesa.addReceiver(new AID((String) princesa,
-//							AID.ISLOCALNAME));
-//					moverPrincesa.setContent(accionActual[4]);
-//					send(moverPrincesa);
-//
-//					MessageTemplate mt = MessageTemplate
-//							.MatchInReplyTo(moverPrincesa.getReplyWith());
-//					blockingReceive(mt);
-//					new Mover(this, accionActual[3], accionActual[4],
-//							agenteMundo).execute();
-//
-//				} else if (accion.equalsIgnoreCase("batalla"))
-//				{
-//					new Batalla(this, accionActual[2], agenteMundo).execute();
-//				}
-//				else if (accion.equalsIgnoreCase("liberarprincesa"))
-//					new LiberarPrincesa(this, accionActual[2], accionActual[3],
-//							agenteMundo).execute();
-//
-//				else if (accion.equalsIgnoreCase("dejarencasa"))
-//					new DejarEnCasa(this, accionActual[2], agenteMundo)
-//							.execute();
-//
-//				else if (accion.equalsIgnoreCase("convertirseenheroe"))
-//					new ConvertirseEnHeroe(this, agenteMundo).execute();
-//
-//				else {
-//					System.out.println(sigAccion);
-//					throw new Exception("Accion no reconocible");
-//				}
-//				
-//			}
-//
-//		} while (!ok);
-//
-//		if ( falloSecuestro ) {
-//			
-//			ACLMessage fallo = new ACLMessage(ACLMessage.FAILURE);
-//			fallo.setConversationId("Fallo Secuestro");
-//			fallo.addReceiver(getAID());
-//			send(fallo);
-//			
-//		} else {
-//			ACLMessage finPlan = new ACLMessage(ACLMessage.INFORM);
-//			finPlan.setConversationId("Fin-Plan");
-//			finPlan.addReceiver(getAID());
-//			send(finPlan);
-//		}
-//	}
+	public void planificar() throws Exception {
+
+		boolean ok;
+		boolean falloSecuestro = false;
+
+		do {
+			ok = true;
+
+			mandarCrearArchivo();
+			String[] args = { "domain.pddl", getLocalName() + ".pddl" };
+
+			String ff = JavaFF.crearPlan(args);
+			String[] cadena = ff.split("\n");
+
+			for (String sigAccion : cadena) {
+				String[] accionActual = sigAccion.split(" ");
+				String accion = accionActual[0];
+
+				if (estaMuerto())
+					break;
+
+				if (!accionActual[1].equalsIgnoreCase(getLocalName())) {
+					ok = false;
+					break;
+				}
+
+				else {
+					System.out.println(sigAccion);
+					throw new Exception("Accion no reconocible");
+				}
+				
+			}
+
+		} while (!ok);
+
+		if ( falloSecuestro ) {
+			
+			ACLMessage fallo = new ACLMessage(ACLMessage.FAILURE);
+			fallo.setConversationId("Fallo Secuestro");
+			fallo.addReceiver(getAID());
+			send(fallo);
+			
+		} else {
+			ACLMessage finPlan = new ACLMessage(ACLMessage.INFORM);
+			finPlan.setConversationId("Fin-Plan");
+			finPlan.addReceiver(getAID());
+			send(finPlan);
+		}
+	}
 
 	public void mandarCrearArchivo() {
 
@@ -314,26 +252,7 @@ public class Personaje extends Agent {
 }
 	
 	/*
-	public Personaje(int vida, String localizacion) {
-
-		this.vida = vida;
-		this.objetos = new ArrayList<Par>();
-		this.localizacion = localizacion;
-		PropertyConfigurator.configure("log4j.properties");
-		logger = Logger.getLogger(getClass().getName().substring(11));
-		//logger.addAppender(new FileAppender());
-	}	
-
-	
-
-	public Logger getLogger() {
-		return logger;
-	}
-
-
-
 	public void moverSecuestrado(String locDest) {
 		new Mover(this, localizacion, locDest, agenteMundo).execute();
 	}
-}
 */

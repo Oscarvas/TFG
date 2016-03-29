@@ -30,8 +30,6 @@ public class Batalla extends CyclicBehaviour{
 			batalla.setReplyWith("batalla" + System.currentTimeMillis());
 			//batalla.setContentObject(contendiente.getVida());
 
-			
-			contendiente.getLogger().info(contendiente.getLocalName() + " entabla batalla con " + contendiente);
 			System.out.println(" " + contendiente.getLocalName() 
 					+ " entabla batalla con " + contendiente + ". \n");
 			/*

@@ -76,8 +76,8 @@ o Habla con los animales.
     
     <!-- Monstruos -->
     <personaje tipo="Dragon" >
-        <objetivo>(conPrinc Dragon Princesa)</objetivo>
-        <objetivo>(enLoc Dragon Cuevas)</objetivo>
+        <objetivo>(and (conPrinc Dragon Princesa) (enLoc Dragon Cuevas))</objetivo>
+        <objetivo>(and (conPrinc Dragon Princesa) (enLoc Dragon Fatum))</objetivo>
     </personaje>
    <!--  o Secuestrar princesas.
 o Almacenar oro (objetos brillantes).
