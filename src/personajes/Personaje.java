@@ -248,11 +248,8 @@ public class Personaje extends Agent {
 				MessageTemplate.MatchInReplyTo(toPDDL.getReplyWith()));
 		blockingReceive(mt);
 	}
-	
-}
-	
-	/*
 	public void moverSecuestrado(String locDest) {
 		new Mover(this, localizacion, locDest, agenteMundo).execute();
 	}
-*/
+	
+}
