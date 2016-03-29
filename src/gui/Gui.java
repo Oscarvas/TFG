@@ -43,7 +43,7 @@ public class Gui extends JFrame {
 		setTitle("La Historia de - " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 700);
+		setBounds(100, 100, 1000, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
