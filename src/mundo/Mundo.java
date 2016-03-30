@@ -317,13 +317,12 @@ public class Mundo extends GuiAgent{
 					loc2.añadirPersonaje(personaje.getLocalName());
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 					
-					if (locDest.equals("cruce") 
-							&& personaje.getClass().getSimpleName().equals("Caballero") ){
+					if (locDest.equals("cruce") && mensaje[0].equals("Caballero") ){
 						
 						ACLMessage mover = new ACLMessage(ACLMessage.REQUEST);
 						mover.addReceiver(getAID("Trundle"));
 						mover.setConversationId("Cruzar");
-						mover.setReplyWith("Cruzar" + System.currentTimeMillis());
+						mover.setReplyWith("cruzar" + System.currentTimeMillis());
 						mover.setContent(personaje.getLocalName());
 						send(mover);
 					}

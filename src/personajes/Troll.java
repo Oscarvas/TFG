@@ -10,6 +10,7 @@ public class Troll extends Personaje {
 	protected void setup(){
 		iniciarMonstruo();
 		Gui.setHistoria("Parece que mientras "+getLocalName()+" sea el guardián del "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
+		addBehaviour(new Guardian());
 	}
 	
 	protected void takeDown (){
@@ -29,17 +30,20 @@ public class Troll extends Personaje {
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
-				ACLMessage impuestos = new ACLMessage(ACLMessage.INFORM);
+				ACLMessage impuestos = new ACLMessage(ACLMessage.REQUEST);
 				impuestos.addReceiver(getAID(receive.getContent()));
 				impuestos.setConversationId("Hacienda");
 				impuestos.setReplyWith("hacienda" + System.currentTimeMillis());
 				impuestos.setContent("17");
+				
+				Gui.setHistoria(getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos\n");
+				
 				send(impuestos);
 				
 				imp = MessageTemplate.MatchInReplyTo(impuestos.getReplyWith());
 				ACLMessage reply = myAgent.blockingReceive(imp);
 				
-				Gui.setHistoria(myAgent.getLocalName()+" ha recibido el pago de "+reply.getContent()+" del caballero "+reply.getSender().getLocalName());				
+				Gui.setHistoria(getLocalName()+" ha recibido el pago de "+reply.getContent()+" del caballero "+reply.getSender().getLocalName());				
 
 				send(receive.createReply());
 
