@@ -42,10 +42,11 @@ public class Estado {
 	
 	public String toConPrincesa() {
 		String eh = "";
-		Iterator it;
+		Iterator<?> it;
 		it = personajeConPrincesa.entrySet().iterator();
 		
 		while (it.hasNext()) {
+			@SuppressWarnings("rawtypes")
 			Map.Entry e = (Map.Entry) it.next();
 			
 			eh += "(conPrinc " + e.getKey() + " " + e.getValue() + ")\n";
@@ -212,10 +213,11 @@ public class Estado {
 	}
 
 	
+	@SuppressWarnings("rawtypes")
 	public String toString() {
 		
 		String estado = "";
-		Iterator it;
+		Iterator<?> it;
 		
 		
 		// Adyacencias
