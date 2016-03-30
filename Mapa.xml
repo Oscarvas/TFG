@@ -45,7 +45,7 @@
     <!-- Continente Acua -->
     <!-- Region de Tesqua -->
     <localizacion id="Tesqua" ><!-- Puerto -->
-        <conectadoCon>Taberna</conectadoCon>
+        <conectadoCon>Taberna Egeria Illuc Tragus</conectadoCon>
     </localizacion>
     
     <localizacion id="Taberna" >
@@ -53,7 +53,7 @@
     </localizacion>
     
     <localizacion id="Cruce" >
-        <conectadoCon>Inibi Ignis</conectadoCon>
+        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
     </localizacion>
     
     <localizacion id="Inibi" ><!-- Lago -->
@@ -65,7 +65,7 @@
     </localizacion>
     
     <localizacion id="Ignis" ><!-- Castillo -->
-        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
+        <conectadoCon>Cruce Illunis Egestas Establos</conectadoCon>
     </localizacion>
     
     <localizacion id="Illunis" ><!-- Bosque -->
