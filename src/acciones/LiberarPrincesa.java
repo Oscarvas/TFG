@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -36,9 +37,7 @@ public class LiberarPrincesa {
 		ACLMessage reply = personaje.blockingReceive(mt);
 
 		
-		System.out.println( " El caballero "
-				+ personaje.getLocalName() + " ha liberado a la princesa "
-				+ reply.getContent() + ". \n");
+		Gui.setHistoria( " El caballero "+ personaje.getLocalName() + " ha liberado a la princesa "+ reply.getContent() + ". \n");
 
 	}
 }

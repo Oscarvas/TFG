@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -28,8 +29,7 @@ public class ConvertirseEnHeroe {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serHeroe.getReplyWith());
 		personaje.blockingReceive(mt);
 
-		System.out.println("+ El caballero " + personaje.getLocalName()
-				+ " se ha convertido en héroe. \n");
+		Gui.setHistoria("+ El caballero " + personaje.getLocalName()+ " se ha convertido en héroe. \n");
 		
 	}
 	

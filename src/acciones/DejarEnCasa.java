@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -34,9 +35,7 @@ public class DejarEnCasa {
 
 		ACLMessage msg = personaje.blockingReceive(mt);
 		
-		System.out.println(" El caballero " +
-				personaje.getLocalName() + " ha dejado a la princesa "
-				+ msg.getContent() + " en su castillo. \n");
+		Gui.setHistoria(" El caballero " +personaje.getLocalName() + " ha dejado a la princesa "+ msg.getContent() + " donde desperto. \n");
 
 	}
 }

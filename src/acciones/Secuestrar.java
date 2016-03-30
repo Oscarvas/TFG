@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -34,7 +35,7 @@ public class Secuestrar {
 		
 		if ( !reply.getContent().equalsIgnoreCase("fallo") ) {
 			
-			System.out.println( personaje.getLocalName() + " ha secuestrado a " + reply.getContent() + ". \n");
+			Gui.setHistoria( personaje.getLocalName() + " ha secuestrado a " + reply.getContent() + ". \n");
 			return true;
 			
 		} else
