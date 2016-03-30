@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -27,8 +28,7 @@ public class Batalla {
 		batalla.setReplyWith("batalla" + System.currentTimeMillis());
 		batalla.setContent(Integer.toString(personaje.getVida()));
 		
-		System.out.println(personaje.getLocalName() 
-				+ " entabla batalla con " + secundario + ". \n");
+		Gui.setHistoria(personaje.getLocalName()+ " entabla batalla con " + secundario + ". \n");
 		
 		personaje.send(batalla);
 		

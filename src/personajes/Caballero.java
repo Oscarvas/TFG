@@ -61,7 +61,7 @@ public class Caballero extends Personaje {
 		public void action() {
 
 			MessageTemplate mt = MessageTemplate.and(MessageTemplate
-					.MatchConversationId("Aceptar-oferta"), MessageTemplate
+					.MatchConversationId("TratoHecho"), MessageTemplate
 					.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
 			ACLMessage msg = myAgent.receive(mt);
 
@@ -106,8 +106,7 @@ private class FinPlanificacion extends Behaviour {
 				
 				if ( estaMuerto() ) {
 					
-					System.out.println("+ El caballero " + getLocalName()
-							+ " ha muerto en combate. \n");
+					Gui.setHistoria("+ El caballero " + getLocalName()+ " ha muerto en combate. \n");
 					
 					rescate.setPerformative(ACLMessage.FAILURE);
 				}

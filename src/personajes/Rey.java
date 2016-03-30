@@ -81,8 +81,7 @@ public class Rey extends Personaje {
 
 		public void action() {
 
-			System.out.println("- Intentando pedir rescate para la princesa "
-					+ princesaSecuestrada.getLocalName() + ".");
+			Gui.setHistoria("- Intentando pedir rescate para la princesa "+ princesaSecuestrada.getLocalName() + ".");
 			DFAgentDescription template = new DFAgentDescription();
 			ServiceDescription sd = new ServiceDescription();
 			sd.setType("Matadragones");
@@ -127,7 +126,7 @@ public class Rey extends Personaje {
 
 			ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
 			cfp.setContent(princesaSecuestrada.getLocalName());
-			cfp.setConversationId("PedirAyuda");
+			cfp.setConversationId("SolicitarServicio");
 
 			for (int i = 0; i < CaballerosDisponibles.length; i++) {
 				cfp.addReceiver(CaballerosDisponibles[i]);
@@ -188,7 +187,7 @@ public class Rey extends Personaje {
 			aceptar.addReceiver(mejorCaballero);
 			aceptar.setContent(princesaSecuestrada.getLocalName() + " "
 					+ dragon);
-			aceptar.setConversationId("Aceptar-oferta");
+			aceptar.setConversationId("TratoHecho");
 			myAgent.send(aceptar);
 			
 		}
