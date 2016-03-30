@@ -18,6 +18,7 @@ public class Dragon extends Personaje {
 
 	protected void setup(){
 		iniciarMonstruo();
+		localizarPersonaje();
 		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido del dragón "+getLocalName()+" se escucha por todo el reino.");
 		addBehaviour(new Secuestro());
 	}
@@ -45,16 +46,21 @@ public class Dragon extends Personaje {
 						
 				try{
 					DFAgentDescription[] result = DFService.search(myAgent, template);
-					//Gui.setHistoria("# Las siguientes princesas son secuestrables:");
 					AID[] PrincesasSecuestrables = new AID[result.length];
 					for (int i = 0; i < result.length; i++){
 						PrincesasSecuestrables[i] = result[i].getName();
-						//System.out.println("\t" + PrincesasSecuestrables[i].getLocalName());
 					}
-					System.out.println();
 					
 					if (PrincesasSecuestrables.length != 0) {
 						princesaSecuestrada = PrincesasSecuestrables[new Random().nextInt(PrincesasSecuestrables.length)];
+						
+						ACLMessage secuestrar = new ACLMessage(ACLMessage.INFORM);
+						secuestrar.setConversationId("ObjetivoSecuestro");
+						secuestrar.addReceiver(getAgenteMundo());
+						secuestrar.setContent(princesaSecuestrada.getLocalName());
+						myAgent.send(secuestrar);
+						
+						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo dede "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
 						planificar();
 						addBehaviour(new FalloSecuestro());
 						addBehaviour(new FinPlanificacion());
@@ -62,7 +68,7 @@ public class Dragon extends Personaje {
 						ok = true;
 						
 					} else {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 						reset();
 					}
 							
