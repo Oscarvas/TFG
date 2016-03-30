@@ -25,9 +25,10 @@
     
     <!-- Heroes -->
     <personaje tipo="Caballero" >
-        <objetivo>(esHeroe Caballero)</objetivo>
+    	<objetivo>(and (esHeroe Caballero) (salvada Princesa))</objetivo>
+       <!--  <objetivo>(esHeroe Caballero)</objetivo>
         <objetivo>(casarse Caballero Princesa)</objetivo>
-        <objetivo>(reinar Caballero)</objetivo>
+        <objetivo>(reinar Caballero)</objetivo> -->
     </personaje>
     <!-- o Rescatan Princesas.
 o Matan Monstruos.
