@@ -47,6 +47,7 @@ public class Caballero extends Personaje {
 		
 		addBehaviour(new OfrecerServicios(precio));
 		addBehaviour(new AceptarOfertaRescate());
+		addBehaviour(new PagoImpuestos());
 	}
 	protected void takeDown() {
 		try {
@@ -81,7 +82,8 @@ public class Caballero extends Personaje {
 
 		}
 	}
-private class FinPlanificacion extends Behaviour {
+	
+	private class FinPlanificacion extends Behaviour {
 		
 		AID rey;
 		ACLMessage receive;
@@ -124,5 +126,29 @@ private class FinPlanificacion extends Behaviour {
 		}
 	}
 	
+	private class PagoImpuestos extends CyclicBehaviour{
 
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+					MessageTemplate.MatchConversationId("Hacienda"));
+			ACLMessage receive = myAgent.receive(mt);
+		
+			if (receive != null) {
+				ACLMessage reply = receive.createReply();
+				
+				reply.setContent(receive.getContent());
+				precio -= Integer.parseInt(receive.getContent());
+				Gui.setHistoria(myAgent.getLocalName()+" se ha visto obligado a pagar "+receive.getContent()+" si queria ser capaz de cruzar con vida");
+				
+				myAgent.send(reply);
+		
+			} else
+				block();
+			
+		}
+		
+	}
+	
 }

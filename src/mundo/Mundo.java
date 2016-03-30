@@ -316,10 +316,23 @@ public class Mundo extends GuiAgent{
 				if (ok && loc2 != null) {
 					loc2.añadirPersonaje(personaje.getLocalName());
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
+					
+					if (locDest.equals("cruce") 
+							&& personaje.getClass().getSimpleName().equals("Caballero") ){
+						
+						ACLMessage mover = new ACLMessage(ACLMessage.REQUEST);
+						mover.addReceiver(getAID("Trundle"));
+						mover.setConversationId("Cruzar");
+						mover.setReplyWith("Cruzar" + System.currentTimeMillis());
+						mover.setContent(personaje.getLocalName());
+						send(mover);
+					}
+					
+					
 					reply.setPerformative(ACLMessage.CONFIRM);
 					reply.setContent(loc2.getNombre());
 
-					if (mensaje.length == 2) {
+					if (mensaje.length == 2) { //cuando se crean los personajes, la primera localizacion
 						estado.añadirPersonaje(mensaje[0],
 								personaje.getLocalName());
 						estado.añadirCasa(personaje.getLocalName(), locDest);
@@ -521,4 +534,6 @@ public class Mundo extends GuiAgent{
 		}
 		
 	}
+
+	
 }
