@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -99,11 +100,11 @@ public class Gui extends JFrame {
 		textAreaHistoria.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
 		textAreaHistoria.setEditable(false);
 		textAreaHistoria.setOpaque(false);
-//		JScrollPane scrollPane = new JScrollPane(textAreaHistoria);
-//		scrollPane.setOpaque(false);
-//		contentPane.add(scrollPane, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(textAreaHistoria);
+		scrollPane.setOpaque(false);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
 //		Este codigo habilita la barra de scroll vertical para el area de texto, se queda comentado porque no tiene transparencia
-		contentPane.add(textAreaHistoria, BorderLayout.CENTER);
+//		contentPane.add(textAreaHistoria, BorderLayout.CENTER);
 		
 		
 		

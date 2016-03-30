@@ -20,6 +20,7 @@ public class Estado {
 	private HashMap<String, String> casasDePersonajes;
 	private ArrayList<String> princesasSalvadas;
 	private ArrayList<String> heroes;
+	private String princesaObjetivo;
 	
 	
 	public Estado() {
@@ -327,5 +328,13 @@ public class Estado {
 		
 		return estado;
 		
+	}
+
+	public String getPrincesaObjetivo() {
+		return princesaObjetivo;
+	}
+
+	public void setPrincesaObjetivo(String princesaObjetivo) {
+		this.princesaObjetivo = princesaObjetivo;
 	}
 }

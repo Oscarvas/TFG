@@ -44,9 +44,58 @@ public class Mundo extends GuiAgent{
 	
 	public Mundo(){
 		this.estado = new Estado();
-		this.mapa = Mapa.getMapa();
+		this.mapa = cargarMapa();//Mapa.getMapa(this.estado);
 		agentes = new ArrayList<AgentController>();
 		
+	}
+	public Mapa cargarMapa() {
+
+		mapa = new Mapa();
+
+		try {
+			File fXmlFile = new File("Mapa.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			doc.getDocumentElement().normalize();
+
+			NodeList nList = doc.getElementsByTagName("localizacion");
+
+			Localizacion loc = null;
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+
+					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"));
+					estado.añadirNombre(eElement.getAttribute("id"));
+
+					String[] cade = eElement
+							.getElementsByTagName("conectadoCon").item(0)
+							.getTextContent().split(" ");
+
+					for (String conectadoCon : cade) {
+						loc.añadirConectado(conectadoCon);
+						estado.añadirAdyacente(loc.getNombre(), conectadoCon);
+						estado.añadirNombre(conectadoCon);
+					}
+
+//					if (eElement.getElementsByTagName("esSegura").item(0) != null)
+//						estado.esSegura(loc.getNombre());
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+
+		return mapa;
 	}
 
 	protected void setup(){
@@ -74,6 +123,7 @@ public class Mundo extends GuiAgent{
 			e.printStackTrace();
 		}
 
+		addBehaviour(new ObjetivoSecuestro());
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());
 		addBehaviour(new MoverPrincesaSecuestrada());
@@ -82,7 +132,6 @@ public class Mundo extends GuiAgent{
 		addBehaviour(new PersonajeEnCasa());
 		addBehaviour(new ConvertirEnHeroe());
 		addBehaviour(new MuertePersonaje());
-//		addBehaviour(new Saludar(this, 4));
 	}
 	
 	protected void takeDown() {
@@ -198,7 +247,7 @@ public class Mundo extends GuiAgent{
 
 								String objetivo = cadena
 										.replace("Rey", nombrePersonaje)
-										.replace("Princesa", nombrePersonaje)
+										.replace("Princesa", estado.getPrincesaObjetivo())
 										.replace("Caballero", nombrePersonaje)
 										.replace("Druida", nombrePersonaje)
 										.replace("Mago", nombrePersonaje)
@@ -452,5 +501,24 @@ public class Mundo extends GuiAgent{
 		}
 	}
 
+	private class ObjetivoSecuestro extends CyclicBehaviour{
 
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("ObjetivoSecuestro"),
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+			ACLMessage receive = receive(mt);
+			if (receive != null) {
+
+				estado.setPrincesaObjetivo(receive.getContent());
+				ACLMessage reply = receive.createReply();
+				send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
 }

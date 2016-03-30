@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -43,8 +44,8 @@ public class Mover {
 
 				personaje.setLocalizacion(msg.getContent());
 
-				System.out.println(personaje.getLocalName() + " ha llegado a "
-						+ personaje.getLocalizacion() + ".\n");
+				Gui.setHistoria(personaje.getLocalName() + " ha llegado a "
+						+ personaje.getLocalizacion());
 
 			} else {
 				System.err.println(" No se ha podido cambiar de localizacion. \n");

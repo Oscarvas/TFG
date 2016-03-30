@@ -90,6 +90,14 @@ public class Personaje extends Agent {
 		}
 	}
 	
+	public AID getAgenteMundo() {
+		return agenteMundo;
+	}
+
+	public void setAgenteMundo(AID agenteMundo) {
+		this.agenteMundo = agenteMundo;
+	}
+
 	public void localizarPersonaje() {
 
 		DFAgentDescription template = new DFAgentDescription();
@@ -100,9 +108,7 @@ public class Personaje extends Agent {
 		try {
 
 			DFAgentDescription[] result = DFService.search(this, template);
-
-			agenteMundo = new AID();
-			agenteMundo = result[0].getName();
+			setAgenteMundo(result[0].getName());
 
 			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 			localizar.addReceiver(agenteMundo);
@@ -208,6 +214,49 @@ public class Personaje extends Agent {
 					ok = false;
 					break;
 				}
+
+				else if (accion.equalsIgnoreCase("mover")) {
+					new Mover(this, accionActual[2], accionActual[3],
+							agenteMundo).execute();
+				}
+
+				else if (accion.equalsIgnoreCase("secuestrar")) {
+					if ( ! new Secuestrar(this, accionActual[2], agenteMundo).execute() ) {
+						falloSecuestro = true;
+						break;
+					}
+				}
+				
+				else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
+					ACLMessage moverPrincesa = new ACLMessage(
+							ACLMessage.REQUEST);
+					moverPrincesa.setConversationId("Mover-Princesa");
+					moverPrincesa.setReplyWith("mover-princesa"
+							+ System.currentTimeMillis());
+					moverPrincesa.addReceiver(getAID(accionActual[2]));
+					moverPrincesa.setContent(accionActual[4]);
+					send(moverPrincesa);
+
+					MessageTemplate mt = MessageTemplate
+							.MatchInReplyTo(moverPrincesa.getReplyWith());
+					blockingReceive(mt);
+					new Mover(this, accionActual[3], accionActual[4],
+							agenteMundo).execute();
+
+				} else if (accion.equalsIgnoreCase("batalla"))
+				{
+					new Batalla(this, accionActual[2]).execute();
+				}
+				else if (accion.equalsIgnoreCase("liberarprincesa"))
+					new LiberarPrincesa(this, accionActual[2], accionActual[3],
+							agenteMundo).execute();
+
+				else if (accion.equalsIgnoreCase("dejarencasa"))
+					new DejarEnCasa(this, accionActual[2], agenteMundo)
+							.execute();
+
+				else if (accion.equalsIgnoreCase("convertirseenheroe"))
+					new ConvertirseEnHeroe(this, agenteMundo).execute();
 
 				else {
 					System.out.println(sigAccion);
