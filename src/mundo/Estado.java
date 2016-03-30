@@ -257,10 +257,10 @@ public class Estado {
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
 			
-//			if ( personajes.get("Dragon").contains(e.getKey().toString()) )
-//				estado += "(esGuarida ";
-//			
-//			else
+			if ( personajes.get("Dragon").contains(e.getKey().toString()) )
+				estado += "(esGuarida ";
+			
+			else
 				estado += "(esCasa ";
 			
 			estado += e.getKey() + " " + e.getValue() + ")\n";

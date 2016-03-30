@@ -22,7 +22,7 @@ public class LoaderPnjs {
 		guest.start();
 		guest = container.createNewAgent("Felurian", "pnjs.Sastre", null);
 		guest.start();
-		guest = container.createNewAgent("Grommash", "pnjs.Herrero", null);
+		guest = container.createNewAgent("Garrosh", "pnjs.Herrero", null);
 		guest.start();
 	}
 }

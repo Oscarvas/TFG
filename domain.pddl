@@ -4,7 +4,6 @@
 		localizacion
 		rey
 		caballero
-		villano
 		dragon
 		princesa
 	)
@@ -17,23 +16,36 @@
 		(estaLibre ?per)
 		
 		(conPrinc ?d ?p)
-		(conPrinc ?v ?p)
 		
 		(esPrincipal ?per)
 		(esSecundario ?per)
 		(esRey ?r)
 		(esPrincesa ?p)
 		(esCaballero ?c)
-		(esVillano ?v)
 		(esDragon ?d)
 		
 		(vivo ?per)
 	)
 
 		
+;; un personaje importante se mueve a una localización adyacente que no sea peligrosa
+	(:action moverPrincipal
+		:parameters (?per ?locOrig ?locDest)
+		:precondition (and	
+			(vivo ?per)
+			(adyacente ?locOrig ?locDest)
+			(enLoc ?per ?locOrig)
+			(esPrincipal ?per) 
+			(locSegura ?locDest)
+			(not (secuestrada ?per)))
+		:effect (and
+			(enLoc ?per ?locDest)
+			(not (enLoc ?per ?locOrig)))
+	)
 	
-;; un personaje secundario se mueve a una localizaciÃ³n adyacente
-	(:action mover
+	
+;; un personaje secundario se mueve a una localización adyacente
+	(:action moverSecundario
 		:parameters (?pers ?locOrig ?locDest)
 		:precondition (and	
 			(vivo ?pers)
@@ -82,7 +94,7 @@
 		:effect 
 			(not (vivo ?d))
 	)
-	
+
 
 ;; el caballero escolta a la princesa
 	(:action liberarPrincesa
@@ -143,7 +155,7 @@
 	)		
 		
 		
-;; el caballero se convierte en hÃ©roe
+;; el caballero se convierte en héroe
 	(:action convertirseEnHeroe
 		:parameters (?c ?locCab)
 		:precondition (and
@@ -155,60 +167,5 @@
 		:effect 
 			(esHeroe ?c)
 	)
-	
-	
-;;adaptaciones del villano
 
-
-;; batalla entre villano y dragon
-	(:action batalla
-		:parameters (?v ?d ?loc)
-		:precondition (and
-			(esSecundario ?v)
-			(esSecundario ?d)
-			(not (= ?v ?d))
-			(enLoc ?v ?loc)
-			(enLoc ?d ?loc)
-			(vivo ?v)
-			(vivo ?d))
-		:effect 
-			(not (vivo ?d))
-	)
-	
-	
-;; batalla entre villano y caballero
-	(:action batalla
-		:parameters (?v ?c ?loc)
-		:precondition (and
-			(esSecundario ?v)
-			(esSecundario ?c)
-			(not (= ?v ?c))
-			(enLoc ?v ?loc)
-			(enLoc ?c ?loc)
-			(vivo ?v)
-			(vivo ?c))
-		:effect 
-			(not (vivo ?v))
-	)
-
-;; un villano secuestra a una princesa
-	(:action secuestrar
-		:parameters (?v ?p ?loc ?d)
-		:precondition (and
-			(vivo ?v)
-			(vivo ?p)
-			(esVillano ?v)
-			(estaLibre ?v)
-			(esPrincesa ?p)
-			(not (salvada ?p))
-			(not (vivo ?d))
-			(secuestrada ?p)
-			(enLoc ?v ?loc)
-			(enLoc ?p ?loc))
-		:effect (and
-			(not (estaLibre ?v))
-			(conPrinc ?v ?p)
-			(secuestrada ?p))
-	)
-	
 )

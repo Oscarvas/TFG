@@ -43,7 +43,7 @@ public class Troll extends Personaje {
 				imp = MessageTemplate.MatchInReplyTo(impuestos.getReplyWith());
 				ACLMessage reply = myAgent.blockingReceive(imp);
 				
-				Gui.setHistoria(getLocalName()+" ha recibido el pago de "+reply.getContent()+" del caballero "+reply.getSender().getLocalName());				
+				Gui.setHistoria(getLocalName()+" ha recibido el pago de "+receive.getContent()+" del caballero "+reply.getSender().getLocalName());				
 
 				send(receive.createReply());
 

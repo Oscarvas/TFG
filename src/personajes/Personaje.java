@@ -215,7 +215,8 @@ public class Personaje extends Agent {
 					break;
 				}
 
-				else if (accion.equalsIgnoreCase("mover")) {
+				else if (accion.equalsIgnoreCase("moverprincipal")
+						|| accion.equalsIgnoreCase("moversecundario")) {
 					new Mover(this, accionActual[2], accionActual[3],
 							agenteMundo).execute();
 				}
