@@ -104,7 +104,7 @@ public class Princesa extends Personaje {
 				inform.setContent(dragon.getLocalName());
 				myAgent.send(inform);
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 5000){
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 500){
 						
 						@Override
 						protected void onTick() {
@@ -122,6 +122,12 @@ public class Princesa extends Personaje {
 
 								Gui.setHistoria("La princesa "+getLocalName()+" se ha escapado de las zarpas de "+dragon.getLocalName());
 								stop();
+								try {
+									planificar();
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 
 							}
 							setFuerza(getFuerza()+1); //la princesa se entrena mazo

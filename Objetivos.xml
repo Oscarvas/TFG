@@ -13,9 +13,11 @@
      -->
     
     <personaje tipo="Princesa" >
-        <objetivo>(casarse Caballero Princesa)</objetivo>
+    	<objetivo>(enLoc Princesa Biblioteca)</objetivo>
+    	<objetivo>(enLoc Princesa Establos)</objetivo>
+        <!-- <objetivo>(casarse Caballero Princesa)</objetivo>
         <objetivo>(enamorarse Monstruo)</objetivo>
-        <objetivo>(almaLibre Princesa)</objetivo>
+        <objetivo>(almaLibre Princesa)</objetivo> -->
     </personaje>
     <!-- • Enamorarse y casarse con Héroes.
 • Enamorarse y casarse con Monstruos (no rescatable).
