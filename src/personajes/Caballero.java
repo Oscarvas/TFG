@@ -143,6 +143,8 @@ public class Caballero extends Personaje {
 				Gui.setHistoria(myAgent.getLocalName()+" se ha visto obligado a pagar "+receive.getContent()+" si queria ser capaz de cruzar con vida");
 				
 				myAgent.send(reply);
+				ACLMessage respuesta = myAgent.blockingReceive(mt);
+				send(respuesta.createReply());
 		
 			} else
 				block();

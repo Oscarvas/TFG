@@ -45,7 +45,7 @@ public class Troll extends Personaje {
 				
 				Gui.setHistoria(getLocalName()+" ha recibido el pago de "+receive.getContent()+" del caballero "+reply.getSender().getLocalName());				
 
-				send(receive.createReply());
+				send(reply.createReply());
 
 			} else
 				block();

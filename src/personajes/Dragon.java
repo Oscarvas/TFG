@@ -107,6 +107,7 @@ public class Dragon extends Personaje {
 				MessageTemplate mt1 = MessageTemplate.MatchConversationId("Te secuestro");
 				myAgent.blockingReceive(mt1);
 			
+				addBehaviour(new HayQueJoderseConLaPrincesa());
 				addBehaviour(new Defender());
 				
 			} else
@@ -178,4 +179,27 @@ public class Dragon extends Personaje {
 			}
 		}
 
+	private class HayQueJoderseConLaPrincesa extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("mujerIndependiente"),
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+			ACLMessage receive = myAgent.receive(mt);
+			
+			if ( receive != null ) {
+				ACLMessage reply = receive.createReply();
+				
+				if(Integer.parseInt(receive.getContent()) > getVida()){
+					reply.setPerformative(ACLMessage.CONFIRM);
+				}				
+				myAgent.send(reply);
+						
+			} else
+				block();
+			
+		}
+		
+	}
 }

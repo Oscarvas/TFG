@@ -4,6 +4,7 @@ import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -102,6 +103,30 @@ public class Princesa extends Personaje {
 				inform.addReceiver(padre);
 				inform.setContent(dragon.getLocalName());
 				myAgent.send(inform);
+				
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 10000){
+						
+						@Override
+						protected void onTick() {
+							ACLMessage escapar = new ACLMessage(ACLMessage.REQUEST);
+							escapar.addReceiver(dragon);
+							escapar.setConversationId("mujerIndependiente");
+							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());
+							escapar.setContent(String.valueOf(getFuerza()));							
+							send(escapar);
+							
+							MessageTemplate imp = MessageTemplate.MatchInReplyTo(escapar.getReplyWith());
+							ACLMessage reply = myAgent.blockingReceive(imp);
+							
+							if (reply.getPerformative() == ACLMessage.CONFIRM) {
+
+								Gui.setHistoria("La princesa "+getLocalName()+" se ha escapado de las zarpas de "+dragon.getLocalName());
+								stop();
+
+							}
+							setFuerza(getFuerza()+1); //la princesa se entrena mazo
+						}
+					});
 
 			} else
 				block();
@@ -136,5 +161,6 @@ public class Princesa extends Personaje {
 			return receive != null;
 		}
 	}
+
 
 }
