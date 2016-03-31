@@ -104,7 +104,7 @@ public class Princesa extends Personaje {
 				inform.setContent(dragon.getLocalName());
 				myAgent.send(inform);
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 10000){
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 5000){
 						
 						@Override
 						protected void onTick() {
