@@ -30,13 +30,14 @@ public class Troll extends Personaje {
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
-				ACLMessage impuestos = new ACLMessage(ACLMessage.REQUEST);
+				ACLMessage impuestos = new ACLMessage(ACLMessage.INFORM);
 				impuestos.addReceiver(getAID(receive.getContent()));
 				impuestos.setConversationId("Hacienda");
 				impuestos.setReplyWith("hacienda" + System.currentTimeMillis());
 				impuestos.setContent("17");
 				
-				Gui.setHistoria(getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos\n");
+				String hist=getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos\n";
+				Gui.setHistoria(hist);
 				
 				send(impuestos);
 				

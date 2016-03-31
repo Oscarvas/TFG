@@ -131,7 +131,7 @@ public class Caballero extends Personaje {
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
 					MessageTemplate.MatchConversationId("Hacienda"));
 			ACLMessage receive = myAgent.receive(mt);
 		
