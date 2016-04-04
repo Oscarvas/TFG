@@ -1,99 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Frases>
     <personaje tipo="Bibliotecario" >
-    	<momento id="Inicio">
-    		<frase>Abre la biblioteca para los adeptos.</frase>
-    		<frase>Se asegura de que los papiros estén en perfecto estado.</frase>
-    	</momento>
+    		<frase id="Inicio">Abre la biblioteca para los adeptos.</frase>
+    		<frase id="Inicio">Se asegura de que los papiros estén en perfecto estado.</frase>
     </personaje>
     <personaje tipo="Chaman">
-    	<momento id="Inicio">
-    		<frase>Entra en sintonía con los elementos.</frase>
-    		<frase>Siente la llamada de los espíritus.</frase>    		
-    	</momento>
+    		<frase id="Inicio">Entra en sintonía con los elementos.</frase>
+    		<frase id="Inicio">Siente la llamada de los espíritus.</frase>    	
     </personaje>
     <personaje tipo="Chef">
-		<momento id="Inicio">
-    		<frase>Hay que echarle mas leña al horno.</frase>
-    		<frase>Comienza los preparativos del banquete de hoy.</frase>
-    	</momento>
+    		<frase id="Inicio">Hay que echarle mas leña al horno.</frase>
+    		<frase id="Inicio">Comienza los preparativos del banquete de hoy.</frase>
     </personaje>
     <personaje tipo="Granjero">
-    	<momento id="Inicio">
-    		<frase>Prepara los establos.</frase>
-    	</momento>
+    		<frase id="Inicio">Prepara los establos.</frase>
     </personaje>
     <personaje tipo="Herrero">
-    	<momento id="Inicio">
-    		<frase>Empieza a forjar las armas para la batalla.</frase>
-    		<frase>Calienta la forja.</frase>
-    	</momento>
+    		<frase id="Inicio">Empieza a forjar las armas para la batalla.</frase>
+    		<frase id="Inicio">Calienta la forja.</frase>
     </personaje>
     <personaje tipo="Sastre">
-    	<momento id="Inicio">
-    		<frase>Estira las telas y recoge los hilos de la luna.</frase>
-    		<frase>Prueba los tintes de ropa mágicos.</frase>
-    	</momento>
+    		<frase id="Inicio">Estira las telas y recoge los hilos de la luna.</frase>
+    		<frase id="Inicio">Prueba los tintes de ropa mágicos.</frase>
     </personaje>
     <personaje tipo="Tabernero">
-    	<momento id="Inicio">
-    		<frase>Limpia las mesas a la espera de clientes.</frase>
-    		<frase>Carga nuevos barriles de cerveza de la bodega.</frase>
-    	</momento>
+    		<frase id="Inicio">Limpia las mesas a la espera de clientes.</frase>
+    		<frase id="Inicio">Carga nuevos barriles de cerveza de la bodega.</frase>
     </personaje>
     <personaje tipo="Caballero">
-    	<momento id="Inicio">
-    		<frase>Se levanta con la armadura hecha polvo.</frase>
-    		<frase>¿Este será por fin el día en que será un héroe?.</frase>
-    	</momento>
+    		<frase id="Inicio">Se levanta con la armadura hecha polvo.</frase>
+    		<frase id="Inicio">¿Este será por fin el día en que será un héroe?.</frase>
     </personaje>
     <personaje tipo="Princesa">
-    	<momento id="Inicio">
-    		<frase>En una ataque de rebeldia ha huido de la seguridad del castillo.</frase>
-    		<frase>Ha decidido dar un paseo por el reino.</frase>
-    	</momento>
+    		<frase id="Inicio">En una ataque de rebeldia ha huido de la seguridad del castillo.</frase>
+    		<frase id="Inicio">Ha decidido dar un paseo por el reino.</frase>
     </personaje>
     <personaje tipo="Druida">
-    	<momento id="Inicio">
-    		<frase>Pensó que era buena idea transformarse conejo en estas fechas.</frase>
-    		<frase>Ser un cambiaformas parece que le ha dado un poco escoliosis a este druida.</frase>
-    	</momento>
+    		<frase id="Inicio">Pensó que era buena idea transformarse conejo en estas fechas.</frase>
+    		<frase id="Inicio">Ser un cambiaformas parece que le ha dado un poco escoliosis a este druida.</frase>
     </personaje>
     <personaje tipo="Dragon">
-    	<momento id="Inicio">
-    		<frase>El imponente rugido del dragópn se escucha por todo el reino.</frase>
-    		<frase>Está preparado para buscar y secuestrar a aquellas princesas insensatas.</frase>
-    	</momento>
+    		<frase id="Inicio">El imponente rugido del dragópn se escucha por todo el reino.</frase>
+    		<frase id="Inicio">Está preparado para buscar y secuestrar a aquellas princesas insensatas.</frase>
     </personaje>
     <personaje tipo="Fantasma">
-    	<momento id="Inicio">
-    		<frase>Comienza a preparar su venganza hacia el rey.</frase>
-    		<frase>Recuerda una y otra vez su agónica muerte.</frase>
-    	</momento>	
+    		<frase id="Inicio">Comienza a preparar su venganza hacia el rey.</frase>
+    		<frase id="Inicio">Recuerda una y otra vez su agónica muerte.</frase>
     </personaje>
     <personaje tipo="Mago">
-    	<momento id="Inicio">
     		<frase>Este mago solo tiene muchísimas cartas bajo la túnica.</frase>
     		<frase>Es aquel que controla los vótices oscuros.</frase>
-    	</momento>
     </personaje>
     <personaje tipo="Rey">
-    	<momento id="Inicio">
-    		<frase>Preparado para otro día de trabajo.</frase>
-    		<frase>Si tan solo supiera que el reino está en grave peligro...</frase>
-    	</momento>
+    		<frase id="Inicio">Preparado para otro día de trabajo.</frase>
+    		<frase id="Inicio">Si tan solo supiera que el reino está en grave peligro...</frase>
     </personaje>
     <personaje tipo="Serpiente">
-    	<momento id="Inicio">
     		<frase>Sumerge en la penumbra allí por donde pasa</frase>
     		<frase>Las pequeñas alimañas huyen despavoridas de la serpiente.</frase>
-    	</momento>
     </personaje>
     <personaje tipo="Troll">
-    	<momento id="Inicio">
-    		<frase>La desgracia caerá en aquel que intente cruzarse con este troll sin darle el incentivo adecuado...</frase>
-    		<frase>"Pegar, pegar, pegar...", mientras se golpea repetidamente. Es tan tonto como peligroso.</frase>
-    	</momento>
+    		<frase id="Inicio">La desgracia caerá en aquel que intente cruzarse con este troll sin darle el incentivo adecuado...</frase>
+    		<frase id="Inicio">"Pegar, pegar, pegar...", mientras se golpea repetidamente. Es tan tonto como peligroso.</frase>
     </personaje>
     
 </Frases>
