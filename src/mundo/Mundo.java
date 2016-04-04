@@ -29,9 +29,9 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
+import loaders.LoaderMontruos;
+import loaders.LoaderPnjs;
 import ontologia.Vocabulario;
-import personajes.LoaderMontruos;
-import pnjs.LoaderPnjs;
 
 @SuppressWarnings("serial")
 public class Mundo extends GuiAgent{

@@ -1,4 +1,4 @@
-package personajes;
+package loaders;
 
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
