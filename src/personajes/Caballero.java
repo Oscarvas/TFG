@@ -44,10 +44,9 @@ public class Caballero extends Personaje {
 		
 		localizarPersonaje();
 		Gui.setHistoria("El caballero "+getLocalName()+" se ha despertado en "+getLocalizacion()+" con su armadura hecha polvo.");
-		
-		addBehaviour(new OfrecerServicios(precio));
-		addBehaviour(new AceptarOfertaRescate());
-		addBehaviour(new PagoImpuestos());
+
+		addBehaviour(new OfrecerServicios(precio));		
+		addBehaviour(new AceptarOfertaRescate());		
 	}
 	protected void takeDown() {
 		try {
@@ -71,6 +70,7 @@ public class Caballero extends Personaje {
 				//String dragon = msg.getContent().split(" ")[1];
 
 				try {
+					addBehaviour(new PagoImpuestos());
 					planificar();
 					addBehaviour(new FinPlanificacion(msg.getSender()));
 				} catch (Exception e) {

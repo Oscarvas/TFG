@@ -294,7 +294,8 @@ public class Mundo extends GuiAgent{
 					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Mover"));
 			ACLMessage receive = myAgent.receive(mt);
-
+			
+			//espera que un agente pida moverse
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 				String[] mensaje = receive.getContent().split(" ");
@@ -302,25 +303,28 @@ public class Mundo extends GuiAgent{
 				AID personaje = receive.getSender();
 
 				Localizacion loc2 = mapa.getLocalizacion(locDest);
-
+				
+				//si el mensaje tiene un personaje[0], una locDestino[1] y una loc origen[2]
 				if (mensaje.length == 3) {
 
 					String locOrigen = mensaje[2];
 					Localizacion loc1 = mapa.getLocalizacion(locOrigen);
-
+					
+					//comprueba que los nombres del mapa son correctos y que estan conectados
 					if (loc1 != null && loc1.existeConexion(locDest))
 						ok = loc1.eliminarPersonaje(personaje.getLocalName());
 
 					else
 						ok = false;
 				}
-
+				
+				//cuando todo va bien
 				if (ok && loc2 != null) {
 					loc2.añadirPersonaje(personaje.getLocalName());
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 					
+					//si un caballero va al cruce
 					if (locDest.equals("cruce") && mensaje[0].equals("Caballero") ){
-						
 						ACLMessage mover = new ACLMessage(ACLMessage.REQUEST);
 						mover.addReceiver(getAID("Trundle"));
 						mover.setConversationId("Cruzar");
