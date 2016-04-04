@@ -30,6 +30,7 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
 import loaders.LoaderMontruos;
+import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
 import ontologia.Vocabulario;
 
@@ -118,6 +119,7 @@ public class Mundo extends GuiAgent{
 	    try {
 			new LoaderPnjs(this);
 			new LoaderMontruos(this);
+			new LoaderPersonajes(this);
 		} catch (ControllerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
