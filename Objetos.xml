@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Objetos>
+	<objeto nombre="Espada" localizacion="Tesqua" vida="1" fuerza="5" destreza="0" inteligencia="0" codicia="0" /> 
+</Objetos>
