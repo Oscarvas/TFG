@@ -11,11 +11,9 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
-import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Rey extends Personaje {
-	private int tesoro;
 	public AID[] CaballerosDisponibles;
 	public AID princesaSecuestrada;
 	public String dragon;
@@ -34,8 +32,7 @@ public class Rey extends Personaje {
 		}
 		localizarPersonaje();
 		Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
-		
-		tesoro = Vocabulario.SALARIO_REY * getCodicia();
+
 		numeroHijas=2;
 		FSMBehaviour m = new FSMBehaviour(this);
 		m.registerFirstState(new Atento(), "Atento");
@@ -153,7 +150,7 @@ public class Rey extends Personaje {
 			int dineroPedido = Integer.parseInt(msg.getContent());
 
 			if ((mejorCaballero == null || dineroPedido < menosDineroPedido)
-					&& (dineroPedido <= tesoro)) {
+					&& (dineroPedido <= getTesoro())) {
 				
 				menosDineroPedido = dineroPedido;
 				mejorCaballero = msg.getSender();
@@ -218,7 +215,7 @@ public class Rey extends Personaje {
 					+ princesaSecuestrada.getLocalName() + " fue liberada.");
 			Gui.setHistoria("- El Rey entrega " + menosDineroPedido
 					+ " monedas al caballero " + mejorCaballero.getLocalName() + ". \n");
-			tesoro -= menosDineroPedido;
+			setTesoro(getTesoro()-menosDineroPedido);
 
 			ACLMessage inform = new ACLMessage(ACLMessage.INFORM);
 			inform.setConversationId("Rescatada");
@@ -234,7 +231,7 @@ public class Rey extends Personaje {
 				doDelete();
 			}
 
-			else if (tesoro == 0) {
+			else if (getTesoro() == 0) {
 				Gui.setHistoria("- El Rey ha perdido todo su dinero con el rescate, asi que deja de ser Rey. \n");
 				doDelete();
 			}
