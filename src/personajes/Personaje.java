@@ -17,6 +17,7 @@ import javaff.JavaFF;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import acciones.*;
+import gui.Gui;
 
 
 @SuppressWarnings({ "serial", "unused" })
@@ -28,6 +29,8 @@ public class Personaje extends Agent {
 	private int destreza;
 	private int inteligencia;
 	private int codicia;
+	private int tesoro;
+	
 	private String localizacion;	
 	private AID agenteMundo;
 
@@ -39,9 +42,12 @@ public class Personaje extends Agent {
 		setDestreza(destreza * raza.getDestreza());
 		setInteligencia(inteligencia * raza.getInteligencia());
 		setCodicia(codicia * raza.getCodicia());
-		if (!rey)
+		if (!rey){
 			setLocalizacion(loc[new Random().nextInt(loc.length)]);
+			setTesoro(Vocabulario.SALARIO * getCodicia());
+		}			
 		else{
+			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
 			if (raza.getZona().equalsIgnoreCase("Tesqua"))
 				setLocalizacion(Vocabulario.CASTILLOS[0]);
 			if (raza.getZona().equalsIgnoreCase("Lucta"))
@@ -188,6 +194,13 @@ public class Personaje extends Agent {
 	public void setCodicia(int codicia) {
 		this.codicia = codicia;
 	}
+	public int getTesoro() {
+		return tesoro;
+	}
+
+	public void setTesoro(int tesoro) {
+		this.tesoro = tesoro;
+	}
 	
 	public void planificar() throws Exception {
 
@@ -217,6 +230,26 @@ public class Personaje extends Agent {
 
 				else if (accion.equalsIgnoreCase("moverprincipal")
 						|| accion.equalsIgnoreCase("moversecundario")) {
+					
+					
+					MessageTemplate mt = MessageTemplate.and(
+							MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+							MessageTemplate.MatchConversationId("Hacienda"));
+					ACLMessage receive = receive(mt);
+				
+					if (receive != null && receive.getContent()!=null) {
+						//aqui condicion de si el caballero puede pagar lo pedido
+						setTesoro(getTesoro()-Integer.parseInt(receive.getContent()));
+						Gui.setHistoria(getLocalName()+" se ha visto obligado a pagar "+receive.getContent()+" si queria ser capaz de cruzar con vida");
+
+						ACLMessage reply = receive.createReply();
+						send(reply);
+						MessageTemplate plnt = MessageTemplate
+								.MatchInReplyTo(reply.getReplyWith());
+						blockingReceive(plnt);
+				
+					} 
+					
 					new Mover(this, accionActual[2], accionActual[3],
 							agenteMundo).execute();
 				}
@@ -229,6 +262,9 @@ public class Personaje extends Agent {
 				}
 				
 				else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
+					new Mover(this, accionActual[3], accionActual[4],
+							agenteMundo).execute();
+					
 					ACLMessage moverPrincesa = new ACLMessage(
 							ACLMessage.REQUEST);
 					moverPrincesa.setConversationId("Mover-Princesa");
@@ -241,8 +277,7 @@ public class Personaje extends Agent {
 					MessageTemplate mt = MessageTemplate
 							.MatchInReplyTo(moverPrincesa.getReplyWith());
 					blockingReceive(mt);
-					new Mover(this, accionActual[3], accionActual[4],
-							agenteMundo).execute();
+					
 
 				} else if (accion.equalsIgnoreCase("batalla"))
 				{

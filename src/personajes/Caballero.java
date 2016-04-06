@@ -12,12 +12,9 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
-import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Caballero extends Personaje {
-	
-	private int precio;
 
 	protected void setup(){
 		Object[] args = getArguments(); 
@@ -40,12 +37,11 @@ public class Caballero extends Personaje {
 			fe.printStackTrace();
 		}
 		
-		precio = Vocabulario.SALARIO * getCodicia();
 		
 		localizarPersonaje();
 		Gui.setHistoria("El caballero "+getLocalName()+" se ha despertado en "+getLocalizacion()+" con su armadura hecha polvo.");
 
-		addBehaviour(new OfrecerServicios(precio));		
+		addBehaviour(new OfrecerServicios(getTesoro()));		
 		addBehaviour(new AceptarOfertaRescate());		
 	}
 	protected void takeDown() {
@@ -66,11 +62,8 @@ public class Caballero extends Personaje {
 			ACLMessage msg = myAgent.receive(mt);
 
 			if (msg != null) {
-				//String princesa = msg.getContent().split(" ")[0];
-				//String dragon = msg.getContent().split(" ")[1];
 
 				try {
-					addBehaviour(new PagoImpuestos());
 					planificar();
 					addBehaviour(new FinPlanificacion(msg.getSender()));
 				} catch (Exception e) {
@@ -124,33 +117,6 @@ public class Caballero extends Personaje {
 		public boolean done() {
 			return receive != null;
 		}
-	}
-	
-	private class PagoImpuestos extends CyclicBehaviour{
-
-		@Override
-		public void action() {
-			// TODO Auto-generated method stub
-			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
-					MessageTemplate.MatchConversationId("Hacienda"));
-			ACLMessage receive = myAgent.receive(mt);
-		
-			if (receive != null) {
-				ACLMessage reply = receive.createReply();
-				
-				reply.setContent(receive.getContent());
-				precio -= Integer.parseInt(receive.getContent());
-				Gui.setHistoria(myAgent.getLocalName()+" se ha visto obligado a pagar "+receive.getContent()+" si queria ser capaz de cruzar con vida");
-				
-				myAgent.send(reply);
-				ACLMessage respuesta = myAgent.blockingReceive(mt);
-				send(respuesta.createReply());
-		
-			} else
-				block();
-			
-		}
-		
 	}
 	
 }

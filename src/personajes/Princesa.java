@@ -123,7 +123,7 @@ public class Princesa extends Personaje {
 								Gui.setHistoria("La princesa "+getLocalName()+" se ha escapado de las zarpas de "+dragon.getLocalName());
 								stop();
 								try {
-									planificar();
+									//planificar();
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

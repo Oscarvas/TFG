@@ -1,5 +1,7 @@
 package personajes;
 
+import java.util.Random;
+
 import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -19,34 +21,34 @@ public class Troll extends Personaje {
 	
 	private class Guardian extends CyclicBehaviour {
 
-		private MessageTemplate mt,imp;
-
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
 
-			mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-							MessageTemplate.MatchConversationId("Cruzar"));
+			MessageTemplate mt = MessageTemplate.and(
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+					MessageTemplate.MatchConversationId("Cruzar"));
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
-				ACLMessage impuestos = new ACLMessage(ACLMessage.INFORM);
-				impuestos.addReceiver(getAID(receive.getContent()));
-				impuestos.setConversationId("Hacienda");
-				impuestos.setReplyWith("hacienda" + System.currentTimeMillis());
-				impuestos.setContent("17");
-				
-				String hist=getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos\n";
+				String hist="        "+getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos para cruzar";
 				Gui.setHistoria(hist);
 				
+				ACLMessage impuestos = new ACLMessage(ACLMessage.REQUEST);
+				impuestos.setConversationId("Hacienda");
+				impuestos.setReplyWith("hacienda" + System.currentTimeMillis());
+				impuestos.addReceiver(getAID(receive.getContent()));
+				impuestos.setContent(String.valueOf(new Random().nextInt(50)+1));	
 				send(impuestos);
 				
-				imp = MessageTemplate.MatchInReplyTo(impuestos.getReplyWith());
-				ACLMessage reply = myAgent.blockingReceive(imp);
-				
-				Gui.setHistoria(getLocalName()+" ha recibido el pago de "+receive.getContent()+" del caballero "+reply.getSender().getLocalName());				
+				MessageTemplate imp = MessageTemplate
+						.MatchInReplyTo(impuestos.getReplyWith());
+				ACLMessage reply = myAgent.blockingReceive(imp);				
+				Gui.setHistoria(getLocalName()+" ha recibido el pago del caballero "+reply.getSender().getLocalName());				
 
-				send(reply.createReply());
+//				send(receive.createReply());//respuesta al mundo
+				send(reply.createReply());//respuesta al caballero
+				
 
 			} else
 				block();

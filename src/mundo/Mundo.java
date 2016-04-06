@@ -287,7 +287,7 @@ public class Mundo extends GuiAgent{
 	private class LocalizarPersonajes extends CyclicBehaviour {
 
 		public void action() {
-
+			
 			boolean ok = true;
 
 			MessageTemplate mt = MessageTemplate.and(
@@ -325,12 +325,15 @@ public class Mundo extends GuiAgent{
 					
 					//si un caballero va al cruce
 					if (locDest.equals("cruce") && mensaje[0].equals("Caballero") ){
-						ACLMessage mover = new ACLMessage(ACLMessage.REQUEST);
+						ACLMessage mover = new ACLMessage(ACLMessage.INFORM);
 						mover.addReceiver(getAID("Trundle"));
 						mover.setConversationId("Cruzar");
 						mover.setReplyWith("cruzar" + System.currentTimeMillis());
 						mover.setContent(personaje.getLocalName());
 						send(mover);
+//						MessageTemplate espera = MessageTemplate
+//								.MatchInReplyTo(mover.getReplyWith());
+//						blockingReceive(espera);
 					}
 					
 					
@@ -355,25 +358,21 @@ public class Mundo extends GuiAgent{
 
 	private class MoverPrincesaSecuestrada extends CyclicBehaviour {
 
-		MessageTemplate mt;
-
 		public void action() {
 
-			mt = MessageTemplate
-					.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-							MessageTemplate
-									.MatchConversationId("Mundo-Mover-Princesa"));
+			MessageTemplate mt = MessageTemplate.and(
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Mundo-Mover-Princesa"));
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
 
 				String[] contenido = receive.getContent().split(" ");
 				ACLMessage moverPrincesa = new ACLMessage(ACLMessage.REQUEST);
-				moverPrincesa.setReplyWith("mover-princesa"
-						+ System.currentTimeMillis());
+				moverPrincesa.setReplyWith("mover-princesa"+ System.currentTimeMillis());
 				moverPrincesa.setConversationId("Mover-Princesa");
-				moverPrincesa.setContent(contenido[0] + " "
-						+ receive.getSender().getLocalName());
+				moverPrincesa.setContent(contenido[0] + " "+ receive.getSender().getLocalName());
+				
 				AID princesa = new AID(
 						(String) estado.nombreCorrecto(contenido[1]),
 						AID.ISLOCALNAME);
