@@ -12,13 +12,12 @@ public class LiberarPrincesa {
 	private String princesa, dragon;
 	private AID agenteMundo;
 
-	public LiberarPrincesa(Personaje personaje, String princesa, String dragon,
-			AID agenteMundo) {
+	public LiberarPrincesa(Personaje personaje, String princesa, String dragon) {
 
 		this.personaje = personaje;
 		this.princesa = princesa;
 		this.dragon = dragon;
-		this.agenteMundo = agenteMundo;
+		this.agenteMundo = personaje.getAgenteMundo();
 
 	}
 

@@ -13,11 +13,11 @@ public class Secuestrar {
 	private AID agenteMundo;
 	
 	
-	public Secuestrar(Personaje personaje, String princesa, AID agenteMundo) {
+	public Secuestrar(Personaje personaje, String princesa) {
 		
 		this.personaje = personaje;
 		this.princesa = princesa;
-		this.agenteMundo = agenteMundo;
+		this.agenteMundo = personaje.getAgenteMundo();
 		
 	}
 	

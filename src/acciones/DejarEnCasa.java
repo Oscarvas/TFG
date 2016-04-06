@@ -12,11 +12,11 @@ public class DejarEnCasa {
 	private String princesa;
 	private AID agenteMundo;
 
-	public DejarEnCasa(Personaje personaje, String princesa, AID agenteMundo) {
+	public DejarEnCasa(Personaje personaje, String princesa) {
 
 		this.personaje = personaje;
 		this.princesa = princesa;
-		this.agenteMundo = agenteMundo;
+		this.agenteMundo = personaje.getAgenteMundo();
 
 	}
 

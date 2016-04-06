@@ -86,7 +86,7 @@ public class Personaje extends Agent {
 			this.vida = 0;
 
 			ACLMessage muerto = new ACLMessage(ACLMessage.INFORM);
-			muerto.addReceiver(agenteMundo);
+			muerto.addReceiver(getAgenteMundo());
 			muerto.setConversationId("Muerto");
 			muerto.setContent(getLocalName());
 			send(muerto);
@@ -117,7 +117,7 @@ public class Personaje extends Agent {
 			setAgenteMundo(result[0].getName());
 
 			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
-			localizar.addReceiver(agenteMundo);
+			localizar.addReceiver(getAgenteMundo());
 			localizar.setConversationId("Mover");
 			localizar.setContent(getClass().getName().substring(11) + " "
 					+ localizacion);
@@ -250,20 +250,18 @@ public class Personaje extends Agent {
 				
 					} 
 					
-					new Mover(this, accionActual[2], accionActual[3],
-							agenteMundo).execute();
+					new Mover(this, accionActual[2], accionActual[3]).execute();
 				}
 
 				else if (accion.equalsIgnoreCase("secuestrar")) {
-					if ( ! new Secuestrar(this, accionActual[2], agenteMundo).execute() ) {
+					if ( ! new Secuestrar(this, accionActual[2]).execute() ) {
 						falloSecuestro = true;
 						break;
 					}
 				}
 				
 				else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
-					new Mover(this, accionActual[3], accionActual[4],
-							agenteMundo).execute();
+					new Mover(this, accionActual[3], accionActual[4]).execute();
 					
 					ACLMessage moverPrincesa = new ACLMessage(
 							ACLMessage.REQUEST);
@@ -284,15 +282,13 @@ public class Personaje extends Agent {
 					new Batalla(this, accionActual[2]).execute();
 				}
 				else if (accion.equalsIgnoreCase("liberarprincesa"))
-					new LiberarPrincesa(this, accionActual[2], accionActual[3],
-							agenteMundo).execute();
+					new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
 
 				else if (accion.equalsIgnoreCase("dejarencasa"))
-					new DejarEnCasa(this, accionActual[2], agenteMundo)
-							.execute();
+					new DejarEnCasa(this, accionActual[2]).execute();
 
 				else if (accion.equalsIgnoreCase("convertirseenheroe"))
-					new ConvertirseEnHeroe(this, agenteMundo).execute();
+					new ConvertirseEnHeroe(this).execute();
 
 				else {
 					System.out.println(sigAccion);
@@ -321,7 +317,7 @@ public class Personaje extends Agent {
 	public void mandarCrearArchivo() {
 
 		ACLMessage toPDDL = new ACLMessage(ACLMessage.REQUEST);
-		toPDDL.addReceiver(agenteMundo);
+		toPDDL.addReceiver(getAgenteMundo());
 		toPDDL.setConversationId("toPDDL");
 		toPDDL.setReplyWith("toPDDL" + System.currentTimeMillis());
 		toPDDL.setContent(getClass().getName().substring(11) + " "
@@ -334,7 +330,7 @@ public class Personaje extends Agent {
 		blockingReceive(mt);
 	}
 	public void moverSecuestrado(String locDest) {
-		new Mover(this, localizacion, locDest, agenteMundo).execute();
+		new Mover(this, localizacion, locDest).execute();
 	}
 	
 }

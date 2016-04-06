@@ -13,13 +13,12 @@ public class Mover {
 	private String locDest;
 	private AID agenteMundo;
 
-	public Mover(Personaje personaje, String locOrigen, String locDest,
-			AID agenteMundo) {
+	public Mover(Personaje personaje, String locOrigen, String locDest) {
 
 		this.personaje = personaje;
 		this.locOrigen = locOrigen;
 		this.locDest = locDest;
-		this.agenteMundo = agenteMundo;
+		this.agenteMundo = personaje.getAgenteMundo();
 
 	}
 

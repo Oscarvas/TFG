@@ -11,10 +11,10 @@ public class ConvertirseEnHeroe {
 	private Personaje personaje;
 	private AID agenteMundo;
 	
-	public ConvertirseEnHeroe (Personaje personaje, AID agenteMundo) {
+	public ConvertirseEnHeroe (Personaje personaje) {
 		
 		this.personaje = personaje;
-		this.agenteMundo = agenteMundo;
+		this.agenteMundo = personaje.getAgenteMundo();
 		
 	}
 	
