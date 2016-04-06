@@ -123,7 +123,7 @@ public class Gui extends JFrame {
 		minimapa.setVisible(true);
 	}
 	
-	public static void setHistoria(String hist){
+	public static synchronized void setHistoria(String hist){
 		String acumulado = textAreaHistoria.getText();
 		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
