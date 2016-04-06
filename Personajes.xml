@@ -9,10 +9,10 @@
 	
 	<personaje nombre="Leia" clase="Princesa" raza="LUCS" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Voljin" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<!-- <personaje nombre="Voljin" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/> -->
 	
-	<personaje nombre="Pulgarcito" clase="Caballero" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="5"/>
+	<personaje nombre="Alonso" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Alonso" clase="Caballero" raza="SCRULL" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="SergioRammus" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
 </Actores>
