@@ -231,25 +231,6 @@ public class Personaje extends Agent {
 				else if (accion.equalsIgnoreCase("moverprincipal")
 						|| accion.equalsIgnoreCase("moversecundario")) {
 					
-					
-					MessageTemplate mt = MessageTemplate.and(
-							MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-							MessageTemplate.MatchConversationId("Hacienda"));
-					ACLMessage receive = receive(mt);
-				
-					if (receive != null && receive.getContent()!=null) {
-						//aqui condicion de si el caballero puede pagar lo pedido
-						setTesoro(getTesoro()-Integer.parseInt(receive.getContent()));
-						Gui.setHistoria(getLocalName()+" se ha visto obligado a pagar "+receive.getContent()+" si queria ser capaz de cruzar con vida");
-
-						ACLMessage reply = receive.createReply();
-						send(reply);
-						MessageTemplate plnt = MessageTemplate
-								.MatchInReplyTo(reply.getReplyWith());
-						blockingReceive(plnt);
-				
-					} 
-					
 					new Mover(this, accionActual[2], accionActual[3]).execute();
 				}
 

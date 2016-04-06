@@ -43,8 +43,8 @@ public class Mover {
 
 				personaje.setLocalizacion(msg.getContent());
 
-				Gui.setHistoria(personaje.getLocalName() + " ha llegado a "
-						+ personaje.getLocalizacion());
+				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
+				evento();
 
 			} else {
 				System.err.println(" No se ha podido cambiar de localizacion. \n");
@@ -58,4 +58,26 @@ public class Mover {
 					+ personaje.getLocalizacion() + ". \n");
 		}
 	}
+
+	private void evento(){
+		MessageTemplate mt2 = MessageTemplate.and(
+				MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+				MessageTemplate.MatchConversationId("Hacienda"));
+		ACLMessage receive = personaje.receive(mt2);
+	
+		if (receive != null && receive.getContent()!=null) {
+			//aqui condicion de si el caballero puede pagar lo pedido
+			personaje.setTesoro(personaje.getTesoro()-Integer.parseInt(receive.getContent()));
+			Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
+
+			ACLMessage reply = receive.createReply();
+			personaje.send(reply);
+			MessageTemplate plnt = MessageTemplate
+					.MatchInReplyTo(reply.getReplyWith());
+			personaje.blockingReceive(plnt);
+	
+		} 
+		
+	}
+	
 }

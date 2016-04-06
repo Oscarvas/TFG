@@ -31,7 +31,7 @@ public class Troll extends Personaje {
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
-				String hist="        "+getLocalName()+" obliga a "+receive.getContent()+" a pagar los tributos para cruzar";
+				String hist=getLocalName()+": ¿Es aquello un caballero?... ¡¡¡Día de paga!!!";
 				Gui.setHistoria(hist);
 				
 				ACLMessage impuestos = new ACLMessage(ACLMessage.REQUEST);
@@ -44,7 +44,7 @@ public class Troll extends Personaje {
 				MessageTemplate imp = MessageTemplate
 						.MatchInReplyTo(impuestos.getReplyWith());
 				ACLMessage reply = myAgent.blockingReceive(imp);				
-				Gui.setHistoria(getLocalName()+" ha recibido el pago del caballero "+reply.getSender().getLocalName());				
+				Gui.setHistoria(getLocalName()+": Un caballero con dinero es un caballero vivo, puedes continuar "+reply.getSender().getLocalName());				
 
 //				send(receive.createReply());//respuesta al mundo
 				send(reply.createReply());//respuesta al caballero
