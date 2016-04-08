@@ -48,16 +48,16 @@
     		<frase id="Inicio">Recuerda una y otra vez su agónica muerte.</frase>
     </personaje>
     <personaje tipo="Mago">
-    		<frase>Este mago solo tiene muchísimas cartas bajo la túnica.</frase>
-    		<frase>Es aquel que controla los vótices oscuros.</frase>
+    		<frase id="Inicio">Este mago solo tiene muchísimas cartas bajo la túnica.</frase>
+    		<frase id="Inicio">Es aquel que controla los vótices oscuros.</frase>
     </personaje>
     <personaje tipo="Rey">
     		<frase id="Inicio">Preparado para otro día de trabajo.</frase>
     		<frase id="Inicio">Si tan solo supiera que el reino está en grave peligro...</frase>
     </personaje>
     <personaje tipo="Serpiente">
-    		<frase>Sumerge en la penumbra allí por donde pasa</frase>
-    		<frase>Las pequeñas alimañas huyen despavoridas de la serpiente.</frase>
+    		<frase id="Inicio">Sumerge en la penumbra allí por donde pasa</frase>
+    		<frase id="Inicio">Las pequeñas alimañas huyen despavoridas de la serpiente.</frase>
     </personaje>
     <personaje tipo="Troll">
     		<frase id="Inicio">La desgracia caerá en aquel que intente cruzarse con este troll sin darle el incentivo adecuado...</frase>

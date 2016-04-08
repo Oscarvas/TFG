@@ -10,6 +10,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import javaff.JavaFF;
@@ -30,6 +31,7 @@ public class Personaje extends Agent {
 	private int inteligencia;
 	private int codicia;
 	private int tesoro;
+	private HashMap<String, ArrayList<String>> frases;
 	
 	private String localizacion;	
 	private AID agenteMundo;
@@ -77,6 +79,14 @@ public class Personaje extends Agent {
 			break;
 		}
 
+	}
+
+	public HashMap<String, ArrayList<String>> getFrases() {
+		return frases;
+	}
+
+	public void setFrases(HashMap<String, ArrayList<String>> frases) {
+		this.frases = frases;
 	}
 
 	public void añadirVida(int vida) {

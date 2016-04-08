@@ -33,20 +33,16 @@ public class LoaderFrases {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	
 					Element eElement = (Element) nNode;
-	
-					if (eElement.getAttribute("tipo").equalsIgnoreCase("")) {
-	
-						int numObjetivos = eElement.getElementsByTagName("frase").getLength();
-						ArrayList<String> frases = new ArrayList<String>();
-						for(int i=0;i<numObjetivos;i++){
-							frases.add(eElement
-								.getElementsByTagName("frase")
-								.item(i).getTextContent());
-						}
-						String cadena = frases.get(new Random().nextInt(frases.size()));
-	
-					
+						
+					int nFrases = eElement.getElementsByTagName("frase").getLength();
+					ArrayList<String> frases = new ArrayList<String>();
+					for(int i=0;i<nFrases;i++){
+						frases.add(eElement
+							.getElementsByTagName("frase")
+							.item(i).getTextContent());
 					}
+					String cadena = frases.get(new Random().nextInt(frases.size()));
+					
 				}
 			}
 		}
