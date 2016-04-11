@@ -22,7 +22,7 @@ public class PNJ extends Agent {
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType((String) args[0]);
-		sd.setName(getLocalName()+(String) args[0]);
+		sd.setName(getLocalName()+"-"+(String) args[0]);
 		dfd.addServices(sd);
 		
 		try {
