@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Objetos>
-	<objeto nombre="Espada" localizacion="Tesqua" vida="1" fuerza="5" destreza="0" inteligencia="0" codicia="0" /> 
+<Objetos>	
+	<consumible nombre="Manzana" cantidad="20" vida="5" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
+	<consumible nombre="Manzana de JOS" cantidad="1" vida="100" fuerza="5" destreza="5" inteligencia="5" codicia="-50"/> 
+	<consumible nombre="Manzana de Kecr" cantidad="5" vida="-10" fuerza="-5" destreza="-5" inteligencia="-5" codicia="50"/>
+	<equipo nombre="Espada" localizacion="Tesqua" vida="0" fuerza="5" destreza="0" inteligencia="0" codicia="0" /> 
+	<equipo nombre="Arco" localizacion="Tesqua" vida="0" fuerza="0" destreza="5" inteligencia="0" codicia="0" /> 
 </Objetos>
