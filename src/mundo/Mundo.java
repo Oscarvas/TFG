@@ -213,7 +213,7 @@ public class Mundo extends GuiAgent{
 				problema += ")" + "\n";
 
 				problema += "(:init" + "\n";
-				problema += estado.toString();
+				problema += estado.toString(nombrePersonaje);
 				problema += ")\n";
 
 				try {
