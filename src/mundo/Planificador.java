@@ -8,7 +8,7 @@ public class Planificador extends Agent {
 	protected void setup(){
 		// TODO Auto-generated method stub
 	
-		String[] args = { "domainOld.pddl","Smaug.pddl" };
+		String[] args = { "domain.pddl","Alonso.pddl" };
 
 		String ff = JavaFF.crearPlan(args);
 		String[] cadena = ff.split("\n");
