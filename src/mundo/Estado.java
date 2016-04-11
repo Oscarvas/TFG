@@ -214,7 +214,7 @@ public class Estado {
 
 	
 	@SuppressWarnings("rawtypes")
-	public String toString() {
+	public String toString(String nombrePersonaje) {
 		
 		String estado = "";
 		Iterator<?> it;
@@ -245,8 +245,12 @@ public class Estado {
 		
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			
-			estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";	
+			if (!heroes.contains(nombrePersonaje))//si no soy un caballero				
+				estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
+			else{
+				if (nombrePersonaje.equals(e.getKey()))
+					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
+			}
 		}
 
 		
