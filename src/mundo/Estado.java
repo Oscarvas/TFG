@@ -22,7 +22,7 @@ public class Estado {
 	private ArrayList<String> heroes;
 	private String princesaObjetivo;
 	
-	
+
 	public Estado() {
 		
 		adyacencias = new HashMap<String, ArrayList<String>>();
@@ -245,12 +245,13 @@ public class Estado {
 		
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			if (!heroes.contains(nombrePersonaje))//si no soy un caballero				
+			if (!personajes.get("Caballero").contains(nombrePersonaje))//si no soy un caballero				
 				estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 			else{
-				if (nombrePersonaje.equals(e.getKey()))
+				if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Caballero").contains(e.getKey()))
 					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 			}
+			
 		}
 
 		

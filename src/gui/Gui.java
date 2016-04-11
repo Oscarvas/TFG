@@ -128,7 +128,7 @@ public class Gui extends JFrame {
 		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
 		try {
-			Thread.sleep(2500);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
