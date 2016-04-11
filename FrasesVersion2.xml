@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Frases>
+	<!-- Documento que contiene las frases que se utilizaran para narrar la historia -->
+	<!-- Personaje indica el tipo de personaje sobre el cual se aplicaran las frases -->
+	<!-- Frase id indica para que acciones se utilizara la frase -->
+	<!-- PNJs -->
+	<personaje tipo="Chaman">
+		<accion id="Inicio">
+			<frase>Frase ejemplo 1</frase>
+			<frase>Frase ejemplo 2</frase>
+			<frase>Frase ejemplo 3</frase>
+		</accion>
+		<!--
+		<frase id="Presentacion">Entra en sintonía con los elementos.</frase>
+		<frase id="Presentacion">Siente la llamada de los espíritus.</frase>
+		<frase id="Habilidad">Entra en sintonía con los elementos.</frase>
+		<frase id="Habilidad">Siente la llamada de los espíritus.</frase>
+		<frase id="Conversacion">Entra en sintonía con los elementos.</frase>
+		<frase id="Conversacion">Siente la llamada de los espíritus.</frase>
+		<frase id="Muerte">Entra en sintonía con los elementos.</frase>
+		<frase id="Muerte">Siente la llamada de los espíritus.</frase>
+		-->		
+		
+	</personaje>
+	<personaje tipo="Tabernero">
+		<frase id="Inicio">Limpia las mesas a la espera de clientes.</frase>
+		<frase id="Inicio">Carga nuevos barriles de cerveza de la bodega.</frase>
+	</personaje>
+	<personaje tipo="Bibliotecaria" >
+		<frase id="Inicio">Abre la biblioteca para los adeptos.</frase>
+		<frase id="Inicio">Se asegura de que los papiros estén en perfecto estado.</frase>
+	</personaje>
+	<personaje tipo="Confabulador">
+		<frase id="Inicio">Prepara los establos.</frase>
+	</personaje>
+	<personaje tipo="Jefe de Guerra">
+		<frase id="Inicio">Hay que echarle mas leña al horno.</frase>
+		<frase id="Inicio">Comienza los preparativos del banquete de hoy.</frase>
+	</personaje>
+	<personaje tipo="Herrero">
+		<frase id="Inicio">Empieza a forjar las armas para la batalla.</frase>
+		<frase id="Inicio">Calienta la forja.</frase>
+	</personaje>
+	<!-- Protagonistas -->
+	<personaje tipo="Caballero">
+		<frase id="Inicio">Se levanta con la armadura hecha polvo.</frase>
+		<frase id="Inicio">¿Este será por fin el día en que será un héroe?.</frase>
+	</personaje>
+	<personaje tipo="Princesa">
+		<frase id="Inicio">En una ataque de rebeldia ha huido de la seguridad del castillo.</frase>
+		<frase id="Inicio">Ha decidido dar un paseo por el reino.</frase>
+	</personaje>
+	<personaje tipo="Druida">
+		<frase id="Inicio">Pensó que era buena idea transformarse conejo en estas fechas.</frase>
+		<frase id="Inicio">Ser un cambiaformas parece que le ha dado un poco escoliosis a este druida.</frase>
+	</personaje>
+	<personaje tipo="Dragon">
+		<frase id="Inicio">El imponente rugido del dragópn se escucha por todo el reino.</frase>
+		<frase id="Inicio">Está preparado para buscar y secuestrar a aquellas princesas insensatas.</frase>
+	</personaje>
+	<personaje tipo="Fantasma">
+		<frase id="Inicio">Comienza a preparar su venganza hacia el rey.</frase>
+		<frase id="Inicio">Recuerda una y otra vez su agónica muerte.</frase>
+	</personaje>
+	<personaje tipo="Mago">
+		<frase id="Inicio">Este mago solo tiene muchísimas cartas bajo la túnica.</frase>
+		<frase id="Inicio">Es aquel que controla los vótices oscuros.</frase>
+	</personaje>
+	<personaje tipo="Rey">
+		<frase id="Inicio">Preparado para otro día de trabajo.</frase>
+		<frase id="Inicio">Si tan solo supiera que el reino está en grave peligro...</frase>
+	</personaje>
+	<personaje tipo="Serpiente">
+		<frase id="Inicio">Sumerge en la penumbra allí por donde pasa</frase>
+		<frase id="Inicio">Las pequeñas alimañas huyen despavoridas de la serpiente.</frase>
+	</personaje>
+	<personaje tipo="Troll">
+		<frase id="Inicio">
+			La desgracia caerá en aquel que intente cruzarse con este troll sin darle el incentivo
+			adecuado...
+		</frase>
+		<frase id="Inicio">
+			"Pegar, pegar, pegar...", mientras se golpea repetidamente. Es tan tonto como peligroso.
+		</frase>
+	</personaje>
+</Frases>
