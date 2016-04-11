@@ -32,7 +32,7 @@ public class Gui extends JFrame {
 	 */
 	public Gui(Mundo mundo) {
 		myAgent = mundo;
-		setTitle("La Historia de - " + myAgent.getLocalName());
+		setTitle("La Historia de " + myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -127,6 +127,12 @@ public class Gui extends JFrame {
 		String acumulado = textAreaHistoria.getText();
 		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
+		try {
+			Thread.sleep(2500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
