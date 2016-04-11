@@ -62,6 +62,7 @@ public class Dragon extends Personaje {
 						
 						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo dede "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
 						planificar();
+						localizarPersonaje();
 						addBehaviour(new FalloSecuestro());
 						addBehaviour(new FinPlanificacion());
 						

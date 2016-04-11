@@ -89,6 +89,7 @@
 			(not (= ?c ?d))
 			(enLoc ?c ?loc)
 			(enLoc ?d ?loc)
+			(esGuarida ?d ?loc)
 			(vivo ?c)
 			(vivo ?d))
 		:effect 
