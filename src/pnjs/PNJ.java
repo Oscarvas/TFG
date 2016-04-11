@@ -1,16 +1,13 @@
 package pnjs;
 
-import ontologia.Mitologia;
-import acciones.OfrecerServicios;
 import gui.Gui;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
 
+@SuppressWarnings("serial")
 public class PNJ extends Agent {
 	protected void setup(){
 		Object[] args = getArguments(); 
@@ -33,7 +30,7 @@ public class PNJ extends Agent {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
-		
+		Gui.setHistoria(getLocalName()+" es "+args[0]+" y esta en "+args[1]);
 		
 //		localizarPnj();
 //		Gui.setHistoria("El caballero "+getLocalName()+" se ha despertado en "+getLocalizacion()+" con su armadura hecha polvo.");
@@ -50,13 +47,13 @@ public class PNJ extends Agent {
 //		sd.setType("Chamanismo");
 //		sd.setName(getLocalName()+"-Chamanismo");
 //		dfd.addServices(sd);
-		
-		try {
-			DFService.register(this, dfd);
-		} catch (FIPAException fe) {
-			fe.printStackTrace();
-		}
-		Gui.setHistoria("El chamán "+getLocalName()+" entra en sintonía con los elementos");
+//		
+//		try {
+//			DFService.register(this, dfd);
+//		} catch (FIPAException fe) {
+//			fe.printStackTrace();
+//		}
+//		Gui.setHistoria("El chamán "+getLocalName()+" entra en sintonía con los elementos");
 	}
 	
 //	public void localizarPnj() {
