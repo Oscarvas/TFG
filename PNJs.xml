@@ -2,19 +2,20 @@
 <Actores>
 <!-- Para configurar correctamente un pnj debes: -->
 <!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
+<!-- SEXO = Definir si nuestro pnj es masculino(M) o femenino(F) -->
 <!-- OFICIO = Darle un oficio como ocupación, creará objetos relativos a esta durante la historia Ejmplo: Tabernero-->
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 
-	<pnj nombre="Thrall" oficio="Chaman" localizacion="Cuevas"/>
+	<pnj nombre="Thrall" sexo="M" oficio="Chaman" localizacion="Cuevas"/>
 	
-	<pnj nombre="Kvothe" oficio="Tabernero" localizacion="Taberna"/>
+	<pnj nombre="Kvothe" sexo="M" oficio="Tabernero" localizacion="Taberna"/>
 	
-	<pnj nombre="Felurian" oficio="Bibliotecaria" localizacion="Biblioteca"/>
+	<pnj nombre="Felurian" sexo="F" oficio="Bibliotecaria" localizacion="Biblioteca"/>
 		
-	<pnj nombre="Lord Victor Nefarius" oficio="Confabulador" localizacion="Segrex"/>
+	<pnj nombre="Lord Victor Nefarius" sexo="M" oficio="Confabulador" localizacion="Segrex"/>
 		
-	<pnj nombre="Garrosh" oficio="Jefe de Guerra" localizacion="Hospital"/>
+	<pnj nombre="Garrosh" sexo="M" oficio="Jefe de Guerra" localizacion="Hospital"/>
 	
-	<pnj nombre="Haedrig Eamon" oficio="Herrero" localizacion="Herreria"/>
+	<pnj nombre="Haedrig Eamon" sexo="M" oficio="Herrero" localizacion="Herreria"/>
 	
 </Actores>
