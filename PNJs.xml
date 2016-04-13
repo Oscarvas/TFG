@@ -6,11 +6,11 @@
 <!-- OFICIO = Darle un oficio como ocupación, creará objetos relativos a esta durante la historia Ejmplo: Tabernero-->
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 
-	<pnj nombre="Thrall" sexo="M" oficio="Chaman" localizacion="Cuevas"/>
+	<pnj nombre="Thrall" sexo="M" oficio="Chaman" localizacion="Minas"/>
 	
 	<pnj nombre="Kvothe" sexo="M" oficio="Tabernero" localizacion="Taberna"/>
 	
-	<pnj nombre="Felurian" sexo="F" oficio="Bibliotecaria" localizacion="Biblioteca"/>
+	<pnj nombre="Felurian" sexo="F" oficio="Sastre" localizacion="Sastreria"/>
 		
 	<pnj nombre="Lord Victor Nefarius" sexo="M" oficio="Confabulador" localizacion="Segrex"/>
 		

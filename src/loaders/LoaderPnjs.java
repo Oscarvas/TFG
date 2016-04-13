@@ -18,8 +18,6 @@ import mundo.Mundo;
 public class LoaderPnjs {
 	public LoaderPnjs(Mundo mundo) throws ControllerException{
 		String nombre;
-		String oficio;
-		String localizacion;
 		PlatformController container = mundo.getContainerController();
 		
 		AgentController guest;
@@ -47,7 +45,7 @@ public class LoaderPnjs {
 					Element eElement = (Element) nNode;
 
 					nombre = eElement.getAttribute("nombre");
-					String[] args = { eElement.getAttribute("oficio"),eElement.getAttribute("localizacion")};
+					String[] args = { eElement.getAttribute("sexo"),eElement.getAttribute("oficio"),eElement.getAttribute("localizacion")};
 					
 					guest = container.createNewAgent(nombre, "pnjs.PNJ", args);
 					guest.start();

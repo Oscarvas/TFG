@@ -12,18 +12,24 @@ import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
 public class PNJ extends Agent {
+	private String sexo;
+	private String oficio;
 	private String localizacion;	
 	private AID agenteMundo;	
 	
 	protected void setup(){
 		Object[] args = getArguments(); 
 		
+		this.sexo = (String)args[0];
+		this.oficio = (String)args[1];
+		this.localizacion = (String)args[2];
+		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType((String) args[0]);
-		sd.setName(getLocalName()+"-"+(String) args[0]);
+		sd.setType(this.oficio);
+		sd.setName(getLocalName()+"-"+this.oficio);
 		dfd.addServices(sd);
 		
 		try {
@@ -35,10 +41,10 @@ public class PNJ extends Agent {
 		localizarPnj();
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
-		if (args[0] == "M") 
-			Gui.setHistoria("El " + args[1] + " " + getLocalName()+ " se levanta en " +args[2] + " con ganas de trabajar.");
+		if (this.sexo.equals("M")) 
+			Gui.setHistoria("El " + this.oficio + " " + getLocalName()+ " se levanta en " +this.localizacion + " con ganas de trabajar.");
 		else
-			Gui.setHistoria("La " + args[1] + " " + getLocalName()+ " se levanta en " +args[2] + " con ganas de trabajar.");
+			Gui.setHistoria("La " + this.oficio + " " + getLocalName()+ " se levanta en " +this.localizacion + " con ganas de trabajar.");
 	}
 	
 	public void setAgenteMundo(AID agenteMundo) {
@@ -49,7 +55,7 @@ public class PNJ extends Agent {
 		return agenteMundo;
 	}
 	
-	//no entiendo bien el metodo, en principio me parece que sirve para mover pj's, los pnj's no se van a mover pero lo pongo por si acaso
+	//sitúa al pnj en el lugar correcto a la hora de su creación
 	public void localizarPnj() {
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
@@ -64,8 +70,7 @@ public class PNJ extends Agent {
 			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 			localizar.addReceiver(getAgenteMundo());
 			localizar.setConversationId("Mover");
-			localizar.setContent(getClass().getName().substring(11) + " "
-					+ localizacion);
+			localizar.setContent(this.oficio + " " + this.localizacion);
 			localizar.setReplyWith("localizar" + System.currentTimeMillis());
 			send(localizar);
 
