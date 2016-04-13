@@ -286,7 +286,7 @@ public class Estado {
 				if ( e.getKey().toString().equalsIgnoreCase("Princesa") || e.getKey().toString().equalsIgnoreCase("Rey") )
 					estado += "(esPrincipal ";
 				
-				else if ( e.getKey().toString().equalsIgnoreCase("Caballero") || e.getKey().toString().equalsIgnoreCase("Dragon") || e.getKey().toString().equalsIgnoreCase("Villano"))	
+				else	
 					estado += "(esSecundario ";
 				
 				estado += nombre + ")\n";
