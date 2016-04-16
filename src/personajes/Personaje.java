@@ -58,7 +58,7 @@ public class Personaje extends Agent {
 	}
 	
 	public void iniciarMonstruo(){
-		setVida(new Random().nextInt(100 + 1) + 15);
+		setVida(Vocabulario.VIDA_MONSTRUO);
 		String clase = getClass().getName().substring(11);
 		
 		switch (clase) {
