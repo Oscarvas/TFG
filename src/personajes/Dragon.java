@@ -2,6 +2,7 @@ package personajes;
 
 import java.util.Random;
 
+import acciones.Defender;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -109,7 +110,7 @@ public class Dragon extends Personaje {
 				myAgent.blockingReceive(mt1);
 			
 				addBehaviour(new HayQueJoderseConLaPrincesa());
-				addBehaviour(new Defender());
+				addBehaviour(new Defender((Personaje) myAgent));
 				
 			} else
 				block();
@@ -153,32 +154,7 @@ public class Dragon extends Personaje {
 		}
 	}
 		
-	private class Defender extends CyclicBehaviour {
-			
-			ACLMessage receive;
-			
-			@Override
-			public void action() {
-				
-				MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Batalla"),
-						MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-				receive = myAgent.receive(mt);
-				
-				if ( receive != null ) {
-					ACLMessage reply = receive.createReply();
-						
-					reply.setContent(Integer.toString(getVida()));
-					añadirVida(-Integer.parseInt(receive.getContent()));				
-					
-					myAgent.send(reply);
-					
-					if ( estaMuerto() )
-						doDelete();
-					
-				} else
-					block();
-			}
-		}
+
 
 	private class HayQueJoderseConLaPrincesa extends CyclicBehaviour{
 
