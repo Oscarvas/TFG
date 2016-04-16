@@ -1,5 +1,7 @@
 package ontologia;
 
+import java.util.Random;
+
 public interface Vocabulario {
 	public static final int STANDBY = -1;
 	
@@ -15,4 +17,6 @@ public interface Vocabulario {
 	public static final String[] PUEBLOS = {"Egeria","Turis","Illuc","Tragus","Tesqua","Egestas","Lucta","Scruthor"};
 	public static final int SALARIO = 40;
 	public static final int SALARIO_REY = 100;
+	public static int VIDA_MONSTRUO = new Random().nextInt(100 + 1) + 15;
+	public static int NUM_HIJAS = new Random().nextInt(11);
 }
