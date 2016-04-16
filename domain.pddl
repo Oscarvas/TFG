@@ -27,17 +27,15 @@
 		(vivo ?per)
 	)
 
-		
-;; un personaje importante se mueve a una localización adyacente que no sea peligrosa
+;; escape de la princesa
 	(:action moverPrincipal
 		:parameters (?per ?locOrig ?locDest)
 		:precondition (and	
 			(vivo ?per)
 			(adyacente ?locOrig ?locDest)
 			(enLoc ?per ?locOrig)
-			(esPrincipal ?per) 
-			(locSegura ?locDest)
-			(not (secuestrada ?per)))
+			(esPrincesa ?per) 
+			(secuestrada ?per))
 		:effect (and
 			(enLoc ?per ?locDest)
 			(not (enLoc ?per ?locOrig)))
