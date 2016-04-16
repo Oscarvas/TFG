@@ -6,11 +6,13 @@ import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.domain.DFService;
+import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
+import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Rey extends Personaje {
@@ -24,38 +26,62 @@ public class Rey extends Personaje {
 	public int numeroHijas;
 	
 	protected void setup(){
+		
+		DFAgentDescription dfd = new DFAgentDescription();
+		dfd.setName(getAID());
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Padre");
+		sd.setName(getLocalName()+"-Padre");
+		dfd.addServices(sd);
+		
+		try {
+			DFService.register(this, dfd);
+		} catch (FIPAException fe) {
+			fe.printStackTrace();
+		}		
+		
+		numeroHijas=Vocabulario.NUM_HIJAS;
 		Object[] args = getArguments(); 
-		if (args != null && args.length > 0) {
+		if (args != null && args.length > 0 && numeroHijas > 0 ) {
 			iniciarPrincipal(Mitologia.valueOf((String) args[0]), Integer.parseInt((String) args[1]), 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
+			localizarPersonaje();
+			Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
+						
+			FSMBehaviour m = new FSMBehaviour(this);
+			m.registerFirstState(new Atento(), "Atento");
+			m.registerState(new Rescate(), "Rescate");
+			m.registerState(new Ayuda(), "Pedir Ayuda");
+			m.registerState(new RecibirOfertas(), "Ofertas");
+			m.registerState(new AceptarOferta(), "Aceptar");
+			m.registerState(new Salvada(), "Princesa Salvada");
+
+			m.registerDefaultTransition("Atento", "Rescate");
+			m.registerDefaultTransition("Rescate", "Pedir Ayuda");
+			m.registerDefaultTransition("Pedir Ayuda", "Ofertas");
+			m.registerTransition("Ofertas", "Rescate", 1);
+			m.registerTransition("Ofertas", "Aceptar", 2);
+			m.registerTransition("Aceptar", "Princesa Salvada", 1);
+			m.registerTransition("Aceptar", "Rescate", 2);
+			m.registerDefaultTransition("Princesa Salvada", "Atento");
+
+			addBehaviour(m);
 		}
-		localizarPersonaje();
-		Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
-
-		numeroHijas=2;
-		FSMBehaviour m = new FSMBehaviour(this);
-		m.registerFirstState(new Atento(), "Atento");
-		m.registerState(new Rescate(), "Rescate");
-		m.registerState(new Ayuda(), "Pedir Ayuda");
-		m.registerState(new RecibirOfertas(), "Ofertas");
-		m.registerState(new AceptarOferta(), "Aceptar");
-		m.registerState(new Salvada(), "Princesa Salvada");
-
-		m.registerDefaultTransition("Atento", "Rescate");
-		m.registerDefaultTransition("Rescate", "Pedir Ayuda");
-		m.registerDefaultTransition("Pedir Ayuda", "Ofertas");
-		m.registerTransition("Ofertas", "Rescate", 1);
-		m.registerTransition("Ofertas", "Aceptar", 2);
-		m.registerTransition("Aceptar", "Princesa Salvada", 1);
-		m.registerTransition("Aceptar", "Rescate", 2);
-		m.registerDefaultTransition("Princesa Salvada", "Atento");
-
-		addBehaviour(m);
+		else{
+			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no tengo hijas por las cuales preocuparme");
+		}
+		
 	}
 	protected void takeDown() {
-		Gui.setHistoria("- El Rey " + getAID().getLocalName()
-				+ " terminó su trabajo por hoy. \n");
+		
+		try{
+			DFService.deregister(this);
+		}catch (FIPAException fe){
+			fe.printStackTrace();
+		}
+		
+		Gui.setHistoria(getLocalName()+ ": Parece que mi trabajo ha terminado por hoy");
 	}
 	
 	private class Atento extends OneShotBehaviour {
