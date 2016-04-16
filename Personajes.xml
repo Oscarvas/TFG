@@ -15,4 +15,6 @@
 	
 	<personaje nombre="SergioRammus" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
+	<personaje nombre="JuanK" clase="Rey" raza="TESQ" vida="1" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	
 </Actores>

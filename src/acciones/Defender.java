@@ -1,5 +1,6 @@
 package acciones;
 
+import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -8,8 +9,8 @@ import personajes.Personaje;
 @SuppressWarnings("serial")
 public class Defender extends CyclicBehaviour {
 	private Personaje personaje;
-	public Defender(Personaje p){
-		this.personaje = p;
+	public Defender(Agent myAgent){
+		this.personaje = (Personaje) myAgent;
 	}
 	
 	ACLMessage receive;

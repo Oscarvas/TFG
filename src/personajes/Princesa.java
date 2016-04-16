@@ -13,6 +13,10 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
+import jade.wrapper.ControllerException;
+import jade.wrapper.PlatformController;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
@@ -161,25 +165,24 @@ public class Princesa extends Personaje {
 							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());
 							escapar.setContent(String.valueOf(Vocabulario.VIDA_MONSTRUO));							
 							send(escapar);
-							
+					
 							Gui.setHistoria(getLocalName()+": ¡Libérame "+dragon.getLocalName()+"!");
 							
 							MessageTemplate imp = MessageTemplate.MatchInReplyTo(escapar.getReplyWith());
-							ACLMessage reply = myAgent.blockingReceive(imp);
+							ACLMessage reply = myAgent.receive(imp);
 							
 							if (reply.getPerformative() == ACLMessage.CONFIRM) {
 
 								Gui.setHistoria("La princesa "+getLocalName()+" se ha escapado de las zarpas de "+dragon.getLocalName());
 								stop();
 								try {
-									//planificar();
+									planificar();
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 
 							}
-							setFuerza(getFuerza()+1); //la princesa se entrena mazo
 						}
 					});
 
