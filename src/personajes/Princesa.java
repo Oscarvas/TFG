@@ -1,5 +1,7 @@
 package personajes;
 
+import java.util.Random;
+
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -12,6 +14,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
+import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Princesa extends Personaje {
@@ -25,32 +28,76 @@ public class Princesa extends Personaje {
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), false);
 		}
-		localizarPersonaje();
-		Gui.setHistoria("En un arrebato de rebeldía, la princesa "+getLocalName()+" ha llegado hasta "+getLocalizacion()+".");
 		
-		padre = getAID("Felipe");
-
-		
-		DFAgentDescription dfd = new DFAgentDescription();
-		dfd.setName(getAID());
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Secuestrable");
-		sd.setName(getLocalName()+"-Secuestrable");
-		dfd.addServices(sd);
-		
-		try{
-			DFService.register(this, dfd);
-		} catch (FIPAException fe){
-			fe.printStackTrace();
-		}
-		
-		addBehaviour(new MoverSecuestrada());
-		addBehaviour(new AvisaAPadre());
-		addBehaviour(new Rescatada());
+		addBehaviour(new Huerfana());
 	}
 	
 	protected void takeDown() {
 		Gui.setHistoria("* La Princesa " + getLocalName() + " pone fin a su aventura. \n");
+	}
+	private class Huerfana extends Behaviour{
+
+		/**
+		 * Asigna un padre aleatorio a la princesa
+		 */
+		boolean ok;
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			DFAgentDescription template = new DFAgentDescription();
+			ServiceDescription sd = new ServiceDescription();
+			sd.setType("Padre");
+			template.addServices(sd);
+			
+			try{
+				DFAgentDescription[] result = DFService.search(myAgent, template);
+				AID[] reyes = new AID[result.length];
+				for (int i = 0; i < result.length; i++){
+					reyes[i] = result[i].getName();
+				}
+				
+				if (reyes.length != 0) {
+					padre = reyes[new Random().nextInt(reyes.length)];
+					localizarPersonaje();
+										
+					Gui.setHistoria(myAgent.getLocalName()+": Alguien debe avisar a mi padre "+padre.getLocalName()+" que me he perdido en "+getLocalizacion());
+					
+					DFAgentDescription dfd = new DFAgentDescription();
+					dfd.setName(myAgent.getAID());
+					ServiceDescription sd2 = new ServiceDescription();
+					sd2.setType("Secuestrable");
+					sd2.setName(myAgent.getLocalName()+"-Secuestrable");
+					dfd.addServices(sd2);
+					
+					try{
+						DFService.register(myAgent, dfd);
+					} catch (FIPAException fe){
+						fe.printStackTrace();
+					}
+					
+					addBehaviour(new MoverSecuestrada());
+					addBehaviour(new AvisaAPadre());
+					addBehaviour(new Rescatada());
+					
+					ok = true;
+					
+				} else {
+					Thread.sleep(5000);
+					reset();
+				}
+						
+			} catch (Exception e){ 
+				e.printStackTrace();
+			}
+			
+		}
+
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return ok;
+		}
+		
 	}
 	
 	private class MoverSecuestrada extends CyclicBehaviour {
@@ -112,8 +159,10 @@ public class Princesa extends Personaje {
 							escapar.addReceiver(dragon);
 							escapar.setConversationId("mujerIndependiente");
 							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());
-							escapar.setContent(String.valueOf(getFuerza()));							
+							escapar.setContent(String.valueOf(Vocabulario.VIDA_MONSTRUO));							
 							send(escapar);
+							
+							Gui.setHistoria(getLocalName()+": ¡Libérame "+dragon.getLocalName()+"!");
 							
 							MessageTemplate imp = MessageTemplate.MatchInReplyTo(escapar.getReplyWith());
 							ACLMessage reply = myAgent.blockingReceive(imp);
@@ -168,5 +217,5 @@ public class Princesa extends Personaje {
 		}
 	}
 
-
+	
 }
