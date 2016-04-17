@@ -1,4 +1,4 @@
-package personajes;
+package personajes.protagonistas;
 
 import gui.Gui;
 import jade.core.AID;
@@ -15,7 +15,7 @@ import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Rey extends Personaje {
+public class Rey extends Protagonista {
 	public AID[] CaballerosDisponibles;
 	public AID princesaSecuestrada;
 	public String dragon;

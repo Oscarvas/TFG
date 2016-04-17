@@ -1,4 +1,4 @@
-package personajes;
+package personajes.protagonistas;
 
 import java.util.Random;
 
@@ -21,7 +21,7 @@ import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Princesa extends Personaje {
+public class Princesa extends Protagonista {
 	private AID padre;
 	public AID dragon;
 

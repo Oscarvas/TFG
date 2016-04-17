@@ -1,4 +1,4 @@
-package personajes;
+package personajes.protagonistas;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
-public class Villano extends Personaje {
+public class Villano extends Protagonista {
 	public AID caballero;
 
 	protected void setup(){

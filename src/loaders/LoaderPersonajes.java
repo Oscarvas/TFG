@@ -48,7 +48,7 @@ public class LoaderPersonajes {
 					String[] args = {eElement.getAttribute("raza"),eElement.getAttribute("vida"),eElement.getAttribute("fuerza"),
 							eElement.getAttribute("destreza"), eElement.getAttribute("inteligencia"),eElement.getAttribute("codicia")};
 					
-					guest = container.createNewAgent(nombre, "personajes."+clase, args);
+					guest = container.createNewAgent(nombre, "personajes.protagonistas"+clase, args);
 					guest.start();
 				}
 			}

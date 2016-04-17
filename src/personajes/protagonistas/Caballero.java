@@ -1,4 +1,4 @@
-package personajes;
+package personajes.protagonistas;
 
 import acciones.*;
 import gui.Gui;
@@ -14,7 +14,7 @@ import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
-public class Caballero extends Personaje {
+public class Caballero extends Protagonista {
 
 	protected void setup(){
 		Object[] args = getArguments(); 

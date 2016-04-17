@@ -1,4 +1,4 @@
-package pnjs;
+package personajes.pnjs;
 
 import gui.Gui;
 import jade.core.AID;
