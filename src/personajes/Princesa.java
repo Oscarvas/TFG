@@ -2,6 +2,7 @@ package personajes;
 
 import java.util.Random;
 
+import acciones.DondeEsta;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -13,10 +14,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.wrapper.AgentController;
-import jade.wrapper.ContainerController;
-import jade.wrapper.ControllerException;
-import jade.wrapper.PlatformController;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
@@ -37,7 +34,7 @@ public class Princesa extends Personaje {
 	}
 	
 	protected void takeDown() {
-		Gui.setHistoria("* La Princesa " + getLocalName() + " pone fin a su aventura. \n");
+		Gui.setHistoria(getLocalName()+": Parece que aqui termina mi aventura...");
 	}
 	private class Huerfana extends Behaviour{
 
@@ -62,6 +59,10 @@ public class Princesa extends Personaje {
 				
 				if (reyes.length != 0) {
 					padre = reyes[new Random().nextInt(reyes.length)];
+					//Hacemos que la princesa se posicione en el mismo lugar que su padre
+					String casita = new DondeEsta((Personaje) myAgent, padre.getLocalName(),getAgenteMundo()).execute();
+					setLocalizacion(casita);
+					
 					localizarPersonaje();
 										
 					Gui.setHistoria(myAgent.getLocalName()+": Alguien debe avisar a mi padre "+padre.getLocalName()+" que me he perdido en "+getLocalizacion());
