@@ -11,7 +11,7 @@ public class Estado {
 	private HashMap<String, ArrayList<String>> adyacencias;
 	private ArrayList<String> locSeguras;
 	private HashMap<String, ArrayList<String>> personajes;
-	private HashMap<String, String> persEnLoc;
+	private HashMap<String, String> persEnLoc; // <personaje, localizacion>
 	private ArrayList<String> vivos;
 	private ArrayList<String> estaLibre;
 	private HashMap<String, String> personajeConPrincesa;
@@ -124,6 +124,10 @@ public class Estado {
 	public boolean estanMismaLocalizacion(String pers1, String pers2) {
 		return persEnLoc.get(pers1).equalsIgnoreCase(persEnLoc.get(nombreCorrecto(pers2)));
 		
+	}
+	
+	public String getLocalizacion (String personaje){
+		return persEnLoc.get(personaje);		
 	}
 	
 	public void añadeVivo(String nombre) {

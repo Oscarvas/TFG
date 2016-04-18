@@ -539,5 +539,28 @@ public class Mundo extends GuiAgent{
 		
 	}
 
-	
+	private class DondeEstaPersonaje extends CyclicBehaviour{
+		/*
+		 * Atendera las llamadas de otros personajes que preguntan por la locaclizacion de 
+		 * otro personaje
+		 * */
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Localizar"),
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+			ACLMessage receive = receive(mt);
+			if (receive != null) {
+
+				ACLMessage reply = receive.createReply();
+				reply.setContent(estado.getLocalizacion(receive.getContent()));
+				send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
 }
