@@ -134,6 +134,7 @@ public class Mundo extends GuiAgent{
 		addBehaviour(new PersonajeEnCasa());
 		addBehaviour(new ConvertirEnHeroe());
 		addBehaviour(new MuertePersonaje());
+		addBehaviour(new DondeEstaPersonaje());
 	}
 	
 	protected void takeDown() {
