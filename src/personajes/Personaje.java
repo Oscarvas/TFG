@@ -55,6 +55,11 @@ public class Personaje extends Agent {
 			e.printStackTrace();
 		}
 		
+		/*
+		 * Provisionalmente aqui para no repetir codigo
+		 * */
+		addBehaviour(new Defender(this));
+		
 	}
 
 	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
