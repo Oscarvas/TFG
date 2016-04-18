@@ -30,6 +30,18 @@ public class Dragon extends Personaje {
 		
 		else
 			Gui.setHistoria("# El dragón " + getAID().getLocalName() + " se retira. \n");
+		
+		MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("mujerIndependiente"),
+				MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+		ACLMessage receive = receive(mt);
+		
+		if ( receive != null ) {
+			ACLMessage reply = receive.createReply();
+			
+			reply.setPerformative(ACLMessage.FAILURE);
+			send(reply);
+					
+		}
 			
 	}
 	

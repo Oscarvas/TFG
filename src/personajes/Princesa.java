@@ -20,7 +20,7 @@ import ontologia.Vocabulario;
 @SuppressWarnings("serial")
 public class Princesa extends Personaje {
 	private AID padre;
-	public AID dragon;
+	public AID secuestrador;
 
 	protected void setup(){
 		Object[] args = getArguments(); 
@@ -143,7 +143,7 @@ public class Princesa extends Personaje {
 					fe.printStackTrace();
 				}
 				
-				dragon = receive.getSender();
+				secuestrador = receive.getSender();
 				send(receive.createReply());	
 			
 				Gui.setHistoria("* La Princesa " + myAgent.getLocalName() + " ha sido secuestrada. \n");
@@ -152,31 +152,49 @@ public class Princesa extends Personaje {
 				inform.setConversationId("Ayuda");
 				inform.setReplyWith("request" + System.currentTimeMillis());
 				inform.addReceiver(padre);
-				inform.setContent(dragon.getLocalName());
+				inform.setContent(secuestrador.getLocalName());
 				myAgent.send(inform);
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 2000){
+				Gui.setHistoria(getLocalName()+": ¡Libérame "+secuestrador.getLocalName()+"!");
+				
+				ACLMessage escapar = new ACLMessage(ACLMessage.REQUEST);
+				escapar.addReceiver(secuestrador);
+				escapar.setConversationId("mujerIndependiente");
+				
+				
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 500){
 						
 						@Override
 						protected void onTick() {
-							ACLMessage escapar = new ACLMessage(ACLMessage.REQUEST);
-							escapar.addReceiver(dragon);
-							escapar.setConversationId("mujerIndependiente");
 							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());
 							escapar.setContent(String.valueOf(Vocabulario.VIDA_MONSTRUO));							
 							send(escapar);
-					
-							Gui.setHistoria(getLocalName()+": ¡Libérame "+dragon.getLocalName()+"!");
-							
+												
 							MessageTemplate imp = MessageTemplate.MatchInReplyTo(escapar.getReplyWith());
-							ACLMessage reply = myAgent.receive(imp);
+							ACLMessage reply = myAgent.blockingReceive(imp);
 							
-							if (reply.getPerformative() == ACLMessage.CONFIRM) {
+							if (reply.getPerformative() == ACLMessage.FAILURE){
+								stop();
+							}
+							else if (reply.getPerformative() == ACLMessage.CONFIRM) {
 
-								Gui.setHistoria("La princesa "+getLocalName()+" se ha escapado de las zarpas de "+dragon.getLocalName());
+								Gui.setHistoria(getLocalName()+": ¡Me he escapado de las zarpas de "+secuestrador.getLocalName()+"!");
 								stop();
 								try {
+									
+									ACLMessage liberarPrincesa = new ACLMessage(ACLMessage.REQUEST);
+									liberarPrincesa.addReceiver(getAgenteMundo());
+									liberarPrincesa.setConversationId("Liberar");
+									liberarPrincesa.setReplyWith("liberar" + System.currentTimeMillis());
+									liberarPrincesa.setContent(getLocalName()+ " " + secuestrador.getLocalName());
+									myAgent.send(liberarPrincesa);
+
+									MessageTemplate mt = MessageTemplate.MatchInReplyTo(liberarPrincesa.getReplyWith());
+									ACLMessage reply2 = myAgent.blockingReceive(mt);
+									
+									
 									planificar();
+									doDelete();
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

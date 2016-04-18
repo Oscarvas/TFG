@@ -439,9 +439,18 @@ public class Mundo extends GuiAgent{
 			if (receive != null) {
 
 				String[] contenido = receive.getContent().split(" ");
-				estado.estaLlenoPersonaje(contenido[0]);
-				estado.añadirPersonajeConPrincesa(contenido[0], contenido[1]);
-				estado.borrarPersonajeConPrincesa(contenido[2]);
+				
+				if(contenido.length == 3){
+					estado.estaLlenoPersonaje(contenido[0]);
+					estado.añadirPersonajeConPrincesa(contenido[0], contenido[1]);
+					estado.borrarPersonajeConPrincesa(contenido[2]);
+				}
+				else if (contenido.length == 2) {
+					estado.borrarPersonajeConPrincesa(contenido[1]);
+					//estado.liberar(contenido[0]);
+					estado.estaLibrePersonaje(contenido[0]);
+				}
+				
 
 				ACLMessage reply = receive.createReply();
 				reply.setContent(estado.nombreCorrecto(contenido[1]));

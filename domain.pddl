@@ -35,7 +35,7 @@
 			(adyacente ?locOrig ?locDest)
 			(enLoc ?per ?locOrig)
 			(esPrincesa ?per) 
-			(secuestrada ?per))
+			(estaLibre ?per))
 		:effect (and
 			(enLoc ?per ?locDest)
 			(not (enLoc ?per ?locOrig)))
