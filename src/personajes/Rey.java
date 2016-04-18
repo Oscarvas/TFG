@@ -25,20 +25,7 @@ public class Rey extends Personaje {
 	public MessageTemplate mt;
 	public int numeroHijas;
 	
-	protected void setup(){
-		
-		DFAgentDescription dfd = new DFAgentDescription();
-		dfd.setName(getAID());
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Padre");
-		sd.setName(getLocalName()+"-Padre");
-		dfd.addServices(sd);
-		
-		try {
-			DFService.register(this, dfd);
-		} catch (FIPAException fe) {
-			fe.printStackTrace();
-		}		
+	protected void setup(){		
 		
 		numeroHijas=Vocabulario.NUM_HIJAS;
 		Object[] args = getArguments(); 
@@ -47,6 +34,21 @@ public class Rey extends Personaje {
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
 			localizarPersonaje();
+			
+			DFAgentDescription dfd = new DFAgentDescription();
+			dfd.setName(getAID());
+			ServiceDescription sd = new ServiceDescription();
+			sd.setType("Padre");
+			sd.setName(getLocalName()+"-Padre");
+			dfd.addServices(sd);
+			
+			try {
+				DFService.register(this, dfd);
+			} catch (FIPAException fe) {
+				fe.printStackTrace();
+			}			
+			
+			
 			Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
 						
 			FSMBehaviour m = new FSMBehaviour(this);
