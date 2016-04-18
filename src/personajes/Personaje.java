@@ -35,8 +35,30 @@ public class Personaje extends Agent {
 	
 	private String localizacion;	
 	private AID agenteMundo;
+	
+	/*
+	 * Cargamos el AID del agente que tenga publicado
+	 * el servicio Mundo en el DF
+	 * */
+	private void cargarMundo(){
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Mundo");
+		template.addServices(sd);
+		
+		DFAgentDescription[] result;
+		try {
+			result = DFService.search(this, template);
+			setAgenteMundo(result[0].getName());
+		} catch (FIPAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+		cargarMundo();
 		String loc[] = raza.getRegiones() ;
 		setRaza(raza);
 		setVida(vida * raza.getVida());
@@ -58,6 +80,7 @@ public class Personaje extends Agent {
 	}
 	
 	public void iniciarMonstruo(){
+		cargarMundo();
 		setVida(Vocabulario.VIDA_MONSTRUO);
 		String clase = getClass().getName().substring(11);
 		
@@ -116,32 +139,18 @@ public class Personaje extends Agent {
 
 	public void localizarPersonaje() {
 
-		DFAgentDescription template = new DFAgentDescription();
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Mundo");
-		template.addServices(sd);
+		ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
+		localizar.addReceiver(getAgenteMundo());
+		localizar.setConversationId("Mover");
+		localizar.setContent(getClass().getName().substring(11) + " "
+				+ localizacion);
+		localizar.setReplyWith("localizar" + System.currentTimeMillis());
+		send(localizar);
 
-		try {
-
-			DFAgentDescription[] result = DFService.search(this, template);
-			setAgenteMundo(result[0].getName());
-
-			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
-			localizar.addReceiver(getAgenteMundo());
-			localizar.setConversationId("Mover");
-			localizar.setContent(getClass().getName().substring(11) + " "
-					+ localizacion);
-			localizar.setReplyWith("localizar" + System.currentTimeMillis());
-			send(localizar);
-
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchConversationId("Mover"),
-					MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
-			blockingReceive(mt);
-
-		} catch (FIPAException e) {
-			e.printStackTrace();
-		}
+		MessageTemplate mt = MessageTemplate.and(
+				MessageTemplate.MatchConversationId("Mover"),
+				MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
+		blockingReceive(mt);
 
 	}
 	
