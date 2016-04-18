@@ -60,12 +60,11 @@ public class Princesa extends Personaje {
 				if (reyes.length != 0) {
 					padre = reyes[new Random().nextInt(reyes.length)];
 					//Hacemos que la princesa se posicione en el mismo lugar que su padre
-					String casita = new DondeEsta((Personaje) myAgent, padre.getLocalName(),getAgenteMundo()).execute();
-					setLocalizacion(casita);
+					setLocalizacion(new DondeEsta(myAgent, padre.getLocalName()).execute());
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(myAgent.getLocalName()+": Alguien debe avisar a mi padre "+padre.getLocalName()+" que me he perdido en "+getLocalizacion());
+					Gui.setHistoria(myAgent.getLocalName()+": Las ventanas en el castillo "+getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());
@@ -156,7 +155,7 @@ public class Princesa extends Personaje {
 				inform.setContent(dragon.getLocalName());
 				myAgent.send(inform);
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 500){
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 2000){
 						
 						@Override
 						protected void onTick() {

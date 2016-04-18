@@ -2,23 +2,28 @@ package acciones;
 
 import personajes.Personaje;
 import jade.core.AID;
+import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
+/*
+ * Esto nos permitira que un personaje obtenga
+ * informacion sobre la localizacion de otro personaje
+ * */
 public class DondeEsta {
 	private Personaje personaje;
 	private String buscado;
 	private AID agenteMundo;
 	
-	public DondeEsta(Personaje myAgent, String buscado, AID mundo){
-		this.personaje = myAgent;
+	public DondeEsta(Agent myAgent, String buscado){
+		this.personaje = (Personaje) myAgent;
 		this.buscado = buscado;
-		this.agenteMundo = myAgent.getAgenteMundo();
+		this.agenteMundo = ((Personaje) myAgent).getAgenteMundo();
 	}
 	public String execute() {
 		
 		ACLMessage buscar = new ACLMessage(ACLMessage.REQUEST);
-		buscar.addReceiver(new AID ((String) "Azeroth", AID.ISLOCALNAME));
+		buscar.addReceiver(agenteMundo);
 		buscar.setConversationId("Localizar");
 		buscar.setReplyWith("localizar" + System.currentTimeMillis());
 		buscar.setContent(buscado);
