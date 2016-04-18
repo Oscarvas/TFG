@@ -27,30 +27,8 @@ public class Personaje extends Agent {
 	private HashMap<String, ArrayList<String>> frases;
 	private String localizacion;	
 	private AID agenteMundo;
+	private int tesoro;
 	
-	public void iniciarMonstruo(){
-		setVida(Vocabulario.VIDA_MONSTRUO);
-		String clase = getClass().getName().substring(11);
-		
-		switch (clase) {
-		case "Dragon":
-			setLocalizacion("Cuevas");
-			break;
-		case "Fantasma":
-			setLocalizacion(Vocabulario.CASTILLOS[new Random().nextInt(Vocabulario.CASTILLOS.length)]);
-			break;
-		case "Serpiente":
-			setLocalizacion(Vocabulario.LAGOS[new Random().nextInt(Vocabulario.LAGOS.length)]);
-			break;
-		case "Troll":
-			setLocalizacion("Cruce");
-			break;
-
-		default:
-			break;
-		}
-
-	}
 
 	public HashMap<String, ArrayList<String>> getFrases() {
 		return frases;
@@ -100,7 +78,7 @@ public class Personaje extends Agent {
 			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 			localizar.addReceiver(getAgenteMundo());
 			localizar.setConversationId("Mover");
-			localizar.setContent(getClass().getName().substring(11) + " "
+			localizar.setContent(getClass().getName().substring(21) + " "
 					+ localizacion);
 			localizar.setReplyWith("localizar" + System.currentTimeMillis());
 			send(localizar);
@@ -136,6 +114,14 @@ public class Personaje extends Agent {
 		this.localizacion = localizacion;
 	}
 	
+	public int getTesoro() {
+		return tesoro;
+	}
+
+	public void setTesoro(int tesoro) {
+		this.tesoro = tesoro;
+	}
+	
 	public void planificar() throws Exception {
 
 		boolean ok;
@@ -145,6 +131,7 @@ public class Personaje extends Agent {
 			ok = true;
 
 			mandarCrearArchivo();
+			String aux = getLocalName();
 			String[] args = { "domain.pddl", getLocalName() + ".pddl" };
 
 			String ff = JavaFF.crearPlan(args);
@@ -235,7 +222,7 @@ public class Personaje extends Agent {
 		toPDDL.addReceiver(getAgenteMundo());
 		toPDDL.setConversationId("toPDDL");
 		toPDDL.setReplyWith("toPDDL" + System.currentTimeMillis());
-		toPDDL.setContent(getClass().getName().substring(11) + " "
+		toPDDL.setContent(getClass().getName().substring(21) + " "
 				+ getLocalName());
 		send(toPDDL);
 

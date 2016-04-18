@@ -1,4 +1,4 @@
-package personajes.protagonistas;
+package personajes.principal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ public class Protagonista extends Personaje {
 	private int destreza;
 	private int inteligencia;
 	private int codicia;
-	private int tesoro;
+	
 	
 	
 	public Protagonista() {
@@ -82,12 +82,6 @@ public class Protagonista extends Personaje {
 	public void setCodicia(int codicia) {
 		this.codicia = codicia;
 	}
-	public int getTesoro() {
-		return tesoro;
-	}
 
-	public void setTesoro(int tesoro) {
-		this.tesoro = tesoro;
-	}
 
 }

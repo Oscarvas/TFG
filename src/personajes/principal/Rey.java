@@ -1,4 +1,4 @@
-package personajes.protagonistas;
+package personajes.principal;
 
 import gui.Gui;
 import jade.core.AID;

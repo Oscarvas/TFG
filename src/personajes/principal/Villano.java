@@ -1,4 +1,4 @@
-package personajes.protagonistas;
+package personajes.principal;
 
 import java.util.Random;
 

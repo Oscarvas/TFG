@@ -1,16 +1,20 @@
-package personajes;
+package personajes.monstruos;
 
 import java.util.Random;
 
+import personajes.Personaje;
 import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Troll extends Personaje {
+public class Troll extends Monstruo {
 	protected void setup(){
-		iniciarMonstruo();
+		Object[] args = getArguments(); 
+		this.localizacion = (String)args[0];
+		
+		iniciarMonstruo(this.localizacion);
 		Gui.setHistoria("Parece que mientras "+getLocalName()+" sea el guardián del "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
 		addBehaviour(new Guardian());
 	}

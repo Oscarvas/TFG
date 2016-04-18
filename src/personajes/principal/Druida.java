@@ -1,4 +1,4 @@
-package personajes.protagonistas;
+package personajes.principal;
 
 import acciones.*;
 import gui.Gui;
@@ -10,7 +10,7 @@ import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Mago extends Protagonista {
+public class Druida extends Protagonista {
 	private int precio;
 
 	protected void setup(){
@@ -24,8 +24,8 @@ public class Mago extends Protagonista {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Cazamagia");
-		sd.setName(getLocalName()+"-Cazamagia");
+		sd.setType("Cambiaformas");
+		sd.setName(getLocalName()+"-Cambiaformas");
 		dfd.addServices(sd);
 		
 		try {
@@ -37,7 +37,7 @@ public class Mago extends Protagonista {
 		precio = Vocabulario.SALARIO * getCodicia();
 		
 		localizarPersonaje();
-		Gui.setHistoria("Aquel al que llaman mago, "+getLocalName()+", realmente sólo tiene muchísimas cartas bajo la túnica.");
+		Gui.setHistoria(getLocalName()+" el druida pensó que era buena idea transformarse conejo en estas fechas.");
 		addBehaviour(new OfrecerServicios(precio));
 	}
 }

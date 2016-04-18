@@ -67,14 +67,14 @@ public class Mover {
 	
 		if (receive != null && receive.getContent()!=null) {
 			//aqui condicion de si el caballero puede pagar lo pedido
-//			personaje.setTesoro(personaje.getTesoro()-Integer.parseInt(receive.getContent()));
-//			Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
-//
-//			ACLMessage reply = receive.createReply();
-//			personaje.send(reply);
-//			MessageTemplate plnt = MessageTemplate
-//					.MatchInReplyTo(reply.getReplyWith());
-//			personaje.blockingReceive(plnt);
+			personaje.setTesoro(personaje.getTesoro()-Integer.parseInt(receive.getContent()));
+			Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
+
+			ACLMessage reply = receive.createReply();
+			personaje.send(reply);
+			MessageTemplate plnt = MessageTemplate
+					.MatchInReplyTo(reply.getReplyWith());
+			personaje.blockingReceive(plnt);
 	
 		} 
 		

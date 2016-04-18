@@ -1,7 +1,8 @@
-package personajes;
+package personajes.monstruos;
 
 import java.util.Random;
 
+import personajes.Personaje;
 import acciones.Defender;
 import gui.Gui;
 import jade.core.AID;
@@ -14,11 +15,14 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Dragon extends Personaje {
+public class Dragon extends Monstruo {
 	public AID princesaSecuestrada;
 
 	protected void setup(){
-		iniciarMonstruo();
+		Object[] args = getArguments(); 
+		this.localizacion = (String)args[0];
+		
+		iniciarMonstruo(this.localizacion);
 		localizarPersonaje();
 		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido del dragón "+getLocalName()+" se escucha por todo el reino.");
 		addBehaviour(new Secuestro());

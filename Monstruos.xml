@@ -5,12 +5,12 @@
 <!-- TIPO = Definir que tipo de monstruo queremos crear -->
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 
-	<pnj nombre="Smaug" tipo="secuestrador" localizacion="Minas"/>
+	<monstruo nombre="Smaug" clase="Dragon" localizacion="Minas"/>
 	
-	<pnj nombre="Casper" tipo="puromal" localizacion="Ignis"/>
+	<monstruo nombre="Casper" clase="Fantasma" localizacion="Ignis"/>
 	
-	<pnj nombre="Jormundgander" tipo="guardian" localizacion="Inibi"/>
+	<monstruo nombre="Jormundgander" clase="Serpiente" localizacion="Inibi"/>
 		
-	<pnj nombre="Trundle" tipo="emboscador" localizacion="Cruce"/>
+	<monstruo nombre="Trundle" clase="Troll" localizacion="Cruce"/>
 	
 </Actores>
