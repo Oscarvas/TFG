@@ -115,7 +115,6 @@ public class Dragon extends Personaje {
 				myAgent.blockingReceive(mt1);
 			
 				addBehaviour(new HayQueJoderseConLaPrincesa());
-				addBehaviour(new Defender(myAgent));
 				
 			} else
 				block();
