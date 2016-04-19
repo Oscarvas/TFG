@@ -14,10 +14,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.wrapper.AgentController;
-import jade.wrapper.ContainerController;
-import jade.wrapper.ControllerException;
-import jade.wrapper.PlatformController;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
@@ -168,6 +164,7 @@ public class Princesa extends Protagonista {
 				
 				myAgent.addBehaviour(new TickerBehaviour(myAgent, 500){
 						
+						@SuppressWarnings("unused")
 						@Override
 						protected void onTick() {
 							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());

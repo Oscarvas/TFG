@@ -16,6 +16,7 @@ import jade.wrapper.PlatformController;
 import mundo.Mundo;
 
 public class LoaderObjetos {
+	@SuppressWarnings("unused")
 	public LoaderObjetos(Mundo mundo) throws ControllerException{
 		String nombre;
 		PlatformController container = mundo.getContainerController();

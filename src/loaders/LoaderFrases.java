@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 
 
 public class LoaderFrases {
+	@SuppressWarnings("unused")
 	public LoaderFrases () {
 		try{
 			File fXmlFile = new File("Frases.xml");

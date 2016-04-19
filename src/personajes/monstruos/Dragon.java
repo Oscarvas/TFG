@@ -2,7 +2,6 @@ package personajes.monstruos;
 
 import java.util.Random;
 
-import acciones.Defender;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
