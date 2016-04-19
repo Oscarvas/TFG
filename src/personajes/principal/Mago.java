@@ -8,10 +8,9 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Mago extends Personaje {
+public class Mago extends Protagonista {
 	private int precio;
 
 	protected void setup(){

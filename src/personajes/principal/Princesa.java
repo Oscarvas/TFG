@@ -14,12 +14,15 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
+import jade.wrapper.ControllerException;
+import jade.wrapper.PlatformController;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Princesa extends Personaje {
+public class Princesa extends Protagonista {
 	private AID padre;
 	public AID secuestrador;
 

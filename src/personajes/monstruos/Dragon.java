@@ -12,14 +12,14 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Dragon extends Personaje {
+public class Dragon extends Monstruo {
 	public AID princesaSecuestrada;
 
 	protected void setup(){
-		iniciarMonstruo();
+		Object[] args = getArguments();		
+		iniciarMonstruo((String)args[0]);
 		localizarPersonaje();
 		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido del dragón "+getLocalName()+" se escucha por todo el reino.");
 		addBehaviour(new Secuestro());
@@ -74,7 +74,7 @@ public class Dragon extends Personaje {
 						secuestrar.setContent(princesaSecuestrada.getLocalName());
 						myAgent.send(secuestrar);
 						
-						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo dede "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
+						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
 						planificar();
 						
 						/*

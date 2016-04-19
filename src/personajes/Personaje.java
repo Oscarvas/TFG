@@ -23,24 +23,17 @@ import gui.Gui;
 
 @SuppressWarnings({ "serial", "unused" })
 public class Personaje extends Agent {
-
-	private Mitologia raza; 
 	private int vida;
-	private int fuerza;
-	private int destreza;
-	private int inteligencia;
-	private int codicia;
-	private int tesoro;
 	private HashMap<String, ArrayList<String>> frases;
-	
 	private String localizacion;	
 	private AID agenteMundo;
+	private int tesoro;
 	
 	/*
 	 * Cargamos el AID del agente que tenga publicado
 	 * el servicio Mundo en el DF
 	 * */
-	private void cargarMundo(){
+	protected void cargarMundo(){
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("Mundo");
@@ -60,53 +53,6 @@ public class Personaje extends Agent {
 		 * */
 		addBehaviour(new Defender(this));
 		
-	}
-
-	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
-		cargarMundo();
-		String loc[] = raza.getRegiones() ;
-		setRaza(raza);
-		setVida(vida * raza.getVida());
-		setFuerza(fuerza * raza.getFuerza());
-		setDestreza(destreza * raza.getDestreza());
-		setInteligencia(inteligencia * raza.getInteligencia());
-		setCodicia(codicia * raza.getCodicia());
-		if (!rey){
-			setLocalizacion(loc[new Random().nextInt(loc.length)]);
-			setTesoro(Vocabulario.SALARIO * getCodicia());
-		}			
-		else{
-			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
-			if (raza.getZona().equalsIgnoreCase("Tesqua"))
-				setLocalizacion(Vocabulario.CASTILLOS[0]);
-			if (raza.getZona().equalsIgnoreCase("Lucta"))
-				setLocalizacion(Vocabulario.CASTILLOS[1]);
-		}
-	}
-	
-	public void iniciarMonstruo(){
-		cargarMundo();
-		setVida(Vocabulario.VIDA_MONSTRUO);
-		String clase = getClass().getName().substring(11);
-		
-		switch (clase) {
-		case "Dragon":
-			setLocalizacion("Cuevas");
-			break;
-		case "Fantasma":
-			setLocalizacion(Vocabulario.CASTILLOS[new Random().nextInt(Vocabulario.CASTILLOS.length)]);
-			break;
-		case "Serpiente":
-			setLocalizacion(Vocabulario.LAGOS[new Random().nextInt(Vocabulario.LAGOS.length)]);
-			break;
-		case "Troll":
-			setLocalizacion("Cruce");
-			break;
-
-		default:
-			break;
-		}
-
 	}
 
 	public HashMap<String, ArrayList<String>> getFrases() {
@@ -147,8 +93,7 @@ public class Personaje extends Agent {
 		ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 		localizar.addReceiver(getAgenteMundo());
 		localizar.setConversationId("Mover");
-		localizar.setContent(getClass().getName().substring(11) + " "
-				+ localizacion);
+		localizar.setContent(getClass().getName().substring(21) + " "+ localizacion);
 		localizar.setReplyWith("localizar" + System.currentTimeMillis());
 		send(localizar);
 
@@ -178,46 +123,7 @@ public class Personaje extends Agent {
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
 	}
-
-	public Mitologia getRaza() {
-		return raza;
-	}
-
-	public void setRaza(Mitologia raza) {
-		this.raza = raza;
-	}
-
-	public int getFuerza() {
-		return fuerza;
-	}
-
-	public void setFuerza(int fuerza) {
-		this.fuerza = fuerza;
-	}
-
-	public int getDestreza() {
-		return destreza;
-	}
-
-	public void setDestreza(int destreza) {
-		this.destreza = destreza;
-	}
-
-	public int getInteligencia() {
-		return inteligencia;
-	}
-
-	public void setInteligencia(int inteligencia) {
-		this.inteligencia = inteligencia;
-	}
-
-	public int getCodicia() {
-		return codicia;
-	}
-
-	public void setCodicia(int codicia) {
-		this.codicia = codicia;
-	}
+	
 	public int getTesoro() {
 		return tesoro;
 	}
@@ -325,8 +231,7 @@ public class Personaje extends Agent {
 		toPDDL.addReceiver(getAgenteMundo());
 		toPDDL.setConversationId("toPDDL");
 		toPDDL.setReplyWith("toPDDL" + System.currentTimeMillis());
-		toPDDL.setContent(getClass().getName().substring(11) + " "
-				+ getLocalName());
+		toPDDL.setContent(getClass().getName().substring(21) + " "+ getLocalName());
 		send(toPDDL);
 
 		MessageTemplate mt = MessageTemplate.and(

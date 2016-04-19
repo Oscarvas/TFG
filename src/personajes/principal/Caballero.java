@@ -12,10 +12,9 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Caballero extends Personaje {
+public class Caballero extends Protagonista {
 
 	protected void setup(){
 		Object[] args = getArguments(); 

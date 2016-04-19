@@ -9,10 +9,9 @@ import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import ontologia.Mitologia;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Villano extends Personaje {
+public class Villano extends Protagonista {
 	public AID caballero;
 
 	protected void setup(){

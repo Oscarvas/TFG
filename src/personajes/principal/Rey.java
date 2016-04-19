@@ -13,10 +13,9 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Rey extends Personaje {
+public class Rey extends Protagonista {
 	public AID[] CaballerosDisponibles;
 	public AID princesaSecuestrada;
 	public String dragon;

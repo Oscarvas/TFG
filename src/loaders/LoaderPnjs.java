@@ -47,7 +47,7 @@ public class LoaderPnjs {
 					nombre = eElement.getAttribute("nombre");
 					String[] args = { eElement.getAttribute("sexo"),eElement.getAttribute("oficio"),eElement.getAttribute("localizacion")};
 					
-					guest = container.createNewAgent(nombre, "pnjs.PNJ", args);
+					guest = container.createNewAgent(nombre, "personajes.pnjs.PNJ", args);
 					guest.start();
 				}
 			}
