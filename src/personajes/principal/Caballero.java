@@ -1,4 +1,4 @@
-package personajes;
+package personajes.principal;
 
 import acciones.*;
 import gui.Gui;
@@ -12,6 +12,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Caballero extends Personaje {

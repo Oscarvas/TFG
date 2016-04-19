@@ -1,6 +1,7 @@
-package personajes;
+package personajes.monstruos;
 
 import gui.Gui;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Fantasma extends Personaje {

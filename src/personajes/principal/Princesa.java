@@ -1,4 +1,4 @@
-package personajes;
+package personajes.principal;
 
 import java.util.Random;
 
@@ -16,6 +16,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Princesa extends Personaje {

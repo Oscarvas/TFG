@@ -1,4 +1,4 @@
-package personajes;
+package personajes.principal;
 
 import acciones.*;
 import gui.Gui;
@@ -8,9 +8,10 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Druida extends Personaje {
+public class Mago extends Personaje {
 	private int precio;
 
 	protected void setup(){
@@ -24,8 +25,8 @@ public class Druida extends Personaje {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Cambiaformas");
-		sd.setName(getLocalName()+"-Cambiaformas");
+		sd.setType("Cazamagia");
+		sd.setName(getLocalName()+"-Cazamagia");
 		dfd.addServices(sd);
 		
 		try {
@@ -37,7 +38,7 @@ public class Druida extends Personaje {
 		precio = Vocabulario.SALARIO * getCodicia();
 		
 		localizarPersonaje();
-		Gui.setHistoria(getLocalName()+" el druida pensó que era buena idea transformarse conejo en estas fechas.");
+		Gui.setHistoria("Aquel al que llaman mago, "+getLocalName()+", realmente sólo tiene muchísimas cartas bajo la túnica.");
 		addBehaviour(new OfrecerServicios(precio));
 	}
 }

@@ -1,4 +1,4 @@
-package personajes;
+package personajes.principal;
 
 import java.util.Random;
 
@@ -9,6 +9,7 @@ import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import ontologia.Mitologia;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Villano extends Personaje {

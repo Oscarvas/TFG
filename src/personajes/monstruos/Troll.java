@@ -1,4 +1,4 @@
-package personajes;
+package personajes.monstruos;
 
 import java.util.Random;
 
@@ -6,6 +6,7 @@ import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Troll extends Personaje {

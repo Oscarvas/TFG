@@ -1,4 +1,4 @@
-package personajes;
+package personajes.monstruos;
 
 import java.util.Random;
 
@@ -12,6 +12,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Dragon extends Personaje {

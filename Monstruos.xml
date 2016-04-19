@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actores>
+<!-- Para configurar correctamente un pnj debes: -->
+<!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
+<!-- TIPO = Definir que tipo de monstruo queremos crear -->
+<!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
+
+	<monstruo nombre="Smaug" clase="Dragon" localizacion="Minas"/>
+	
+	<monstruo nombre="Casper" clase="Fantasma" localizacion="Ignis"/>
+	
+	<monstruo nombre="Jormundgander" clase="Serpiente" localizacion="Inibi"/>
+		
+	<monstruo nombre="Trundle" clase="Troll" localizacion="Cruce"/>
+	
+</Actores>
