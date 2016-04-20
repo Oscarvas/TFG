@@ -18,9 +18,9 @@ public class Dragon extends Monstruo {
 
 	protected void setup(){
 		Object[] args = getArguments();		
-		iniciarMonstruo((String)args[0]);
+		iniciarMonstruo((String) args[0], (String) args[1], (String) args[2]);
 		localizarPersonaje();
-		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido del dragón "+getLocalName()+" se escucha por todo el reino.");
+		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+" se escucha por todo el reino.");
 		addBehaviour(new Secuestro());
 	}
 	protected void takeDown() {

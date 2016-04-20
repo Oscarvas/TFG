@@ -20,6 +20,7 @@ public class PNJ extends Agent {
 	protected void setup(){
 		Object[] args = getArguments(); 
 		
+		//setSexo((String)args[0]);
 		this.sexo = (String)args[0];
 		this.oficio = (String)args[1];
 		this.localizacion = (String)args[2];

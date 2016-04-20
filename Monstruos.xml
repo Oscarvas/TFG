@@ -2,15 +2,21 @@
 <Actores>
 <!-- Para configurar correctamente un pnj debes: -->
 <!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
-<!-- TIPO = Definir que tipo de monstruo queremos crear -->
+<!-- CLASE = Definir que clase de monstruo queremos crear, existen 4 tipos: -->
+<!--		Secuestrador: un monstruo que se dedicara a secuestrar princesas desprevenidas -->
+<!--		Guardian: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
+<!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
+<!--		PuroMal: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
+<!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
+<!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<monstruo nombre="Smaug" clase="Dragon" localizacion="Minas"/>
+	<monstruo nombre="Smaug" clase="Secuestrador" localizacion="Minas" especie="Dragona" sexo="F"/>
 	
-	<monstruo nombre="Casper" clase="Fantasma" localizacion="Ignis"/>
+	<monstruo nombre="Casper" clase="PuroMal" localizacion="Ignis" especie="Queso Azul Mortifero" sexo="M"/>
 	
-	<monstruo nombre="Jormundgander" clase="Serpiente" localizacion="Inibi"/>
+	<monstruo nombre="Jormundgander" clase="Guardian" localizacion="Inibi" especie="Gyarados" sexo="F"/>
 		
-	<monstruo nombre="Trundle" clase="Troll" localizacion="Cruce"/>
+	<monstruo nombre="Trundle" clase="Emboscador" localizacion="Cruce" especie="Troll" sexo="M"/>
 	
 </Actores>

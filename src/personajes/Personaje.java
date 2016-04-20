@@ -28,6 +28,7 @@ public class Personaje extends Agent {
 	private String localizacion;	
 	private AID agenteMundo;
 	private int tesoro;
+	private String sexo;
 	
 	/*
 	 * Cargamos el AID del agente que tenga publicado
@@ -114,6 +115,17 @@ public class Personaje extends Agent {
 	
 	public void setVida(int vida) {
 		this.vida = vida;
+	}
+	
+	public String getSexo(){
+		if (this.sexo.equals("M"))
+			return "el";
+		else
+			return "la";
+	}
+	
+	public void setSexo(String sexo){
+		this.sexo = sexo;
 	}
 	
 	public String getLocalizacion() {

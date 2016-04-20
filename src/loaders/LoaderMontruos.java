@@ -19,6 +19,7 @@ public class LoaderMontruos {
 	public LoaderMontruos(Mundo mundo) throws ControllerException{
 		String nombre;
 		String clase;
+		String tipo;
 		PlatformController container = mundo.getContainerController();
 		
 		AgentController guest;
@@ -46,26 +47,25 @@ public class LoaderMontruos {
 
 					nombre = eElement.getAttribute("nombre");
 					clase = eElement.getAttribute("clase");
-					String[] args = {eElement.getAttribute("localizacion")};
-					//String[] args = { eElement.getAttribute("tipo"),eElement.getAttribute("localizacion")};
-//					if (args [0].equals("secuestrador")){
-//						
-//					}
-//					else if(args [0].equals("guardian")){
-//
-//					}
-//					else if(args [0].equals("emboscador")){
-//			
-//					}
-//					else if(args [0].equals("puromal")){
-//
-//					}
-//					else
-//						//throwexception;
-//						clase = "";
+					String[] args = {eElement.getAttribute("localizacion"), eElement.getAttribute("especie"), eElement.getAttribute("sexo")};
+					if (clase.equals("Secuestrador")){
+						tipo = "Dragon";
+					}
+					else if(clase.equals("Guardian")){
+						tipo = "Serpiente";
+					}
+					else if(clase.equals("Emboscador")){
+						tipo = "Troll";
+					}
+					else if(clase.equals("PuroMal")){
+						tipo = "Fantasma";
+					}
+					else
+						//throwexception;
+						tipo = "";
 //					
 //					
-					guest = container.createNewAgent(nombre, "personajes.monstruos."+clase, args);
+					guest = container.createNewAgent(nombre, "personajes.monstruos."+tipo, args);
 					guest.start();
 				}				
 			}

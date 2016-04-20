@@ -11,8 +11,8 @@ import jade.lang.acl.MessageTemplate;
 public class Troll extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
-		iniciarMonstruo((String)args[0]);
-		Gui.setHistoria("Parece que mientras "+getLocalName()+" sea el guardián del "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
+		iniciarMonstruo((String) args[0], (String) args[1], (String) args[2]);
+		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
 		addBehaviour(new Guardian());
 	}
 	
