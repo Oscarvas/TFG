@@ -1,26 +1,31 @@
 package objetos;
 
-public abstract class Objeto {
-	private String id;
+public abstract class Objeto {	
+	static final public int CANTIDAD = 0;
+	static final public int VIDA = 1;
+	static final public int FUERZA = 2;
+	static final public int DESTREZA = 3;
+	static final public int INTELIGENCIA = 4;
+	static final public int CODICIA = 5;
+	// La cantidad de atributos es la suma de todos los que hay
+	static final public int ATRIBUTOS = 6;	
+	
+	private String nombre;
 	private String descripcion;
 	
-	protected Objeto (String id, String descripcion) {
-		this.id = id;
+	public Objeto (String nombre, String descripcion) {
+		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
 	
 	public String getId() {
-		return this.id;
+		return this.nombre;
 	}
 	
-	public String toString() {
-		String cadena = "";
-		
-		cadena += "-- objeto[ " + this.id + " ]= " + this.descripcion;
-		return cadena;
+	public String toString() {		
+		return "- " + this.nombre + ": " + this.descripcion;
 	}
 	
 //	public abstract boolean usar(Personaje quien, Localizacion donde);
-	public abstract boolean puedeUsarse();
-	public abstract boolean puedeCogerse();
+
 }
