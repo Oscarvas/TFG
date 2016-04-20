@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Objetos>
+	<caracteristica tipo="consumible">
+		<objeto nombre="Manzana" descripcion="Antiguamente eran saludables, hoy en día son hipster" cantidad="20" vida="5" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
+	</caracteristica>
+	
+	<caracteristica tipo = "clave">
+		<objeto nombre="Espejito" descripcion="Muestra la verdadrea naturaleza de nuestro interior...."/>
+	</caracteristica>		
+</Objetos>
