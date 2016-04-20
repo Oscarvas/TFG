@@ -9,9 +9,10 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class PNJ extends Agent {
+public class PNJ extends Personaje {
 	private String sexo;
 	private String oficio;
 	private String localizacion;	
@@ -20,10 +21,10 @@ public class PNJ extends Agent {
 	protected void setup(){
 		Object[] args = getArguments(); 
 		
-		//setSexo((String)args[0]);
-		this.sexo = (String)args[0];
-		this.oficio = (String)args[1];
-		this.localizacion = (String)args[2];
+		//cargamos sus propiedades
+		setSexo((String)args[0]); //this.sexo = (String)args[0];
+		setoficio((String)args[1]); //this.oficio = (String)args[1];
+		setLocalizacion((String)args[2]); //this.localizacion = (String)args[2];		
 		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -39,58 +40,50 @@ public class PNJ extends Agent {
 			fe.printStackTrace();
 		}
 		
-		localizarPnj();
+		//localizarPnj();
+		
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
-		if (this.sexo.equals("M")) 
-			Gui.setHistoria("El " + this.oficio + " " + getLocalName()+ " se levanta en " +this.localizacion + " con ganas de trabajar.");
-		else
-			Gui.setHistoria("La " + this.oficio + " " + getLocalName()+ " se levanta en " +this.localizacion + " con ganas de trabajar.");
+		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ " se levanta en " +getLocalizacion() + " con ganas de trabajar.");
+		
 	}
 	
-	public void setAgenteMundo(AID agenteMundo) {
-		this.agenteMundo = agenteMundo;
+	
+	public String getOficio(){
+		return this.oficio;
 	}
 	
-	public AID getAgenteMundo() {
-		return agenteMundo;
+	public void setoficio(String oficio){
+		this.oficio = oficio;
 	}
 	
-	//sitúa al pnj en el lugar correcto a la hora de su creación
-	public void localizarPnj() {
-		DFAgentDescription template = new DFAgentDescription();
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Mundo");
-		template.addServices(sd);
-
-		try {
-
-			DFAgentDescription[] result = DFService.search(this, template);
-			setAgenteMundo(result[0].getName());
-
-			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
-			localizar.addReceiver(getAgenteMundo());
-			localizar.setConversationId("Mover");
-			localizar.setContent(this.oficio + " " + this.localizacion);
-			localizar.setReplyWith("localizar" + System.currentTimeMillis());
-			send(localizar);
-
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchConversationId("Mover"),
-					MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
-			blockingReceive(mt);
-
-		} catch (FIPAException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	public String getLocalizacion() {
-		return this.localizacion;
-	}
-
-	public void setLocalizacion(String localizacion) {
-		this.localizacion = localizacion;
-	}
+//	//sitúa al pnj en el lugar correcto a la hora de su creación
+//	public void localizarPnj() {
+//		DFAgentDescription template = new DFAgentDescription();
+//		ServiceDescription sd = new ServiceDescription();
+//		sd.setType("Mundo");
+//		template.addServices(sd);
+//
+//		try {
+//
+//			DFAgentDescription[] result = DFService.search(this, template);
+//			setAgenteMundo(result[0].getName());
+//
+//			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
+//			localizar.addReceiver(getAgenteMundo());
+//			localizar.setConversationId("Mover");
+//			localizar.setContent(this.oficio + " " + this.localizacion);
+//			localizar.setReplyWith("localizar" + System.currentTimeMillis());
+//			send(localizar);
+//
+//			MessageTemplate mt = MessageTemplate.and(
+//					MessageTemplate.MatchConversationId("Mover"),
+//					MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
+//			blockingReceive(mt);
+//
+//		} catch (FIPAException e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 }
