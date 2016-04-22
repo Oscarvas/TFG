@@ -51,6 +51,7 @@
 			(enLoc ?pers ?locOrig)
 			(esSecundario ?pers)
 			(estaLibre ?pers)
+			(not (cansado ?pers))
 			(not (esHeroe ?pers)))
 		:effect (and
 			(enLoc ?pers ?locDest)
@@ -132,6 +133,7 @@
 			(enLoc ?p ?loc))
 		:effect (and
 			(not (estaLibre ?d))
+			(cansado ?d)
 			(conPrinc ?d ?p)
 			(secuestrada ?p))
 	)
