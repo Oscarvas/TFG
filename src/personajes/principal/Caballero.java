@@ -15,6 +15,9 @@ import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
 public class Caballero extends Protagonista {
+	
+	private String princesa;
+	private String dragon;
 
 	protected void setup(){
 		Object[] args = getArguments(); 
@@ -52,6 +55,20 @@ public class Caballero extends Protagonista {
 		}
 	}
 	
+	public String getPrincesa() {
+		return princesa;
+	}
+	public void setPrincesa(String princesa) {
+		this.princesa = princesa;
+	}
+
+	public String getDragon() {
+		return dragon;
+	}
+	public void setDragon(String dragon) {
+		this.dragon = dragon;
+	}
+
 	private class AceptarOfertaRescate extends CyclicBehaviour {
 
 		public void action() {
@@ -62,6 +79,16 @@ public class Caballero extends Protagonista {
 			ACLMessage msg = myAgent.receive(mt);
 
 			if (msg != null) {
+				
+				String[] contrato = msg.getContent().split(" ");
+				setPrincesa(contrato[0]);
+				setDragon(contrato[1]);
+				
+				ACLMessage salvar = new ACLMessage(ACLMessage.INFORM);
+				salvar.setConversationId("ObjetivoSecuestro");
+				salvar.addReceiver(getAgenteMundo());
+				salvar.setContent(getPrincesa());
+				myAgent.send(salvar);
 
 				try {
 					planificar();
