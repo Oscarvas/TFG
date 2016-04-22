@@ -3,7 +3,6 @@ package mundo;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -87,8 +86,6 @@ public class Mundo extends GuiAgent{
 						estado.añadirNombre(conectadoCon);
 					}
 
-//					if (eElement.getElementsByTagName("esSegura").item(0) != null)
-//						estado.esSegura(loc.getNombre());
 				}
 			}
 		} catch (Exception e) {
@@ -125,6 +122,8 @@ public class Mundo extends GuiAgent{
 			e.printStackTrace();
 		}
 
+	    addBehaviour(new Objetivos());
+	    addBehaviour(new PersonajeSecuestrado());
 		addBehaviour(new ObjetivoSecuestro());
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());
@@ -187,6 +186,52 @@ public class Mundo extends GuiAgent{
 		
 	}
 	
+	private class Objetivos extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			
+			MessageTemplate mt = MessageTemplate.and(
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("guardaObjetivos"));
+			ACLMessage receive = myAgent.receive(mt);
+			
+			if (receive != null) {
+				ACLMessage reply = receive.createReply();
+
+				estado.setObjetivos(receive.getSender().getLocalName(), receive.getContent());
+
+				send(reply);
+			} else
+				block();
+			
+		}
+		
+	}
+	
+	private class PersonajeSecuestrado extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("quienSecuestro"));
+			ACLMessage receive = myAgent.receive(mt);
+			
+			if (receive != null) {
+				ACLMessage reply = receive.createReply();
+
+				reply.setContent(estado.getPrincesaObjetivo(receive.getSender().getLocalName()));
+
+				send(reply);
+			} else
+				block();
+		}
+		
+	}
+	
 	private class ToPDDLfile extends CyclicBehaviour {
 
 		public void action() {
@@ -216,59 +261,9 @@ public class Mundo extends GuiAgent{
 				problema += "(:init" + "\n";
 				problema += estado.toString(nombrePersonaje);
 				problema += ")\n";
-
-				try {
-					File fXmlFile = new File("Objetivos.xml");
-					DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-							.newInstance();
-					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-					Document doc = dBuilder.parse(fXmlFile);
-
-					doc.getDocumentElement().normalize();
-
-					NodeList nList = doc.getElementsByTagName("personaje");
-
-					for (int temp = 0; temp < nList.getLength(); temp++) {
-
-						Node nNode = nList.item(temp);
-
-						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-							Element eElement = (Element) nNode;
-
-							if (eElement.getAttribute("tipo").equalsIgnoreCase(
-									clase)) {
-
-								int numObjetivos = eElement.getElementsByTagName("objetivo").getLength();
-								ArrayList<String> objetivos = new ArrayList<String>();
-								for(int i=0;i<numObjetivos;i++){
-									objetivos.add(eElement
-										.getElementsByTagName("objetivo")
-										.item(i).getTextContent());
-								}
-								String cadena = objetivos.get(new Random().nextInt(objetivos.size()));
-
-								String objetivo = cadena
-										.replace("Rey", nombrePersonaje)
-										.replace("Princesa", estado.getPrincesaObjetivo())
-										.replace("Caballero", nombrePersonaje)
-										.replace("Druida", nombrePersonaje)
-										.replace("Mago", nombrePersonaje)
-										.replace("Villano", nombrePersonaje)
-										.replace("Dragon", nombrePersonaje)
-										.replace("Serpiente", nombrePersonaje)
-										.replace("Troll", nombrePersonaje)
-										.replace("Fantasma", nombrePersonaje);
-
-								problema += "(:goal " + objetivo + " )"
-										+ "\n)";
-							}
-						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.exit(0);
-				}
+				
+				problema += "(:goal " + estado.getObjetivos(nombrePersonaje) + " )"
+						+ "\n)";
 
 				PrintWriter writer;
 				try {
@@ -535,10 +530,10 @@ public class Mundo extends GuiAgent{
 			// TODO Auto-generated method stub
 			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("ObjetivoSecuestro"),
 					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-			ACLMessage receive = receive(mt);
+			ACLMessage receive = myAgent.receive(mt);
 			if (receive != null) {
 
-				estado.setPrincesaObjetivo(receive.getContent());
+				estado.setPrincesaObjetivo(receive.getSender().getLocalName(),receive.getContent());
 				ACLMessage reply = receive.createReply();
 				send(reply);
 

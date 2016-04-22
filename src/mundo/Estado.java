@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Estado {
 
-	
+	private HashMap<String, String> objetivos; // <NombrePersonaje,objetivo>
 	private HashMap<String, ArrayList<String>> adyacencias;
 	private ArrayList<String> locSeguras;
 	private HashMap<String, ArrayList<String>> personajes;
@@ -20,7 +20,7 @@ public class Estado {
 	private HashMap<String, String> casasDePersonajes;
 	private ArrayList<String> princesasSalvadas;
 	private ArrayList<String> heroes;
-	private String princesaObjetivo;
+	private HashMap<String, String> princesaObjetivo; //<Secuestrador/salvador,objetivoSecuestro>
 	
 
 	public Estado() {
@@ -37,8 +37,11 @@ public class Estado {
 		casasDePersonajes = new HashMap<String, String>();
 		princesasSalvadas = new ArrayList<String>();
 		heroes = new  ArrayList<String>();
+		princesaObjetivo = new HashMap<String, String>();
+		objetivos = new HashMap<String, String>();
 		
 	}
+	
 	
 	public String toConPrincesa() {
 		String eh = "";
@@ -341,11 +344,21 @@ public class Estado {
 		
 	}
 
-	public String getPrincesaObjetivo() {
-		return princesaObjetivo;
+	public String getPrincesaObjetivo(String secuestrador) {
+		return princesaObjetivo.get(secuestrador);
 	}
 
-	public void setPrincesaObjetivo(String princesaObjetivo) {
-		this.princesaObjetivo = princesaObjetivo;
+	public void setPrincesaObjetivo(String secuestrador,String princesaObjetivo) {
+		this.princesaObjetivo.put(secuestrador, princesaObjetivo);
+	}
+
+
+	public String getObjetivos(String personaje) {
+		return objetivos.get(personaje);
+	}
+
+
+	public void setObjetivos(String personaje, String objetivos) {
+		this.objetivos.put(personaje, objetivos);
 	}
 }

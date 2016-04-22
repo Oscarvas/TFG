@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import javaff.JavaFF;
-
+import loaders.LoaderObjetivos;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import acciones.*;
@@ -29,7 +29,8 @@ public class Personaje extends Agent {
 	private AID agenteMundo;
 	private int tesoro;
 	private String sexo;
-	
+	private String clase;
+
 	/*
 	 * Cargamos el AID del agente que tenga publicado
 	 * el servicio Mundo en el DF
@@ -44,6 +45,7 @@ public class Personaje extends Agent {
 		try {
 			result = DFService.search(this, template);
 			setAgenteMundo(result[0].getName());
+			setClase(getClass().getName().substring(21));
 		} catch (FIPAException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +96,7 @@ public class Personaje extends Agent {
 		ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 		localizar.addReceiver(getAgenteMundo());
 		localizar.setConversationId("Mover");
-		localizar.setContent(getClass().getName().substring(21) + " "+ localizacion);
+		localizar.setContent(getClase() + " "+ localizacion);
 		localizar.setReplyWith("localizar" + System.currentTimeMillis());
 		send(localizar);
 
@@ -142,6 +144,14 @@ public class Personaje extends Agent {
 
 	public void setTesoro(int tesoro) {
 		this.tesoro = tesoro;
+	}
+	
+	public String getClase() {
+		return clase;
+	}
+
+	public void setClase(String clase) {
+		this.clase = clase;
 	}
 	
 	public void planificar() throws Exception {
@@ -239,12 +249,12 @@ public class Personaje extends Agent {
 	}
 
 	public void mandarCrearArchivo() {
-
+		new LoaderObjetivos(this).execute();
 		ACLMessage toPDDL = new ACLMessage(ACLMessage.REQUEST);
 		toPDDL.addReceiver(getAgenteMundo());
 		toPDDL.setConversationId("toPDDL");
 		toPDDL.setReplyWith("toPDDL" + System.currentTimeMillis());
-		toPDDL.setContent(getClass().getName().substring(21) + " "+ getLocalName());
+		toPDDL.setContent(getClase() + " "+ getLocalName());
 		send(toPDDL);
 
 		MessageTemplate mt = MessageTemplate.and(
@@ -252,6 +262,7 @@ public class Personaje extends Agent {
 				MessageTemplate.MatchInReplyTo(toPDDL.getReplyWith()));
 		blockingReceive(mt);
 	}
+	
 	public void moverSecuestrado(String locDest) {
 		new Mover(this, localizacion, locDest).execute();
 	}
