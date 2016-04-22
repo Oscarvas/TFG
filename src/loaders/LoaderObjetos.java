@@ -23,6 +23,7 @@ public class LoaderObjetos {
 		String descripcion;
 		Almacen objetos = new Almacen();
 		String[] atributos = new String[Objeto.ATRIBUTOS];
+		Objeto o = null;
 		
 			File fXmlFile = new File("Objetos.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -32,40 +33,46 @@ public class LoaderObjetos {
 
 			doc.getDocumentElement().normalize();
 
-			NodeList nListCons = doc.getElementsByTagName("tipo");			
+			NodeList nListTipo = doc.getElementsByTagName("tipo");
 
-			for (int temp = 0; temp < nListCons.getLength(); temp++) {
+			for (int i = 0; i < nListTipo.getLength(); i++) {
 
-				Node nNode = nListCons.item(temp);
+				Node nNodeTipo = nListTipo.item(i);
+				if (nNodeTipo.getNodeType() == Node.ELEMENT_NODE) {
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElementTipo = (Element) nNodeTipo;
+					System.out.println();
 
-					Element eElement = (Element) nNode;
-					nombre = eElement.getAttribute("nombre");
-					descripcion = eElement.getAttribute("descripcion");
-					atributos[Objeto.CANTIDAD] = eElement.getAttribute("cantidad");
-					atributos[Objeto.VIDA] = eElement.getAttribute("vida");
-					atributos[Objeto.FUERZA] = eElement.getAttribute("fuerza");
-					atributos[Objeto.DESTREZA] = eElement.getAttribute("destreza");
-					atributos[Objeto.INTELIGENCIA] = eElement.getAttribute("inteligencia");
-					atributos[Objeto.CODICIA] = eElement.getAttribute("codicia");
-					
-					objetos.añadirObjeto("consumible", new Consumible(nombre, descripcion, atributos));
-				
-				}
-			}			
-			
-			NodeList nListKeys = doc.getElementsByTagName("clave");
-			for (int temp = 0; temp < nListKeys.getLength(); temp++) {
+					NodeList nListObjeto = eElementTipo.getElementsByTagName("objeto");
 
-				Node nNode = nListKeys.item(temp);
+					for (int j = 0; j < nListObjeto.getLength(); j++) {
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					nombre = eElement.getAttribute("nombre");
-					descripcion = eElement.getAttribute("descripcion");
-					
-					objetos.añadirObjeto("clave", new Clave(nombre, descripcion));
+						Node nNodeObjeto = nListObjeto.item(j);
+						if (nNodeObjeto.getNodeType() == Node.ELEMENT_NODE) {
+
+							Element eElementObjeto = (Element) nNodeObjeto;
+							nombre = eElementObjeto.getAttribute("nombre");
+							descripcion = eElementObjeto.getAttribute("descripcion");
+							switch(eElementTipo.getAttribute("tipo")){
+							case "consumible":
+								atributos[Objeto.CANTIDAD] = eElementObjeto.getAttribute("cantidad");
+								atributos[Objeto.VIDA] = eElementObjeto.getAttribute("vida");
+								atributos[Objeto.FUERZA] = eElementObjeto.getAttribute("fuerza");
+								atributos[Objeto.DESTREZA] = eElementObjeto.getAttribute("destreza");
+								atributos[Objeto.INTELIGENCIA] = eElementObjeto.getAttribute("inteligencia");
+								atributos[Objeto.CODICIA] = eElementObjeto.getAttribute("codicia");
+								o = new Consumible(nombre, descripcion, atributos);
+								break;
+							case "clave":
+								o = new Clave(nombre, descripcion);
+								break;
+							}
+							
+							objetos.añadirObjeto(eElementTipo.getAttribute("tipo"), o);
+							
+							
+						}
+					}
 				}
 			}			
 		
