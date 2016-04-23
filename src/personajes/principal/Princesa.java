@@ -162,13 +162,13 @@ public class Princesa extends Protagonista {
 				escapar.setConversationId("mujerIndependiente");
 				
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 500){
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 12500){
 						
 						@SuppressWarnings("unused")
 						@Override
 						protected void onTick() {
 							escapar.setReplyWith("mujerIndependiente" + System.currentTimeMillis());
-							escapar.setContent(String.valueOf(Vocabulario.VIDA_MONSTRUO));							
+							escapar.setContent(String.valueOf(Vocabulario.VIDA_MONSTRUO()));							
 							send(escapar);
 												
 							MessageTemplate imp = MessageTemplate.MatchInReplyTo(escapar.getReplyWith());
