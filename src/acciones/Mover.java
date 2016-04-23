@@ -29,7 +29,7 @@ public class Mover {
 			mover.addReceiver(agenteMundo);
 			mover.setConversationId("Mover");
 			mover.setReplyWith("mover" + System.currentTimeMillis());
-			mover.setContent(personaje.getClass().getName().substring(11) + " "
+			mover.setContent(personaje.getClase() + " "
 					+ locDest + " " + locOrigen);
 			personaje.send(mover);
 
