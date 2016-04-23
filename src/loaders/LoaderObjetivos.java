@@ -24,11 +24,36 @@ public class LoaderObjetivos {
 	private String clase;
 	private AID agenteMundo;
 	private Agent myAgent;
+	private String objetivo;
 	
 	public LoaderObjetivos (Agent myAgent){
 		this.myAgent = myAgent;
 		this.clase = ((Personaje) myAgent).getClase();
 		this.agenteMundo = ((Personaje) myAgent).getAgenteMundo();
+		this.objetivo="(enLoc "+myAgent.getLocalName()+" "+((Personaje) myAgent).getCasa()+")";
+	}
+	
+	public LoaderObjetivos (Agent myAgent,String objetivo){
+		this.myAgent = myAgent;
+		this.clase = ((Personaje) myAgent).getClase();
+		this.agenteMundo = ((Personaje) myAgent).getAgenteMundo();
+		this.objetivo=objetivo;
+	}
+	
+	public void dismiss(){
+		
+		ACLMessage miObjetivo = new ACLMessage(ACLMessage.REQUEST);
+		miObjetivo.addReceiver(agenteMundo);
+		miObjetivo.setConversationId("guardaObjetivos");
+		miObjetivo.setReplyWith("guardaObjetivos" + System.currentTimeMillis());
+		miObjetivo.setContent(objetivo);
+		myAgent.send(miObjetivo);
+
+		MessageTemplate mt = MessageTemplate.and(
+				MessageTemplate.MatchConversationId("guardaObjetivos"),
+				MessageTemplate.MatchInReplyTo(miObjetivo.getReplyWith()));
+		myAgent.blockingReceive(mt);
+		
 	}
 
 	public void execute() {
