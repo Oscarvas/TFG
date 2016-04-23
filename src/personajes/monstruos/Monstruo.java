@@ -9,7 +9,7 @@ public class Monstruo extends Personaje {
 
 	public void iniciarMonstruo(String localizacion, String especie, String sexo){
 		cargarMundo();
-		setVida(Vocabulario.VIDA_MONSTRUO);
+		setVida(Vocabulario.VIDA_MONSTRUO());
 //		String clase = getClass().getName().substring(21);
 		setLocalizacion(localizacion);
 		setEspecie(especie);

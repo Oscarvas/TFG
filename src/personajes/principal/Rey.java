@@ -27,7 +27,7 @@ public class Rey extends Protagonista {
 	
 	protected void setup(){		
 		
-		numeroHijas=Vocabulario.NUM_HIJAS;
+		numeroHijas= Vocabulario.NUM_HIJAS();
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0 && numeroHijas > 0 ) {
 			iniciarPrincipal(Mitologia.valueOf((String) args[0]), Integer.parseInt((String) args[1]), 
