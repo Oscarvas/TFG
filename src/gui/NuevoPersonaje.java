@@ -36,7 +36,7 @@ public class NuevoPersonaje extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public NuevoPersonaje(Mundo mundo) {
-		setTitle("Creaci\u00F3n de Personajes");
+		setTitle("Creación de Personajes");
 		setBounds(100, 100, 243, 700);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,7 +145,7 @@ public class NuevoPersonaje extends JDialog {
 						if(!txtNombre.getText().isEmpty()){
 							GuiEvent ge = new GuiEvent(this, Vocabulario.CREAR_AGENTE);
 				            ge.addParameter(txtNombre.getText());
-				            ge.addParameter("personajes."+clases.getSelectedItem());
+				            ge.addParameter("personajes.principal."+clases.getSelectedItem());
 				            ge.addParameter(razas.getSelectedItem());
 				            ge.addParameter(spVida.getValue());
 				            ge.addParameter(spFuerza.getValue());
