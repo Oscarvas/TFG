@@ -12,6 +12,7 @@ public class Monstruo extends Personaje {
 		setVida(Vocabulario.VIDA_MONSTRUO());
 //		String clase = getClass().getName().substring(21);
 		setLocalizacion(localizacion);
+		localizarPersonaje();
 		setEspecie(especie);
 		setSexo(sexo);
 	}
