@@ -320,7 +320,7 @@ public class Mundo extends GuiAgent{
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 					
 					//si un caballero va al cruce
-					if (locDest.equals("cruce") && mensaje[0].equals("Caballero") ){
+					if (locDest.equalsIgnoreCase("cruce") && mensaje[0].equals("Caballero") ){
 						ACLMessage mover = new ACLMessage(ACLMessage.INFORM);
 						mover.addReceiver(getAID("Trundle"));
 						mover.setConversationId("Cruzar");
