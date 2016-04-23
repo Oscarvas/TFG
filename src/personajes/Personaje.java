@@ -30,6 +30,15 @@ public class Personaje extends Agent {
 	private int tesoro;
 	private String sexo;
 	private String clase;
+	private String casa;
+
+	public String getCasa() {
+		return casa;
+	}
+
+	public void setCasa(String casa) {
+		this.casa = casa;
+	}
 
 	/*
 	 * Cargamos el AID del agente que tenga publicado
@@ -96,7 +105,7 @@ public class Personaje extends Agent {
 		ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
 		localizar.addReceiver(getAgenteMundo());
 		localizar.setConversationId("Mover");
-		localizar.setContent(getClase() + " "+ localizacion);
+		localizar.setContent(getClase() + " "+ getLocalizacion());
 		localizar.setReplyWith("localizar" + System.currentTimeMillis());
 		send(localizar);
 
@@ -104,6 +113,8 @@ public class Personaje extends Agent {
 				MessageTemplate.MatchConversationId("Mover"),
 				MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
 		blockingReceive(mt);
+		
+		setCasa(getLocalizacion());
 
 	}
 	
@@ -158,6 +169,7 @@ public class Personaje extends Agent {
 
 		boolean ok;
 		boolean falloSecuestro = false;
+		new LoaderObjetivos(this).execute();
 
 		do {
 			ok = true;
@@ -167,66 +179,75 @@ public class Personaje extends Agent {
 
 			String ff = JavaFF.crearPlan(args);
 			String[] cadena = ff.split("\n");
-			Gui.setHistoria(ff); //para hacer un seguimiento desde la interfaz sobre la planificacion que se ha enviado a cada personaje
+			//para hacer un seguimiento desde la interfaz sobre la planificacion que se ha enviado a cada personaje
 			System.out.println(ff);//en consola
 			for (String sigAccion : cadena) {
 				String[] accionActual = sigAccion.split(" ");
 				String accion = accionActual[0];
 
-				if (estaMuerto())
-					break;
+				try {
+					if (estaMuerto())
+						break;
 
-				if (!accionActual[1].equalsIgnoreCase(getLocalName())) {
-					ok = false;
-					break;
-				}
-
-				else if (accion.equalsIgnoreCase("moverprincipal")
-						|| accion.equalsIgnoreCase("moversecundario")) {
-					
-					new Mover(this, accionActual[2], accionActual[3]).execute();
-				}
-
-				else if (accion.equalsIgnoreCase("secuestrar")) {
-					if ( ! new Secuestrar(this, accionActual[2]).execute() ) {
-						falloSecuestro = true;
+					if (!accionActual[1].equalsIgnoreCase(getLocalName())) {
+						ok = false;
 						break;
 					}
-				}
-				
-				else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
-					new Mover(this, accionActual[3], accionActual[4]).execute();
+
+					else if (accion.equalsIgnoreCase("moverprincipal")
+							|| accion.equalsIgnoreCase("moversecundario")) {
+						
+						new Mover(this, accionActual[2], accionActual[3]).execute();
+					}
+
+					else if (accion.equalsIgnoreCase("secuestrar")) {
+						if ( ! new Secuestrar(this, accionActual[2]).execute() ) {
+							falloSecuestro = true;
+							break;
+						}
+					}
 					
-					ACLMessage moverPrincesa = new ACLMessage(
-							ACLMessage.REQUEST);
-					moverPrincesa.setConversationId("Mover-Princesa");
-					moverPrincesa.setReplyWith("mover-princesa"
-							+ System.currentTimeMillis());
-					moverPrincesa.addReceiver(getAID(accionActual[2]));
-					moverPrincesa.setContent(accionActual[4]);
-					send(moverPrincesa);
+					else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
+						new Mover(this, accionActual[3], accionActual[4]).execute();
+						
+						ACLMessage moverPrincesa = new ACLMessage(
+								ACLMessage.REQUEST);
+						moverPrincesa.setConversationId("Mover-Princesa");
+						moverPrincesa.setReplyWith("mover-princesa"
+								+ System.currentTimeMillis());
+						moverPrincesa.addReceiver(getAID(accionActual[2]));
+						moverPrincesa.setContent(accionActual[4]);
+						send(moverPrincesa);
 
-					MessageTemplate mt = MessageTemplate
-							.MatchInReplyTo(moverPrincesa.getReplyWith());
-					blockingReceive(mt);
-					
+						MessageTemplate mt = MessageTemplate
+								.MatchInReplyTo(moverPrincesa.getReplyWith());
+						blockingReceive(mt);
+						
 
-				} else if (accion.equalsIgnoreCase("batalla"))
-				{
-					new Batalla(this, accionActual[2]).execute();
-				}
-				else if (accion.equalsIgnoreCase("liberarprincesa"))
-					new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
+					} else if (accion.equalsIgnoreCase("batalla"))
+					{
+						new Batalla(this, accionActual[2]).execute();
+					}
+					else if (accion.equalsIgnoreCase("liberarprincesa"))
+						new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
 
-				else if (accion.equalsIgnoreCase("dejarencasa"))
-					new DejarEnCasa(this, accionActual[2]).execute();
+					else if (accion.equalsIgnoreCase("dejarencasa"))
+						new DejarEnCasa(this, accionActual[2]).execute();
 
-				else if (accion.equalsIgnoreCase("convertirseenheroe"))
-					new ConvertirseEnHeroe(this).execute();
+					else if (accion.equalsIgnoreCase("convertirseenheroe"))
+						new ConvertirseEnHeroe(this).execute();
 
-				else {
-					System.out.println(sigAccion);
-					throw new Exception("Accion no reconocible");
+					else {
+						System.out.println(sigAccion);
+						throw new Exception("Accion no reconocible");
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					/*
+					 * Este bloque de control captura el error que produce el planificador
+					 * sobre un objetivo que no se puede cumplir. En cuyo caso el personaje debera volver a su casa
+					 * */
+					new LoaderObjetivos(this).dismiss();
 				}
 				
 			}
@@ -248,8 +269,7 @@ public class Personaje extends Agent {
 		}
 	}
 
-	public void mandarCrearArchivo() {
-		new LoaderObjetivos(this).execute();
+	public void mandarCrearArchivo() {		
 		ACLMessage toPDDL = new ACLMessage(ACLMessage.REQUEST);
 		toPDDL.addReceiver(getAgenteMundo());
 		toPDDL.setConversationId("toPDDL");

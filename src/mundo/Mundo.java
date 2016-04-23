@@ -407,6 +407,7 @@ public class Mundo extends GuiAgent{
 					estado.añadirPersonajeConPrincesa(secuestrador, princesa);
 					estado.secuestrar(princesa);
 					estado.estaLlenoPersonaje(secuestrador);
+					estado.estaCansado(secuestrador);
 
 					reply.setContent(estado.nombreCorrecto(princesa));
 
@@ -435,14 +436,14 @@ public class Mundo extends GuiAgent{
 
 				String[] contenido = receive.getContent().split(" ");
 				
-				if(contenido.length == 3){
+				if(contenido.length == 3){ //cuando el caballero rescata a la princesa
 					estado.estaLlenoPersonaje(contenido[0]);
 					estado.añadirPersonajeConPrincesa(contenido[0], contenido[1]);
 					estado.borrarPersonajeConPrincesa(contenido[2]);
 				}
-				else if (contenido.length == 2) {
+				else if (contenido.length == 2) { //cuando la princesa se escapa
 					estado.borrarPersonajeConPrincesa(contenido[1]);
-					//estado.liberar(contenido[0]);
+					estado.liberar(contenido[0]);
 					estado.estaLibrePersonaje(contenido[0]);
 				}
 				

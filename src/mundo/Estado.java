@@ -10,7 +10,7 @@ public class Estado {
 	private HashMap<String, String> objetivos; // <NombrePersonaje,objetivo>
 	private HashMap<String, ArrayList<String>> adyacencias;
 	private ArrayList<String> locSeguras;
-	private HashMap<String, ArrayList<String>> personajes;
+	private HashMap<String, ArrayList<String>> personajes; //<clase, arrayPersonajesDeEsaClase>
 	private HashMap<String, String> persEnLoc; // <personaje, localizacion>
 	private ArrayList<String> vivos;
 	private ArrayList<String> estaLibre;
@@ -21,6 +21,7 @@ public class Estado {
 	private ArrayList<String> princesasSalvadas;
 	private ArrayList<String> heroes;
 	private HashMap<String, String> princesaObjetivo; //<Secuestrador/salvador,objetivoSecuestro>
+	private ArrayList<String> cansado; //flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
 	
 
 	public Estado() {
@@ -39,7 +40,7 @@ public class Estado {
 		heroes = new  ArrayList<String>();
 		princesaObjetivo = new HashMap<String, String>();
 		objetivos = new HashMap<String, String>();
-		
+		cansado = new ArrayList<String>();
 	}
 	
 	
@@ -147,6 +148,9 @@ public class Estado {
 		estaLibre.add(personaje);
 	}
 	
+	public void estaCansado (String personaje) {
+		cansado.add(personaje);
+	}
 	
 	public void estaLlenoPersonaje (String personaje) {
 		estaLibre.remove(personaje);
@@ -252,11 +256,18 @@ public class Estado {
 		
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			if (!personajes.get("Caballero").contains(nombrePersonaje))//si no soy un caballero				
-				estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
-			else{
-				if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Caballero").contains(e.getKey()))
+			
+			if (personajes.get("Princesa").contains(nombrePersonaje)){
+				if (nombrePersonaje.equals(e.getKey()))
 					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
+			}				
+			else{
+				if (!personajes.get("Caballero").contains(nombrePersonaje))//si no soy un caballero				
+					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
+				else{
+					if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Caballero").contains(e.getKey()))
+						estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
+				}
 			}
 			
 		}
@@ -306,6 +317,9 @@ public class Estado {
 		for ( String personaje : estaLibre )
 			estado += "(estaLibre " + personaje + ")\n";
 
+		//Personajes cansados
+		for ( String personaje : cansado )
+			estado += "(cansado " + personaje + ")\n";
 		
 		// Personajes vivos o muertos
 		
