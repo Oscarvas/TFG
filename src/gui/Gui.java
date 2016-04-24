@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultCaret;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -100,6 +102,10 @@ public class Gui extends JFrame {
 		textAreaHistoria.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
 		textAreaHistoria.setEditable(false);
 		textAreaHistoria.setOpaque(false);
+		//para que la ventana se actualice conforme se van mostrando mas mensajes
+		DefaultCaret caret = (DefaultCaret) textAreaHistoria.getCaret(); //
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);       //
+		//
 		JScrollPane scrollPane = new JScrollPane(textAreaHistoria);
 		scrollPane.setOpaque(false);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
