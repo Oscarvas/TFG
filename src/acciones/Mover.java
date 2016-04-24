@@ -42,9 +42,10 @@ public class Mover {
 			if (msg.getPerformative() == ACLMessage.CONFIRM) {
 
 				personaje.setLocalizacion(msg.getContent());
+				evento();
 
 				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
-				evento();
+				
 
 			} else {
 				System.err.println(" No se ha podido cambiar de localizacion. \n");
@@ -66,15 +67,25 @@ public class Mover {
 		ACLMessage receive = personaje.receive(mt2);
 	
 		if (receive != null && receive.getContent()!=null) {
-			//aqui condicion de si el caballero puede pagar lo pedido
-			personaje.setTesoro(personaje.getTesoro()-Integer.parseInt(receive.getContent()));
-			Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
-
 			ACLMessage reply = receive.createReply();
+			int balance = personaje.getTesoro()-Integer.parseInt(receive.getContent());
+			//aqui condicion de si el caballero puede pagar lo pedido
+			if ( balance >= 0){
+				personaje.setTesoro(balance);
+				Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
+				reply.setContent(receive.getContent());
+			}
+			else
+				Gui.setHistoria(personaje.getLocalName()+": ¿Puedo darle a necesidad?");
+			
 			personaje.send(reply);
 			MessageTemplate plnt = MessageTemplate
 					.MatchInReplyTo(reply.getReplyWith());
-			personaje.blockingReceive(plnt);
+			ACLMessage ajusteCuentas = personaje.blockingReceive(plnt);
+			
+			if (ajusteCuentas.getContent() != null){
+				personaje.setVida(0);
+			}
 	
 		} 
 		

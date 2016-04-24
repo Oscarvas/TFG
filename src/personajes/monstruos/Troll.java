@@ -2,6 +2,7 @@ package personajes.monstruos;
 
 import java.util.Random;
 
+import acciones.Batalla;
 import acciones.Emboscar;
 import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
@@ -11,6 +12,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Troll extends Monstruo {
@@ -70,11 +72,21 @@ public class Troll extends Monstruo {
 				
 				MessageTemplate imp = MessageTemplate
 						.MatchInReplyTo(impuestos.getReplyWith());
-				ACLMessage reply = myAgent.blockingReceive(imp);				
-				Gui.setHistoria(getLocalName()+": Un caballero con dinero es un caballero vivo, puedes continuar "+reply.getSender().getLocalName());				
+				ACLMessage reply = myAgent.blockingReceive(imp);
+				ACLMessage asesinar = reply.createReply();
+				
+				if (reply.getContent() != null ){
+					Gui.setHistoria(getLocalName()+": Un caballero con dinero es un caballero vivo, puedes continuar "+reply.getSender().getLocalName());
+				}
+				else{
+					Gui.setHistoria(getLocalName()+": ¡Tuuuuuuuuuuuu, no llevarte vela !");
+					//new Batalla((Personaje) myAgent, reply.getSender().getLocalName()).execute();
+					asesinar.setContent("Muere");
+				}
+				
 
 //				send(receive.createReply());//respuesta al mundo
-				send(reply.createReply());//respuesta al caballero
+				send(asesinar);//respuesta al caballero
 				
 
 			} else
