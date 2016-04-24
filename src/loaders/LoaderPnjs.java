@@ -55,21 +55,5 @@ public class LoaderPnjs {
 			e.printStackTrace();
 			System.exit(0);
 		}
-
-//
-//		guest = container.createNewAgent("Thrall", "pnjs.Chaman", null);
-//		guest.start();
-//		guest = container.createNewAgent("Kvothe", "pnjs.Tabernero", null);
-//		guest.start();
-//		guest = container.createNewAgent("Egidio", "pnjs.Granjero", null);
-//		guest.start();
-//		guest = container.createNewAgent("Chicote", "pnjs.Chef", null);
-//		guest.start();
-//		guest = container.createNewAgent("Bella", "pnjs.Bibliotecario", null);
-//		guest.start();
-//		guest = container.createNewAgent("Felurian", "pnjs.Sastre", null);
-//		guest.start();
-//		guest = container.createNewAgent("Garrosh", "pnjs.Herrero", null);
-//		guest.start();
 	}
 }

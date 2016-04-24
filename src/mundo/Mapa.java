@@ -10,10 +10,10 @@ public class Mapa {
 		this.localizaciones = new ArrayList<Localizacion>();
 	}
 
-	public Localizacion añadirLocalizacion(String loc) throws Exception {
+	public Localizacion añadirLocalizacion(String loc, String tipo) throws Exception {
 
 		if ( !localizaciones.contains(getLocalizacion(loc)) ) {
-			Localizacion localizacion = new Localizacion(loc);
+			Localizacion localizacion = new Localizacion(loc, tipo);
 			this.localizaciones.add(localizacion);
 			return localizacion;
 			

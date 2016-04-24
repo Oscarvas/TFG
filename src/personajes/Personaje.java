@@ -54,7 +54,7 @@ public class Personaje extends Agent {
 		try {
 			result = DFService.search(this, template);
 			setAgenteMundo(result[0].getName());
-			setClase(getClass().getName().substring(21));
+			setClase(getClass().getName().substring(21));  //ignora los primeros 21 caracteres que se pasan de un string -> personajes.monstruo. = 21
 		} catch (FIPAException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

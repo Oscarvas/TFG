@@ -4,11 +4,13 @@ import java.util.ArrayList;
 public class Localizacion {
 	
 	private String nombre;
+	private String tipo;
 	private ArrayList<String> conectadoCon;	
 	private ArrayList<String> personajes;
 
-	public Localizacion (String nombre) {
+	public Localizacion (String nombre, String tipo) {
 		this.nombre = nombre;
+		this.tipo = tipo;
 		this.conectadoCon = new ArrayList<String>();
 		this.personajes = new ArrayList<String>();
 	}
@@ -35,6 +37,8 @@ public class Localizacion {
 	}
 
 	public String getNombre() {return nombre;}
+	
+	public String getTipo() {return tipo;}
 	
 }
 
