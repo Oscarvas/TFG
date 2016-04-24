@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Para configurar correctamente una mapa debes: -->
+<!-- NOMBRE = Darle un nombre característico que la diferencie del resto -->
+<!-- REGION = Definir una region del mapa, esta region tendrá un nombre y un nº de localizaciones asignadas, por cada region debes: -->
+<!-- 	LOCALIZACION = Cada region contiene un nº de localizaciones específicas, estas localizaciones poseen las propiedades: -->
+<!--		nombre: el nombre de la localizacion -->
+<!--		tipo: de que tipo es esa localizacion, forestal, acuatica, urbana,... -->
+<!--		!advertencia: no cambies el tipo de las localizaciones del mapa, o los dibujos no concordaran -->
+
+<Mapa>
+	<region id="Isla Noroeste" nombre="Isla Egeria">
+		<localizacion id="Pueblo1" nombre="Egeria" tipo="Pueblo" >
+			 <conectadoCon>Urbano2 Bosque1</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Bosque1" nombre="Caligo" tipo="Bosque" >
+			 <conectadoCon>Pueblo1 Pueblo2</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Pueblo2" nombre="Turis" tipo="Pueblo" >
+			 <conectadoCon>Bosque1</conectadoCon>
+    	</localizacion>
+	</region>
+	<region id="Isla Norte"  nombre="Isla Illuc">
+		<localizacion id="Pueblo3" nombre="Illuc" tipo="Pueblo" >
+			 <conectadoCon>Urbano2 Bosque2</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Urbano1" nombre="Hospital" tipo="Urbano" >
+			 <conectadoCon>Pueblo3 Bosque2</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Bosque2" nombre="Sagren" tipo="Bosque" >
+			 <conectadoCon>Urbano1</conectadoCon>
+    	</localizacion>
+	</region>
+	<region id="Isla Noreste" nombre="Isla Tragus">
+		<localizacion id="Pueblo4" nombre="Tragus" tipo="Pueblo" >
+			 <conectadoCon>Urbano2 Cuevas1</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Cuevas1" nombre="Cuevas" tipo="Cuevas" >
+			 <conectadoCon>Minas1 Pueblo4</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Minas1" nombre="Minas" tipo="Minas" >
+			 <conectadoCon>Cuevas1</conectadoCon>
+    	</localizacion>
+	</region>
+	<!-- Continente Grande -->
+	<!-- Region Norte -->
+	<region id="Continente Norte"  nombre="Tesqua">
+		<localizacion id="Urbano2" nombre="Tesqua" tipo="Urbano" > <!-- "Urbano, Pueblo" Puerto -->
+			 <conectadoCon>Urbano3 Pueblo1 Pueblo3 Pueblo4</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Urbano3" nombre="Taberna" tipo="Urbano" >
+			 <conectadoCon>Urbano2 Cruce1</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Cruce1" nombre="El Cruce" tipo="Cruce" >
+			 <conectadoCon>Lago1 Castillo1 Urbano3</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Lago1" nombre="Inibi" tipo="Lago" >
+			 <conectadoCon>Montana1 Cruce1 Castillo2</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Montana1" nombre="Fatum" tipo="Montana" >
+			 <conectadoCon>Lago1</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Castillo1" nombre="Ignis" tipo="Castillo" >
+			 <conectadoCon>Cruce1 Bosque3 Pueblo5 Urbano5</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Bosque3" nombre="Illunis" tipo="Bosque" >
+			 <conectadoCon>Castillo1</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Pueblo5" nombre="Egestas" tipo="Pueblo" >
+			 <conectadoCon>Castillo1 Urbano4</conectadoCon>
+    	</localizacion>
+	</region>
+	<!-- Region Oeste -->
+	<region id="Continente Oeste"  nombre="Lucta">
+		<localizacion id="Castillo2" nombre="Segrex" tipo="Castillo" >
+			 <conectadoCon>Lago1 Pueblo6</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Pueblo6" nombre="Lucta" tipo="Pueblo" >
+			 <conectadoCon>Castillo2 Bosque4</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Urbano4" nombre="Biblioteca" tipo="Urbano" >
+			 <conectadoCon>Pueblo5 Bosque4</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Bosque4" nombre="Nordrassil" tipo="Bosque" >
+			 <conectadoCon>Pueblo6 Urbano4 Urbano4</conectadoCon>
+    	</localizacion>
+	</region>
+	<!-- Region Este -->
+	<region id="Continente Este"  nombre="Scruthor">
+		<localizacion id="Urbano4" nombre="Sastreria" tipo="Urbano" >
+			 <conectadoCon>Bosque4 Urbano5 Pueblo8</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Urbano5" nombre="Herreria" tipo="Urbano" >
+			 <conectadoCon>Urbano4 Urbano6</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Urbano6" nombre="Establos" tipo="Urbano" >
+			 <conectadoCon>Urbano5 Castillo1 Lago2</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Lago2" nombre="Echidna" tipo="Lago, Bosque" > <!-- "Lago, Bosque" Pantano -->
+			 <conectadoCon>Urbano6 Pueblo8</conectadoCon>
+    	</localizacion>
+    	<localizacion id="Pueblo8" nombre="Scruthor" tipo="Pueblo" >
+			 <conectadoCon>Lago2 Urbano4</conectadoCon>
+    	</localizacion>
+	</region>
+
+</Mapa>
