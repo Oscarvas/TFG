@@ -66,9 +66,9 @@ o Habla con los animales.
      -->
     
     <!-- Antagonistas -->
-    <personaje tipo="Villano" >
+<!--     <personaje tipo="Villano" >
         <objetivo>(not (vivo Dragon))</objetivo>
-    </personaje>
+    </personaje> -->
    <!--  • Derrocar al Rey.
 • Casarse con la Princesa.
 • Almacenar oro (objetos brillantes).
@@ -78,16 +78,16 @@ o Habla con los animales.
      -->
     
     <!-- Monstruos -->
-    <personaje tipo="Dragon" >
-        <objetivo>(and (conPrinc Dragon Princesa) (enLoc Dragon Cuevas))</objetivo>
-        <objetivo>(and (conPrinc Dragon Princesa) (enLoc Dragon Fatum))</objetivo>
+    <personaje tipo="Secuestrador" >
+        <objetivo>(and (conPrinc Secuestrador Princesa) (enLoc Secuestrador Cuevas))</objetivo>
+        <objetivo>(and (conPrinc Secuestrador Princesa) (enLoc Secuestrador Fatum))</objetivo>
     </personaje>
    <!--  o Secuestrar princesas.
 o Almacenar oro (objetos brillantes).
 o Proveedor de material magico.
      -->
     
-    <personaje tipo="Serpiente" >
+    <personaje tipo="Guardian" >
         <objetivo>(impedirPaso Lago)</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
@@ -95,7 +95,7 @@ o Alimentarse (de Personajes).
 o Impide atravesar el Lago.
      -->
     
-    <personaje tipo="Troll" >
+    <personaje tipo="Emboscador" >
         <objetivo>(impedirPaso Cruce)</objetivo>
     </personaje>
    <!--  o Cobrar peaje (objetos brillantes).
@@ -103,7 +103,7 @@ o Distraible para cruzar.
 o Te persigue (hasta matarte o cobrar peaje).
      -->
     
-    <personaje tipo="Fantasma" >
+    <personaje tipo="Maligno" >
         <objetivo>(derrocar Rey)</objetivo>
     </personaje>
    <!--  o Roba comida (objetos comestibles).

@@ -117,11 +117,10 @@ public class LoaderObjetivos {
 								.replace("Caballero", myAgent.getLocalName())
 								.replace("Druida", myAgent.getLocalName())
 								.replace("Mago", myAgent.getLocalName())
-								.replace("Villano", myAgent.getLocalName())
-								.replace("Dragon", myAgent.getLocalName())
-								.replace("Serpiente", myAgent.getLocalName())
-								.replace("Troll", myAgent.getLocalName())
-								.replace("Fantasma", myAgent.getLocalName());
+								.replace("Emboscador", myAgent.getLocalName())
+								.replace("Guardian", myAgent.getLocalName())
+								.replace("Secuestrador", myAgent.getLocalName())
+								.replace("Maligno", myAgent.getLocalName());
 						
 						ACLMessage miObjetivo = new ACLMessage(ACLMessage.REQUEST);
 						miObjetivo.addReceiver(agenteMundo);

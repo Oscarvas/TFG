@@ -4,7 +4,7 @@
 		localizacion
 		rey
 		caballero
-		dragon
+		secuestrador
 		princesa
 	)
 	
@@ -22,7 +22,7 @@
 		(esRey ?r)
 		(esPrincesa ?p)
 		(esCaballero ?c)
-		(esDragon ?d)
+		(esSecuestrador ?d)
 		
 		(vivo ?per)
 	)
@@ -79,7 +79,7 @@
 	)
 
 
-;; batalla entre caballero y dragon
+;; batalla entre caballero y Secuestrador
 	(:action batalla
 		:parameters (?c ?d ?loc)
 		:precondition (and
@@ -102,7 +102,7 @@
 		:precondition (and
 			(esCaballero ?c)
 			(esPrincesa ?p)
-			(esDragon ?d)	
+			(esSecuestrador ?d)	
 			(vivo ?c)
 			(vivo ?p)
 			(not (vivo ?d))
@@ -124,7 +124,7 @@
 		:precondition (and
 			(vivo ?d)
 			(vivo ?p)
-			(esDragon ?d)
+			(esSecuestrador ?d)
 			(estaLibre ?d)
 			(esPrincesa ?p)
 			(not (salvada ?p))

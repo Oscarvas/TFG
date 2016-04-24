@@ -15,7 +15,7 @@ import jade.lang.acl.MessageTemplate;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Troll extends Monstruo {
+public class Emboscador extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1], (String) args[2]);

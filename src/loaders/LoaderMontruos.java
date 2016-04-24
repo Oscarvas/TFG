@@ -48,24 +48,8 @@ public class LoaderMontruos {
 					nombre = eElement.getAttribute("nombre");
 					clase = eElement.getAttribute("clase");
 					String[] args = {eElement.getAttribute("localizacion"), eElement.getAttribute("especie"), eElement.getAttribute("sexo")};
-					if (clase.equals("Secuestrador")){
-						tipo = "Dragon";
-					}
-					else if(clase.equals("Guardian")){
-						tipo = "Serpiente";
-					}
-					else if(clase.equals("Emboscador")){
-						tipo = "Troll";
-					}
-					else if(clase.equals("PuroMal")){
-						tipo = "Fantasma";
-					}
-					else
-						//throwexception;
-						tipo = "";
-//					
-//					
-					guest = container.createNewAgent(nombre, "personajes.monstruos."+tipo, args);
+			
+					guest = container.createNewAgent(nombre, "personajes.monstruos."+clase, args);
 					guest.start();
 				}				
 			}
