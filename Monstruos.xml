@@ -11,7 +11,7 @@
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<monstruo nombre="Sammir" clase="Secuestrador" localizacion="Minas" especie="Moro Asesino" sexo="F"/>
+	<monstruo nombre="Smaug" clase="Secuestrador" localizacion="Minas" especie="Dragon" sexo="F"/>
 	
 	<monstruo nombre="Casper" clase="PuroMal" localizacion="Ignis" especie="Queso Azul Mortifero" sexo="M"/>
 	

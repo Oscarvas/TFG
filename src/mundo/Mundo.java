@@ -73,10 +73,10 @@ public class Mundo extends GuiAgent{
 
 					Element eElement = (Element) nNode;
 
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"));
+					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"));
 					estado.añadirNombre(eElement.getAttribute("id"));
 
-					String[] cade = eElement
+ 					String[] cade = eElement
 							.getElementsByTagName("conectadoCon").item(0)
 							.getTextContent().split(" ");
 
