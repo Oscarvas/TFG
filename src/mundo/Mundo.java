@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 
 import gui.Gui;
 import jade.core.AID;
+import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -320,18 +321,7 @@ public class Mundo extends GuiAgent{
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 					
 					//si un caballero va al cruce
-					if (locDest.equalsIgnoreCase("cruce") && mensaje[0].equals("Caballero") ){
-						ACLMessage mover = new ACLMessage(ACLMessage.INFORM);
-						mover.addReceiver(getAID("Trundle"));
-						mover.setConversationId("Cruzar");
-						mover.setReplyWith("cruzar" + System.currentTimeMillis());
-						mover.setContent(personaje.getLocalName());
-						send(mover);
-//						MessageTemplate espera = MessageTemplate
-//								.MatchInReplyTo(mover.getReplyWith());
-//						blockingReceive(espera);
-					}
-					
+					Emboscadores(myAgent, mensaje[0],personaje.getLocalName());					
 					
 					reply.setPerformative(ACLMessage.CONFIRM);
 					reply.setContent(loc2.getNombre());
@@ -349,6 +339,96 @@ public class Mundo extends GuiAgent{
 
 			} else
 				block();
+		}
+	}
+	
+	/*
+	 * Avisamos a todos los emboscadores por si les interesa/pueden actuar
+	 * */
+	private void Emboscadores(Agent myAgent, String clase, String nombre){
+		
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Emboscador");
+		template.addServices(sd);
+
+		try {
+
+			DFAgentDescription[] result = DFService.search(myAgent,template);
+			AID[] emboscadores = new AID[result.length];
+
+			if (emboscadores.length > 0) {
+				for (int i = 0; i < result.length; i++) {
+					emboscadores[i] = result[i].getName();
+				}
+				
+				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+				cfp.setContent(clase);
+				cfp.setConversationId("SolicitarServicio");
+
+				for (int i = 0; i < emboscadores.length; i++) {
+					cfp.addReceiver(emboscadores[i]);
+				}
+
+				cfp.setReplyWith("cfp" + System.currentTimeMillis());
+				myAgent.send(cfp);
+				MessageTemplate mt = MessageTemplate.and(
+						MessageTemplate.MatchConversationId("SolicitarServicio"),
+						MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
+				
+				myAgent.addBehaviour(new RecibirOfertas(mt,emboscadores.length, nombre));
+			}
+			
+			
+		} catch (Exception fe) {
+			fe.printStackTrace();
+		}
+		
+	}
+	
+	private class RecibirOfertas extends CyclicBehaviour {
+		
+		private MessageTemplate mt;
+		private int interesados;
+		private AID maton;
+		private String nombreEmboscado;
+		
+		public RecibirOfertas (MessageTemplate mt, int length,  String emboscado ) {
+			this.mt = mt;
+			this.interesados = length;
+			this.maton = null;
+			this.nombreEmboscado = emboscado;
+		}
+
+		public void action() {
+
+			ACLMessage msg = myAgent.receive(mt);
+					
+			if(msg != null){
+				if (msg.getPerformative() == ACLMessage.PROPOSE){
+//					String loc = msg.getContent();
+					if (estado.estanMismaLocalizacion(msg.getSender().getLocalName(), nombreEmboscado)) {
+						maton = msg.getSender();
+						
+						ACLMessage mover = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
+						mover.addReceiver(maton);
+						mover.setConversationId("Cruzar");
+						mover.setReplyWith("cruzar" + System.currentTimeMillis());
+						mover.setContent(nombreEmboscado);
+						myAgent.send(mover);
+					}					
+				}
+				interesados--;
+
+				if (!listo())
+					reset();
+			}
+			else
+				block();
+		}
+
+		private boolean listo() {
+			return interesados == 0 || maton != null;
 		}
 	}
 
