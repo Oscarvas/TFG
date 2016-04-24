@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultCaret;
+import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -108,6 +109,9 @@ public class Gui extends JFrame {
 		//
 		JScrollPane scrollPane = new JScrollPane(textAreaHistoria);
 		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.setViewportBorder(null);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 //		Este codigo habilita la barra de scroll vertical para el area de texto, se queda comentado porque no tiene transparencia
 //		contentPane.add(textAreaHistoria, BorderLayout.CENTER);
