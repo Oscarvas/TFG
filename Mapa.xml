@@ -3,42 +3,42 @@
 <Mapa>
  
  	<!-- Isla Egeria -->
-    <localizacion id="Egeria" >
+    <localizacion id="Egeria" tipo="Pueblo" >
         <conectadoCon>Tesqua Caligo</conectadoCon>
     </localizacion>
     
-    <localizacion id="Caligo" ><!-- Bosque -->
+    <localizacion id="Caligo" tipo="Bosque" ><!-- Bosque -->
         <conectadoCon>Egeria Turis</conectadoCon>
     </localizacion>
     
-    <localizacion id="Turis" ><!-- Pueblo -->
+    <localizacion id="Turis" tipo="Pueblo" ><!-- Pueblo -->
         <conectadoCon>Caligo</conectadoCon>
     </localizacion>
     
     <!-- Isla Illuc -->
     
-    <localizacion id="Illuc" >
+    <localizacion id="Illuc" tipo="Pueblo" >
         <conectadoCon>Tesqua Hospital</conectadoCon>
     </localizacion>
     
-    <localizacion id="Hospital" >
+    <localizacion id="Hospital" tipo="Urbano" >
         <conectadoCon>Illuc Sagren</conectadoCon>
     </localizacion>
     
-    <localizacion id="Sagren" ><!-- Bosque -->
+    <localizacion id="Sagren" tipo="Bosque" ><!-- Bosque -->
         <conectadoCon>Hospital</conectadoCon>
     </localizacion>
     
     <!-- Isla Tragus -->
-    <localizacion id="Tragus" >
+    <localizacion id="Tragus" tipo="Pueblo" >
         <conectadoCon>Tesqua Cuevas</conectadoCon>
     </localizacion>
     
-    <localizacion id="Cuevas" >
+    <localizacion id="Cuevas" tipo="Guarida" >
         <conectadoCon>Tragus Minas</conectadoCon>
     </localizacion>
     
-    <localizacion id="Minas" >
+    <localizacion id="Minas" tipo="Urbano" >
         <conectadoCon>Cuevas</conectadoCon>
     </localizacion>
     
@@ -48,69 +48,69 @@
         <conectadoCon>Taberna Egeria Illuc Tragus</conectadoCon>
     </localizacion>
     
-    <localizacion id="Taberna" >
+    <localizacion id="Taberna" tipo="Urbano" >
         <conectadoCon>Tesqua Cruce</conectadoCon>
     </localizacion>
     
-    <localizacion id="Cruce" >
+    <localizacion id="Cruce" tipo="Camino" >
         <conectadoCon>Inibi Ignis Taberna</conectadoCon>
     </localizacion>
     
-    <localizacion id="Inibi" ><!-- Lago -->
+    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
         <conectadoCon>Fatum Cruce Segrex</conectadoCon>
     </localizacion>
     
-    <localizacion id="Fatum" ><!-- Montana -->
+    <localizacion id="Fatum" tipo="Guarida"><!-- Montana -->
         <conectadoCon>Inibi</conectadoCon>
     </localizacion>
     
-    <localizacion id="Ignis" ><!-- Castillo -->
+    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
         <conectadoCon>Cruce Illunis Egestas Establos</conectadoCon>
     </localizacion>
     
-    <localizacion id="Illunis" ><!-- Bosque -->
+    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
         <conectadoCon>Ignis</conectadoCon>
     </localizacion>
     
-    <localizacion id="Egestas" ><!-- Pueblo -->
+    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->
         <conectadoCon>Ignis Biblioteca</conectadoCon>
     </localizacion>
     
     <!-- Region de Lucta -->
-    <localizacion id="Segrex" > <!-- Castillo -->
+    <localizacion id="Segrex" tipo="Castillo" > <!-- Castillo -->
         <conectadoCon>Inibi Lucta</conectadoCon>
     </localizacion>
     
-    <localizacion id="Lucta" ><!-- Pueblo -->
+    <localizacion id="Lucta" tipo="Pueblo" ><!-- Pueblo -->
         <conectadoCon>Segrex Nordrassil</conectadoCon>
     </localizacion>
     
-    <localizacion id="Biblioteca" >
+    <localizacion id="Biblioteca" tipo="Urbano" >
         <conectadoCon>Egestas Nordrassil</conectadoCon>
     </localizacion>
     
-    <localizacion id="Nordrassil" ><!-- Bosque -->
+    <localizacion id="Nordrassil" tipo="Bosque" ><!-- Bosque -->
         <conectadoCon>Lucta Biblioteca Sastreria</conectadoCon>
     </localizacion>
     
     <!-- Region de Scruthor -->
-    <localizacion id="Sastreria" >
+    <localizacion id="Sastreria" tipo="Urbano" >
         <conectadoCon>Nordrassil Herreria Scruthor</conectadoCon>
     </localizacion>
     
-    <localizacion id="Herreria" >
+    <localizacion id="Herreria" tipo="Urbano" >
         <conectadoCon>Sastreria Establos</conectadoCon>
     </localizacion>
     
-    <localizacion id="Establos" >
+    <localizacion id="Establos" tipo="Urbano" >
         <conectadoCon>Herreria Ignis Echidna</conectadoCon>
     </localizacion>
     
-    <localizacion id="Echidna" ><!-- Pantano -->
+    <localizacion id="Echidna" tipo="Lago" ><!-- Pantano -->
         <conectadoCon>Establos Scruthor</conectadoCon>
     </localizacion>
     
-    <localizacion id="Scruthor" ><!-- Pueblo -->
+    <localizacion id="Scruthor" tipo="Pueblo" ><!-- Pueblo -->
         <conectadoCon>Echidna Sastreria</conectadoCon>
     </localizacion>
         
