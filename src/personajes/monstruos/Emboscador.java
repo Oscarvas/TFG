@@ -2,7 +2,6 @@ package personajes.monstruos;
 
 import java.util.Random;
 
-import acciones.Batalla;
 import acciones.Emboscar;
 import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
@@ -12,7 +11,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Emboscador extends Monstruo {
@@ -35,11 +33,11 @@ public class Emboscador extends Monstruo {
 		}
 		
 		addBehaviour(new Emboscar(getLocalizacion()));
-		addBehaviour(new Guardian());
+		addBehaviour(new Acecho());
 	}
 	
 	protected void takeDown (){
-		Gui.setHistoria(getLocalName()+" se retira");
+		Gui.setHistoria(getLocalName()+": Es un dia fatidico para cualquier "+getEspecie());
 		
 		try {
 			DFService.deregister(this);
@@ -48,7 +46,7 @@ public class Emboscador extends Monstruo {
 		}
 	}
 	
-	private class Guardian extends CyclicBehaviour {
+	private class Acecho extends CyclicBehaviour {
 
 		@Override
 		public void action() {
