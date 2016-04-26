@@ -38,8 +38,8 @@ public class Rey extends Protagonista {
 			DFAgentDescription dfd = new DFAgentDescription();
 			dfd.setName(getAID());
 			ServiceDescription sd = new ServiceDescription();
-			sd.setType("Padre");
-			sd.setName(getLocalName()+"-Padre");
+			sd.setType("Rey");
+			sd.setName(getLocalName()+"-Rey");
 			dfd.addServices(sd);
 			
 			try {

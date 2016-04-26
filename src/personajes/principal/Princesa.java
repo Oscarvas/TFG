@@ -47,7 +47,7 @@ public class Princesa extends Protagonista {
 			// TODO Auto-generated method stub
 			DFAgentDescription template = new DFAgentDescription();
 			ServiceDescription sd = new ServiceDescription();
-			sd.setType("Padre");
+			sd.setType("Rey");
 			template.addServices(sd);
 			
 			try{
