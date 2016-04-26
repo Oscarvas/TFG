@@ -13,16 +13,16 @@
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<raza nombre="Elfos" region="Bosques" vida="5" inteligencia="5" fuerza="2" destreza="2" inteligencia="1"  codicia=""/>
+	<raza nombre="Elfos" region="Bosques" vida="5" fuerza="2" destreza="2" inteligencia="1"  codicia=""/>
 	
-	<monstruo nombre="Illuc" region="Lagos" vida="" inteligencia="" fuerza="" destreza="" inteligencia=""  codicia=""/>
+	<raza nombre="Illuc" region="Lagos" vida="" fuerza="" destreza="" inteligencia=""  codicia=""/>
 	
-	<monstruo nombre="Tragus" region="Pueblos" vida="" inteligencia="" fuerza="" destreza="" inteligencia=""  codicia=""/>
+	<raza nombre="Tragus" region="Pueblos" vida="" fuerza="" destreza="" inteligencia=""  codicia=""/>
 		
-	<monstruo nombre="Lucta" region="Minas" vida="" inteligencia="" fuerza="" destreza="" inteligencia=""  codicia=""/>
+	<raza nombre="Lucta" region="Minas" vida="" fuerza="" destreza="" inteligencia=""  codicia=""/>
 	
-	<monstruo nombre="Tesqua" region="Montaña, Lagos" vida="" inteligencia="" fuerza="" destreza="" inteligencia=""  codicia=""/>
+	<raza nombre="Tesqua" region="Montaña, Lagos" vida="" fuerza="" destreza="" inteligencia=""  codicia=""/>
 	
-	<monstruo nombre="Scruthor" region="Ciudad" vida="" inteligencia="" fuerza="" destreza="" inteligencia=""  codicia=""/>
+	<raza nombre="Scruthor" region="Ciudad" vida="" fuerza="" destreza="" inteligencia=""  codicia=""/>
 	
 </Actores>
