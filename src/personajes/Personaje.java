@@ -170,7 +170,7 @@ public class Personaje extends Agent {
 	}
 	
 	public void planificar(String objetivoEspecifico) throws Exception{
-		if (objetivoEspecifico.equals(null))
+		if (objetivoEspecifico == null)
 			new LoaderObjetivos(this).execute();
 		else
 			new LoaderObjetivos(this,objetivoEspecifico).execute();
