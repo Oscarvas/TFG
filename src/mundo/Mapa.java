@@ -2,6 +2,8 @@ package mundo;
 
 import java.util.ArrayList;
 
+import objetos.Objeto;
+
 public class Mapa {
 
 	private ArrayList<Localizacion> localizaciones;
@@ -10,10 +12,13 @@ public class Mapa {
 		this.localizaciones = new ArrayList<Localizacion>();
 	}
 
-	public Localizacion añadirLocalizacion(String loc, String tipo) throws Exception {
+	public Localizacion añadirLocalizacion(String loc, String tipo, Objeto obj) throws Exception {
 
 		if ( !localizaciones.contains(getLocalizacion(loc)) ) {
 			Localizacion localizacion = new Localizacion(loc, tipo);
+			if(obj != null){
+				localizacion.añadirObjeto(obj);
+			}			
 			this.localizaciones.add(localizacion);
 			return localizacion;
 			
