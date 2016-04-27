@@ -103,7 +103,7 @@ public class Estado {
 		else
 			nombres = personajes.get(clase);
 
-		if (clase.equalsIgnoreCase("Secuestrador") || clase.equalsIgnoreCase("Caballero"))
+		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Princesa"))
 			estaLibrePersonaje(nombre);
 
 		nombres.add(nombre);

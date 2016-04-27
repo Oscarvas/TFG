@@ -96,7 +96,13 @@ o Impide atravesar el Lago.
      -->
     
     <personaje tipo="Emboscador" >
-        <objetivo>(impedirPaso Cruce)</objetivo>
+        <objetivo>(enLoc Emboscador Ignis)</objetivo>
+        <objetivo>(enLoc Emboscador Lucta)</objetivo>
+    	<objetivo>(enLoc Emboscador Establos)</objetivo>
+    	<objetivo>(enLoc Emboscador Caligo)</objetivo>
+        <objetivo>(enLoc Emboscador Tragus)</objetivo>
+    	<objetivo>(enLoc Emboscador Nordrassil)</objetivo>
+    	<objetivo>(enLoc Emboscador Cruce)</objetivo>
     </personaje>
    <!--  o Cobrar peaje (objetos brillantes).
 o Distraible para cruzar.

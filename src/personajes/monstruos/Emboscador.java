@@ -85,7 +85,12 @@ public class Emboscador extends Monstruo {
 
 //				send(receive.createReply());//respuesta al mundo
 				send(asesinar);//respuesta al caballero
-				
+				try {
+					planificar();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			} else
 				block();

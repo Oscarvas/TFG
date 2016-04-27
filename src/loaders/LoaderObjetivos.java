@@ -92,7 +92,7 @@ public class LoaderObjetivos {
 						String polivalente = myAgent.getLocalName();
 						
 						//Si mi clase no es princesa, entonces estoy secuestrada
-						if(!clase.equalsIgnoreCase("Princesa")){
+						if(!clase.equalsIgnoreCase("Princesa") && !clase.equalsIgnoreCase("Emboscador")){
 							
 							ACLMessage secuestrada = new ACLMessage(ACLMessage.REQUEST);
 							secuestrada.addReceiver(agenteMundo);

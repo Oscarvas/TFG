@@ -89,10 +89,12 @@
 			(enLoc ?c ?loc)
 			(enLoc ?d ?loc)
 			(esGuarida ?d ?loc)
+			(cansado ?d)
 			(vivo ?c)
 			(vivo ?d))
-		:effect 
-			(not (vivo ?d))
+		:effect (and
+			(libertador ?c)
+			(not (vivo ?d)))
 	)
 
 
@@ -108,7 +110,7 @@
 			(not (vivo ?d))
 			(enLoc ?c ?loc)
 			(enLoc ?p ?loc)
-			
+			(libertador ?c)
 			(conPrinc ?d ?p)
 			(estaLibre ?c))
 		:effect (and
