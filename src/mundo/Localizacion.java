@@ -1,18 +1,22 @@
 package mundo;
 
 import java.util.ArrayList;
+
+import objetos.Objeto;
 public class Localizacion {
 	
 	private String nombre;
 	private String tipo;
 	private ArrayList<String> conectadoCon;	
 	private ArrayList<String> personajes;
+	private ArrayList<Objeto> cofre;
 
 	public Localizacion (String nombre, String tipo) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.conectadoCon = new ArrayList<String>();
 		this.personajes = new ArrayList<String>();
+		this.cofre = new ArrayList<Objeto>();		
 	}
 	
 	public void añadirConectado (String localizacion) {		
@@ -39,6 +43,10 @@ public class Localizacion {
 	public String getNombre() {return nombre;}
 	
 	public String getTipo() {return tipo;}
+	
+	public void añadirObjeto(Objeto o){
+		this.cofre.add(o);
+	}
 	
 }
 
