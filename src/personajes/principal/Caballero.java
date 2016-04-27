@@ -91,7 +91,7 @@ public class Caballero extends Protagonista {
 				myAgent.send(salvar);
 
 				try {
-					planificar();
+					planificar(null);
 					addBehaviour(new FinPlanificacion(msg.getSender()));
 				} catch (Exception e) {
 					e.printStackTrace();

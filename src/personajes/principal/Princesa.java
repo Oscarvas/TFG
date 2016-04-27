@@ -194,7 +194,7 @@ public class Princesa extends Protagonista {
 									ACLMessage reply2 = myAgent.blockingReceive(mt);
 									
 									
-									planificar();
+									planificar(null);
 									doDelete();
 								} catch (Exception e) {
 									// TODO Auto-generated catch block

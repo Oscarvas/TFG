@@ -169,11 +169,19 @@ public class Personaje extends Agent {
 		this.clase = clase;
 	}
 	
-	public void planificar() throws Exception {
+	public void planificar(String objetivoEspecifico) throws Exception{
+		if (objetivoEspecifico.equals(null))
+			new LoaderObjetivos(this).execute();
+		else
+			new LoaderObjetivos(this,objetivoEspecifico).execute();
+		
+		planificar();
+	}
+	
+	private void planificar() throws Exception {
 
 		boolean ok;
 		boolean falloSecuestro = false;
-		new LoaderObjetivos(this).execute();
 
 		do {
 			ok = true;

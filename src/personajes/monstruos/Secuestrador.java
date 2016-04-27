@@ -73,7 +73,7 @@ public class Secuestrador extends Monstruo {
 						myAgent.send(secuestrar);
 						
 						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
-						planificar();
+						planificar(null);
 						
 						/*
 						 * El motivo de volver a llamar a localizar personaje  aqui

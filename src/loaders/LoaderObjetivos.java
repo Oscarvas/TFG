@@ -92,7 +92,7 @@ public class LoaderObjetivos {
 						String polivalente = myAgent.getLocalName();
 						
 						//Si mi clase no es princesa, entonces estoy secuestrada
-						if(!clase.equalsIgnoreCase("Princesa") && !clase.equalsIgnoreCase("Emboscador")){
+						if(clase.equalsIgnoreCase("Secuestrador") || clase.equalsIgnoreCase("Caballero")){
 							
 							ACLMessage secuestrada = new ACLMessage(ACLMessage.REQUEST);
 							secuestrada.addReceiver(agenteMundo);
@@ -112,7 +112,7 @@ public class LoaderObjetivos {
 							
 						
 						String objetivo = cadena
-								.replace("Rey", myAgent.getLocalName())
+								.replace("Rey", this.objetivo)
 								.replace("Princesa", polivalente) 
 								.replace("Caballero", myAgent.getLocalName())
 								.replace("Druida", myAgent.getLocalName())
