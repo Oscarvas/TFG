@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Objetos>
-	<tipo tipo="consumible">
-		<objeto nombre="Manzana" descripcion="Tiene un aspecto increible" cantidad="10" vida="+5" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
-		<objeto nombre="Manzana" descripcion="Antiguamente eran saludables, hoy en día son hipster" cantidad="20" vida="+1" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
-		<objeto nombre="Seta" descripcion="Roja con motas blancas y ... con ojos?" cantidad="20" vida="+1" fuerza="+1" destreza="0" inteligencia="0" codicia="0"/>
-		<objeto nombre="Seta" descripcion="Mmm parece deliciosa" cantidad="5" vida="-5" fuerza="-1" destreza="-1" inteligencia="-1" codicia="-1"/>
-		<objeto nombre="Seta" descripcion="Nunca ví una así, verde con motas blancas" cantidad="1" vida="+500" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
-	</tipo>
 	<tipo tipo="clave">
-		<objeto nombre="Espejito" descripcion="Muestra la verdadrea naturaleza de nuestro interior...."/>
-		<objeto nombre="Corazon de la montaña" descripcion="Es muy brillante, seguro que podemos entrar en la montaña gracias a él"/>
+		<objeto nombre="Espejito" descripcion="Muestra la verdadrea naturaleza de nuestro interior...." localizacion="Taberna"/>
+		<objeto nombre="Corazon de la montaña" descripcion="Es muy brillante, seguro que podemos entrar en la montaña gracias a él" localizacion="Minas"/>
 	</tipo>
+	
+	<tipo tipo="consumible">
+		<objeto nombre="Manzana" descripcion="Tiene un aspecto increible" vida="+5" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
+		<objeto nombre="Manzana" descripcion="Antiguamente eran saludables, hoy en día son hipster" vida="+1" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
+		<objeto nombre="Seta" descripcion="Roja con motas blancas y ... con ojos?" vida="+1" fuerza="+1" destreza="0" inteligencia="0" codicia="0"/>
+		<objeto nombre="Seta" descripcion="Mmm parece deliciosa" vida="-5" fuerza="-1" destreza="-1" inteligencia="-1" codicia="-1"/>
+		<objeto nombre="Seta" descripcion="Nunca ví una así, verde con motas blancas" vida="+500" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
+	</tipo>
+
 </Objetos>

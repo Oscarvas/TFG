@@ -2,21 +2,15 @@ package objetos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.Iterator;
 
 public class Almacen {
 	private HashMap<String, ArrayList<Objeto>> objetos;
 	
 	public Almacen(){
 		this.objetos = new HashMap<String, ArrayList<Objeto>>();
-	}
-
-	public HashMap<String, ArrayList<Objeto>> getObjetos() {
-		return objetos;
-	}
-
-	public void setObjetos(HashMap<String, ArrayList<Objeto>> objetos) {
-		this.objetos = objetos;
-	}
+	}	
 	
 	public void añadirObjeto(String tipo, Objeto objeto){		
 		if(this.objetos.get(tipo) == null){
@@ -25,6 +19,35 @@ public class Almacen {
 		ArrayList<Objeto> aux = this.objetos.get(tipo);
 		aux.add(objeto);
 		this.objetos.put(tipo, aux);
+	}
+	
+	public Objeto extraerObjeto(String tipo, int i){
+		Objeto o = this.objetos.get(tipo).get(i);
+		this.objetos.get(tipo).remove(i);
+		return o;
+	}
+	
+	public boolean hayObjetosConsumibles(){		
+		return !this.objetos.get("consumible").isEmpty();
+	}
+	
+	public int hayObjetoClave(String localizacion){
+		int i = -1;
+		Clave c;
+		Iterator it = (Iterator) this.objetos.get("clave").iterator();
+		while(it.hasNext()){
+			i++;
+			c = (Clave) it.next();
+			if(c.getLocalizacion().equals(localizacion)){
+				return i;
+			}
+		}
+		return i;
+	}
+	
+	public int consumibleAleatorio(){
+		Random rnd = new Random();
+		return (int) (rnd.nextDouble() * this.objetos.get("consumible").size());
 	}
 	
 	public String toString(){

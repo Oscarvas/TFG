@@ -30,8 +30,11 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
 import loaders.LoaderMontruos;
+import loaders.LoaderObjetos;
 import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
+import objetos.Almacen;
+import objetos.Objeto;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -42,16 +45,18 @@ public class Mundo extends GuiAgent{
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
+	private Almacen almacen;
 	
 	public Mundo(){
 		this.estado = new Estado();
+		this.almacen = LoaderObjetos.loaderObjetos();
 		this.mapa = cargarMapa();//Mapa.getMapa(this.estado);
-		agentes = new ArrayList<AgentController>();
+		this.agentes = new ArrayList<AgentController>();
 		
 	}
 	public Mapa cargarMapa() {
 
-		mapa = new Mapa();
+		this.mapa = new Mapa();
 
 		try {
 			File fXmlFile = new File("Mapa.xml");
@@ -73,8 +78,15 @@ public class Mundo extends GuiAgent{
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"));
+					int i = this.almacen.hayObjetoClave(eElement.getAttribute("id"));
+					Objeto obj = null;
+					if(i == -1){
+						if(this.almacen.hayObjetosConsumibles())
+							obj = this.almacen.extraerObjeto("consumible", this.almacen.consumibleAleatorio());						
+					}else{
+						obj = this.almacen.extraerObjeto("clave", i);
+					}
+					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj);
 					estado.añadirNombre(eElement.getAttribute("id"));
 
  					String[] cade = eElement

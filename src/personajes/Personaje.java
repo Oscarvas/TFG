@@ -31,9 +31,13 @@ public class Personaje extends Agent {
 	private String sexo;
 	private String clase;
 	private String casa;
+	
+	public Personaje(){
+		this.frases = new HashMap<String, ArrayList<String>>();
+	}
 
 	public String getCasa() {
-		return casa;
+		return this.casa;
 	}
 
 	public void setCasa(String casa) {
