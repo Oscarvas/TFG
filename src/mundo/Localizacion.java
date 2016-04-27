@@ -1,6 +1,7 @@
 package mundo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 public class Localizacion {
 	
 	private String nombre;

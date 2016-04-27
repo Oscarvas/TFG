@@ -3,6 +3,7 @@ package mundo;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,11 +43,17 @@ public class Mundo extends GuiAgent{
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
+	private HashMap<String, ArrayList<Localizacion>> regiones; // <nombreRegion, localizaciones>
+	private ArrayList<String> distintosTipos;
+	private String id;
+	private String tipo;
 	
 	public Mundo(){
 		this.estado = new Estado();
 		this.mapa = cargarMapa();//Mapa.getMapa(this.estado);
 		agentes = new ArrayList<AgentController>();
+		this.regiones = new HashMap<String, ArrayList<Localizacion>>();
+		this.distintosTipos = new ArrayList<String>();
 		
 	}
 	public Mapa cargarMapa() {
@@ -61,7 +68,16 @@ public class Mundo extends GuiAgent{
 			Document doc = dBuilder.parse(fXmlFile);
 
 			doc.getDocumentElement().normalize();
-
+			
+			
+			// array list de tipos, cada vez que me viene un tipo preguntar si esta en el array
+			// si esta le añado la nueva localizacion a el arraylist de localizaciones de ese tipo
+			// sino esta lo añado a uno nuevo, que creo con el nombre de ese nuevo tipo
+			// finalmente hago el hashMap recorriendo el nodo de tipos y metiendo a la vez cada tipo con su array.ç
+			// para ello coges en un array auxiliar, el array que hay relacionado al tipo en el HashMap,
+			// le metes el nuevo, y se lo vuelves a cargar al HashMap
+			
+	
 			NodeList nList = doc.getElementsByTagName("localizacion");
 
 			Localizacion loc = null;
@@ -73,9 +89,12 @@ public class Mundo extends GuiAgent{
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"));
-					estado.añadirNombre(eElement.getAttribute("id"));
+					
+					this.id = eElement.getAttribute("id");
+					this.tipo = eElement.getAttribute("tipo");
+							
+					loc = mapa.añadirLocalizacion(this.id, this.tipo);
+					estado.añadirNombre(this.id);
 
  					String[] cade = eElement
 							.getElementsByTagName("conectadoCon").item(0)
@@ -86,7 +105,13 @@ public class Mundo extends GuiAgent{
 						estado.añadirAdyacente(loc.getNombre(), conectadoCon);
 						estado.añadirNombre(conectadoCon);
 					}
-
+					
+					if ( !distintosTipos.contains(this.tipo) ) {
+						ArrayList<String> aux = new ArrayList<String>();
+						aux.add(id);
+						
+					} else
+						throw new Exception("Hay localizaciones repetidas");
 				}
 			}
 		} catch (Exception e) {
