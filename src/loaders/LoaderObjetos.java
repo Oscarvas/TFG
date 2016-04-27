@@ -1,6 +1,5 @@
 package loaders;
 
-
 import java.io.File;
 import java.io.IOException;
 
@@ -17,18 +16,19 @@ import org.xml.sax.SAXException;
 import objetos.*;
 
 public class LoaderObjetos {
-	
-	public static Almacen loaderObjetos() throws ParserConfigurationException, SAXException, IOException{
-		String nombre;		
+
+	public static Almacen loaderObjetos() {
+		String nombre;
 		String descripcion;
 		Almacen objetos = new Almacen();
 		String[] atributos = new String[Objeto.ATRIBUTOS];
 		Objeto o = null;
-		
-			File fXmlFile = new File("Objetos.xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+		File fXmlFile = new File("Objetos.xml");
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
 			doc.getDocumentElement().normalize();
@@ -53,9 +53,8 @@ public class LoaderObjetos {
 							Element eElementObjeto = (Element) nNodeObjeto;
 							nombre = eElementObjeto.getAttribute("nombre");
 							descripcion = eElementObjeto.getAttribute("descripcion");
-							switch(eElementTipo.getAttribute("tipo")){
+							switch (eElementTipo.getAttribute("tipo")) {
 							case "consumible":
-								atributos[Objeto.CANTIDAD] = eElementObjeto.getAttribute("cantidad");
 								atributos[Objeto.VIDA] = eElementObjeto.getAttribute("vida");
 								atributos[Objeto.FUERZA] = eElementObjeto.getAttribute("fuerza");
 								atributos[Objeto.DESTREZA] = eElementObjeto.getAttribute("destreza");
@@ -64,18 +63,19 @@ public class LoaderObjetos {
 								o = new Consumible(nombre, descripcion, atributos);
 								break;
 							case "clave":
-								o = new Clave(nombre, descripcion);
+								o = new Clave(nombre, descripcion, eElementObjeto.getAttribute("localizacion"));
 								break;
 							}
-							
+
 							objetos.añadirObjeto(eElementTipo.getAttribute("tipo"), o);
-							
-							
+
 						}
 					}
 				}
-			}			
-		
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
 		return objetos;
 	}
 }

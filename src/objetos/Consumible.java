@@ -1,8 +1,7 @@
 package objetos;
 
 public class Consumible extends Objeto {
-	
-	private int cantidad;
+
 	private int vida;
 	private int fuerza;
 	private int destreza;
@@ -12,7 +11,6 @@ public class Consumible extends Objeto {
 
 	public Consumible(String id, String descripcion, String[] atributos) {
 		super(id, descripcion);
-		this.cantidad = Integer.parseInt(atributos[CANTIDAD]);
 		this.vida = Integer.parseInt(atributos[VIDA]);
 		this.fuerza = Integer.parseInt(atributos[FUERZA]);
 		this.destreza = Integer.parseInt(atributos[DESTREZA]);
@@ -20,10 +18,29 @@ public class Consumible extends Objeto {
 		this.codicia = Integer.parseInt(atributos[CODICIA]);
 	}
 	
+	public int getVida() {
+		return vida;
+	}
+
+	public int getFuerza() {
+		return fuerza;
+	}
+
+	public int getDestreza() {
+		return destreza;
+	}
+
+	public int getInteligencia() {
+		return inteligencia;
+	}
+
+	public int getCodicia() {
+		return codicia;
+	}
+	
 	public String toString(){
 		String mensaje = super.toString();
 		mensaje = mensaje + "\nAtributos: ";
-		mensaje = mensaje + "\n(" + this.cantidad 		+ ")\tCantidad";
 		mensaje = mensaje + "\n(" + this.vida 			+ ")\tVida";
 		mensaje = mensaje + "\n(" + this.fuerza 		+ ")\tFuerza";
 		mensaje = mensaje + "\n(" + this.destreza 		+ ")\tDestreza";
