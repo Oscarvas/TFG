@@ -29,7 +29,6 @@
     <personaje tipo="Caballero" >
     	<objetivo>(and (esHeroe Caballero) (salvada Princesa))</objetivo>
     	<objetivo>(esVillano Caballero)</objetivo>
-    	<objetivo>(esVillano Caballero)</objetivo>
        <!--  <objetivo>(esHeroe Caballero)</objetivo>
         <objetivo>(casarse Caballero Princesa)</objetivo>
         <objetivo>(reinar Caballero)</objetivo> -->
