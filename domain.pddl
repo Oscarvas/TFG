@@ -78,7 +78,21 @@
 			(not (enLoc ?p ?locOrig)))
 	)
 
-
+;; batalla entre fantasma y rey
+	(:action venganza
+		:parameters (?p1 ?p2 ?loc)
+		:precondition (and			
+			(not (= ?p1 ?p2))
+			(enLoc ?p1 ?loc)
+			(enLoc ?p2 ?loc)
+			(esMaligno ?p1)
+			(esRey ?p2)
+			(vivo ?p1)
+			(vivo ?p2))
+		:effect
+			(derrocar ?p2)
+	)
+	
 ;; batalla entre caballero y Secuestrador
 	(:action batalla
 		:parameters (?c ?d ?loc)

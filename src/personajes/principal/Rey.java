@@ -1,5 +1,7 @@
 package personajes.principal;
 
+import java.util.Random;
+
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -82,6 +84,8 @@ public class Rey extends Protagonista {
 		}catch (FIPAException fe){
 			fe.printStackTrace();
 		}
+		if (estaMuerto())
+			Gui.setHistoria(getLocalName()+": Los espíritus de los caídos me han llevado entre sus brazos");
 		
 		Gui.setHistoria(getLocalName()+ ": Parece que mi trabajo ha terminado por hoy");
 	}
@@ -97,7 +101,46 @@ public class Rey extends Protagonista {
 					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 			ACLMessage receive = myAgent.blockingReceive(mt);
 			princesaSecuestrada = receive.getSender();
-			dragon = receive.getContent();
+			dragon = receive.getContent();			
+			
+			/*
+			 * Una vez hemos recibido el llamado de auxilio de una princesa, activamos a los monstruos malignos
+			 * que deberan empezar su planificacion
+			 * 
+			 * Se seleccionara a un fantasma aleatorio
+			 * */
+			try {
+				
+				DFAgentDescription template = new DFAgentDescription();
+				ServiceDescription sd = new ServiceDescription();
+				sd.setType("Maligno");
+				template.addServices(sd);
+				
+				DFAgentDescription[] result;
+				result = DFService.search(myAgent, template);
+				AID[] malignos = new AID[result.length];
+				for (int i = 0; i < result.length; i++){
+					malignos[i] = result[i].getName();
+				}
+				
+				
+				AID fantasma;
+				if (malignos.length != 0){
+					fantasma = malignos[new Random().nextInt(malignos.length)];
+					
+					ACLMessage herejia = new ACLMessage(ACLMessage.INFORM);
+					herejia.setConversationId("Derrocar");
+					herejia.addReceiver(fantasma);
+					herejia.setContent(getLocalName());
+					myAgent.send(herejia);
+				}
+				
+				
+			} catch (FIPAException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 	}

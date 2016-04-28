@@ -13,7 +13,7 @@
 
 	<monstruo nombre="Smaug" clase="Secuestrador" localizacion="Minas" especie="Dragon" sexo="F"/>
 	
-	<monstruo nombre="Casper" clase="Maligno" localizacion="Ignis" especie="Queso Azul Mortifero" sexo="M"/>
+	<monstruo nombre="Casper" clase="Maligno" localizacion="Caligo" especie="Queso Azul Mortifero" sexo="M"/>
 	
 	<monstruo nombre="Jormundgander" clase="Guardian" localizacion="Inibi" especie="Gyarados" sexo="F"/>
 		
