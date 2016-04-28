@@ -236,10 +236,9 @@ public class Personaje extends Agent {
 						blockingReceive(mt);
 						
 
-					} else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("venganza"))
-					{
+					} else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("venganza") || accion.equalsIgnoreCase("criminal"))
 						new Batalla(this, accionActual[2]).execute();
-					}
+
 					else if (accion.equalsIgnoreCase("liberarprincesa"))
 						new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
 
@@ -248,6 +247,9 @@ public class Personaje extends Agent {
 
 					else if (accion.equalsIgnoreCase("convertirseenheroe"))
 						new ConvertirseEnHeroe(this).execute();
+					
+					else if (accion.equalsIgnoreCase("convertirseenvillano"))
+						Gui.setHistoria(getLocalName()+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
 
 					else {
 						System.out.println(sigAccion);

@@ -110,6 +110,24 @@
 			(libertador ?c)
 			(not (vivo ?d)))
 	)
+	
+	;; batalla entre secndario y princesa
+	(:action criminal
+		:parameters (?c ?p ?loc)
+		:precondition (and
+			(esSecundario ?c)
+			(esPrincesa ?p)
+			(not (= ?c ?p))
+			(enLoc ?c ?loc)
+			(enLoc ?p ?loc)
+			(libertador ?c)
+			(secuestrada ?p)
+			(vivo ?c)
+			(vivo ?p))
+		:effect (and			
+			(asesino ?c)
+			(not (vivo ?p)))
+	)
 
 
 ;; el caballero escolta a la princesa
@@ -183,6 +201,19 @@
 			(salvador ?c))
 		:effect 
 			(esHeroe ?c)
+	)
+	
+	;; el caballero se convierte en héroe
+	(:action convertirseEnVillano
+		:parameters (?c ?locCab)
+		:precondition (and
+			(esCaballero ?c)
+			(vivo ?c)
+			(enLoc ?c ?locCab)
+			(esCasa ?c ?locCab)
+			(asesino ?c))
+		:effect 
+			(esVillano ?c)
 	)
 
 )
