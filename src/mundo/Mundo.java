@@ -44,7 +44,6 @@ public class Mundo extends GuiAgent{
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
 	private HashMap<String, ArrayList<Localizacion>> regiones; // <nombreRegion, localizaciones>
-	private ArrayList<String> distintosTipos;
 	private String id;
 	private String tipo;
 	
@@ -53,7 +52,6 @@ public class Mundo extends GuiAgent{
 		this.mapa = cargarMapa();//Mapa.getMapa(this.estado);
 		agentes = new ArrayList<AgentController>();
 		this.regiones = new HashMap<String, ArrayList<Localizacion>>();
-		this.distintosTipos = new ArrayList<String>();
 		
 	}
 	public Mapa cargarMapa() {
@@ -106,12 +104,12 @@ public class Mundo extends GuiAgent{
 						estado.añadirNombre(conectadoCon);
 					}
 					
-					if ( !distintosTipos.contains(this.tipo) ) {
-						ArrayList<String> aux = new ArrayList<String>();
-						aux.add(id);
-						
-					} else
-						throw new Exception("Hay localizaciones repetidas");
+					//cargamos el mapa en el hash map para tener sus localizaciones
+					ArrayList<Localizacion> aux = new ArrayList<Localizacion>();
+					aux = this.regiones.get(this.tipo);
+					Localizacion locAux = new Localizacion(this.id, this.tipo);
+					aux.add(locAux);
+					this.regiones.put(this.tipo, aux);						
 				}
 			}
 		} catch (Exception e) {
