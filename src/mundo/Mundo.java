@@ -344,6 +344,14 @@ public class Mundo extends GuiAgent{
 						estado.añadirCasa(personaje.getLocalName(), locDest);
 						estado.añadirNombre(personaje.getLocalName());
 					}
+					
+					ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
+					consume.addReceiver(personaje);
+					consume.setConversationId("Consumir");
+					consume.setContent("");
+					send(consume);
+					
+					
 				} else
 					reply.setPerformative(ACLMessage.FAILURE);
 

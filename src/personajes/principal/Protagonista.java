@@ -4,8 +4,10 @@ package personajes.principal;
 import java.util.ArrayList;
 import java.util.Random;
 
+import acciones.ObjetoConsumible;
 import objetos.Clave;
 import objetos.Consumible;
+import objetos.Objeto;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import personajes.Personaje;
@@ -46,6 +48,8 @@ public class Protagonista extends Personaje {
 			if (raza.getZona().equalsIgnoreCase("Lucta"))
 				setLocalizacion(Vocabulario.CASTILLOS[1]);
 		}
+		
+		addBehaviour(new ObjetoConsumible(this));
 	}
 	
 	public Mitologia getRaza() {
@@ -88,12 +92,15 @@ public class Protagonista extends Personaje {
 		this.codicia = codicia;
 	}
 	
-	public void usarObjeto(Consumible obj){
-		this.añadirVida(obj.getVida());
-		this.fuerza += obj.getFuerza();
-		this.destreza += obj.getDestreza();
-		this.codicia += obj.getCodicia();
-		this.inteligencia += obj.getInteligencia();
+	public void usarObjeto(String atributos){
+		
+		String [] args = atributos.split(" ");
+		
+		this.añadirVida(Integer.parseInt((String) args[Objeto.VIDA]));
+		this.fuerza += Integer.parseInt((String) args[Objeto.FUERZA]);
+		this.destreza += Integer.parseInt((String) args[Objeto.DESTREZA]);
+		this.codicia += Integer.parseInt((String) args[Objeto.CODICIA]);
+		this.inteligencia += Integer.parseInt((String) args[Objeto.INTELIGENCIA]);
 	}
 
 
