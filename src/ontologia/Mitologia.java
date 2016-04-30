@@ -1,64 +1,36 @@
 package ontologia;
 
 /*
- * Enumerado de las zonas
-Esta clase guardara la referencia a la raza propia de cada region del mapa
-asi como los atributos predefinidos de cada raza y que afectaran al desarrollo de cada personaje
-durante su historia.
-Formato:
-	Raza	Zona	vida,fuerza,destreza,inteligencia,codicia	RegionesInternas
+ * String[] TIPOS_LOCALIZACION = {"Pueblo","Bosque","Urbano","Castillo","Guarida","Lago"};
+ * Pueblo = 0
+ * Bosque = 1
+ * Urbano = 2
+ * Castillo = 3
+ * Guarida = 4
+ * Lago = 5
+ * 
+ * Esta clase mantiene la asociacion entre la clase de un personaje y su localizacion predeterminada en funcion de la clase
+ * En el caso del personaje Maligno, puede aparecer en cualquier localizacion
 */
 public enum Mitologia {
-	EGERIAN	("Egeria"	,5,5,2,2,1,new String[]{"Turis", "Caligo", "Egeria"}),
-	ILLIDAR	("Illuc"	,4,2,5,6,2,new String[]{"Sagren","Hospital","Illuc"}),
-	TRAG	("Tragus"	,1,6,4,3,4,new String[]{"Minas","Cuevas","Tragus"}),
-	LUCS	("Lucta"	,3,1,6,5,3,new String[]{"Segrex","Lucta","Biblioteca","Nordrassil"}),
-	TESQ	("Tesqua"	,6,4,1,1,6,new String[]{"Tesqua","Taberna","Cruce","Fatum","Inibi","Egestas","Ignis","Illunis"}),
-	SCRULL("Scruthor"	,2,3,3,4,5,new String[]{"Sastreria","Establos","Herreria","Echidna","Scruthor"});
+	CABALLERO(Vocabulario.TIPOS_LOCALIZACION[0]),
+	DRUIDA(Vocabulario.TIPOS_LOCALIZACION[1]),
+	MAGO(Vocabulario.TIPOS_LOCALIZACION[2]),
+	REY(Vocabulario.TIPOS_LOCALIZACION[3]),
+	PRINCESA(Vocabulario.TIPOS_LOCALIZACION[3]),
+	SECUESTRADOR(Vocabulario.TIPOS_LOCALIZACION[4]),
+	EMBOSCADOR(Vocabulario.TIPOS_LOCALIZACION[1]),
+	GUARDIAN(Vocabulario.TIPOS_LOCALIZACION[5]),
+	MALIGNO(Vocabulario.TIPOS_LOCALIZACION[Vocabulario.LOC_MALIGNO()]); 
 	
-	private final String zona;
-	private final int vida;
-	private final int fuerza;
-	private final int destreza;
-	private final int inteligencia;
-	private final int codicia;
-	private final String[] regiones;
+	private final String tipo;
 	
-	Mitologia(String zona,int vida,int fuerza, int destreza, int inteligencia, int codicia,String[] regiones){
-		this.zona = zona;
-		this.vida = vida;
-		this.fuerza = fuerza;
-		this.destreza = destreza;
-		this.inteligencia = inteligencia;
-		this.codicia = codicia;
-		this.regiones = regiones;
+	Mitologia(String tipo){
+		this.tipo = tipo;
 	}
 
 	public String getZona() {
-		return zona;
+		return tipo;
 	}
 
-	public int getVida() {
-		return vida;
-	}
-
-	public int getFuerza() {
-		return fuerza;
-	}
-
-	public int getDestreza() {
-		return destreza;
-	}
-
-	public int getInteligencia() {
-		return inteligencia;
-	}
-
-	public int getCodicia() {
-		return codicia;
-	}
-
-	public String[] getRegiones() {
-		return regiones;
-	}
 }

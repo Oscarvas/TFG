@@ -3,6 +3,8 @@ package mundo;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,6 +37,7 @@ import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
 import objetos.Almacen;
 import objetos.Objeto;
+import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -46,10 +49,15 @@ public class Mundo extends GuiAgent {
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
 	private Almacen almacen;
+	public HashMap<String, ArrayList<Localizacion>> regiones; // <tipoLoc,
+																// localizaciones>
+	private String id;
+	private String tipo;
 
 	public Mundo() {
 		this.estado = new Estado();
 		this.almacen = LoaderObjetos.loaderObjetos();
+		this.regiones = new HashMap<String, ArrayList<Localizacion>>();
 		this.mapa = cargarMapa();// Mapa.getMapa(this.estado);
 		this.agentes = new ArrayList<AgentController>();
 
@@ -66,6 +74,18 @@ public class Mundo extends GuiAgent {
 			Document doc = dBuilder.parse(fXmlFile);
 
 			doc.getDocumentElement().normalize();
+
+			// array list de tipos, cada vez que me viene un tipo preguntar si
+			// esta en el array
+			// si esta le añado la nueva localizacion a el arraylist de
+			// localizaciones de ese tipo
+			// sino esta lo añado a uno nuevo, que creo con el nombre de ese
+			// nuevo tipo
+			// finalmente hago el hashMap recorriendo el nodo de tipos y
+			// metiendo a la vez cada tipo con su array.ç
+			// para ello coges en un array auxiliar, el array que hay
+			// relacionado al tipo en el HashMap,
+			// le metes el nuevo, y se lo vuelves a cargar al HashMap
 
 			NodeList nList = doc.getElementsByTagName("localizacion");
 
@@ -90,9 +110,12 @@ public class Mundo extends GuiAgent {
 						obj = this.almacen.extraerObjeto("clave", i);
 						tipoObjeto = "clave";
 					}
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj,
-							tipoObjeto);
-					estado.añadirNombre(eElement.getAttribute("id"));
+					
+					this.id = eElement.getAttribute("id");
+					this.tipo = eElement.getAttribute("tipo");
+					
+					loc = mapa.añadirLocalizacion(this.id, this.tipo, obj,tipoObjeto);
+					estado.añadirNombre(this.id);
 
 					String[] cade = eElement.getElementsByTagName("conectadoCon").item(0).getTextContent().split(" ");
 
@@ -102,6 +125,17 @@ public class Mundo extends GuiAgent {
 						estado.añadirNombre(conectadoCon);
 					}
 
+					// cargamos el mapa en el hash map para tener sus
+					// localizaciones
+					ArrayList<Localizacion> aux = new ArrayList<Localizacion>();
+
+					if (this.regiones.containsKey(this.tipo)) {
+						aux = this.regiones.get(this.tipo);
+					}
+
+					Localizacion locAux = new Localizacion(this.id, this.tipo);
+					aux.add(locAux);
+					this.regiones.put(this.tipo, aux);
 				}
 			}
 		} catch (Exception e) {
@@ -308,57 +342,72 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 				String[] mensaje = receive.getContent().split(" ");
-				String locDest = mensaje[1];
-				AID personaje = receive.getSender();
+				
+				//comprobamos la locaclizacion del personaje ligada a su clase
+				if (mensaje.length == 1) {
 
-				Localizacion loc2 = mapa.getLocalizacion(locDest);
+					Mitologia aux = Mitologia.valueOf(mensaje[0].toUpperCase());
+					String tipoLoc = aux.getZona();
+					ArrayList<Localizacion> localizacionesAux = regiones.get(tipoLoc);
+					Localizacion locAux = localizacionesAux.get(new Random().nextInt(localizacionesAux.size()));
 
-				// si el mensaje tiene un personaje[0], una locDestino[1] y una
-				// loc origen[2]
-				if (mensaje.length == 3) {
+					reply.setContent(locAux.getNombre());
 
-					String locOrigen = mensaje[2];
-					Localizacion loc1 = mapa.getLocalizacion(locOrigen);
+				} else {
+					String locDest = mensaje[1];
+					AID personaje = receive.getSender();
 
-					// comprueba que los nombres del mapa son correctos y que
-					// estan conectados
-					if (loc1 != null && loc1.existeConexion(locDest))
-						ok = loc1.eliminarPersonaje(personaje.getLocalName());
+					Localizacion loc2 = mapa.getLocalizacion(locDest);
 
-					else
-						ok = false;
+					// si el mensaje tiene un personaje[0], una locDestino[1] y
+					// una
+					// loc origen[2]
+					if (mensaje.length == 3) {
+
+						String locOrigen = mensaje[2];
+						Localizacion loc1 = mapa.getLocalizacion(locOrigen);
+
+						// comprueba que los nombres del mapa son correctos y
+						// que
+						// estan conectados
+						if (loc1 != null && loc1.existeConexion(locDest))
+							ok = loc1.eliminarPersonaje(personaje.getLocalName());
+
+						else
+							ok = false;
+					}
+
+					// cuando todo va bien
+					if (ok && loc2 != null) {
+						loc2.añadirPersonaje(personaje.getLocalName());
+						estado.añadirLocalizacion(personaje.getLocalName(), locDest);
+
+						// si un caballero va al cruce
+						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+
+						reply.setPerformative(ACLMessage.CONFIRM);
+						reply.setContent(loc2.getNombre());
+
+						if (mensaje.length == 2) { // cuando se crean los
+													// personajes, la primera
+													// localizacion
+							estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
+							estado.añadirCasa(personaje.getLocalName(), locDest);
+							estado.añadirNombre(personaje.getLocalName());
+						}
+						
+						if (!loc2.cofreVacio("consumible")) {
+							ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
+							consume.addReceiver(personaje);
+							consume.setConversationId("Consumir");
+							consume.setContent(loc2.abrirCofre("consumible").mensaje());
+							send(consume);
+						}
+						
+					} else
+						reply.setPerformative(ACLMessage.FAILURE);
 				}
-
-				// cuando todo va bien
-				if (ok && loc2 != null) {
-					loc2.añadirPersonaje(personaje.getLocalName());
-					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
-
-					// si un caballero va al cruce
-					Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
-
-					reply.setPerformative(ACLMessage.CONFIRM);
-					reply.setContent(loc2.getNombre());
-
-					if (mensaje.length == 2) { // cuando se crean los
-												// personajes, la primera
-												// localizacion
-						estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
-						estado.añadirCasa(personaje.getLocalName(), locDest);
-						estado.añadirNombre(personaje.getLocalName());
-					}
-
-					if (!loc2.cofreVacio("consumible")) {
-						ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
-						consume.addReceiver(personaje);
-						consume.setConversationId("Consumir");
-						consume.setContent(loc2.abrirCofre("consumible").mensaje());
-						send(consume);
-					}
-
-				} else
-					reply.setPerformative(ACLMessage.FAILURE);
-
+				
 				send(reply);
 
 			} else

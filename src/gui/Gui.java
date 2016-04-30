@@ -18,9 +18,7 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
-import javax.swing.UIManager;
 import javax.swing.text.DefaultCaret;
-import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {

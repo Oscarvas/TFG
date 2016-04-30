@@ -13,7 +13,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -32,7 +31,7 @@ public class Rey extends Protagonista {
 		numeroHijas= Vocabulario.NUM_HIJAS();
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0 && numeroHijas > 0 ) {
-			iniciarPrincipal(Mitologia.valueOf((String) args[0]), Integer.parseInt((String) args[1]), 
+			iniciarPrincipal(Integer.parseInt((String) args[1]), 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
 			localizarPersonaje();
