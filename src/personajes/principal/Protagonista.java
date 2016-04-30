@@ -9,7 +9,8 @@ import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Protagonista extends Personaje {
-	private Mitologia raza; 
+	private Mitologia ralea;
+	private String zona;
 
 	private int fuerza;
 	private int destreza;
@@ -22,34 +23,26 @@ public class Protagonista extends Personaje {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void iniciarPrincipal(Mitologia raza,int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+	public void iniciarPrincipal(int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		cargarMundo();
-		String loc[] = raza.getRegiones() ;
-		setRaza(raza);
-		setVida(vida * raza.getVida());
-		setFuerza(fuerza * raza.getFuerza());
-		setDestreza(destreza * raza.getDestreza());
-		setInteligencia(inteligencia * raza.getInteligencia());
-		setCodicia(codicia * raza.getCodicia());
-		if (!rey){
-			setLocalizacion(loc[new Random().nextInt(loc.length)]);
-			setTesoro(Vocabulario.SALARIO * getCodicia());
-		}			
-		else{
-			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
-			if (raza.getZona().equalsIgnoreCase("Tesqua"))
-				setLocalizacion(Vocabulario.CASTILLOS[0]);
-			if (raza.getZona().equalsIgnoreCase("Lucta"))
-				setLocalizacion(Vocabulario.CASTILLOS[1]);
-		}
-	}
-	
-	public Mitologia getRaza() {
-		return raza;
-	}
-
-	public void setRaza(Mitologia raza) {
-		this.raza = raza;
+//		String loc[] = raza.getRegiones() ;
+		localizarInicial();
+		setVida(vida);
+		setFuerza(fuerza );
+		setDestreza(destreza );
+		setInteligencia(inteligencia );
+		setCodicia(codicia );
+//		if (!rey){
+//			setLocalizacion(loc[new Random().nextInt(loc.length)]);
+//			setTesoro(Vocabulario.SALARIO * getCodicia());
+//		}			
+//		else{
+//			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
+//			if (raza.getZona().equalsIgnoreCase("Tesqua"))
+//				setLocalizacion(Vocabulario.CASTILLOS[0]);
+//			if (raza.getZona().equalsIgnoreCase("Lucta"))
+//				setLocalizacion(Vocabulario.CASTILLOS[1]);
+//		}
 	}
 
 	public int getFuerza() {

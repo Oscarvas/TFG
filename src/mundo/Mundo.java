@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,6 +34,7 @@ import jade.wrapper.StaleProxyException;
 import loaders.LoaderMontruos;
 import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
+import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -43,7 +45,7 @@ public class Mundo extends GuiAgent {
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
-	private HashMap<String, ArrayList<Localizacion>> regiones; // <nombreRegion,
+	public HashMap<String, ArrayList<Localizacion>> regiones; // <tipoLoc,
 																// localizaciones>
 	private String id;
 	private String tipo;
@@ -322,47 +324,62 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 				String[] mensaje = receive.getContent().split(" ");
-				String locDest = mensaje[1];
-				AID personaje = receive.getSender();
 
-				Localizacion loc2 = mapa.getLocalizacion(locDest);
+				//comprobamos la locaclizacion del personaje ligada a su clase
+				if (mensaje.length == 1) {
 
-				// si el mensaje tiene un personaje[0], una locDestino[1] y una
-				// loc origen[2]
-				if (mensaje.length == 3) {
+					Mitologia aux = Mitologia.valueOf(mensaje[0].toUpperCase());
+					String tipoLoc = aux.getZona();
+					ArrayList<Localizacion> localizacionesAux = regiones.get(tipoLoc);
+					Localizacion locAux = localizacionesAux.get(new Random().nextInt(localizacionesAux.size()));
 
-					String locOrigen = mensaje[2];
-					Localizacion loc1 = mapa.getLocalizacion(locOrigen);
+					reply.setContent(locAux.getNombre());
 
-					// comprueba que los nombres del mapa son correctos y que
-					// estan conectados
-					if (loc1 != null && loc1.existeConexion(locDest))
-						ok = loc1.eliminarPersonaje(personaje.getLocalName());
+				} else {
+					String locDest = mensaje[1];
+					AID personaje = receive.getSender();
 
-					else
-						ok = false;
-				}
+					Localizacion loc2 = mapa.getLocalizacion(locDest);
 
-				// cuando todo va bien
-				if (ok && loc2 != null) {
-					loc2.añadirPersonaje(personaje.getLocalName());
-					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
+					// si el mensaje tiene un personaje[0], una locDestino[1] y
+					// una
+					// loc origen[2]
+					if (mensaje.length == 3) {
 
-					// si un caballero va al cruce
-					Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+						String locOrigen = mensaje[2];
+						Localizacion loc1 = mapa.getLocalizacion(locOrigen);
 
-					reply.setPerformative(ACLMessage.CONFIRM);
-					reply.setContent(loc2.getNombre());
+						// comprueba que los nombres del mapa son correctos y
+						// que
+						// estan conectados
+						if (loc1 != null && loc1.existeConexion(locDest))
+							ok = loc1.eliminarPersonaje(personaje.getLocalName());
 
-					if (mensaje.length == 2) { // cuando se crean los
-												// personajes, la primera
-												// localizacion
-						estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
-						estado.añadirCasa(personaje.getLocalName(), locDest);
-						estado.añadirNombre(personaje.getLocalName());
+						else
+							ok = false;
 					}
-				} else
-					reply.setPerformative(ACLMessage.FAILURE);
+
+					// cuando todo va bien
+					if (ok && loc2 != null) {
+						loc2.añadirPersonaje(personaje.getLocalName());
+						estado.añadirLocalizacion(personaje.getLocalName(), locDest);
+
+						// si un caballero va al cruce
+						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+
+						reply.setPerformative(ACLMessage.CONFIRM);
+						reply.setContent(loc2.getNombre());
+
+						if (mensaje.length == 2) { // cuando se crean los
+													// personajes, la primera
+													// localizacion
+							estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
+							estado.añadirCasa(personaje.getLocalName(), locDest);
+							estado.añadirNombre(personaje.getLocalName());
+						}
+					} else
+						reply.setPerformative(ACLMessage.FAILURE);
+				}
 
 				send(reply);
 

@@ -29,7 +29,7 @@ public class Personaje extends Agent {
 	private AID agenteMundo;
 	private int tesoro;
 	private String sexo;
-	private String clase;
+	protected String clase;
 	private String casa;
 
 	public String getCasa() {
@@ -115,6 +115,25 @@ public class Personaje extends Agent {
 		blockingReceive(mt);
 		
 		setCasa(getLocalizacion());
+
+	}
+	
+	//localiza a un personaje por primera vez
+	public void localizarInicial() {
+
+		ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
+		localizar.addReceiver(getAgenteMundo());
+		localizar.setConversationId("Mover");
+		localizar.setContent(getClase());
+		localizar.setReplyWith("localizar" + System.currentTimeMillis());
+		send(localizar);
+
+		MessageTemplate mt = MessageTemplate.and(
+				MessageTemplate.MatchConversationId("Mover"),
+				MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
+		ACLMessage reply = blockingReceive(mt);
+		
+		setCasa(reply.getContent());
 
 	}
 	

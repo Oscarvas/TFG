@@ -10,7 +10,7 @@ public interface Vocabulario {
 	public static final int INICIAR_HISTORIA = 2;
 	public static final String[] RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"};
 	public static final String[] RAZAS_REY = {"LUCS","TESQ"};
-	public static final String[] CLASES = {"Rey","Princesa","Caballero","Mago","Druida","Villano"};
+	public static final String[] CLASES = {"Rey","Princesa","Caballero","Mago","Druida"};
 	public static final String[] CASTILLOS = {"Ignis","Segrex"};
 	public static final String[] LAGOS = {"Inibi","Echidna"};
 	public static final String[] BOSQUES = {"Caligo","Sagren","Nordrassil","Illunis"};

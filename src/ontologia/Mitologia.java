@@ -9,56 +9,24 @@ Formato:
 	Raza	Zona	vida,fuerza,destreza,inteligencia,codicia	RegionesInternas
 */
 public enum Mitologia {
-	EGERIAN	("Egeria"	,5,5,2,2,1,new String[]{"Turis", "Caligo", "Egeria"}),
-	ILLIDAR	("Illuc"	,4,2,5,6,2,new String[]{"Sagren","Hospital","Illuc"}),
-	TRAG	("Tragus"	,1,6,4,3,4,new String[]{"Minas","Cuevas","Tragus"}),
-	LUCS	("Lucta"	,3,1,6,5,3,new String[]{"Segrex","Lucta","Biblioteca","Nordrassil"}),
-	TESQ	("Tesqua"	,6,4,1,1,6,new String[]{"Tesqua","Taberna","Cruce","Fatum","Inibi","Egestas","Ignis","Illunis"}),
-	SCRULL("Scruthor"	,2,3,3,4,5,new String[]{"Sastreria","Establos","Herreria","Echidna","Scruthor"});
+	CABALLERO("Pueblo"),
+	DRUIDA("Bosque"),
+	MAGO("Urbano"),
+	REY("Castillo"),
+	PRINCESA("Castillo"),
+	SECUESTRADOR("Guarida"),
+	EMBOSCADOR("Bosque"),
+	GUARDIAN("Lago"),
+	MALIGNO("Todas"); 
 	
-	private final String zona;
-	private final int vida;
-	private final int fuerza;
-	private final int destreza;
-	private final int inteligencia;
-	private final int codicia;
-	private final String[] regiones;
+	private final String tipo;
 	
-	Mitologia(String zona,int vida,int fuerza, int destreza, int inteligencia, int codicia,String[] regiones){
-		this.zona = zona;
-		this.vida = vida;
-		this.fuerza = fuerza;
-		this.destreza = destreza;
-		this.inteligencia = inteligencia;
-		this.codicia = codicia;
-		this.regiones = regiones;
+	Mitologia(String tipo){
+		this.tipo = tipo;
 	}
 
 	public String getZona() {
-		return zona;
+		return tipo;
 	}
 
-	public int getVida() {
-		return vida;
-	}
-
-	public int getFuerza() {
-		return fuerza;
-	}
-
-	public int getDestreza() {
-		return destreza;
-	}
-
-	public int getInteligencia() {
-		return inteligencia;
-	}
-
-	public int getCodicia() {
-		return codicia;
-	}
-
-	public String[] getRegiones() {
-		return regiones;
-	}
 }

@@ -15,38 +15,39 @@ import ontologia.Mitologia;
 
 @SuppressWarnings("serial")
 public class Caballero extends Protagonista {
-	
+
 	private String princesa;
 	private String dragon;
 
-	protected void setup(){
-		Object[] args = getArguments(); 
+	protected void setup() {
+		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
-			iniciarPrincipal(Mitologia.valueOf((String) args[0]), Integer.parseInt((String) args[1]), 
-					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), false);
+			iniciarPrincipal(Integer.parseInt((String) args[1]), Integer.parseInt((String) args[2]),
+					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
+					Integer.parseInt((String) args[5]), false);
 		}
-		
+
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("Matadragones");
-		sd.setName(getLocalName()+"-Matadragones");
+		sd.setName(getLocalName() + "-Matadragones");
 		dfd.addServices(sd);
-		
+
 		try {
 			DFService.register(this, dfd);
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
-		
-		
-		localizarPersonaje();
-		Gui.setHistoria("El caballero "+getLocalName()+" se ha despertado en "+getLocalizacion()+" con su armadura hecha polvo.");
 
-		addBehaviour(new OfrecerServicios(getTesoro()));		
-		addBehaviour(new AceptarOfertaRescate());		
+		localizarPersonaje();
+		Gui.setHistoria("El caballero " + getLocalName() + " se ha despertado en " + getLocalizacion()
+				+ " con su armadura hecha polvo.");
+
+		addBehaviour(new OfrecerServicios(getTesoro()));
+		addBehaviour(new AceptarOfertaRescate());
 	}
+
 	protected void takeDown() {
 		try {
 			DFService.deregister(this);
@@ -54,10 +55,11 @@ public class Caballero extends Protagonista {
 			fe.printStackTrace();
 		}
 	}
-	
+
 	public String getPrincesa() {
 		return princesa;
 	}
+
 	public void setPrincesa(String princesa) {
 		this.princesa = princesa;
 	}
@@ -65,6 +67,7 @@ public class Caballero extends Protagonista {
 	public String getDragon() {
 		return dragon;
 	}
+
 	public void setDragon(String dragon) {
 		this.dragon = dragon;
 	}
@@ -73,17 +76,16 @@ public class Caballero extends Protagonista {
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(MessageTemplate
-					.MatchConversationId("TratoHecho"), MessageTemplate
-					.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("TratoHecho"),
+					MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
 			ACLMessage msg = myAgent.receive(mt);
 
 			if (msg != null) {
-				
+
 				String[] contrato = msg.getContent().split(" ");
 				setPrincesa(contrato[0]);
 				setDragon(contrato[1]);
-				
+
 				ACLMessage salvar = new ACLMessage(ACLMessage.INFORM);
 				salvar.setConversationId("ObjetivoSecuestro");
 				salvar.addReceiver(getAgenteMundo());
@@ -96,46 +98,45 @@ public class Caballero extends Protagonista {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			} else
 				block();
 
 		}
 	}
-	
+
 	private class FinPlanificacion extends Behaviour {
-		
+
 		AID rey;
 		ACLMessage receive;
-		
+
 		public FinPlanificacion(AID rey) {
 			this.rey = rey;
 		}
-		
-		
+
 		public void action() {
 
 			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Fin-Plan"),
 					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-			
+
 			receive = receive(mt);
-			
-			if ( receive != null ) {
-				
+
+			if (receive != null) {
+
 				ACLMessage rescate = new ACLMessage(ACLMessage.INFORM);
 				rescate.setConversationId("Rescate");
 				rescate.addReceiver(rey);
-				
-				if ( estaMuerto() ) {
-					
-					Gui.setHistoria("+ El caballero " + getLocalName()+ " ha muerto en combate. \n");
-					
+
+				if (estaMuerto()) {
+
+					Gui.setHistoria("+ El caballero " + getLocalName() + " ha muerto en combate. \n");
+
 					rescate.setPerformative(ACLMessage.FAILURE);
 				}
-				
+
 				doDelete();
 				send(rescate);
-				
+
 			} else
 				block();
 		}
@@ -145,5 +146,5 @@ public class Caballero extends Protagonista {
 			return receive != null;
 		}
 	}
-	
+
 }
