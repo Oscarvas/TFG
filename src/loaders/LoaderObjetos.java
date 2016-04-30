@@ -41,7 +41,6 @@ public class LoaderObjetos {
 				if (nNodeTipo.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElementTipo = (Element) nNodeTipo;
-					System.out.println();
 
 					NodeList nListObjeto = eElementTipo.getElementsByTagName("objeto");
 
