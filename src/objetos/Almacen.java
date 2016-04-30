@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Iterator;
 
+@SuppressWarnings("rawtypes")
 public class Almacen {
 	// HashMap que guarda los objetos en funcion de su tipo. Ejemplo: "consumible", Lista consumibles 
 	private HashMap<String, ArrayList<Objeto>> objetos;
@@ -28,8 +29,8 @@ public class Almacen {
 		return o;
 	}
 	
-	public boolean hayObjetosConsumibles(){		
-		return !this.objetos.get("consumible").isEmpty();
+	public boolean hayObjetos(String tipo){		
+		return !this.objetos.get(tipo).isEmpty();
 	}
 	/**
 	 * Mira si hay objetos claves que se hayan guardado.
@@ -53,6 +54,10 @@ public class Almacen {
 	public int consumibleAleatorio(){
 		Random rnd = new Random();
 		return (int) (rnd.nextDouble() * this.objetos.get("consumible").size());
+	}
+	
+	public int ultimoObjeto(String tipo){
+		return this.objetos.get(tipo).size()-1;
 	}
 	
 	public String toString(){
