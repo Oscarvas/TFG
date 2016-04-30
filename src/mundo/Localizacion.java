@@ -2,6 +2,7 @@ package mundo;
 
 import java.util.ArrayList;
 
+import objetos.Almacen;
 import objetos.Objeto;
 public class Localizacion {
 	
@@ -9,14 +10,14 @@ public class Localizacion {
 	private String tipo;
 	private ArrayList<String> conectadoCon;	
 	private ArrayList<String> personajes;
-	private ArrayList<Objeto> cofre;
+	private Almacen cofre;
 
 	public Localizacion (String nombre, String tipo) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.conectadoCon = new ArrayList<String>();
 		this.personajes = new ArrayList<String>();
-		this.cofre = new ArrayList<Objeto>();		
+		this.cofre = new Almacen();		
 	}
 	
 	public void añadirConectado (String localizacion) {		
@@ -44,16 +45,16 @@ public class Localizacion {
 	
 	public String getTipo() {return tipo;}
 	
-	public void añadirObjeto(Objeto o){
-		this.cofre.add(o);
+	public void añadirObjeto(String tipo, Objeto objeto){
+		this.cofre.añadirObjeto(tipo, objeto);
 	}
 	
-	public boolean cofreVacio(){
-		return this.cofre.isEmpty();
+	public boolean cofreVacio(String tipo){
+		return this.cofre.hayObjetos(tipo);
 	}
 
-	public ArrayList<Objeto> getCofre() {
-		return this.cofre;
+	public Objeto abrirCofre(String tipo) {		
+		return this.cofre.extraerObjeto(tipo,this.cofre.ultimoObjeto(tipo));
 	}
 	
 	
