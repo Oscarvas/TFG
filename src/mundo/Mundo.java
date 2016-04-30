@@ -80,13 +80,17 @@ public class Mundo extends GuiAgent{
 					Element eElement = (Element) nNode;
 					int i = this.almacen.hayObjetoClave(eElement.getAttribute("id"));
 					Objeto obj = null;
+					String tipoObjeto = "";
 					if(i == -1){
-						if(this.almacen.hayObjetosConsumibles())
-							obj = this.almacen.extraerObjeto("consumible", this.almacen.consumibleAleatorio());						
+						if(this.almacen.hayObjetos("consumible")){
+							obj = this.almacen.extraerObjeto("consumible", this.almacen.consumibleAleatorio());
+							tipoObjeto = "consumible";
+						}
 					}else{
 						obj = this.almacen.extraerObjeto("clave", i);
+						tipoObjeto = "clave";
 					}
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj);
+					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj, tipoObjeto);
 					estado.añadirNombre(eElement.getAttribute("id"));
 
  					String[] cade = eElement
@@ -348,9 +352,9 @@ public class Mundo extends GuiAgent{
 					ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
 					consume.addReceiver(personaje);
 					consume.setConversationId("Consumir");
-					consume.setContent("");
+					consume.setContent(loc2.abrirCofre("consumible").mensaje());
 					send(consume);
-					
+										
 					
 				} else
 					reply.setPerformative(ACLMessage.FAILURE);
