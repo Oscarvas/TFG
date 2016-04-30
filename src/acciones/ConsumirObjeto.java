@@ -6,18 +6,16 @@ import jade.lang.acl.MessageTemplate;
 import personajes.principal.Protagonista;
 
 @SuppressWarnings("serial")
-public class ObjetoConsumible extends CyclicBehaviour {
+public class ConsumirObjeto extends CyclicBehaviour {
 	
 	private Protagonista per;
 	
-	public ObjetoConsumible(Protagonista per) {
-		// TODO Auto-generated constructor stub
+	public ConsumirObjeto(Protagonista per) {
 		this.per = per;
 	}
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
 		MessageTemplate mt = MessageTemplate.and(
 				MessageTemplate.MatchConversationId("Consumir"),
 				MessageTemplate.MatchPerformative(ACLMessage.INFORM));
