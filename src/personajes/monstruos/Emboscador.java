@@ -2,7 +2,6 @@ package personajes.monstruos;
 
 import java.util.Random;
 
-import acciones.Batalla;
 import acciones.Emboscar;
 import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
@@ -12,13 +11,12 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Emboscador extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
-		iniciarMonstruo((String) args[0], (String) args[1], (String) args[2]);
+		iniciarMonstruo((String) args[0], (String) args[1]);
 		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
 		
 		DFAgentDescription dfd = new DFAgentDescription();

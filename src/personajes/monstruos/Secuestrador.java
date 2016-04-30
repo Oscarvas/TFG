@@ -18,7 +18,7 @@ public class Secuestrador extends Monstruo {
 
 	protected void setup(){
 		Object[] args = getArguments();		
-		iniciarMonstruo((String) args[0], (String) args[1], (String) args[2]);
+		iniciarMonstruo((String) args[0], (String) args[1]);
 		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+" se escucha por todo el reino.");
 		addBehaviour(new Secuestro());
 	}

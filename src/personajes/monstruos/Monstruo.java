@@ -7,11 +7,11 @@ import personajes.Personaje;
 public class Monstruo extends Personaje {
 	String especie;
 
-	public void iniciarMonstruo(String localizacion, String especie, String sexo){
+	public void iniciarMonstruo(String especie, String sexo){
 		cargarMundo();
 		setVida(Vocabulario.VIDA_MONSTRUO());
 //		String clase = getClass().getName().substring(21);
-		setLocalizacion(localizacion);
+//		setLocalizacion(localizacion);
 		localizarPersonaje();
 		setEspecie(especie);
 		setSexo(sexo);

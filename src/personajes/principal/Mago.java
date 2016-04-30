@@ -6,7 +6,6 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import ontologia.Mitologia;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
