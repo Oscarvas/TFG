@@ -48,5 +48,15 @@ public class Localizacion {
 		this.cofre.add(o);
 	}
 	
+	public boolean cofreVacio(){
+		return this.cofre.isEmpty();
+	}
+
+	public ArrayList<Objeto> getCofre() {
+		return this.cofre;
+	}
+	
+	
+	
 }
 
