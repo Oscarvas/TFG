@@ -1,12 +1,8 @@
 package personajes.principal;
 
-
-import java.util.ArrayList;
 import java.util.Random;
 
-import acciones.ObjetoConsumible;
-import objetos.Clave;
-import objetos.Consumible;
+import acciones.ConsumirObjeto;
 import objetos.Objeto;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
@@ -49,7 +45,7 @@ public class Protagonista extends Personaje {
 				setLocalizacion(Vocabulario.CASTILLOS[1]);
 		}
 		
-		addBehaviour(new ObjetoConsumible(this));
+		addBehaviour(new ConsumirObjeto(this));
 	}
 	
 	public Mitologia getRaza() {
