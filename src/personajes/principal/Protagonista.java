@@ -88,15 +88,17 @@ public class Protagonista extends Personaje {
 		this.codicia = codicia;
 	}
 	
-	public void usarObjeto(String atributos){
+	public String usarObjeto(String atributos){
 		
-		String [] args = atributos.split(" ");
-		
+		String [] args = atributos.split(" ");	
+				
 		this.añadirVida(Integer.parseInt((String) args[Objeto.VIDA]));
 		this.fuerza += Integer.parseInt((String) args[Objeto.FUERZA]);
 		this.destreza += Integer.parseInt((String) args[Objeto.DESTREZA]);
 		this.codicia += Integer.parseInt((String) args[Objeto.CODICIA]);
 		this.inteligencia += Integer.parseInt((String) args[Objeto.INTELIGENCIA]);
+		
+		return ":" + args[Objeto.ATRIBUTOS] + ".";
 	}
 
 

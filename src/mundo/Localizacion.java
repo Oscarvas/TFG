@@ -50,7 +50,7 @@ public class Localizacion {
 	}
 	
 	public boolean cofreVacio(String tipo){
-		return this.cofre.hayObjetos(tipo);
+		return !this.cofre.hayObjetos(tipo);
 	}
 
 	public Objeto abrirCofre(String tipo) {		

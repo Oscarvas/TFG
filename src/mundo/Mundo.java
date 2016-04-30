@@ -38,30 +38,30 @@ import objetos.Objeto;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Mundo extends GuiAgent{
-	
+public class Mundo extends GuiAgent {
+
 	private Mapa mapa;
 	private Estado estado;
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
 	private Almacen almacen;
-	
-	public Mundo(){
+
+	public Mundo() {
 		this.estado = new Estado();
 		this.almacen = LoaderObjetos.loaderObjetos();
-		this.mapa = cargarMapa();//Mapa.getMapa(this.estado);
+		this.mapa = cargarMapa();// Mapa.getMapa(this.estado);
 		this.agentes = new ArrayList<AgentController>();
-		
+
 	}
+
 	public Mapa cargarMapa() {
 
 		this.mapa = new Mapa();
 
 		try {
 			File fXmlFile = new File("Mapa.xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
@@ -81,21 +81,20 @@ public class Mundo extends GuiAgent{
 					int i = this.almacen.hayObjetoClave(eElement.getAttribute("id"));
 					Objeto obj = null;
 					String tipoObjeto = "";
-					if(i == -1){
-						if(this.almacen.hayObjetos("consumible")){
+					if (i == -1) {
+						if (this.almacen.hayObjetos("consumible")) {
 							obj = this.almacen.extraerObjeto("consumible", this.almacen.consumibleAleatorio());
 							tipoObjeto = "consumible";
 						}
-					}else{
+					} else {
 						obj = this.almacen.extraerObjeto("clave", i);
 						tipoObjeto = "clave";
 					}
-					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj, tipoObjeto);
+					loc = mapa.añadirLocalizacion(eElement.getAttribute("id"), eElement.getAttribute("tipo"), obj,
+							tipoObjeto);
 					estado.añadirNombre(eElement.getAttribute("id"));
 
- 					String[] cade = eElement
-							.getElementsByTagName("conectadoCon").item(0)
-							.getTextContent().split(" ");
+					String[] cade = eElement.getElementsByTagName("conectadoCon").item(0).getTextContent().split(" ");
 
 					for (String conectadoCon : cade) {
 						loc.añadirConectado(conectadoCon);
@@ -113,7 +112,7 @@ public class Mundo extends GuiAgent{
 		return mapa;
 	}
 
-	protected void setup(){
+	protected void setup() {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
@@ -128,9 +127,9 @@ public class Mundo extends GuiAgent{
 			fe.printStackTrace();
 		}
 		myGui = new Gui(this);
-	    myGui.setVisible(true);
-	    
-	    try {
+		myGui.setVisible(true);
+
+		try {
 			new LoaderPnjs(this);
 			new LoaderMontruos(this);
 			new LoaderPersonajes(this);
@@ -139,8 +138,8 @@ public class Mundo extends GuiAgent{
 			e.printStackTrace();
 		}
 
-	    addBehaviour(new Objetivos());
-	    addBehaviour(new PersonajeSecuestrado());
+		addBehaviour(new Objetivos());
+		addBehaviour(new PersonajeSecuestrado());
 		addBehaviour(new ObjetivoSecuestro());
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());
@@ -152,45 +151,47 @@ public class Mundo extends GuiAgent{
 		addBehaviour(new MuertePersonaje());
 		addBehaviour(new DondeEstaPersonaje());
 	}
-	
+
 	protected void takeDown() {
 		try {
 			DFService.deregister(this);
-			System.out.println("Mientras tu estas aquí, la Legión Ardiente se dirige hacia Azeroth con un descomunal ejército...");
+			System.out.println(
+					"Mientras tu estas aquí, la Legión Ardiente se dirige hacia Azeroth con un descomunal ejército...");
 
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void onGuiEvent(GuiEvent evento) {
 		// TODO Auto-generated method stub
 		comando = evento.getType();
 		if (comando == Vocabulario.SALIR) {
-	         doDelete();
-	         System.exit(0);
-	    }
-		if (comando == Vocabulario.CREAR_AGENTE){
+			doDelete();
+			System.exit(0);
+		}
+		if (comando == Vocabulario.CREAR_AGENTE) {
 			try {
 				PlatformController container = getContainerController();
-				
+
 				AgentController guest;
 				Iterator param = evento.getAllParameter();
-				String nomb= (String)param.next();
-				String clas=(String)param.next();
-				String[] args = {(String)param.next(),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next()),String.valueOf(param.next())};
-				guest = container.createNewAgent(nomb, clas,args);
+				String nomb = (String) param.next();
+				String clas = (String) param.next();
+				String[] args = { (String) param.next(), String.valueOf(param.next()), String.valueOf(param.next()),
+						String.valueOf(param.next()), String.valueOf(param.next()), String.valueOf(param.next()) };
+				guest = container.createNewAgent(nomb, clas, args);
 				agentes.add(guest);
-				
+
 			} catch (ControllerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
+
 		}
-		if (comando == Vocabulario.INICIAR_HISTORIA){
-			for (AgentController agen : agentes){
+		if (comando == Vocabulario.INICIAR_HISTORIA) {
+			for (AgentController agen : agentes) {
 				try {
 					agen.start();
 				} catch (StaleProxyException e) {
@@ -200,20 +201,19 @@ public class Mundo extends GuiAgent{
 			}
 			agentes.clear();
 		}
-		
+
 	}
-	
-	private class Objetivos extends CyclicBehaviour{
+
+	private class Objetivos extends CyclicBehaviour {
 
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("guardaObjetivos"));
 			ACLMessage receive = myAgent.receive(mt);
-			
+
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 
@@ -222,21 +222,20 @@ public class Mundo extends GuiAgent{
 				send(reply);
 			} else
 				block();
-			
+
 		}
-		
+
 	}
-	
-	private class PersonajeSecuestrado extends CyclicBehaviour{
+
+	private class PersonajeSecuestrado extends CyclicBehaviour {
 
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("quienSecuestro"));
 			ACLMessage receive = myAgent.receive(mt);
-			
+
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 
@@ -246,15 +245,14 @@ public class Mundo extends GuiAgent{
 			} else
 				block();
 		}
-		
+
 	}
-	
+
 	private class ToPDDLfile extends CyclicBehaviour {
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("toPDDL"));
 			ACLMessage receive = myAgent.receive(mt);
 
@@ -278,9 +276,8 @@ public class Mundo extends GuiAgent{
 				problema += "(:init" + "\n";
 				problema += estado.toString(nombrePersonaje);
 				problema += ")\n";
-				
-				problema += "(:goal " + estado.getObjetivos(nombrePersonaje) + " )"
-						+ "\n)";
+
+				problema += "(:goal " + estado.getObjetivos(nombrePersonaje) + " )" + "\n)";
 
 				PrintWriter writer;
 				try {
@@ -300,15 +297,14 @@ public class Mundo extends GuiAgent{
 	private class LocalizarPersonajes extends CyclicBehaviour {
 
 		public void action() {
-			
+
 			boolean ok = true;
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Mover"));
 			ACLMessage receive = myAgent.receive(mt);
-			
-			//espera que un agente pida moverse
+
+			// espera que un agente pida moverse
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 				String[] mensaje = receive.getContent().split(" ");
@@ -316,46 +312,50 @@ public class Mundo extends GuiAgent{
 				AID personaje = receive.getSender();
 
 				Localizacion loc2 = mapa.getLocalizacion(locDest);
-				
-				//si el mensaje tiene un personaje[0], una locDestino[1] y una loc origen[2]
+
+				// si el mensaje tiene un personaje[0], una locDestino[1] y una
+				// loc origen[2]
 				if (mensaje.length == 3) {
 
 					String locOrigen = mensaje[2];
 					Localizacion loc1 = mapa.getLocalizacion(locOrigen);
-					
-					//comprueba que los nombres del mapa son correctos y que estan conectados
+
+					// comprueba que los nombres del mapa son correctos y que
+					// estan conectados
 					if (loc1 != null && loc1.existeConexion(locDest))
 						ok = loc1.eliminarPersonaje(personaje.getLocalName());
 
 					else
 						ok = false;
 				}
-				
-				//cuando todo va bien
+
+				// cuando todo va bien
 				if (ok && loc2 != null) {
 					loc2.añadirPersonaje(personaje.getLocalName());
 					estado.añadirLocalizacion(personaje.getLocalName(), locDest);
-					
-					//si un caballero va al cruce
-					Emboscadores(myAgent, mensaje[0],personaje.getLocalName());					
-					
+
+					// si un caballero va al cruce
+					Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+
 					reply.setPerformative(ACLMessage.CONFIRM);
 					reply.setContent(loc2.getNombre());
 
-					if (mensaje.length == 2) { //cuando se crean los personajes, la primera localizacion
-						estado.añadirPersonaje(mensaje[0],
-								personaje.getLocalName());
+					if (mensaje.length == 2) { // cuando se crean los
+												// personajes, la primera
+												// localizacion
+						estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
 						estado.añadirCasa(personaje.getLocalName(), locDest);
 						estado.añadirNombre(personaje.getLocalName());
 					}
-					
-					ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
-					consume.addReceiver(personaje);
-					consume.setConversationId("Consumir");
-					consume.setContent(loc2.abrirCofre("consumible").mensaje());
-					send(consume);
-										
-					
+
+					if (!loc2.cofreVacio("consumible")) {
+						ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
+						consume.addReceiver(personaje);
+						consume.setConversationId("Consumir");
+						consume.setContent(loc2.abrirCofre("consumible").mensaje());
+						send(consume);
+					}
+
 				} else
 					reply.setPerformative(ACLMessage.FAILURE);
 
@@ -365,12 +365,12 @@ public class Mundo extends GuiAgent{
 				block();
 		}
 	}
-	
+
 	/*
 	 * Avisamos a todos los emboscadores por si les interesa/pueden actuar
-	 * */
-	private void Emboscadores(Agent myAgent, String clase, String nombre){
-		
+	 */
+	private void Emboscadores(Agent myAgent, String clase, String nombre) {
+
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("Emboscador");
@@ -378,14 +378,14 @@ public class Mundo extends GuiAgent{
 
 		try {
 
-			DFAgentDescription[] result = DFService.search(myAgent,template);
+			DFAgentDescription[] result = DFService.search(myAgent, template);
 			AID[] emboscadores = new AID[result.length];
 
 			if (emboscadores.length > 0) {
 				for (int i = 0; i < result.length; i++) {
 					emboscadores[i] = result[i].getName();
 				}
-				
+
 				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
 				cfp.setContent(clase);
 				cfp.setConversationId("SolicitarServicio");
@@ -396,28 +396,26 @@ public class Mundo extends GuiAgent{
 
 				cfp.setReplyWith("cfp" + System.currentTimeMillis());
 				myAgent.send(cfp);
-				MessageTemplate mt = MessageTemplate.and(
-						MessageTemplate.MatchConversationId("SolicitarServicio"),
+				MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("SolicitarServicio"),
 						MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
-				
-				myAgent.addBehaviour(new RecibirOfertas(mt,emboscadores.length, nombre));
+
+				myAgent.addBehaviour(new RecibirOfertas(mt, emboscadores.length, nombre));
 			}
-			
-			
+
 		} catch (Exception fe) {
 			fe.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private class RecibirOfertas extends CyclicBehaviour {
-		
+
 		private MessageTemplate mt;
 		private int interesados;
 		private AID maton;
 		private String nombreEmboscado;
-		
-		public RecibirOfertas (MessageTemplate mt, int length,  String emboscado ) {
+
+		public RecibirOfertas(MessageTemplate mt, int length, String emboscado) {
 			this.mt = mt;
 			this.interesados = length;
 			this.maton = null;
@@ -427,27 +425,26 @@ public class Mundo extends GuiAgent{
 		public void action() {
 
 			ACLMessage msg = myAgent.receive(mt);
-					
-			if(msg != null){
-				if (msg.getPerformative() == ACLMessage.PROPOSE){
-//					String loc = msg.getContent();
+
+			if (msg != null) {
+				if (msg.getPerformative() == ACLMessage.PROPOSE) {
+					// String loc = msg.getContent();
 					if (estado.estanMismaLocalizacion(msg.getSender().getLocalName(), nombreEmboscado)) {
 						maton = msg.getSender();
-						
+
 						ACLMessage mover = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
 						mover.addReceiver(maton);
 						mover.setConversationId("Cruzar");
 						mover.setReplyWith("cruzar" + System.currentTimeMillis());
 						mover.setContent(nombreEmboscado);
 						myAgent.send(mover);
-					}					
+					}
 				}
 				interesados--;
 
 				if (!listo())
 					reset();
-			}
-			else
+			} else
 				block();
 		}
 
@@ -460,8 +457,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Mundo-Mover-Princesa"));
 			ACLMessage receive = myAgent.receive(mt);
 
@@ -469,18 +465,15 @@ public class Mundo extends GuiAgent{
 
 				String[] contenido = receive.getContent().split(" ");
 				ACLMessage moverPrincesa = new ACLMessage(ACLMessage.REQUEST);
-				moverPrincesa.setReplyWith("mover-princesa"+ System.currentTimeMillis());
+				moverPrincesa.setReplyWith("mover-princesa" + System.currentTimeMillis());
 				moverPrincesa.setConversationId("Mover-Princesa");
-				moverPrincesa.setContent(contenido[0] + " "+ receive.getSender().getLocalName());
-				
-				AID princesa = new AID(
-						(String) estado.nombreCorrecto(contenido[1]),
-						AID.ISLOCALNAME);
+				moverPrincesa.setContent(contenido[0] + " " + receive.getSender().getLocalName());
+
+				AID princesa = new AID((String) estado.nombreCorrecto(contenido[1]), AID.ISLOCALNAME);
 				moverPrincesa.addReceiver(princesa);
 				send(moverPrincesa);
 
-				mt = MessageTemplate.MatchInReplyTo(moverPrincesa
-						.getReplyWith());
+				mt = MessageTemplate.MatchInReplyTo(moverPrincesa.getReplyWith());
 				ACLMessage rec1 = receive(mt);
 				while (rec1 == null)
 					block();
@@ -496,8 +489,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
 					MessageTemplate.MatchConversationId("Secuestro"));
 			ACLMessage receive = myAgent.receive(mt);
 
@@ -530,8 +522,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Liberar"));
 
 			ACLMessage receive = myAgent.receive(mt);
@@ -539,18 +530,18 @@ public class Mundo extends GuiAgent{
 			if (receive != null) {
 
 				String[] contenido = receive.getContent().split(" ");
-				
-				if(contenido.length == 3){ //cuando el caballero rescata a la princesa
+
+				if (contenido.length == 3) { // cuando el caballero rescata a la
+												// princesa
 					estado.estaLlenoPersonaje(contenido[0]);
 					estado.añadirPersonajeConPrincesa(contenido[0], contenido[1]);
 					estado.borrarPersonajeConPrincesa(contenido[2]);
-				}
-				else if (contenido.length == 2) { //cuando la princesa se escapa
+				} else if (contenido.length == 2) { // cuando la princesa se
+													// escapa
 					estado.borrarPersonajeConPrincesa(contenido[1]);
 					estado.liberar(contenido[0]);
 					estado.estaLibrePersonaje(contenido[0]);
 				}
-				
 
 				ACLMessage reply = receive.createReply();
 				reply.setContent(estado.nombreCorrecto(contenido[1]));
@@ -565,8 +556,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Dejar en Casa"));
 
 			ACLMessage receive = myAgent.receive(mt);
@@ -575,8 +565,7 @@ public class Mundo extends GuiAgent{
 
 				String princesa = receive.getContent();
 				estado.liberar(princesa);
-				estado.borrarPersonajeConPrincesa(receive.getSender()
-						.getLocalName());
+				estado.borrarPersonajeConPrincesa(receive.getSender().getLocalName());
 				estado.añadirPrincesaSalvada(princesa);
 				estado.estaLibrePersonaje(receive.getSender().getLocalName());
 
@@ -593,8 +582,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Ser Heroe"));
 
 			ACLMessage receive = myAgent.receive(mt);
@@ -614,8 +602,7 @@ public class Mundo extends GuiAgent{
 
 		public void action() {
 
-			MessageTemplate mt = MessageTemplate.and(
-					MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
 					MessageTemplate.MatchConversationId("Muerto"));
 			ACLMessage receive = myAgent.receive(mt);
 
@@ -628,7 +615,7 @@ public class Mundo extends GuiAgent{
 		}
 	}
 
-	private class ObjetivoSecuestro extends CyclicBehaviour{
+	private class ObjetivoSecuestro extends CyclicBehaviour {
 
 		@Override
 		public void action() {
@@ -638,22 +625,22 @@ public class Mundo extends GuiAgent{
 			ACLMessage receive = myAgent.receive(mt);
 			if (receive != null) {
 
-				estado.setPrincesaObjetivo(receive.getSender().getLocalName(),receive.getContent());
+				estado.setPrincesaObjetivo(receive.getSender().getLocalName(), receive.getContent());
 				ACLMessage reply = receive.createReply();
 				send(reply);
 
 			} else
 				block();
-			
+
 		}
-		
+
 	}
 
-	private class DondeEstaPersonaje extends CyclicBehaviour{
+	private class DondeEstaPersonaje extends CyclicBehaviour {
 		/*
-		 * Atendera las llamadas de otros personajes que preguntan por la locaclizacion de 
-		 * otro personaje
-		 * */
+		 * Atendera las llamadas de otros personajes que preguntan por la
+		 * locaclizacion de otro personaje
+		 */
 
 		@Override
 		public void action() {
@@ -669,8 +656,8 @@ public class Mundo extends GuiAgent{
 
 			} else
 				block();
-			
+
 		}
-		
+
 	}
 }
