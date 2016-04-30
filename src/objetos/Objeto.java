@@ -25,6 +25,6 @@ public abstract class Objeto {
 		return "- " + this.nombre + ": " + this.descripcion;
 	}
 	
-//	public abstract boolean usar(Personaje quien, Localizacion donde);
+	public abstract String mensaje();
 
 }
