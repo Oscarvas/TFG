@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Iterator;
 
 public class Almacen {
+	// HashMap que guarda los objetos en funcion de su tipo. Ejemplo: "consumible", Lista consumibles 
 	private HashMap<String, ArrayList<Objeto>> objetos;
 	
 	public Almacen(){
@@ -30,7 +31,11 @@ public class Almacen {
 	public boolean hayObjetosConsumibles(){		
 		return !this.objetos.get("consumible").isEmpty();
 	}
-	
+	/**
+	 * Mira si hay objetos claves que se hayan guardado.
+	 * @param localizacion
+	 * @return la posicion del objeto clave, -1 si no hay objeto clave.
+	 */
 	public int hayObjetoClave(String localizacion){
 		int i = -1;
 		Clave c;
