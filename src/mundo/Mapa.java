@@ -12,12 +12,12 @@ public class Mapa {
 		this.localizaciones = new ArrayList<Localizacion>();
 	}
 
-	public Localizacion añadirLocalizacion(String loc, String tipo, Objeto obj) throws Exception {
+	public Localizacion añadirLocalizacion(String loc, String tipo, Objeto obj, String tipoObjeto) throws Exception {
 
 		if ( !localizaciones.contains(getLocalizacion(loc)) ) {
 			Localizacion localizacion = new Localizacion(loc, tipo);
 			if(obj != null){
-				localizacion.añadirObjeto(obj);
+				localizacion.añadirObjeto(tipoObjeto,obj);
 			}			
 			this.localizaciones.add(localizacion);
 			return localizacion;
