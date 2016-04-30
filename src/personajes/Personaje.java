@@ -15,6 +15,7 @@ import java.util.Random;
 
 import javaff.JavaFF;
 import loaders.LoaderObjetivos;
+import objetos.Clave;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import acciones.*;
@@ -31,6 +32,8 @@ public class Personaje extends Agent {
 	private String sexo;
 	private String clase;
 	private String casa;
+	
+	private ArrayList<Clave> mochila;
 	
 	public Personaje(){
 		this.frases = new HashMap<String, ArrayList<String>>();
@@ -299,6 +302,10 @@ public class Personaje extends Agent {
 	
 	public void moverSecuestrado(String locDest) {
 		new Mover(this, localizacion, locDest).execute();
+	}
+	
+	public void cogerObjeto(Clave obj){
+		this.mochila.add(obj);
 	}
 	
 }

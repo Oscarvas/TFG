@@ -19,7 +19,7 @@ public class Protagonista extends Personaje {
 	private int inteligencia;
 	private int codicia;
 	
-	private ArrayList<Clave> mochila;
+	
 	
 	
 	public Protagonista() {
@@ -86,10 +86,6 @@ public class Protagonista extends Personaje {
 
 	public void setCodicia(int codicia) {
 		this.codicia = codicia;
-	}
-	
-	public void cogerObjeto(Clave obj){
-		this.mochila.add(obj);
 	}
 	
 	public void usarObjeto(Consumible obj){
