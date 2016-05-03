@@ -1,6 +1,9 @@
 package ontologia;
 
+import java.util.HashMap;
 import java.util.Random;
+
+import loaders.LoaderRazas;
 
 public interface Vocabulario {
 	public static final int STANDBY = -1;
@@ -14,6 +17,7 @@ public interface Vocabulario {
 	public static final String[] TIPOS_LOCALIZACION = {"Pueblo","Bosque","Urbano","Castillo","Guarida","Lago"};
 	public static final int SALARIO = 40;
 	public static final int SALARIO_REY = 100;
+	public static final HashMap<String, Raza> RAZAS2 = LoaderRazas.loaderRazas();
 	
 	
 	public static int VIDA_MONSTRUO (){
@@ -26,4 +30,5 @@ public interface Vocabulario {
 	public static int LOC_MALIGNO(){
 		return  new Random().nextInt(TIPOS_LOCALIZACION.length);
 	}
+	
 }

@@ -33,9 +33,6 @@ public enum Mitologia {
 		return tipo;
 	}
 	
-	public void cargarRazas(){
-		
-	}
 	//Tener aqui el ArrayList de razas, acceder desde aqui a los datos de la raza
 	
 	// Otra opcion, mundo o portagonista hacen un lñoader de razas que devuelve el arraylist<Raza>

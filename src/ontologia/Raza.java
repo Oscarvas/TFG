@@ -1,7 +1,5 @@
 package ontologia;
 
-import java.util.ArrayList;
-
 public class Raza{
 	private String  nombre;
 	private int vidaModificador;
@@ -9,11 +7,7 @@ public class Raza{
 	private int destrezaModificador;
 	private int inteligenciaModificador;	
 	private int codiciaModificador;
-	public ArrayList<Raza> razas;
 	
-	public Raza(){
-		
-	}
 	
 	public Raza(String  nombre, int vida, int fuerza, int destreza, int inteligencia, int codicia) {
 		this.nombre= nombre;
@@ -22,7 +16,6 @@ public class Raza{
 		this.destrezaModificador = destreza;
 		this.inteligenciaModificador = inteligencia;
 		this.codiciaModificador = codicia;
-		razas.add(this);
 	}
 
 
@@ -85,14 +78,4 @@ public class Raza{
 		this.codiciaModificador = codicia;
 	}
 	
-	public Raza getRazaByName(String nombre){
-		int i = 0;
-		while (i < razas.size()){
-			if (razas.get(i).nombre.equals(nombre))
-				return this;
-			else
-				i++;
-		}
-		return null;
-	}
 }

@@ -1,7 +1,6 @@
-package ontologia;
+package loaders;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,26 +11,19 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import mundo.Localizacion;
-import mundo.Mundo;
-import jade.wrapper.AgentController;
-import jade.wrapper.ControllerException;
-import jade.wrapper.PlatformController;
+import ontologia.Raza;
+
 
 public class LoaderRazas {
-	public ArrayList<Raza> razas;
-	
-	public LoaderRazas(Mundo mundo) throws ControllerException {
-		String nombre;
-		PlatformController container = mundo.getContainerController();
 
-		AgentController guest;
+	public static HashMap<String, Raza> loaderRazas() {
+		String nombre;
+		HashMap<String, Raza> razas = new HashMap<String, Raza>();
 
 		try {
 			// indicar el fichero de configuracion y crear el builder
 			File fXmlFile = new File("Razas.xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
@@ -49,23 +41,21 @@ public class LoaderRazas {
 					Element eElement = (Element) nNode;
 
 					nombre = eElement.getAttribute("nombre");
-					String[] args = { eElement.getAttribute("vida"),
-							eElement.getAttribute("fuerza"),
-							eElement.getAttribute("destreza"),
-							eElement.getAttribute("inteligencia"),
+					String[] args = { eElement.getAttribute("vida"), eElement.getAttribute("fuerza"),
+							eElement.getAttribute("destreza"), eElement.getAttribute("inteligencia"),
 							eElement.getAttribute("codicia") };
-					Raza razaAux = new Raza((String) nombre, Integer.parseInt((String) args[0]),Integer.parseInt((String) args[1]),
-							 Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]));
-					
-					razas.add(razaAux);				}
+					Raza razaAux = new Raza((String) nombre, Integer.parseInt((String) args[0]),
+							Integer.parseInt((String) args[1]), Integer.parseInt((String) args[2]),
+							Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]));
+
+					razas.put(nombre, razaAux);
+				}
 			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
-	}
-	
-	public ArrayList<Raza> getRazas(){
-		return this.razas;
+		return razas;
 	}
 }

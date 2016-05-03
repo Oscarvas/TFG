@@ -22,8 +22,7 @@ public class Protagonista extends Personaje {
 	
 	public void iniciarPrincipal(String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		cargarMundo();
-		Raza raza = new Raza();
-		raza.getRazaByName(nombreRaza);
+		Raza raza = Vocabulario.RAZAS2.get(nombreRaza);
 		setVida(vida * raza.getVidaModificador());
 		setFuerza(fuerza * raza.getFuerzaModificador());
 		setDestreza(destreza * raza.getDestrezaModificador());
