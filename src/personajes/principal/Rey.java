@@ -89,10 +89,13 @@ public class Rey extends Protagonista {
 		}catch (FIPAException fe){
 			fe.printStackTrace();
 		}
-		if (estaMuerto())
+			
+		if (estaMuerto()){
 			Gui.setHistoria(getLocalName()+": Los espíritus de los caídos me han llevado entre sus brazos");
-		
-		Gui.setHistoria(getLocalName()+ ": Parece que mi trabajo ha terminado por hoy");
+		}else{
+			Gui.setHistoria(getLocalName()+ ": Parece que mi trabajo ha terminado por hoy");
+		}
+				
 	}
 	
 	private class Atento extends OneShotBehaviour {

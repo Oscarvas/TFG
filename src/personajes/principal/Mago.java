@@ -50,6 +50,12 @@ public class Mago extends Protagonista {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if (estaMuerto()){
+			Gui.setHistoria(getLocalName()+": An'u belore delen'na...");
+		}else{
+			Gui.setHistoria(getLocalName()+": El sol eterno nos guía...");
+		}
 	}
 
 	public String getPrincesa() {

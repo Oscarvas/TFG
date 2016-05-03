@@ -53,6 +53,12 @@ public class Caballero extends Protagonista {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if (estaMuerto()){
+			Gui.setHistoria(getLocalName()+": Ve con honor...");
+		}else{
+			Gui.setHistoria(getLocalName()+": Que la luz te guíe...");
+		}
 	}
 
 	public String getPrincesa() {

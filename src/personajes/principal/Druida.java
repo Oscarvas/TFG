@@ -49,6 +49,12 @@ public class Druida extends Protagonista {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if (estaMuerto()){
+			Gui.setHistoria(getLocalName()+": Ale' jateh del Voodoo...");
+		}else{
+			Gui.setHistoria(getLocalName()+": No teh asu'te, mi hi'toria no acaba aqui...");
+		}
 	}
 
 	public String getPrincesa() {
