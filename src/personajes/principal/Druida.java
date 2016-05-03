@@ -11,11 +11,9 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Druida extends Protagonista {
-	private int precio;
 	private String princesa;
 	private String dragon;
 
@@ -30,8 +28,8 @@ public class Druida extends Protagonista {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Matadragones");
-		sd.setName(getLocalName()+"-Matadragones");
+		sd.setType("Cambiaformas");
+		sd.setName(getLocalName()+"-Cambiaformas");
 		dfd.addServices(sd);
 		
 		try {
@@ -39,8 +37,6 @@ public class Druida extends Protagonista {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
-		
-		//precio = Vocabulario.SALARIO * getCodicia();
 		
 		localizarPersonaje();
 		Gui.setHistoria(getLocalName()+" el druida pensó que era buena idea transformarse conejo en estas fechas.");

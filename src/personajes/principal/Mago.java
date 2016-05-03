@@ -11,7 +11,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import ontologia.Vocabulario;
 
 
 @SuppressWarnings("serial")
@@ -30,8 +29,8 @@ public class Mago extends Protagonista {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Matadragones");
-		sd.setName(getLocalName()+"-Matadragones");
+		sd.setType("Cazamagia");
+		sd.setName(getLocalName()+"-Cazamagia");
 		dfd.addServices(sd);
 		
 		try {
@@ -39,8 +38,6 @@ public class Mago extends Protagonista {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
-		
-		//precio = Vocabulario.SALARIO * getCodicia();
 		
 		localizarPersonaje();
 		Gui.setHistoria("Aquel al que llaman mago, "+getLocalName()+", realmente sólo tiene muchísimas cartas bajo la túnica.");
