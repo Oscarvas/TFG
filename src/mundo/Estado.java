@@ -28,7 +28,8 @@ public class Estado {
 	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
 	private Almacen almacen;
 	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
-
+	private ArrayList<String> consumidor;//guardara las clases que puden usar objetos consumibles
+	
 	public Estado() {
 
 		this.adyacencias = new HashMap<String, ArrayList<String>>();
@@ -48,6 +49,7 @@ public class Estado {
 		this.cansado = new ArrayList<String>();
 		this.almacen = LoaderObjetos.loaderObjetos();
 		this.objetoEnLoc = new HashMap<String, String>();
+		this.consumidor = new ArrayList<String>();
 	}
 
 	public Almacen getAlmacen() {
@@ -105,6 +107,10 @@ public class Estado {
 
 		locSeguras.add(nombre);
 	}
+	
+	public boolean esConsumidor(String clase){
+		return this.consumidor.contains(clase);		
+	}
 
 	public void añadirPersonaje(String clase, String nombre) {
 
@@ -119,6 +125,10 @@ public class Estado {
 		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Princesa"))
 			estaLibrePersonaje(nombre);
 
+		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Princesa") 
+				|| clase.equalsIgnoreCase("Mago") || clase.equalsIgnoreCase("Caballero") || clase.equalsIgnoreCase("Druida"))
+			consumidor.add(clase);
+		
 		nombres.add(nombre);
 		personajes.put(clase, nombres);
 		añadeVivo(nombre);

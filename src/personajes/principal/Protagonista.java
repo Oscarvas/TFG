@@ -1,6 +1,5 @@
 package personajes.principal;
 
-import acciones.ConsumirObjeto;
 import objetos.Objeto;
 import ontologia.Raza;
 import ontologia.Vocabulario;
@@ -34,8 +33,6 @@ public class Protagonista extends Personaje {
 		else{
 			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
 		}
-		
-		addBehaviour(new ConsumirObjeto(this));
 	}
 
 	public int getFuerza() {
@@ -80,7 +77,11 @@ public class Protagonista extends Personaje {
 		this.codicia += Integer.parseInt((String) args[Objeto.CODICIA]);
 		this.inteligencia += Integer.parseInt((String) args[Objeto.INTELIGENCIA]);
 		
-		return ":" + args[Objeto.ATRIBUTOS] + ".";
+		return getLocalName()+ ": Vida:" + getVida()
+			+" Fuerza:"+this.fuerza
+			+" Destreza:"+this.destreza
+			+" Inteligencia"+this.inteligencia
+			+" Codicia:"+this.codicia+ ".";
 	}
 
 

@@ -22,10 +22,9 @@ public class Consumible extends Objeto {
 	
 	
 	public String mensaje(){
-		String mensaje = atributos[0];
-		for(int i = 1; i < Objeto.ATRIBUTOS; i++){
-			mensaje = mensaje + atributos[i];
-			mensaje = mensaje + " ";
+		String mensaje = "";
+		for(int i = 0; i < Objeto.ATRIBUTOS; i++){
+			mensaje += atributos[i]+ " ";
 		}
 		
 		return mensaje;

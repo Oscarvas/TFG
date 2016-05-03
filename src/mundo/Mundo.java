@@ -394,12 +394,15 @@ public class Mundo extends GuiAgent {
 							estado.añadirNombre(personaje.getLocalName());
 						}
 						else{
-							if (!loc2.cofreVacio("consumible")) {
+							if (estado.esConsumidor(mensaje[0]) && !loc2.cofreVacio("consumible")) {
 								ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
 								consume.addReceiver(personaje);
 								consume.setConversationId("Consumir");
-								consume.setContent(loc2.abrirCofre("consumible").mensaje());
+								Objeto bocado = loc2.abrirCofre("consumible");
+								consume.setContent(bocado.mensaje());
 								send(consume);
+								
+								Gui.setHistoria(personaje.getLocalName()+" ha encontrado "+bocado.toString());
 							}
 						}
 						

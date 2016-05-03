@@ -5,6 +5,7 @@ import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import personajes.Personaje;
+import personajes.principal.Protagonista;
 
 public class Mover {
 
@@ -43,6 +44,7 @@ public class Mover {
 
 				personaje.setLocalizacion(msg.getContent());
 				evento();
+				objetoEncontrado();
 
 				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
 				
@@ -89,6 +91,19 @@ public class Mover {
 	
 		} 
 		
+	}
+	
+	private void objetoEncontrado(){
+		MessageTemplate mt = MessageTemplate.and(
+				MessageTemplate.MatchConversationId("Consumir"),
+				MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		ACLMessage msg = personaje.receive(mt);
+
+		if (msg != null && msg.getContent()!=null) {
+			
+			Gui.setHistoria(((Protagonista)personaje).usarObjeto(msg.getContent()));;
+
+		}
 	}
 	
 }
