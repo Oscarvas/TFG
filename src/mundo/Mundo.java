@@ -37,6 +37,7 @@ import loaders.LoaderPnjs;
 import objetos.Objeto;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
+import ontologia.Raza;
 
 @SuppressWarnings("serial")
 public class Mundo extends GuiAgent {
@@ -50,6 +51,7 @@ public class Mundo extends GuiAgent {
 																// localizaciones>
 	private String id;
 	private String tipo;
+	public ArrayList<Raza> razas;
 
 	public Mundo() {
 		this.estado = new Estado();
@@ -135,6 +137,11 @@ public class Mundo extends GuiAgent {
 		}
 
 		return mapa;
+	}
+	
+	public ArrayList<Raza> cargarRazas(){
+		
+		return this.razas;
 	}
 
 	protected void setup() {
