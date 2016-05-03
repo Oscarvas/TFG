@@ -64,4 +64,8 @@ public class LoaderRazas {
 			System.exit(0);
 		}
 	}
+	
+	public ArrayList<Raza> getRazas(){
+		return this.razas;
+	}
 }
