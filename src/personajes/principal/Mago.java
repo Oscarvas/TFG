@@ -52,9 +52,9 @@ public class Mago extends Protagonista {
 		}
 		
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": An'u belore delen'na...");
+			Gui.setHistoria(getLocalName()+": An'u belore delen'na...\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": El sol eterno nos guía...");
+			Gui.setHistoria(getLocalName()+": El conocimiento es poder...\n");
 		}
 	}
 

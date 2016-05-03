@@ -55,9 +55,9 @@ public class Caballero extends Protagonista {
 		}
 		
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Ve con honor...");
+			Gui.setHistoria(getLocalName()+": Ve con honor...\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": Que la luz te guíe...");
+			Gui.setHistoria(getLocalName()+": Que la luz te guíe...\n");
 		}
 	}
 

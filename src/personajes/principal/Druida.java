@@ -51,9 +51,9 @@ public class Druida extends Protagonista {
 		}
 		
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Ale' jateh del Voodoo...");
+			Gui.setHistoria(getLocalName()+": Saludo a la noche...\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": No teh asu'te, mi hi'toria no acaba aqui...");
+			Gui.setHistoria(getLocalName()+": Que Elune nos conceda fuerza....\n");
 		}
 	}
 

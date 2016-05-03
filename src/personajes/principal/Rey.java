@@ -91,9 +91,9 @@ public class Rey extends Protagonista {
 		}
 			
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Los espíritus de los caídos me han llevado entre sus brazos");
+			Gui.setHistoria(getLocalName()+": Solo veo... oscuridad... ante mí...\n");
 		}else{
-			Gui.setHistoria(getLocalName()+ ": Parece que mi trabajo ha terminado por hoy");
+			Gui.setHistoria(getLocalName()+": He tenido otra visión del Rey Exánime. ¡Ha restaurado mis poderes! ahora sé lo que tengo que hacer. Es hora de poner fin al juego... de una vez\n");
 		}
 				
 	}

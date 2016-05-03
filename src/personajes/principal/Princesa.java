@@ -34,9 +34,9 @@ public class Princesa extends Protagonista {
 	
 	protected void takeDown() {
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": mis ultimas palabras... la tarta es una mentira... (muere fatídicamente)");
+			Gui.setHistoria(getLocalName()+": Otro lugar infestado de los horrores de este mundo. Otra tierra que salvar\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": Es un alivio poder descansar tranquilamente al fin...");
+			Gui.setHistoria(getLocalName()+": Elije bien en quien confías...\n");
 		}
 	}
 	private class Huerfana extends Behaviour{
