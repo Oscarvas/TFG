@@ -37,13 +37,18 @@ public class Emboscador extends Monstruo {
 	}
 	
 	protected void takeDown (){
-		Gui.setHistoria(getLocalName()+": Es un dia fatidico para cualquier "+getEspecie());
+		
 		
 		try {
 			DFService.deregister(this);
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if(estaMuerto())
+			Gui.setHistoria(getLocalName()+": ¿Quereis quedaros?... ¡Que sea pa' siempre!... Os enterraremo' aquí\n");
+		else
+			Gui.setHistoria(getLocalName()+": Loh amanih nunca olvidamoh!!!\n");
 	}
 	
 	private class Acecho extends CyclicBehaviour {

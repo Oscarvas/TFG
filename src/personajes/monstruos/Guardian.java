@@ -32,13 +32,17 @@ public class Guardian extends Monstruo {
 	}
 	
 	protected void takeDown (){
-		Gui.setHistoria(getLocalName()+": Es un dia fatidico para cualquier "+getEspecie());
 		
 		try {
 			DFService.deregister(this);
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if(estaMuerto())
+			Gui.setHistoria(getLocalName()+": La amabilidad se traduce en debilidad y esa debilidad retrasará el disparo por un instante... ¿y sabes? Este Mundo no es para nada amable con las personas débiles. \n");
+		else
+			Gui.setHistoria(getLocalName()+": Devoro las cinco tierras y seco los tres océanos, mientras que el cielo es lo único imposible de alcanzar con este cuerpo sin alas, brazos ni piernas. Soy la Serpiente del Mundo. Soy Jormungander.  \n");
 	}
 
 	private class Acecho extends Behaviour{

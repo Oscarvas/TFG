@@ -33,14 +33,18 @@ public class Maligno extends Monstruo {
 		addBehaviour(new Maldad());
 	}
 	
-	protected void takeDown (){
-		Gui.setHistoria(getLocalName()+": Es un dia fatidico para cualquier "+getEspecie());
+	protected void takeDown (){		
 		
 		try {
 			DFService.deregister(this);
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
+		
+		if (estaMuerto())
+			Gui.setHistoria(getLocalName()+": Si he de morir,os llevare a todos conmigo,MI DESTINO ES MIO!..\n");
+		else
+			Gui.setHistoria(getLocalName()+" El Rey Exánime debe caer...\n");
 	}
 	
 	private class Maldad extends CyclicBehaviour{

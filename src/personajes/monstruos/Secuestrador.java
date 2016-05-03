@@ -25,10 +25,10 @@ public class Secuestrador extends Monstruo {
 	protected void takeDown() {
 		
 		if ( estaMuerto() )
-			Gui.setHistoria("# El dragón " + getAID().getLocalName() + " ha muerto en batalla. \n");
+			Gui.setHistoria(getLocalName()+": Es la hora del Crepusculo\n");
 		
 		else
-			Gui.setHistoria("# El dragón " + getAID().getLocalName() + " se retira. \n");
+			Gui.setHistoria(getLocalName()+": Todo ardera bajo la sombra de mis alas\n");
 		
 		MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("mujerIndependiente"),
 				MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
