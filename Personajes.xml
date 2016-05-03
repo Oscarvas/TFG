@@ -5,7 +5,7 @@
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
 
-	<personaje nombre="Felipe" clase="Rey" raza="LUCS" vida="1" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Felipe" clase="Rey" raza="LUCS" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
 	<personaje nombre="Leia" clase="Princesa" raza="LUCS" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
@@ -15,6 +15,6 @@
 	
 	<personaje nombre="SergioRammus" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="JuanK" clase="Rey" raza="TESQ" vida="1" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="JuanK" clase="Rey" raza="TESQ" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
 </Actores>

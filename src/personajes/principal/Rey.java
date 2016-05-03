@@ -2,11 +2,13 @@ package personajes.principal;
 
 import java.util.Random;
 
+import acciones.Tortura;
 import gui.Gui;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
+import jade.core.behaviours.ParallelBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -68,8 +70,12 @@ public class Rey extends Protagonista {
 			m.registerTransition("Aceptar", "Princesa Salvada", 1);
 			m.registerTransition("Aceptar", "Rescate", 2);
 			m.registerDefaultTransition("Princesa Salvada", "Atento");
+			
+			ParallelBehaviour p = new ParallelBehaviour(this, ParallelBehaviour.WHEN_ALL);
+			p.addSubBehaviour(m);
+			p.addSubBehaviour(new Tortura(this));
 
-			addBehaviour(m);
+			addBehaviour(p);
 		}
 		else{
 			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no tengo hijas por las cuales preocuparme");
@@ -147,21 +153,21 @@ public class Rey extends Protagonista {
 	private class Rescate extends Behaviour {
 
 		public void action() {
-
-			Gui.setHistoria("- Intentando pedir rescate para la princesa "+ princesaSecuestrada.getLocalName() + ".");
+			
 			DFAgentDescription template = new DFAgentDescription();
 			ServiceDescription sd = new ServiceDescription();
 			sd.setType("Matadragones");
 			template.addServices(sd);
 
 			try {
-
 				DFAgentDescription[] result = DFService.search(myAgent,
 						template);
-				Gui.setHistoria("Encontrados los siguientes caballeros:");
 				CaballerosDisponibles = new AID[result.length];
-
-				if (done()) {
+				
+				if (done()) {					
+					Gui.setHistoria("- Intentando pedir rescate para la princesa "+ princesaSecuestrada.getLocalName() + ".");
+					Gui.setHistoria("Encontrados los siguientes caballeros:");
+										
 					for (int i = 0; i < result.length; i++) {
 						CaballerosDisponibles[i] = result[i].getName();
 						Gui.setHistoria("\t" + CaballerosDisponibles[i]
@@ -169,8 +175,8 @@ public class Rey extends Protagonista {
 					}
 					
 				} else {
-					Gui.setHistoria("\n - Esperando 10 segundos... \n");
-					Thread.sleep(10000);
+					//Gui.setHistoria("\n - Esperando 10 segundos... \n");
+					Thread.sleep(500);
 				}
 				
 			} catch (Exception fe) {

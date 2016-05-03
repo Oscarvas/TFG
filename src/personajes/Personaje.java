@@ -262,8 +262,12 @@ public class Personaje extends Agent {
 						blockingReceive(mt);
 						
 
-					} else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("venganza") || accion.equalsIgnoreCase("criminal"))
+					} 
+					else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("criminal"))
 						new Batalla(this, accionActual[2]).execute();
+					
+					else if( accion.equalsIgnoreCase("venganza"))
+						new Agonia(this, accionActual[2]).execute();
 
 					else if (accion.equalsIgnoreCase("liberarprincesa"))
 						new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
