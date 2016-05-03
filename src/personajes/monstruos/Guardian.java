@@ -1,6 +1,6 @@
 package personajes.monstruos;
 
-import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -41,12 +41,27 @@ public class Guardian extends Monstruo {
 		}
 	}
 
-	private class Acecho extends CyclicBehaviour{
+	private class Acecho extends Behaviour{
 
+		boolean ok;
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			
+			try {
+				Thread.sleep(10000);
+				planificar(null);
+//				Gui.setHistoria("Voy a intentar planificarme");
+				ok = true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return ok;
 		}
 		
 	}

@@ -89,7 +89,7 @@ o Proveedor de material magico.
      -->
     
     <personaje tipo="Guardian" >
-        <objetivo>(impedirPaso Lago)</objetivo>
+        <objetivo>(conObjeto Guardian Espejito)</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
 o Alimentarse (de Personajes).

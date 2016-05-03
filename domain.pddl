@@ -172,6 +172,20 @@
 			(secuestrada ?p))
 	)
 
+;; el guardian consigue un objeto
+	(:action proteger
+		:parameters (?g ?o ?loc)
+		:precondition (and
+			(vivo ?g)
+			(objetoEnLoc ?o ?loc)
+			(esGuardian ?g)
+			(estaLibre ?g)
+			(enLoc ?g ?loc))
+		:effect (and
+			(not (estaLibre ?g))
+			(conObjeto ?g ?o))
+	)
+
 ;; el caballero deja a la princesa en su hogar
 	(:action dejarEnCasa
 		:parameters (?c ?p ?loc)
