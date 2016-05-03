@@ -103,6 +103,7 @@ public class Mundo extends GuiAgent {
 						obj = this.estado.getAlmacen().extraerObjeto("clave", i);
 						tipoObjeto = "clave";
 						this.estado.setObjetoEnLoc(obj.getId(), this.id);
+						this.estado.añadirNombre(obj.getId());
 					}
 					
 					
