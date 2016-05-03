@@ -32,10 +32,8 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
 import loaders.LoaderMontruos;
-import loaders.LoaderObjetos;
 import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
-import objetos.Almacen;
 import objetos.Objeto;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
@@ -48,7 +46,6 @@ public class Mundo extends GuiAgent {
 	private int comando = Vocabulario.STANDBY;
 	transient protected Gui myGui;
 	private ArrayList<AgentController> agentes;
-	private Almacen almacen;
 	public HashMap<String, ArrayList<Localizacion>> regiones; // <tipoLoc,
 																// localizaciones>
 	private String id;
@@ -56,7 +53,6 @@ public class Mundo extends GuiAgent {
 
 	public Mundo() {
 		this.estado = new Estado();
-		this.almacen = LoaderObjetos.loaderObjetos();
 		this.regiones = new HashMap<String, ArrayList<Localizacion>>();
 		this.mapa = cargarMapa();// Mapa.getMapa(this.estado);
 		this.agentes = new ArrayList<AgentController>();
@@ -98,21 +94,24 @@ public class Mundo extends GuiAgent {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-					int i = this.almacen.hayObjetoClave(eElement.getAttribute("id"));
+					this.id = eElement.getAttribute("id");
+					this.tipo = eElement.getAttribute("tipo");
+					
+					int i = this.estado.getAlmacen().hayObjetoClave(this.id );
 					Objeto obj = null;
 					String tipoObjeto = "";
 					if (i == -1) {
-						if (this.almacen.hayObjetos("consumible")) {
-							obj = this.almacen.extraerObjeto("consumible", this.almacen.consumibleAleatorio());
+						if (this.estado.getAlmacen().hayObjetos("consumible")) {
+							obj = this.estado.getAlmacen().extraerObjeto("consumible", this.estado.getAlmacen().consumibleAleatorio());
 							tipoObjeto = "consumible";
 						}
 					} else {
-						obj = this.almacen.extraerObjeto("clave", i);
+						obj = this.estado.getAlmacen().extraerObjeto("clave", i);
 						tipoObjeto = "clave";
+						this.estado.setObjetoEnLoc(obj.getId(), this.id);
 					}
 					
-					this.id = eElement.getAttribute("id");
-					this.tipo = eElement.getAttribute("tipo");
+					
 					
 					loc = mapa.añadirLocalizacion(this.id, this.tipo, obj,tipoObjeto);
 					estado.añadirNombre(this.id);
@@ -395,13 +394,14 @@ public class Mundo extends GuiAgent {
 							estado.añadirCasa(personaje.getLocalName(), locDest);
 							estado.añadirNombre(personaje.getLocalName());
 						}
-						
-						if (!loc2.cofreVacio("consumible")) {
-							ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
-							consume.addReceiver(personaje);
-							consume.setConversationId("Consumir");
-							consume.setContent(loc2.abrirCofre("consumible").mensaje());
-							send(consume);
+						else{
+							if (!loc2.cofreVacio("consumible")) {
+								ACLMessage consume = new ACLMessage(ACLMessage.INFORM);
+								consume.addReceiver(personaje);
+								consume.setConversationId("Consumir");
+								consume.setContent(loc2.abrirCofre("consumible").mensaje());
+								send(consume);
+							}
 						}
 						
 					} else

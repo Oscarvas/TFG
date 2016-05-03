@@ -28,7 +28,7 @@ public class Almacen {
 		Objeto o = null;
 		if (this.objetos.get(tipo) != null) {
 			if (this.objetos.get(tipo).get(index) != null) {
-				this.objetos.get(tipo).get(index);
+				o = this.objetos.get(tipo).get(index);
 				this.objetos.get(tipo).remove(index);
 			}
 		}
@@ -52,17 +52,17 @@ public class Almacen {
 	 * @return la posicion del objeto clave, -1 si no hay objeto clave.
 	 */
 	public int hayObjetoClave(String localizacion) {
-		int i = -1;
+		int i = 0;
 		Clave c;
 		Iterator it = (Iterator) this.objetos.get("clave").iterator();
 		while (it.hasNext()) {
-			i++;
 			c = (Clave) it.next();
 			if (c.getLocalizacion().equals(localizacion)) {
 				return i;
 			}
+			i++;
 		}
-		return i;
+		return -1;
 	}
 
 	public int consumibleAleatorio() {

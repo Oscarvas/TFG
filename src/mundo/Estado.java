@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import loaders.LoaderObjetos;
+import objetos.Almacen;
+
 public class Estado {
 
 	private HashMap<String, String> objetivos; // <NombrePersonaje,objetivo>
@@ -22,27 +25,37 @@ public class Estado {
 	private ArrayList<String> princesasSalvadas;
 	private ArrayList<String> heroes;
 	private HashMap<String, String> princesaObjetivo; // <Secuestrador/salvador,objetivoSecuestro>
-	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado
-										// alguna accion que no le deja moverse
-										// solo
+	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
+	private Almacen almacen;
+	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
 
 	public Estado() {
 
-		adyacencias = new HashMap<String, ArrayList<String>>();
-		locSeguras = new ArrayList<String>();
-		personajes = new HashMap<String, ArrayList<String>>();
-		persEnLoc = new HashMap<String, String>();
-		vivos = new ArrayList<String>();
-		estaLibre = new ArrayList<String>();
-		personajeConPrincesa = new HashMap<String, String>();
-		princesasSecuestradas = new ArrayList<String>();
-		todosNombres = new ArrayList<String>();
-		casasDePersonajes = new HashMap<String, String>();
-		princesasSalvadas = new ArrayList<String>();
-		heroes = new ArrayList<String>();
-		princesaObjetivo = new HashMap<String, String>();
-		objetivos = new HashMap<String, String>();
-		cansado = new ArrayList<String>();
+		this.adyacencias = new HashMap<String, ArrayList<String>>();
+		this.locSeguras = new ArrayList<String>();
+		this.personajes = new HashMap<String, ArrayList<String>>();
+		this.persEnLoc = new HashMap<String, String>();
+		this.vivos = new ArrayList<String>();
+		this.estaLibre = new ArrayList<String>();
+		this.personajeConPrincesa = new HashMap<String, String>();
+		this.princesasSecuestradas = new ArrayList<String>();
+		this.todosNombres = new ArrayList<String>();
+		this.casasDePersonajes = new HashMap<String, String>();
+		this.princesasSalvadas = new ArrayList<String>();
+		this.heroes = new ArrayList<String>();
+		this.princesaObjetivo = new HashMap<String, String>();
+		this.objetivos = new HashMap<String, String>();
+		this.cansado = new ArrayList<String>();
+		this.almacen = LoaderObjetos.loaderObjetos();
+		this.objetoEnLoc = new HashMap<String, String>();
+	}
+
+	public Almacen getAlmacen() {
+		return almacen;
+	}
+
+	public void setAlmacen(Almacen almacen) {
+		this.almacen = almacen;
 	}
 
 	public String toConPrincesa() {
@@ -228,11 +241,6 @@ public class Estado {
 				estado += "(adyacente " + e.getKey() + " " + adyacenteCon + ")\n";
 		}
 
-		// Localizaciones Seguras
-
-		for (String loc : locSeguras)
-			estado += "(locSegura " + loc + ")\n";
-
 		// Localización de personajes
 
 		it = persEnLoc.entrySet().iterator();
@@ -257,7 +265,16 @@ public class Estado {
 			}
 
 		}
+		// Localizaciones de objetos
+		
+		it = objetoEnLoc.entrySet().iterator();
 
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry) it.next();
+			estado += "(objetoEnLoc " + e.getKey() + " " + e.getValue() + ")\n";
+		}
+		
+		
 		// Hogar / Guarida de cada Personaje
 
 		it = casasDePersonajes.entrySet().iterator();
@@ -352,5 +369,13 @@ public class Estado {
 
 	public void setObjetivos(String personaje, String objetivos) {
 		this.objetivos.put(personaje, objetivos);
+	}
+
+	public String getObjetoEnLoc(String objeto) {
+		return this.objetoEnLoc.get(objeto);
+	}
+
+	public void setObjetoEnLoc(String objeto, String localizacion) {
+		this.objetoEnLoc.put(objeto, localizacion);
 	}
 }

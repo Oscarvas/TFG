@@ -1,5 +1,6 @@
 package acciones;
 
+import gui.Gui;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -23,7 +24,7 @@ public class ConsumirObjeto extends CyclicBehaviour {
 
 		if (msg != null) {
 			
-			per.usarObjeto(msg.getContent());
+			Gui.setHistoria(per.usarObjeto(msg.getContent()));;
 
 		} else
 			block();
