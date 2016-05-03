@@ -2,6 +2,7 @@ package personajes.principal;
 
 import acciones.ConsumirObjeto;
 import objetos.Objeto;
+import ontologia.Raza;
 import ontologia.Vocabulario;
 import personajes.Personaje;
 
@@ -19,13 +20,15 @@ public class Protagonista extends Personaje {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void iniciarPrincipal(int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+	public void iniciarPrincipal(String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		cargarMundo();
-		setVida(vida);
-		setFuerza(fuerza );
-		setDestreza(destreza );
-		setInteligencia(inteligencia );
-		setCodicia(codicia );
+		Raza raza = new Raza();
+		raza.getRazaByName(nombreRaza);
+		setVida(vida * raza.getVidaModificador());
+		setFuerza(fuerza * raza.getFuerzaModificador());
+		setDestreza(destreza * raza.getDestrezaModificador());
+		setInteligencia(inteligencia * raza.getDestrezaModificador());
+		setCodicia(codicia * raza.getCodiciaModificador());
 		if (!rey){
 			setTesoro(Vocabulario.SALARIO * getCodicia());
 		}			

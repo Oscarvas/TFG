@@ -32,5 +32,14 @@ public enum Mitologia {
 	public String getZona() {
 		return tipo;
 	}
-
+	
+	public void cargarRazas(){
+		
+	}
+	//Tener aqui el ArrayList de razas, acceder desde aqui a los datos de la raza
+	
+	// Otra opcion, mundo o portagonista hacen un lñoader de razas que devuelve el arraylist<Raza>
+	// a partir de ahi e importando la clase Raza un protagonista deberá de ser capaz de cargar los datos de las razas
+	
 }
+

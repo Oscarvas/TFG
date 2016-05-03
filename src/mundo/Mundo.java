@@ -36,6 +36,7 @@ import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
 import objetos.Objeto;
 import ontologia.Mitologia;
+import ontologia.Raza;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -50,6 +51,7 @@ public class Mundo extends GuiAgent {
 																// localizaciones>
 	private String id;
 	private String tipo;
+	public ArrayList<Raza> razas;
 
 	public Mundo() {
 		this.estado = new Estado();
@@ -71,17 +73,9 @@ public class Mundo extends GuiAgent {
 
 			doc.getDocumentElement().normalize();
 
-			// array list de tipos, cada vez que me viene un tipo preguntar si
-			// esta en el array
-			// si esta le añado la nueva localizacion a el arraylist de
-			// localizaciones de ese tipo
-			// sino esta lo añado a uno nuevo, que creo con el nombre de ese
-			// nuevo tipo
-			// finalmente hago el hashMap recorriendo el nodo de tipos y
-			// metiendo a la vez cada tipo con su array.ç
-			// para ello coges en un array auxiliar, el array que hay
-			// relacionado al tipo en el HashMap,
-			// le metes el nuevo, y se lo vuelves a cargar al HashMap
+			// el mapa se carga en dos arrays, el arraylist de localizaciones, que ayuda ademas para ver las adyacencias del mapa
+			// y el hashmap de tipoLocalizacion-localizacion, que sirve para saber que es cada localización, y ayuda a que los pesonajes
+			// se creen en el lugar que deben
 
 			NodeList nList = doc.getElementsByTagName("localizacion");
 
@@ -143,6 +137,11 @@ public class Mundo extends GuiAgent {
 		}
 
 		return mapa;
+	}
+	
+	public ArrayList<Raza> cargarRazas(){
+		
+		return this.razas;
 	}
 
 	protected void setup() {
