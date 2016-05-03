@@ -278,8 +278,11 @@ public class Personaje extends Agent {
 					else if (accion.equalsIgnoreCase("convertirseenheroe"))
 						new ConvertirseEnHeroe(this).execute();
 					
+					else if (accion.equalsIgnoreCase("proteger"))
+						Gui.setHistoria(accionActual[1]+" ha decidido proteger el objeto: "+accionActual[2]+" en "+accionActual[3]);
+					
 					else if (accion.equalsIgnoreCase("convertirseenvillano"))
-						Gui.setHistoria(getLocalName()+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
+						Gui.setHistoria(accionActual[1]+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
 
 					else {
 						System.out.println(sigAccion);

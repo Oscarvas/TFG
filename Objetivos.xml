@@ -90,6 +90,9 @@ o Proveedor de material magico.
     
     <personaje tipo="Guardian" >
         <objetivo>(conObjeto Guardian Espejito)</objetivo>
+        <objetivo>(conObjeto Guardian MountainHearth)</objetivo>
+        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Turis))</objetivo>
+        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Lucta))</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
 o Alimentarse (de Personajes).

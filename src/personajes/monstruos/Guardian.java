@@ -48,9 +48,8 @@ public class Guardian extends Monstruo {
 		public void action() {
 			// TODO Auto-generated method stub
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(7000);
 				planificar(null);
-//				Gui.setHistoria("Voy a intentar planificarme");
 				ok = true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
