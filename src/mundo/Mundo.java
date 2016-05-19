@@ -31,10 +31,12 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import jade.wrapper.StaleProxyException;
+import loaders.LoaderFrases;
 import loaders.LoaderMontruos;
 import loaders.LoaderPersonajes;
 import loaders.LoaderPnjs;
 import objetos.Objeto;
+import ontologia.Diccionario;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import ontologia.Raza;
@@ -163,9 +165,10 @@ public class Mundo extends GuiAgent {
 		myGui.setVisible(true);
 
 		try {
-			new LoaderPnjs(this);
-			new LoaderMontruos(this);
-			new LoaderPersonajes(this);
+			Diccionario dic = LoaderFrases.loaderFrases();
+			new LoaderPnjs(this,dic);
+			new LoaderMontruos(this,dic);
+			new LoaderPersonajes(this,dic);
 		} catch (ControllerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

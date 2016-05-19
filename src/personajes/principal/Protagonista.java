@@ -16,7 +16,7 @@ public class Protagonista extends Personaje {
 	
 	
 	public Protagonista() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	public void iniciarPrincipal(String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){

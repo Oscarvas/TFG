@@ -14,9 +14,10 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import mundo.Mundo;
+import ontologia.Diccionario;
 
 public class LoaderPnjs {
-	public LoaderPnjs(Mundo mundo) throws ControllerException{
+	public LoaderPnjs(Mundo mundo, Diccionario dic) throws ControllerException{
 		String nombre;
 		PlatformController container = mundo.getContainerController();
 		

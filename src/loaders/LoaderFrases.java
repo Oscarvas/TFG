@@ -13,12 +13,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ontologia.Frases;
+import ontologia.Diccionario;
 
 public class LoaderFrases {
 
-	public static Frases loaderFrases() {
-		Frases frases = new Frases();
+	public static Diccionario loaderFrases() {
+		Diccionario frases = new Diccionario();
 
 		File fXmlFile = new File("Frases.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -47,7 +47,7 @@ public class LoaderFrases {
 								Node nNodeFrases = nListFrases.item(k);
 								if (nNodeFrases.getNodeType() == Node.ELEMENT_NODE) {
 									Element eElementFrase = (Element) nNodeFrases;
-									frases.añadirFrase(eElementPersonaje.getAttribute("tipo"),
+									frases.addFraseConPersonaje(eElementPersonaje.getAttribute("tipo"),
 											eElementAccion.getAttribute("id"), 
 											eElementFrase.getTextContent());
 								}

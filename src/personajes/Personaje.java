@@ -16,6 +16,7 @@ import java.util.Random;
 import javaff.JavaFF;
 import loaders.LoaderObjetivos;
 import objetos.Clave;
+import ontologia.Frases;
 import ontologia.Mitologia;
 import ontologia.Vocabulario;
 import acciones.*;
@@ -25,7 +26,6 @@ import gui.Gui;
 @SuppressWarnings({ "serial", "unused" })
 public class Personaje extends Agent {
 	private int vida;
-	private HashMap<String, ArrayList<String>> frases;
 	private String localizacion;	
 	private AID agenteMundo;
 	private int tesoro;
@@ -34,9 +34,10 @@ public class Personaje extends Agent {
 	private String casa;
 	
 	private ArrayList<Clave> mochila;
+	private Frases frases;
 	
 	public Personaje(){
-		this.frases = new HashMap<String, ArrayList<String>>();
+		this.frases = new Frases();
 	}
 
 	public String getCasa() {
@@ -67,7 +68,6 @@ public class Personaje extends Agent {
 				localizarInicial();
 			
 		} catch (FIPAException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -78,11 +78,11 @@ public class Personaje extends Agent {
 		
 	}
 
-	public HashMap<String, ArrayList<String>> getFrases() {
+	public Frases getFrases() {
 		return frases;
 	}
 
-	public void setFrases(HashMap<String, ArrayList<String>> frases) {
+	public void setFrases(Frases frases) {
 		this.frases = frases;
 	}
 

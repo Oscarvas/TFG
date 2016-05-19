@@ -14,9 +14,10 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import mundo.Mundo;
+import ontologia.Diccionario;
 
 public class LoaderMontruos {
-	public LoaderMontruos(Mundo mundo) throws ControllerException{
+	public LoaderMontruos(Mundo mundo, Diccionario dic) throws ControllerException{
 		String nombre;
 		String clase;
 		PlatformController container = mundo.getContainerController();
