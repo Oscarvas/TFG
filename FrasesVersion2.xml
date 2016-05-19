@@ -3,13 +3,60 @@
 	<!-- Documento que contiene las frases que se utilizaran para narrar la historia -->
 	<!-- Personaje indica el tipo de personaje sobre el cual se aplicaran las frases -->
 	<!-- Frase id indica para que acciones se utilizara la frase -->
+	<!-- Principal -->
+	<!-- El tipo va en función del XML de Personajes para el atributo clase -->	
+	<personaje tipo="Caballero">
+	</personaje>
+	<personaje tipo="Princesa">
+	</personaje>
+	<personaje tipo="Rey">
+	</personaje>
+	<personaje tipo="Mago">
+	</personaje>
+	<personaje tipo="Druida">
+	</personaje>
+	<!-- Monstruos -->
+	<!-- El tipo va en función del XML de Monstruos para el atributo especie -->
+	<personaje tipo="Dragon">
+	</personaje>
+	<personaje tipo="Queso Azul Mortifero">
+	</personaje>
+	<personaje tipo="Gyarados">
+	</personaje>
+	<personaje tipo="Troll">
+	</personaje>
 	<!-- PNJs -->
+	<!-- El tipo va en función del XML de PNJs para el atributo oficio -->
 	<personaje tipo="Chaman">
+	</personaje>
+	<personaje tipo="Tabernero">
+	</personaje>
+	<personaje tipo="Sastre">
+	</personaje>
+	<personaje tipo="Confabulador">
+	</personaje>
+	<personaje tipo="Jefe de Guerra">
+	</personaje>
+	<personaje tipo="Herrero">
+	</personaje>
+	
+	<!-- Crear acciones
 		<accion id="Inicio">
 			<frase>Frase ejemplo 1</frase>
 			<frase>Frase ejemplo 2</frase>
 			<frase>Frase ejemplo 3</frase>
 		</accion>
+		<accion id="Movimiento">
+			<frase>Frase ejemplo 1</frase>
+			<frase>Frase ejemplo 2</frase>
+			<frase>Frase ejemplo 3</frase>
+		</accion>
+		<accion id="Fin">
+			<frase>Frase ejemplo 1</frase>
+			<frase>Frase ejemplo 2</frase>
+			<frase>Frase ejemplo 3</frase>
+		</accion>
+		-->
 		<!--
 		<frase id="Presentacion">Entra en sintonía con los elementos.</frase>
 		<frase id="Presentacion">Siente la llamada de los espíritus.</frase>
@@ -21,7 +68,6 @@
 		<frase id="Muerte">Siente la llamada de los espíritus.</frase>
 		-->		
 		
-	</personaje>
 	<personaje tipo="Tabernero">
 		<frase id="Inicio">Limpia las mesas a la espera de clientes.</frase>
 		<frase id="Inicio">Carga nuevos barriles de cerveza de la bodega.</frase>

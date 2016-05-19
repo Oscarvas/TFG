@@ -2,25 +2,25 @@ package ontologia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+/*
+ * Clase que tendrá cada personaje donde se guadará
+ */
+public class Frases {	
+	// Se guardara de la siguiente forma <Accion,Array de frases>	
+	public HashMap<String, ArrayList<String>> frases;
 
-public class Frases {
-	// Se guardara de la siguiente forma <Clase,<Accion,Frases>>	
-	public HashMap<String, HashMap<String, ArrayList<String>>> frases;
-
-	public HashMap<String, HashMap<String, ArrayList<String>>> getFrases() {
-		return frases;
+	public HashMap<String, ArrayList<String>> getFrases() {
+		return this.frases;
 	}
 	
-	public void añadirFrase(String personaje, String accion, String frase){
-		if(this.frases.get(personaje) == null){
-			this.frases.put(personaje, new HashMap<String, ArrayList<String>>());
+	public void addFrase(String accion, String frase){
+		
+		if(this.frases.get(accion) == null){
+			this.frases.put(accion, new ArrayList<String>());
 		}
-		if(this.frases.get(personaje).get(accion) == null){
-			this.frases.get(personaje).put(accion, new ArrayList<String>());
-		}
-		ArrayList<String> aux = this.frases.get(personaje).get(accion);
+		ArrayList<String> aux = this.frases.get(accion);
 		aux.add(frase);
-		this.frases.get(personaje).put(accion, aux);
+		this.frases.put(accion, aux);
 	}
 
 }
