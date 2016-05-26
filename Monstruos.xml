@@ -6,9 +6,7 @@
 <!--		Secuestrador: un monstruo que se dedicara a secuestrar princesas desprevenidas -->
 <!--		Guardian: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
 <!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
-<!--		PuroMal: un monstruo que simplemente hara maldades por todo el mundo -->
-<!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
-<!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
+<!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
 	<monstruo nombre="Smaug" clase="Secuestrador" especie="Dragon" sexo="F"/>

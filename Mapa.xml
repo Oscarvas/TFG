@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Para configurar correctamente una mapa debes: -->
+<!-- NOMBRE = Darle un nombre característico que la diferencie del resto -->
+<!-- REGION = Definir una region del mapa, esta region tendrá un nombre y un nº de localizaciones asignadas, por cada region debes: -->
+<!-- 	LOCALIZACION = Cada region contiene un nº de localizaciones específicas, estas localizaciones poseen las propiedades: -->
+<!--		nombre: el nombre de la localizacion -->
+<!--		tipo: de que tipo es esa localizacion, forestal, acuatica, urbana,... -->
+<!--		!advertencia: no cambies el tipo de las localizaciones del mapa, o los dibujos no concordaran -->
+
+
 <Mapa>
- 
 
  	<region nombre="Isla Egeria"> <!-- Isla Egeria -->
-	    <localizacion id="Egeria" tipo="Pueblo" >
+	    <localizacion id="Egeria" tipo="Pueblo" > <!-- Pueblo -->
 	        <conectadoCon>Tesqua Caligo</conectadoCon>
 	    </localizacion>
-	    <localizacion id="Caligo" tipo="Bosque" ><!-- Bosque -->
+	    <localizacion id="Caligo" tipo="Bosque" > <!-- Bosque -->
 	        <conectadoCon>Egeria Turis</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Turis" tipo="Pueblo" ><!-- Pueblo -->
+	    <localizacion id="Turis" tipo="Pueblo" > <!-- Pueblo -->
 	        <conectadoCon>Caligo</conectadoCon>
 	    </localizacion>	    
      </region>
     
     <!-- Isla Illuc -->
     <region>
-	    <localizacion id="Illuc" tipo="Pueblo" >
+	    <localizacion id="Illuc" tipo="Pueblo" ><!-- Pueblo -->
 	        <conectadoCon>Tesqua Hospital</conectadoCon>
 	    </localizacion>	    
 	    <localizacion id="Hospital" tipo="Urbano" >
