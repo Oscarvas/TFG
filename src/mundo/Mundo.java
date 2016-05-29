@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.jgrapht.generate.RandomGraphGenerator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -187,6 +186,8 @@ public class Mundo extends GuiAgent {
 		addBehaviour(new ConvertirEnHeroe());
 		addBehaviour(new MuertePersonaje());
 		addBehaviour(new DondeEstaPersonaje());
+		addBehaviour(new Proteger());
+		addBehaviour(new MoverObjetos());
 	}
 
 	protected void takeDown() {
@@ -389,7 +390,7 @@ public class Mundo extends GuiAgent {
 						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
 						
 						// si un caballero coincide con un guardian
-						//EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
+						EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
 
 						reply.setPerformative(ACLMessage.CONFIRM);
 						reply.setContent(loc2.getNombre());
@@ -532,32 +533,13 @@ public class Mundo extends GuiAgent {
 				int i = 0;
 				while (i < result.length && !hayGuardian) {
 					guardianes[i] = result[i].getName();
-					if(estado.estanMismaLocalizacion(guardianes[i].getName(), nombre)) //si el caballero y el guardian estan en la misma loc
+					if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el caballero y el guardian estan en la misma loc
 						hayGuardian = true;
 					i++;
 				}
 				
-				if (hayGuardian){
+				if (hayGuardian)
 					AcudeMago(myAgent);
-					//aqui cojo al mago con un rndm entre el array de magos
-					//despiero al mago como a un trol?
-					//el mago acude pelea con el guardián y deja el objeto en el castillo (esto va por planificacion?)
-				}
-				
-//				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-//				cfp.setContent(clase);
-//				cfp.setConversationId("SolicitarServicio");
-//
-//				for (int i = 0; i < guardianes.length; i++) {
-//					cfp.addReceiver(guardianes[i]);
-//				}
-//
-//				cfp.setReplyWith("cfp" + System.currentTimeMillis());
-//				myAgent.send(cfp);
-//				MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("SolicitarServicio"),
-//						MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
-//
-//				myAgent.addBehaviour(new RecibirOfertas(mt, guardianes.length, nombre));
 			}
 
 		} catch (Exception fe) {
@@ -581,7 +563,13 @@ public class Mundo extends GuiAgent {
 				for (int i = 0; i < result.length; i++) {
 					hechiceros[i] = result[i].getName();
 				}
-				//new RandomGraphGenerator<>(1, i);
+				AID mago = hechiceros[new Random().nextInt(hechiceros.length)];
+				
+				ACLMessage fairytail = new ACLMessage(ACLMessage.INFORM);
+				fairytail.setConversationId("HoraMagica");
+				fairytail.addReceiver(mago);
+				fairytail.setContent("nombreObjeto");
+				myAgent.send(fairytail);
 
 			}
 
@@ -621,7 +609,55 @@ public class Mundo extends GuiAgent {
 				block();
 		}
 	}
+	
+	private class MoverObjetos extends CyclicBehaviour {
 
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("MoverObjetos"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				String[] contenido = receive.getContent().split(" ");
+
+				for (int i = 1 ; i < contenido.length; i++)
+					estado.setObjetoEnLoc(contenido[i], contenido[0]);
+
+				send(receive.createReply());
+
+			} else
+				block();
+		}
+	}
+
+	private class Proteger extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+					MessageTemplate.MatchConversationId("Proteger"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				ACLMessage reply = receive.createReply();
+				
+				Objeto obj = estado.getAlmacen().extraerObjeto("clave", estado.getAlmacen().posicionObjetoClave(receive.getContent()));
+				
+				reply.setContent(obj.getDesc());
+
+				myAgent.send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
+	
 	private class Secuestro extends CyclicBehaviour {
 
 		public void action() {

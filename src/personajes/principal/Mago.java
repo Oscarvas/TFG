@@ -1,10 +1,7 @@
 package personajes.principal;
 
-import acciones.*;
 import gui.Gui;
-import jade.core.AID;
 import jade.core.behaviours.Behaviour;
-import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -44,8 +41,8 @@ public class Mago extends Protagonista {
 		localizarPersonaje();
 		Gui.setHistoria("Aquel al que llaman mago, " + getLocalName()
 				+ ", realmente sólo tiene muchísimas cartas bajo la túnica.");
-		
-		addBehaviour(new NuncaLlegoTarde());
+
+		addBehaviour(new AyudaArcana());
 	}
 
 	protected void takeDown() {
@@ -62,17 +59,27 @@ public class Mago extends Protagonista {
 		}
 	}
 
-	private class NuncaLlegoTarde extends Behaviour {
+	private class AyudaArcana extends Behaviour {
 		boolean ok;
 
 		@Override
 		public void action() {
-			try {
-				Thread.sleep(7000);
-				planificar(null);
-				ok = true;
-			} catch (Exception e) {
-				e.printStackTrace();
+			// TODO Auto-generated method stub
+			ok = false;
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("HoraMagica"),
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+			ACLMessage msg = myAgent.receive(mt);
+
+			if (msg != null) {
+				try {
+					ok = true;
+					// planificar(msg.getContent());
+					Gui.setHistoria(getLocalName() + " me planifico muy guay madafakas !!! ----------");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -82,45 +89,4 @@ public class Mago extends Protagonista {
 		}
 	}
 
-	private class FinPlanificacion extends Behaviour {
-
-		AID rey;
-		ACLMessage receive;
-
-		public FinPlanificacion(AID rey) {
-			this.rey = rey;
-		}
-
-		public void action() {
-
-			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Fin-Plan"),
-					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-
-			receive = receive(mt);
-
-			if (receive != null) {
-
-				ACLMessage restaurar = new ACLMessage(ACLMessage.INFORM);
-				restaurar.setConversationId("Restaurar");
-				restaurar.addReceiver(rey);
-
-				if (estaMuerto()) {
-
-					Gui.setHistoria("+ El mago " + getLocalName() + " se evaporo quedando solo su túnica. \n");
-
-					restaurar.setPerformative(ACLMessage.FAILURE);
-				}
-
-				doDelete();
-				send(restaurar);
-
-			} else
-				block();
-		}
-
-		@Override
-		public boolean done() {
-			return receive != null;
-		}
-	}
 }

@@ -20,6 +20,9 @@ public abstract class Objeto {
 	public String getId() {
 		return this.nombre;
 	}
+	public String getDesc() {
+		return this.descripcion;
+	}
 	
 	public String toString() {		
 		return "- " + this.nombre + ": " + this.descripcion;

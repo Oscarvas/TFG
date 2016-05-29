@@ -64,6 +64,25 @@ public class Almacen {
 		}
 		return -1;
 	}
+	/**
+	 * Mira si hay objetos claves que se hayan guardado.
+	 * 
+	 * @param nombreObjeto
+	 * @return la posicion del objeto clave, -1 si no hay objeto clave.
+	 */
+	public int posicionObjetoClave(String nombreObjeto) {
+		int i = 0;
+		Clave c;
+		Iterator it = (Iterator) this.objetos.get("clave").iterator();
+		while (it.hasNext()) {
+			c = (Clave) it.next();
+			if (c.getId().equals(nombreObjeto)) {
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
 
 	public int consumibleAleatorio() {
 		Random rnd = new Random();
