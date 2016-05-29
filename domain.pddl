@@ -6,6 +6,11 @@
 		caballero
 		secuestrador
 		princesa
+		guardian
+		emboscador
+		maligno
+		mago
+		druida
 	)
 	
 	(:predicates
@@ -16,13 +21,20 @@
 		(estaLibre ?per)
 		
 		(conPrinc ?d ?p)
+		(conObjeto ?per ?o)
+		(objetoEnLoc ?o ?loc)
 		
 		(esPrincipal ?per)
 		(esSecundario ?per)
 		(esRey ?r)
 		(esPrincesa ?p)
 		(esCaballero ?c)
+		(esMago ?mg)
+		(esDruida ?c)
 		(esSecuestrador ?d)
+		(esGuardian ?per)
+		(esMaligno ?m)
+		(esEmboscador ?e)
 		
 		(vivo ?per)
 	)
@@ -185,6 +197,25 @@
 			(not (estaLibre ?g))
 			(conObjeto ?g ?o))
 	)
+	
+;; El guardian se mueve con un objeto
+
+(:action escoltarObjeto
+	:parameters (?g ?o ?locOrigen ?locDest)
+	:precondition (and
+		(esGuardian ?g)
+		(conObjeto ?g ?o)
+		(objetoEnLoc ?o ?locOrigen)
+		(enLoc ?g ?locOrigen)
+		(adyacente ?locOrigen ?locDest)
+	)
+	:effect (and
+		(enLoc ?g ?locDest)
+		(objetoEnLoc ?o ?locDest)
+		(not (enLoc ?g ?locOrigen))
+		(not (objetoEnLoc ?o ?locOrigen))
+	)
+)
 
 ;; el caballero deja a la princesa en su hogar
 	(:action dejarEnCasa
