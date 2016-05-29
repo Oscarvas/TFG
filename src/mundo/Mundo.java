@@ -645,9 +645,10 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 
 				ACLMessage reply = receive.createReply();
-				Objeto obj = estado.extraerObjeto(receive.getContent());
+				String nombre = estado.nombreCorrecto(receive.getContent());
+				Objeto obj = estado.extraerObjeto(nombre);
 				
-				reply.setContent(obj.getDesc());
+				reply.setContent(nombre +" "+obj.getDesc());
 
 				myAgent.send(reply);
 

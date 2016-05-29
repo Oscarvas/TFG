@@ -33,8 +33,10 @@ public class ProtegerObjeto {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(proteger.getReplyWith());
 		ACLMessage reply = personaje.blockingReceive(mt);
 		
-		personaje.guardarObjeto(new Clave(objeto, reply.getContent(), personaje.getLocalizacion()));
-		Gui.setHistoria(personaje.getLocalName() + " ha encontrado el objeto "+ objeto + " en "+ personaje.getLocalizacion()+" \n");
+		String [] info = reply.getContent().split(" ");
+		
+		personaje.guardarObjeto(new Clave(info[0], info[1], personaje.getLocalizacion()));
+		Gui.setHistoria(personaje.getLocalName() + " ha encontrado el objeto "+ info[0] + " en "+ personaje.getLocalizacion()+" \n");
 
 	}
 }
