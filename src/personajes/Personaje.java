@@ -32,6 +32,7 @@ public class Personaje extends Agent {
 	private String sexo;
 	protected String clase;
 	private String casa;
+	private int atrPrincipal;
 	
 	private ArrayList<Clave> mochila;
 	private Frases frases;
@@ -158,6 +159,14 @@ public class Personaje extends Agent {
 	
 	public void setVida(int vida) {
 		this.vida = vida;
+	}
+	
+	public int getPrincipal() {
+		return this.atrPrincipal;
+	}
+	
+	public void setPrincipal(int principal) {
+		this.atrPrincipal = principal;
 	}
 	
 	public String getSexo(){
