@@ -201,18 +201,19 @@
 ;; El guardian se mueve con un objeto
 
 (:action escoltarObjeto
-	:parameters (?g ?o ?locOrigen ?locDest)
+	:parameters (?per ?o ?locOrigen ?locDest)
 	:precondition (and
-		(esGuardian ?g)
-		(conObjeto ?g ?o)
+		(esSecundario ?per)
+		(conObjeto ?per ?o)
+		(vivo ?per)
 		(objetoEnLoc ?o ?locOrigen)
-		(enLoc ?g ?locOrigen)
+		(enLoc ?per ?locOrigen)
 		(adyacente ?locOrigen ?locDest)
 	)
 	:effect (and
-		(enLoc ?g ?locDest)
+		(enLoc ?per ?locDest)
 		(objetoEnLoc ?o ?locDest)
-		(not (enLoc ?g ?locOrigen))
+		(not (enLoc ?per ?locOrigen))
 		(not (objetoEnLoc ?o ?locOrigen))
 	)
 )
