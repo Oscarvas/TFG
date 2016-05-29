@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.jgrapht.generate.RandomGraphGenerator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -384,8 +385,11 @@ public class Mundo extends GuiAgent {
 						loc2.añadirPersonaje(personaje.getLocalName());
 						estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 
-						// si un caballero va al cruce
+						// si un caballero coincide con un emboscador
 						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+						
+						// si un caballero coincide con un guardian
+						//EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
 
 						reply.setPerformative(ACLMessage.CONFIRM);
 						reply.setContent(loc2.getNombre());
@@ -508,6 +512,84 @@ public class Mundo extends GuiAgent {
 		}
 	}
 
+	/*
+	 * Avisamos a todos los emboscadores por si les interesa/pueden actuar
+	 */
+	private void EncuentroGuardian(Agent myAgent, String clase, String nombre) {
+		
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Guardian");
+		template.addServices(sd);
+
+		try {
+
+			DFAgentDescription[] result = DFService.search(myAgent, template);
+			AID[] guardianes = new AID[result.length];
+
+			if (guardianes.length > 0) {
+				boolean hayGuardian = false;
+				int i = 0;
+				while (i < result.length && !hayGuardian) {
+					guardianes[i] = result[i].getName();
+					if(estado.estanMismaLocalizacion(guardianes[i].getName(), nombre)) //si el caballero y el guardian estan en la misma loc
+						hayGuardian = true;
+					i++;
+				}
+				
+				if (hayGuardian){
+					AcudeMago(myAgent);
+					//aqui cojo al mago con un rndm entre el array de magos
+					//despiero al mago como a un trol?
+					//el mago acude pelea con el guardián y deja el objeto en el castillo (esto va por planificacion?)
+				}
+				
+//				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+//				cfp.setContent(clase);
+//				cfp.setConversationId("SolicitarServicio");
+//
+//				for (int i = 0; i < guardianes.length; i++) {
+//					cfp.addReceiver(guardianes[i]);
+//				}
+//
+//				cfp.setReplyWith("cfp" + System.currentTimeMillis());
+//				myAgent.send(cfp);
+//				MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("SolicitarServicio"),
+//						MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
+//
+//				myAgent.addBehaviour(new RecibirOfertas(mt, guardianes.length, nombre));
+			}
+
+		} catch (Exception fe) {
+			fe.printStackTrace();
+		}
+	}
+	
+	private void AcudeMago(Agent myAgent){
+
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Cazamagia");
+		template.addServices(sd);
+
+		try {
+
+			DFAgentDescription[] result = DFService.search(myAgent, template);
+			AID[] hechiceros = new AID[result.length];
+
+			if (hechiceros.length > 0) {
+				for (int i = 0; i < result.length; i++) {
+					hechiceros[i] = result[i].getName();
+				}
+				//new RandomGraphGenerator<>(1, i);
+
+			}
+
+		} catch (Exception fe) {
+			fe.printStackTrace();
+		}
+	}
+	
 	private class MoverPrincesaSecuestrada extends CyclicBehaviour {
 
 		public void action() {

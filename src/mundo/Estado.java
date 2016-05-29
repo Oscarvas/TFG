@@ -292,7 +292,7 @@ public class Estado {
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
 
-			if (personajes.get("Secuestrador").contains(e.getKey().toString()))
+			if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Guardian").contains(e.getKey().toString()))
 				estado += "(esGuarida ";
 
 			else
