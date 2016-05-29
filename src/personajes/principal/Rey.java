@@ -36,6 +36,7 @@ public class Rey extends Protagonista {
 			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
+			super.principal = Integer.parseInt((String) args[2]);//el rey da como atributo principal la fuerza
 			localizarPersonaje();
 			
 			DFAgentDescription dfd = new DFAgentDescription();

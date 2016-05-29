@@ -26,7 +26,7 @@ public class Batalla {
 		batalla.addReceiver(new AID ((String) secundario, AID.ISLOCALNAME));
 		batalla.setConversationId("Batalla");
 		batalla.setReplyWith("batalla" + System.currentTimeMillis());
-		batalla.setContent(Integer.toString(personaje.getVida()));
+		batalla.setContent(Integer.toString(personaje.getPrincipal()));
 		
 		Gui.setHistoria(personaje.getLocalName()+ " entabla batalla con " + secundario + ". \n");
 		
