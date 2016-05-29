@@ -76,7 +76,7 @@ public class Almacen {
 		Iterator it = (Iterator) this.objetos.get("clave").iterator();
 		while (it.hasNext()) {
 			c = (Clave) it.next();
-			if (c.getId().equals(nombreObjeto)) {
+			if (c.getId().equalsIgnoreCase(nombreObjeto)) {
 				return i;
 			}
 			i++;

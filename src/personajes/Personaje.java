@@ -39,6 +39,8 @@ public class Personaje extends Agent {
 	
 	public Personaje(){
 		this.frases = new Frases();
+		this.mochila = new ArrayList<Clave>();
+		addBehaviour(new Defender(this));
 	}
 
 	public String getCasa() {
@@ -75,7 +77,7 @@ public class Personaje extends Agent {
 		/*
 		 * Provisionalmente aqui para no repetir codigo
 		 * */
-		addBehaviour(new Defender(this));
+		
 		
 	}
 
@@ -295,6 +297,7 @@ public class Personaje extends Agent {
 					
 					else if (accion.equalsIgnoreCase("proteger"))
 						new ProtegerObjeto(this, accionActual[2]).execute();
+						
 					
 					else if (accion.equalsIgnoreCase("convertirseenvillano"))
 						Gui.setHistoria(accionActual[1]+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");

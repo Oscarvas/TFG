@@ -7,6 +7,7 @@ import java.util.Map;
 
 import loaders.LoaderObjetos;
 import objetos.Almacen;
+import objetos.Objeto;
 
 public class Estado {
 
@@ -29,6 +30,7 @@ public class Estado {
 	private Almacen almacen;
 	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
 	private ArrayList<String> consumidor;//guardara las clases que puden usar objetos consumibles
+	private ArrayList<Objeto> objetosClave; //guarda una copia de los objetos clave
 	
 	public Estado() {
 
@@ -50,6 +52,20 @@ public class Estado {
 		this.almacen = LoaderObjetos.loaderObjetos();
 		this.objetoEnLoc = new HashMap<String, String>();
 		this.consumidor = new ArrayList<String>();
+		this.objetosClave = new ArrayList<Objeto>();
+	}
+	public void guardaClave(Objeto obj){
+		this.objetosClave.add(obj);
+	}
+	
+	public Objeto extraerObjeto(String nombreObj){
+		Objeto ret = null;
+		for (Objeto obj : this.objetosClave)
+			if (obj.getId().equalsIgnoreCase(nombreObj))
+				ret = obj;
+		
+		return ret;
+		
 	}
 
 	public Almacen getAlmacen() {

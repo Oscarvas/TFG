@@ -106,6 +106,7 @@ public class Mundo extends GuiAgent {
 						tipoObjeto = "clave";
 						this.estado.setObjetoEnLoc(obj.getId(), this.id);
 						this.estado.añadirNombre(obj.getId());
+						this.estado.guardaClave(obj);
 					}
 					
 					
@@ -637,15 +638,14 @@ public class Mundo extends GuiAgent {
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 					MessageTemplate.MatchConversationId("Proteger"));
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
 
 				ACLMessage reply = receive.createReply();
-				
-				Objeto obj = estado.getAlmacen().extraerObjeto("clave", estado.getAlmacen().posicionObjetoClave(receive.getContent()));
+				Objeto obj = estado.extraerObjeto(receive.getContent());
 				
 				reply.setContent(obj.getDesc());
 
