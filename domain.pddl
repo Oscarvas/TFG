@@ -1,5 +1,5 @@
 (define (domain Historia)
-	
+	(:requirements :typing)
 	(:types
 		localizacion
 		rey
@@ -26,15 +26,15 @@
 		
 		(esPrincipal ?per)
 		(esSecundario ?per)
-		(esRey ?r)
-		(esPrincesa ?p)
-		(esCaballero ?c)
-		(esMago ?mg)
-		(esDruida ?c)
-		(esSecuestrador ?d)
+		(esRey ?per)
+		(esPrincesa ?per)
+		(esCaballero ?per)
+		(esMago ?per)
+		(esDruida ?per)
+		(esSecuestrador ?per)
 		(esGuardian ?per)
-		(esMaligno ?m)
-		(esEmboscador ?e)
+		(esMaligno ?per)
+		(esEmboscador ?per)
 		
 		(vivo ?per)
 	)
@@ -287,7 +287,7 @@
 	)
 
 ;; el mago consigue el objeto del guardian
-	(:action proteger
+	(:action cogerObjeto
 		:parameters (?mg ?g ?o ?loc)
 		:precondition (and
 			(esMago ?mg)
@@ -302,30 +302,10 @@
 		:effect (and
 			(not (estaLibre ?mg))
 			(conObjeto ?mg ?o)
-			(restaurador ?mg)
 		)
 	)
 	
-;; El mago lleva un objeto a donde vive
 
-	(:action escoltarObjeto
-		:parameters (?mg ?o ?locOrigen ?locDest)
-		:precondition (and
-			(esMago ?mg)
-			(conObjeto ?mg ?o)
-			(vivo ?mg)
-			(objetoEnLoc ?o ?locOrigen)
-			(enLoc ?mg ?locOrigen)
-			(adyacente ?locOrigen ?locDest)
-			(restaurador ?mg)
-		)
-		:effect (and
-			(enLoc ?per ?locDest)
-			(objetoEnLoc ?o ?locDest)
-			(not (enLoc ?per ?locOrigen))
-			(not (objetoEnLoc ?o ?locOrigen))
-		)
-	)
 
 ;; el mago restaura el objeto en su hogar
 	(:action restaurarObjeto
@@ -333,12 +313,12 @@
 		:precondition (and
 			(esMago ?mg)
 			(conObjeto ?mg ?o)
-			(enLoc ?c ?loc)
+			(enLoc ?mg ?loc)
 			(objetoEnLoc ?o ?loc)
 			(esCasa ?mg ?loc)
 		)
 		:effect (and
-			(enLoc ?per ?loc)
+			(enLoc ?mg ?loc)
 			(objetoEnLoc ?o ?loc)
 			(restaurado ?o)
 			(estaLibre ?mg)
