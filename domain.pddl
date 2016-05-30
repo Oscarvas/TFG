@@ -330,10 +330,8 @@
 			(objetoEnLoc ?o ?loc)
 			(esCasa ?mg ?loc))
 		:effect (and
-			(enLoc ?per ?locDest)
-			(objetoEnLoc ?o ?locDest)
-			(not (enLoc ?per ?locOrigen))
-			(not (objetoEnLoc ?o ?locOrigen))
+			(enLoc ?per ?loc)
+			(objetoEnLoc ?o ?loc)
 			(restaurado ?o)
 			(estaLibre ?mg)
 			(restaurador ?mg))
