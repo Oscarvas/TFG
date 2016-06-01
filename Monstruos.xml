@@ -14,7 +14,11 @@
 	<monstruo nombre="Casper" clase="Maligno" especie="Queso Azul Mortifero" sexo="M"/>
 	
 	<monstruo nombre="Jormundgander" clase="Guardian" especie="Gyarados" sexo="F"/>
+	<monstruo nombre="Basilisc" clase="Guardian" especie="Lombriz" sexo="M"/>
 		
 	<monstruo nombre="Trundle" clase="Emboscador" especie="Troll" sexo="M"/>
+	<monstruo nombre="Tazdingo" clase="Emboscador" especie="Ruin" sexo="M"/>
+	<monstruo nombre="Trog" clase="Emboscador" especie="Mismisimo" sexo="M"/>
+	<monstruo nombre="UnaBolaDeNieve" clase="Emboscador" especie="MissUniverse" sexo="M"/>
 	
 </Actores>

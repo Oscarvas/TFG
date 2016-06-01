@@ -42,9 +42,7 @@ o Casarse con Princesas.
      -->
     
     <personaje tipo="Mago" >
-        <objetivo>(sabio Mago)</objetivo>
-        <objetivo>(archivado Mago)</objetivo>
-        <objetivo>(esHeroe Mago)</objetivo>
+        <objetivo>(and (esSabio Mago) (restaurado MountainHearth))</objetivo>
     </personaje>
     <!-- o Rescatan Princesas.
 o Matan Monstruos.

@@ -17,4 +17,8 @@
 	
 	<personaje nombre="JuanK" clase="Rey" raza="TESQ" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
+	<personaje nombre="Merlin" clase="Mago" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	<personaje nombre="Magnesio" clase="Mago" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	<personaje nombre="Magnifico" clase="Mago" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	
 </Actores>
