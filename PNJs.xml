@@ -8,14 +8,4 @@
 
 	<pnj nombre="Thrall" sexo="M" oficio="Chaman" localizacion="Minas"/>
 	
-	<pnj nombre="Kvothe" sexo="M" oficio="Tabernero" localizacion="Taberna"/>
-	
-	<pnj nombre="Felurian" sexo="F" oficio="Sastre" localizacion="Sastreria"/>
-		
-	<pnj nombre="Lord Victor Nefarius" sexo="M" oficio="Confabulador" localizacion="Segrex"/>
-		
-	<pnj nombre="Garrosh" sexo="M" oficio="Jefe de Guerra" localizacion="Hospital"/>
-	
-	<pnj nombre="Haedrig Eamon" sexo="M" oficio="Herrero" localizacion="Herreria"/>
-	
 </Actores>
