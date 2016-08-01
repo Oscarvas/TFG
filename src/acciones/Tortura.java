@@ -2,16 +2,15 @@ package acciones;
 
 import gui.Gui;
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.ThreadedBehaviourFactory;
 import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.tools.logging.ontology.GetAllLoggers;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Tortura extends CyclicBehaviour {
+public class Tortura extends Behaviour {
 	private Personaje personaje;
 	private ThreadedBehaviourFactory tbf = new
 			ThreadedBehaviourFactory();
@@ -20,6 +19,8 @@ public class Tortura extends CyclicBehaviour {
 	}
 	
 	ACLMessage tortura;
+	
+	boolean ok;
 	
 	@Override
 	public void action() {
@@ -44,8 +45,16 @@ public class Tortura extends CyclicBehaviour {
 					}
 				}
 			}));
+			//Para finalizar el comportamiento TORTURA
+			ok = true;
 		}
 		else
 			block();
+	}
+
+	@Override
+	public boolean done() {
+		// TODO Auto-generated method stub
+		return ok;
 	}
 }
