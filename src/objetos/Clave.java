@@ -12,6 +12,9 @@ public class Clave extends Objeto {
 	public String getLocalizacion() {
 		return this.localizacion;
 	}
+	public void setLocObj(String localizacion){
+		this.localizacion = localizacion;
+	}
 
 	@Override
 	public String mensaje() {

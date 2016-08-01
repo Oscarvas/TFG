@@ -12,6 +12,8 @@ public class Protagonista extends Personaje {
 	private int destreza;
 	private int inteligencia;
 	private int codicia;
+	protected String atr;
+	protected int principal;
 	
 	
 	
@@ -27,6 +29,7 @@ public class Protagonista extends Personaje {
 		setDestreza(destreza * raza.getDestrezaModificador());
 		setInteligencia(inteligencia * raza.getDestrezaModificador());
 		setCodicia(codicia * raza.getCodiciaModificador());
+		setPrincipal();
 		if (!rey){
 			setTesoro(Vocabulario.SALARIO * getCodicia());
 		}			
@@ -65,6 +68,14 @@ public class Protagonista extends Personaje {
 
 	public void setCodicia(int codicia) {
 		this.codicia = codicia;
+	}
+	
+	public int getPrincipal(){
+		return this.principal;
+	}
+	public void setPrincipal(){
+		this.principal = this.getPrincipal() + this.getVida();//el atributo de pelea es su atributo principal + la vida
+		super.setPrincipal(this.principal);
 	}
 	
 	public String usarObjeto(String atributos){

@@ -23,7 +23,8 @@ public class Caballero extends Protagonista {
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), Integer.parseInt((String) args[2]),
 					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
-					Integer.parseInt((String) args[5]), false);
+					Integer.parseInt((String) args[5]), false );
+			super.principal = Integer.parseInt((String) args[2]);//el caballero da como atributo principal la fuerza
 		}
 
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -76,6 +77,8 @@ public class Caballero extends Protagonista {
 	public void setDragon(String dragon) {
 		this.dragon = dragon;
 	}
+	
+	
 
 	private class AceptarOfertaRescate extends CyclicBehaviour {
 

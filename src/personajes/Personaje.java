@@ -32,12 +32,15 @@ public class Personaje extends Agent {
 	private String sexo;
 	protected String clase;
 	private String casa;
+	private int atrPrincipal;
 	
 	private ArrayList<Clave> mochila;
 	private Frases frases;
 	
 	public Personaje(){
 		this.frases = new Frases();
+		this.mochila = new ArrayList<Clave>();
+		addBehaviour(new Defender(this));
 	}
 
 	public String getCasa() {
@@ -74,7 +77,7 @@ public class Personaje extends Agent {
 		/*
 		 * Provisionalmente aqui para no repetir codigo
 		 * */
-		addBehaviour(new Defender(this));
+		
 		
 	}
 
@@ -160,6 +163,14 @@ public class Personaje extends Agent {
 		this.vida = vida;
 	}
 	
+	public int getPrincipal() {
+		return this.atrPrincipal;
+	}
+	
+	public void setPrincipal(int principal) {
+		this.atrPrincipal = principal;
+	}
+	
 	public String getSexo(){
 		if (this.sexo.equals("M"))
 			return "El";
@@ -239,8 +250,9 @@ public class Personaje extends Agent {
 					}
 					
 					else if (accion.equalsIgnoreCase("escoltarObjeto")){
+						//Gui.setHistoria(this.getLocalName()+" se mueve con la reliquia "+accionActual[2]+" a "+accionActual[4]);
 						new Mover(this, accionActual[3], accionActual[4]).execute();
-						Gui.setHistoria(this.getLocalName()+" se mueve con la reliquia "+accionActual[2]+" a "+accionActual[4]);
+						new MoverObjetos(this).execute();;
 					}
 
 					else if (accion.equalsIgnoreCase("secuestrar")) {
@@ -284,7 +296,8 @@ public class Personaje extends Agent {
 						new ConvertirseEnHeroe(this).execute();
 					
 					else if (accion.equalsIgnoreCase("proteger"))
-						Gui.setHistoria(accionActual[1]+" ha decidido proteger el objeto: "+accionActual[2]+" en "+accionActual[3]);
+						new ProtegerObjeto(this, accionActual[2]).execute();
+						
 					
 					else if (accion.equalsIgnoreCase("convertirseenvillano"))
 						Gui.setHistoria(accionActual[1]+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
@@ -339,8 +352,18 @@ public class Personaje extends Agent {
 		new Mover(this, localizacion, locDest).execute();
 	}
 	
-	public void cogerObjeto(Clave obj){
+	public void guardarObjeto(Clave obj){
 		this.mochila.add(obj);
+	}
+	
+	//actualiza la localizacion de todos los objetos
+	public void actualizarObjetos(){
+		for (int i =0 ; i < this.mochila.size(); i++)
+			this.mochila.get(i).setLocObj(this.localizacion);
+	}
+	
+	public ArrayList<Clave> getMochila(){
+		return this.mochila;
 	}
 	
 }

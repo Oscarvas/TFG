@@ -106,6 +106,7 @@ public class Mundo extends GuiAgent {
 						tipoObjeto = "clave";
 						this.estado.setObjetoEnLoc(obj.getId(), this.id);
 						this.estado.añadirNombre(obj.getId());
+						this.estado.guardaClave(obj);
 					}
 					
 					
@@ -186,6 +187,8 @@ public class Mundo extends GuiAgent {
 		addBehaviour(new ConvertirEnHeroe());
 		addBehaviour(new MuertePersonaje());
 		addBehaviour(new DondeEstaPersonaje());
+		addBehaviour(new Proteger());
+		addBehaviour(new MoverObjetos());
 	}
 
 	protected void takeDown() {
@@ -384,8 +387,11 @@ public class Mundo extends GuiAgent {
 						loc2.añadirPersonaje(personaje.getLocalName());
 						estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 
-						// si un caballero va al cruce
+						// si un caballero coincide con un emboscador
 						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
+						
+						// si un caballero coincide con un guardian
+						EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
 
 						reply.setPerformative(ACLMessage.CONFIRM);
 						reply.setContent(loc2.getNombre());
@@ -508,6 +514,71 @@ public class Mundo extends GuiAgent {
 		}
 	}
 
+	/*
+	 * Avisamos a todos los emboscadores por si les interesa/pueden actuar
+	 */
+	private void EncuentroGuardian(Agent myAgent, String clase, String nombre) {
+		
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Guardian");
+		template.addServices(sd);
+
+		try {
+
+			DFAgentDescription[] result = DFService.search(myAgent, template);
+			AID[] guardianes = new AID[result.length];
+
+			if (guardianes.length > 0) {
+				boolean hayGuardian = false;
+				int i = 0;
+				while (i < result.length && !hayGuardian) {
+					guardianes[i] = result[i].getName();
+					if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el caballero y el guardian estan en la misma loc
+						hayGuardian = true;
+					i++;
+				}
+				
+				if (hayGuardian)
+					AcudeMago(myAgent);
+			}
+
+		} catch (Exception fe) {
+			fe.printStackTrace();
+		}
+	}
+	
+	private void AcudeMago(Agent myAgent){
+
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Cazamagia");
+		template.addServices(sd);
+
+		try {
+
+			DFAgentDescription[] result = DFService.search(myAgent, template);
+			AID[] hechiceros = new AID[result.length];
+
+			if (hechiceros.length > 0) {
+				for (int i = 0; i < result.length; i++) {
+					hechiceros[i] = result[i].getName();
+				}
+				AID mago = hechiceros[new Random().nextInt(hechiceros.length)];
+				
+				ACLMessage fairytail = new ACLMessage(ACLMessage.INFORM);
+				fairytail.setConversationId("HoraMagica");
+				fairytail.addReceiver(mago);
+				fairytail.setContent("nombreObjeto");
+				myAgent.send(fairytail);
+
+			}
+
+		} catch (Exception fe) {
+			fe.printStackTrace();
+		}
+	}
+	
 	private class MoverPrincesaSecuestrada extends CyclicBehaviour {
 
 		public void action() {
@@ -539,7 +610,55 @@ public class Mundo extends GuiAgent {
 				block();
 		}
 	}
+	
+	private class MoverObjetos extends CyclicBehaviour {
 
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("MoverObjetos"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				String[] contenido = receive.getContent().split(" ");
+
+				for (int i = 1 ; i < contenido.length; i++)
+					estado.setObjetoEnLoc(contenido[i], contenido[0]);
+
+				send(receive.createReply());
+
+			} else
+				block();
+		}
+	}
+
+	private class Proteger extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Proteger"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				ACLMessage reply = receive.createReply();
+				String nombre = estado.nombreCorrecto(receive.getContent());
+				Objeto obj = estado.extraerObjeto(nombre);
+				
+				reply.setContent(nombre +" "+obj.getDesc());
+
+				myAgent.send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
+	
 	private class Secuestro extends CyclicBehaviour {
 
 		public void action() {

@@ -1,5 +1,5 @@
 (define (domain Historia)
-	
+	(:requirements :typing)
 	(:types
 		localizacion
 		rey
@@ -26,15 +26,15 @@
 		
 		(esPrincipal ?per)
 		(esSecundario ?per)
-		(esRey ?r)
-		(esPrincesa ?p)
-		(esCaballero ?c)
-		(esMago ?mg)
-		(esDruida ?c)
-		(esSecuestrador ?d)
+		(esRey ?per)
+		(esPrincesa ?per)
+		(esCaballero ?per)
+		(esMago ?per)
+		(esDruida ?per)
+		(esSecuestrador ?per)
 		(esGuardian ?per)
-		(esMaligno ?m)
-		(esEmboscador ?e)
+		(esMaligno ?per)
+		(esEmboscador ?per)
 		
 		(vivo ?per)
 	)
@@ -184,39 +184,7 @@
 			(secuestrada ?p))
 	)
 
-;; el guardian consigue un objeto
-	(:action proteger
-		:parameters (?g ?o ?loc)
-		:precondition (and
-			(vivo ?g)
-			(objetoEnLoc ?o ?loc)
-			(esGuardian ?g)
-			(estaLibre ?g)
-			(enLoc ?g ?loc))
-		:effect (and
-			(not (estaLibre ?g))
-			(conObjeto ?g ?o))
-	)
-	
-;; El guardian se mueve con un objeto
 
-(:action escoltarObjeto
-	:parameters (?per ?o ?locOrigen ?locDest)
-	:precondition (and
-		(esSecundario ?per)
-		(conObjeto ?per ?o)
-		(vivo ?per)
-		(objetoEnLoc ?o ?locOrigen)
-		(enLoc ?per ?locOrigen)
-		(adyacente ?locOrigen ?locDest)
-	)
-	:effect (and
-		(enLoc ?per ?locDest)
-		(objetoEnLoc ?o ?locDest)
-		(not (enLoc ?per ?locOrigen))
-		(not (objetoEnLoc ?o ?locOrigen))
-	)
-)
 
 ;; el caballero deja a la princesa en su hogar
 	(:action dejarEnCasa
@@ -244,12 +212,13 @@
 			(vivo ?c)
 			(enLoc ?c ?locCab)
 			(esCasa ?c ?locCab)
-			(salvador ?c))
+			(salvador ?c)
+		)
 		:effect 
 			(esHeroe ?c)
 	)
 	
-	;; el caballero se convierte en héroe
+	;; el caballero se convierte en villano
 	(:action convertirseEnVillano
 		:parameters (?c ?locCab)
 		:precondition (and
@@ -257,9 +226,118 @@
 			(vivo ?c)
 			(enLoc ?c ?locCab)
 			(esCasa ?c ?locCab)
-			(asesino ?c))
+			(asesino ?c)
+		)
 		:effect 
 			(esVillano ?c)
+	)
+
+;; el guardian consigue un objeto
+	(:action proteger
+		:parameters (?g ?o ?loc)
+		:precondition (and
+			(vivo ?g)
+			(objetoEnLoc ?o ?loc)
+			(esGuardian ?g)
+			(estaLibre ?g)
+			(enLoc ?g ?loc)
+		)
+		:effect (and
+			(not (estaLibre ?g))
+			(conObjeto ?g ?o)
+		)
+	)
+	
+;; El guardian se mueve con un objeto
+	(:action escoltarObjeto
+		:parameters (?per ?o ?locOrigen ?locDest)
+		:precondition (and
+			(esSecundario ?per)
+			(conObjeto ?per ?o)
+			(vivo ?per)
+			(objetoEnLoc ?o ?locOrigen)
+			(enLoc ?per ?locOrigen)
+			(adyacente ?locOrigen ?locDest)
+		)
+		:effect (and
+			(enLoc ?per ?locDest)
+			(objetoEnLoc ?o ?locDest)
+			(not (enLoc ?per ?locOrigen))
+			(not (objetoEnLoc ?o ?locOrigen))
+		)
+	)
+
+;; batalla entre mago y Guardian
+	(:action batallaArcana
+		:parameters (?mg ?g ?loc)
+		:precondition (and
+			(esSecundario ?mg)
+			(esSecundario ?g)
+			(not (= ?mg ?g))
+			(enLoc ?mg ?loc)
+			(enLoc ?g ?loc)
+			(esGuarida ?g ?loc)
+			(vivo ?mg)
+			(vivo ?g)
+		)
+		:effect (and
+			(ayudante ?mg)
+			(not (vivo ?g))
+		)
+	)
+
+;; el mago consigue el objeto del guardian
+	(:action cogerObjeto
+		:parameters (?mg ?g ?o ?loc)
+		:precondition (and
+			(esMago ?mg)
+			(esGuardian ?g)
+			(vivo ?mg)
+			(not (vivo ?g))
+			(objetoEnLoc ?o ?loc)
+			(enLoc ?mg ?loc)
+			(enLoc ?g ?loc)
+			(ayudante ?mg)
+		)
+		:effect (and
+			(not (estaLibre ?mg))
+			(conObjeto ?mg ?o)
+		)
+	)
+	
+
+
+;; el mago restaura el objeto en su hogar
+	(:action restaurarObjeto
+		:parameters (?mg ?o ?loc)
+		:precondition (and
+			(esMago ?mg)
+			(conObjeto ?mg ?o)
+			(enLoc ?mg ?loc)
+			(objetoEnLoc ?o ?loc)
+			(esCasa ?mg ?loc)
+		)
+		:effect (and
+			(enLoc ?mg ?loc)
+			(objetoEnLoc ?o ?loc)
+			(restaurado ?o)
+			(estaLibre ?mg)
+			(restauradorClasico ?mg)
+		)
+	)	
+
+;; el mago se convierte en sabio
+	(:action convertirseEnSabio
+		:parameters (?mg ?locMg)
+		:precondition (and
+			(esMago ?mg)
+			(vivo ?mg)
+			(enLoc ?mg ?locMg)
+			(esCasa ?mg ?locMg)
+			(restauradorClasico ?mg)
+		)
+		:effect
+			(esSabio ?mg)
 	)
 
 )
