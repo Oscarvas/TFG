@@ -48,8 +48,15 @@ public class Tortura extends Behaviour {
 			//Para finalizar el comportamiento TORTURA
 			ok = true;
 		}
-		else
-			block();
+		else{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			reset();
+		}
 	}
 
 	@Override
