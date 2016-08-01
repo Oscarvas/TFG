@@ -9,6 +9,7 @@ import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.core.behaviours.ParallelBehaviour;
+import jade.core.behaviours.ThreadedBehaviourFactory;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -27,6 +28,8 @@ public class Rey extends Protagonista {
 	public int menosDineroPedido;
 	public MessageTemplate mt;
 	public int numeroHijas;
+	private ThreadedBehaviourFactory tbf = new
+			ThreadedBehaviourFactory();
 	
 	protected void setup(){		
 		
@@ -71,15 +74,18 @@ public class Rey extends Protagonista {
 			m.registerTransition("Aceptar", "Rescate", 2);
 			m.registerDefaultTransition("Princesa Salvada", "Atento");
 			
-			ParallelBehaviour p = new ParallelBehaviour(this, ParallelBehaviour.WHEN_ALL);
-			p.addSubBehaviour(m);
-			p.addSubBehaviour(new Tortura(this));
+//			ParallelBehaviour p = new ParallelBehaviour(this, ParallelBehaviour.WHEN_ALL);
+//			p.addSubBehaviour(m);
+//			p.addSubBehaviour(new Tortura(this));
 
-			addBehaviour(p);
+//			addBehaviour(p);
+			addBehaviour(tbf.wrap(m));
+			addBehaviour(tbf.wrap(new Tortura(this)));
 		}
 		else{
 			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no tengo hijas por las cuales preocuparme");
 		}
+		
 		
 	}
 	protected void takeDown() {
@@ -109,7 +115,7 @@ public class Rey extends Protagonista {
 					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 			ACLMessage receive = myAgent.blockingReceive(mt);
 			princesaSecuestrada = receive.getSender();
-			dragon = receive.getContent();			
+			dragon = receive.getContent();	
 			
 			/*
 			 * Una vez hemos recibido el llamado de auxilio de una princesa, activamos a los monstruos malignos
@@ -130,7 +136,7 @@ public class Rey extends Protagonista {
 				for (int i = 0; i < result.length; i++){
 					malignos[i] = result[i].getName();
 				}
-				
+				System.err.println("ahora vamos en la buscqueda de asesinos---------");
 				
 				AID fantasma;
 				if (malignos.length != 0){
@@ -141,6 +147,7 @@ public class Rey extends Protagonista {
 					herejia.addReceiver(fantasma);
 					herejia.setContent(getLocalName());
 					myAgent.send(herejia);
+					System.err.println("encontrado asesino "+fantasma.getLocalName());
 				}
 				
 				

@@ -3,14 +3,18 @@ package acciones;
 import gui.Gui;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.ThreadedBehaviourFactory;
 import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.tools.logging.ontology.GetAllLoggers;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Tortura extends CyclicBehaviour {
 	private Personaje personaje;
+	private ThreadedBehaviourFactory tbf = new
+			ThreadedBehaviourFactory();
 	public Tortura(Agent myAgent){
 		this.personaje = (Personaje) myAgent;
 	}
@@ -24,12 +28,14 @@ public class Tortura extends CyclicBehaviour {
 		tortura = myAgent.receive(mt);
 	
 		if (tortura != null){
+			Gui.setHistoria(myAgent.getLocalName()+ ": Ah!! Me han herido !!!");
+			
 			int vida = Integer.parseInt(tortura.getContent());
-			myAgent.addBehaviour(new TickerBehaviour(myAgent, 600){ //cada 30 segundos se desangrara
+			myAgent.addBehaviour(tbf.wrap(new TickerBehaviour(myAgent, 600){ //cada 30 segundos se desangrara
 
 				protected void onTick() {
 					personaje.añadirVida(-vida);
-					Gui.setHistoria("-----"+myAgent.getLocalName()+" se desangra, perdiendo "+vida+" de vida.");
+					System.err.println("-----"+myAgent.getLocalName()+" se desangra, perdiendo "+vida+" de vida.");
 					
 					
 					if ( personaje.estaMuerto() ){
@@ -37,7 +43,7 @@ public class Tortura extends CyclicBehaviour {
 						myAgent.doDelete();
 					}
 				}
-			});
+			}));
 		}
 		else
 			block();
