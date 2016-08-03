@@ -1,5 +1,10 @@
 package gui;
 
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import jade.gui.GuiEvent;
@@ -26,12 +31,18 @@ public class Gui extends JFrame {
 	private Libro contentPane;
 	private Mundo myAgent;
 	private static JTextArea textAreaHistoria;
+	private static Logger logger;
 
 	/**
 	 * Create the frame.
 	 * @param mundo 
 	 */
 	public Gui(Mundo mundo) {
+		
+		PropertyConfigurator.configure("log4j.properties");
+		logger = Logger.getLogger("Hiistoria");
+		
+		
 		myAgent = mundo;
 		setTitle("La Historia de " + myAgent.getLocalName());
 		
@@ -130,8 +141,12 @@ public class Gui extends JFrame {
 		minimapa.setLocation((int) (xFrame+this.getWidth()), yFrame);
 		minimapa.setVisible(true);
 	}
-	
+		
 	public static synchronized void setHistoria(String hist){
+		
+		//Logger
+		logger.info(hist);
+		
 		String acumulado = textAreaHistoria.getText();
 		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
