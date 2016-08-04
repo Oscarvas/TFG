@@ -39,12 +39,12 @@ public class Gui extends JFrame {
 	 */
 	public Gui(Mundo mundo) {
 		
-		PropertyConfigurator.configure("log4j.properties");
-		logger = Logger.getLogger("Hiistoria");
-		
-		
 		myAgent = mundo;
-		setTitle("La Historia de " + myAgent.getLocalName());
+		
+		PropertyConfigurator.configure("log4j.properties");
+		logger = Logger.getLogger(myAgent.getLocalName());
+				
+		setTitle(myAgent.getLocalName());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
