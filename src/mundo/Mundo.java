@@ -54,8 +54,10 @@ public class Mundo extends GuiAgent {
 	private String id;
 	private String tipo;
 	public ArrayList<Raza> razas;
+	public static Diccionario diccionario;
 
 	public Mundo() {
+		Mundo.diccionario = LoaderFrases.loaderFrases();
 		this.estado = new Estado();
 		this.regiones = new HashMap<String, ArrayList<Localizacion>>();
 		this.mapa = cargarMapa();// Mapa.getMapa(this.estado);
@@ -166,10 +168,9 @@ public class Mundo extends GuiAgent {
 		myGui.setVisible(true);
 
 		try {
-			Diccionario dic = LoaderFrases.loaderFrases();
-			new LoaderPnjs(this,dic);
-			new LoaderMontruos(this,dic);
-			new LoaderPersonajes(this,dic);
+			new LoaderPnjs(this);
+			new LoaderMontruos(this);
+			new LoaderPersonajes(this);
 		} catch (ControllerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

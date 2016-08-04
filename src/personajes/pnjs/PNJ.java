@@ -1,32 +1,31 @@
 package personajes.pnjs;
 
 import gui.Gui;
-import jade.core.AID;
-import jade.core.Agent;
+//import jade.core.AID;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class PNJ extends Personaje {
-	private String sexo;
+	//private String sexo;
 	private String oficio;
-	private String localizacion;	
-	private AID agenteMundo;	
+	//private String localizacion;	
+	//private AID agenteMundo;	
 	
 	protected void setup(){
-		Object[] args = getArguments(); 
 		
+		Object[] args = getArguments(); 		
 		//cargamos sus propiedades
 		setSexo((String)args[0]); //this.sexo = (String)args[0];
 		setoficio((String)args[1]); //this.oficio = (String)args[1];
 		setLocalizacion((String)args[2]); //this.localizacion = (String)args[2];		
 		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
+		setFrases(Mundo.diccionario.getFrasesPersonaje(getOficio()));
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
@@ -44,7 +43,7 @@ public class PNJ extends Personaje {
 		
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
-		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ " se levanta en " +getLocalizacion() + " con ganas de trabajar.");
+		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ getFrase("Inicio") +getLocalizacion() + " con ganas de trabajar.");
 		
 	}
 	

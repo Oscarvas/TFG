@@ -11,6 +11,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 
 @SuppressWarnings("serial")
 public class Caballero extends Protagonista {
@@ -19,6 +20,7 @@ public class Caballero extends Protagonista {
 	private String dragon;
 
 	protected void setup() {
+		setFrases(Mundo.diccionario.getFrasesPersonaje("Caballero"));
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), Integer.parseInt((String) args[2]),
@@ -41,7 +43,7 @@ public class Caballero extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("El caballero " + getLocalName() + " se ha despertado en " + getLocalizacion()
+		Gui.setHistoria("El caballero " + getLocalName() + getFrase("Inicio") + getLocalizacion()
 				+ " con su armadura hecha polvo.");
 
 		addBehaviour(new OfrecerServicios(getTesoro()));

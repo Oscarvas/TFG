@@ -11,6 +11,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 
 @SuppressWarnings("serial")
 public class Secuestrador extends Monstruo {
@@ -19,7 +20,8 @@ public class Secuestrador extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+" se escucha por todo el reino.");
+		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
+		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+ getFrase("Inicio"));
 		addBehaviour(new Secuestro());
 	}
 	protected void takeDown() {

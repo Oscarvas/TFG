@@ -8,6 +8,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 
 @SuppressWarnings("serial")
 public class Maligno extends Monstruo {
@@ -15,7 +16,8 @@ public class Maligno extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() +" ha decidido que es la hora de la venganza en el castillo "+getLocalizacion()+".");
+		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
+		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() + getFrase("Inicio") +getLocalizacion()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

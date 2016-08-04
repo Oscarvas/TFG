@@ -46,7 +46,7 @@ public class Mover {
 				evento();
 				objetoEncontrado();
 
-				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
+				Gui.setHistoria(personaje.getLocalName() + personaje.getFrase("Mover") + personaje.getLocalizacion()+"!");
 				
 
 			} else {

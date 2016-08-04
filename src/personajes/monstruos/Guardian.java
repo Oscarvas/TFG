@@ -5,6 +5,7 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import mundo.Mundo;
 import gui.Gui;
 
 @SuppressWarnings("serial")
@@ -12,7 +13,8 @@ public class Guardian extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria(getLocalizacion()+" se ha sumergido en la penumbra tras el paseo de "+getSexo() +" " + getEspecie()+ " "+getLocalName()+".");
+		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
+		Gui.setHistoria(getLocalizacion()+ getFrase("Inicio") + getSexo() + " " + getEspecie()+ " "+getLocalName()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

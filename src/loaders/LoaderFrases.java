@@ -36,19 +36,22 @@ public class LoaderFrases {
 				if (nNodePersonajes.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElementPersonaje = (Element) nNodePersonajes;
-					NodeList nListAcciones = eElementPersonaje.getElementsByTagName("accion");
+					NodeList nListAcciones = eElementPersonaje.getElementsByTagName("frase");
 
 					for (int j = 0; j < nListAcciones.getLength(); j++) {
 						Node nNodeAcciones = nListAcciones.item(j);
 						if (nNodeAcciones.getNodeType() == Node.ELEMENT_NODE) {
 							Element eElementAccion = (Element) nNodeAcciones;
-							NodeList nListFrases = eElementAccion.getElementsByTagName("frase");
+							NodeList nListFrases = eElementAccion.getElementsByTagName("f");
 							for (int k = 0; k < nListFrases.getLength(); k++) {
 								Node nNodeFrases = nListFrases.item(k);
 								if (nNodeFrases.getNodeType() == Node.ELEMENT_NODE) {
 									Element eElementFrase = (Element) nNodeFrases;
+									String personaje = eElementPersonaje.getAttribute("tipo");
+									String accion = eElementAccion.getAttribute("accion");
+									String frase = eElementFrase.getTextContent();
 									frases.addFraseConPersonaje(eElementPersonaje.getAttribute("tipo"),
-											eElementAccion.getAttribute("id"), 
+											eElementAccion.getAttribute("accion"), 
 											eElementFrase.getTextContent());
 								}
 							}

@@ -14,6 +14,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -22,6 +23,7 @@ public class Princesa extends Protagonista {
 	public AID secuestrador;
 
 	protected void setup(){
+		setFrases(Mundo.diccionario.getFrasesPersonaje("Princesa"));
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 
@@ -68,7 +70,7 @@ public class Princesa extends Protagonista {
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(myAgent.getLocalName()+": Las ventanas en el castillo "+getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
+					Gui.setHistoria(myAgent.getLocalName()+ getFrase("Inicio") + getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());

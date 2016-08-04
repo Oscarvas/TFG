@@ -14,10 +14,9 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import mundo.Mundo;
-import ontologia.Diccionario;
 
 public class LoaderPersonajes {
-	public LoaderPersonajes(Mundo mundo,Diccionario dic) throws ControllerException{
+	public LoaderPersonajes(Mundo mundo) throws ControllerException{
 		String nombre;
 		String clase;
 		PlatformController container = mundo.getContainerController();
@@ -50,7 +49,7 @@ public class LoaderPersonajes {
 							eElement.getAttribute("destreza"), eElement.getAttribute("inteligencia"),eElement.getAttribute("codicia")};
 					
 					guest = container.createNewAgent(nombre, "personajes.principal."+clase, args);
-					guest.start();
+					guest.start();				
 				}
 			}
 		} catch (Exception e) {

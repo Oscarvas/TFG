@@ -11,6 +11,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 
 @SuppressWarnings("serial")
 public class Druida extends Protagonista {
@@ -18,6 +19,7 @@ public class Druida extends Protagonista {
 	private String dragon;
 
 	protected void setup(){
+		setFrases(Mundo.diccionario.getFrasesPersonaje("Druida"));
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 

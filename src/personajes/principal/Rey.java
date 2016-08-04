@@ -8,7 +8,6 @@ import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
-import jade.core.behaviours.ParallelBehaviour;
 import jade.core.behaviours.ThreadedBehaviourFactory;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -16,6 +15,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
@@ -32,7 +32,7 @@ public class Rey extends Protagonista {
 			ThreadedBehaviourFactory();
 	
 	protected void setup(){		
-		
+		setFrases(Mundo.diccionario.getFrasesPersonaje("Rey"));
 		numeroHijas= Vocabulario.NUM_HIJAS();
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0 && numeroHijas > 0 ) {
@@ -55,7 +55,7 @@ public class Rey extends Protagonista {
 			}			
 			
 			
-			Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
+			Gui.setHistoria("El rey "+getLocalName()+ getFrase("Inicio"));
 						
 			FSMBehaviour m = new FSMBehaviour(this);
 			m.registerFirstState(new Atento(), "Atento");

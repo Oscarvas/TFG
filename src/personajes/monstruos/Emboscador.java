@@ -11,13 +11,16 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 
 @SuppressWarnings("serial")
 public class Emboscador extends Monstruo {
 	protected void setup(){
+		
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
+		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
+		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+ getFrase("Inicio"));
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
