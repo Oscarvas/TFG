@@ -7,6 +7,7 @@ import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
+import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
@@ -116,6 +117,7 @@ public class Secuestrador extends Monstruo {
 			receive = receive(mt);
 			
 			if ( receive != null ) {
+				//Aviso a la victima
 				ACLMessage secuestrar = new ACLMessage(ACLMessage.INFORM);
 				secuestrar.setConversationId("Te secuestro");
 				secuestrar.addReceiver(princesaSecuestrada);
@@ -124,8 +126,43 @@ public class Secuestrador extends Monstruo {
 				
 				MessageTemplate mt1 = MessageTemplate.MatchConversationId("Te secuestro");
 				myAgent.blockingReceive(mt1);
+				
+				//Aviso al guardian
+				DFAgentDescription template = new DFAgentDescription();
+				ServiceDescription sd = new ServiceDescription();
+				sd.setType("Guardian");
+				template.addServices(sd);
+				
+				DFAgentDescription[] result;
+				try {
+					result = DFService.search(myAgent, template);
+					AID[] guardianes = new AID[result.length];
+					for (int i = 0; i < result.length; i++){
+						guardianes[i] = result[i].getName();
+					}
+					
+					if (guardianes.length != 0){						
+						ACLMessage despiertaGuardian = new ACLMessage(ACLMessage.INFORM);
+						despiertaGuardian.setConversationId("DespiertaGuardian");						
+						
+						for (AID guardian : guardianes) {
+							
+							despiertaGuardian.addReceiver(guardian);
+							despiertaGuardian.setContent(guardian.getLocalName());
+							myAgent.send(despiertaGuardian);
+							
+						}
+					}
+					
+					
+				} catch (FIPAException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 			
-				addBehaviour(new HayQueJoderseConLaPrincesa());
+				addBehaviour(new VigilaTuEspalda());
 				
 			} else
 				block();
@@ -171,7 +208,7 @@ public class Secuestrador extends Monstruo {
 		
 
 
-	private class HayQueJoderseConLaPrincesa extends CyclicBehaviour{
+	private class VigilaTuEspalda extends CyclicBehaviour{
 
 		@Override
 		public void action() {
