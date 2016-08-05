@@ -8,16 +8,16 @@
     </personaje>
     <!-- • Genera Recompensas por objetivos.
 • Otorga ‘Fama’ y ‘Conocimiento’ a héroes correspondientes.
-• Generador de Princesas.
-• Si el Heroe fracasa, intenta rescatar a la princesa.
+• Generador de Victimas.
+• Si el Heroe fracasa, intenta rescatar a la victima.
      -->
     
-    <personaje tipo="Princesa" >
-    	<objetivo>(enLoc Princesa Biblioteca)</objetivo>
-    	<objetivo>(enLoc Princesa Establos)</objetivo>
-        <!-- <objetivo>(casarse Caballero Princesa)</objetivo>
+    <personaje tipo="Victima" >
+    	<objetivo>(enLoc Victima Biblioteca)</objetivo>
+    	<objetivo>(enLoc Victima Establos)</objetivo>
+        <!-- <objetivo>(casarse Caballero Victima)</objetivo>
         <objetivo>(enamorarse Monstruo)</objetivo>
-        <objetivo>(almaLibre Princesa)</objetivo> -->
+        <objetivo>(almaLibre Victima)</objetivo> -->
     </personaje>
     <!-- • Enamorarse y casarse con Héroes.
 • Enamorarse y casarse con Monstruos (no rescatable).
@@ -27,24 +27,24 @@
     
     <!-- Heroes -->
     <personaje tipo="Caballero" >
-    	<objetivo>(and (esHeroe Caballero) (salvada Princesa))</objetivo>
+    	<objetivo>(and (esHeroe Caballero) (salvada Victima))</objetivo>
     	<objetivo>(esVillano Caballero)</objetivo>
        <!--  <objetivo>(esHeroe Caballero)</objetivo>
-        <objetivo>(casarse Caballero Princesa)</objetivo>
+        <objetivo>(casarse Caballero Victima)</objetivo>
         <objetivo>(reinar Caballero)</objetivo> -->
     </personaje>
-    <!-- o Rescatan Princesas.
+    <!-- o Rescatan Victimas.
 o Matan Monstruos.
 o Obtienen ‘Fama’ lo que los convierte en ‘Leyenda’.
 o Se convierten en Rey
 o Compiten contra otros Héroes.
-o Casarse con Princesas.
+o Casarse con Victimas.
      -->
     
     <personaje tipo="Mago" >
         <objetivo>(and (esSabio Mago) (restaurado MountainHearth))</objetivo>
     </personaje>
-    <!-- o Rescatan Princesas.
+    <!-- o Rescatan Victimas.
 o Matan Monstruos.
 o Recolectan objetos magicos.
 o Obtienen ‘Conocimientos’ lo que los convierte en ‘Sabios’.
@@ -57,7 +57,7 @@ o Compiten contra otros Héroes.
         <objetivo>(competir Druida Villano)</objetivo>
         <objetivo>(esHeroe Druida)</objetivo>
     </personaje>
-    <!-- o Rescatan Princesas.
+    <!-- o Rescatan Victimas.
 o Matan Monstruos.
 o Inspiran miedo en otros Héroes.
 o Compite contra el Villano.
@@ -69,7 +69,7 @@ o Habla con los animales.
         <objetivo>(not (vivo Dragon))</objetivo>
     </personaje> -->
    <!--  • Derrocar al Rey.
-• Casarse con la Princesa.
+• Casarse con la Victima.
 • Almacenar oro (objetos brillantes).
 • Matar ‘Caballeros'.
 • Robar a los ‘Magos'.
@@ -78,10 +78,10 @@ o Habla con los animales.
     
     <!-- Monstruos -->
     <personaje tipo="Secuestrador" >
-        <objetivo>(and (conPrinc Secuestrador Princesa) (enLoc Secuestrador Cuevas))</objetivo>
-        <objetivo>(and (conPrinc Secuestrador Princesa) (enLoc Secuestrador Fatum))</objetivo>
+        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Cuevas))</objetivo>
+        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Fatum))</objetivo>
     </personaje>
-   <!--  o Secuestrar princesas.
+   <!--  o Secuestrar victimas.
 o Almacenar oro (objetos brillantes).
 o Proveedor de material magico.
      -->

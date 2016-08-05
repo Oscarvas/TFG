@@ -19,13 +19,13 @@ public class Estado {
 	private HashMap<String, String> persEnLoc; // <personaje, localizacion>
 	private ArrayList<String> vivos;
 	private ArrayList<String> estaLibre;
-	private HashMap<String, String> personajeConPrincesa;
-	private ArrayList<String> princesasSecuestradas;
+	private HashMap<String, String> personajeConVictima;
+	private ArrayList<String> victimasSecuestradas;
 	private ArrayList<String> todosNombres;
 	private HashMap<String, String> casasDePersonajes;
-	private ArrayList<String> princesasSalvadas;
+	private ArrayList<String> victimasSalvadas;
 	private ArrayList<String> heroes;
-	private HashMap<String, String> princesaObjetivo; // <Secuestrador/salvador,objetivoSecuestro>
+	private HashMap<String, String> victimaObjetivo; // <Secuestrador/salvador,objetivoSecuestro>
 	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
 	private Almacen almacen;
 	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
@@ -40,13 +40,13 @@ public class Estado {
 		this.persEnLoc = new HashMap<String, String>();
 		this.vivos = new ArrayList<String>();
 		this.estaLibre = new ArrayList<String>();
-		this.personajeConPrincesa = new HashMap<String, String>();
-		this.princesasSecuestradas = new ArrayList<String>();
+		this.personajeConVictima = new HashMap<String, String>();
+		this.victimasSecuestradas = new ArrayList<String>();
 		this.todosNombres = new ArrayList<String>();
 		this.casasDePersonajes = new HashMap<String, String>();
-		this.princesasSalvadas = new ArrayList<String>();
+		this.victimasSalvadas = new ArrayList<String>();
 		this.heroes = new ArrayList<String>();
-		this.princesaObjetivo = new HashMap<String, String>();
+		this.victimaObjetivo = new HashMap<String, String>();
 		this.objetivos = new HashMap<String, String>();
 		this.cansado = new ArrayList<String>();
 		this.almacen = LoaderObjetos.loaderObjetos();
@@ -76,10 +76,10 @@ public class Estado {
 		this.almacen = almacen;
 	}
 
-	public String toConPrincesa() {
+	public String toConVictima() {
 		String eh = "";
 		Iterator<?> it;
-		it = personajeConPrincesa.entrySet().iterator();
+		it = personajeConVictima.entrySet().iterator();
 
 		while (it.hasNext()) {
 			@SuppressWarnings("rawtypes")
@@ -138,10 +138,10 @@ public class Estado {
 		else
 			nombres = personajes.get(clase);
 
-		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Princesa"))
+		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Victima"))
 			estaLibrePersonaje(nombre);
 
-		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Princesa") 
+		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Victima") 
 				|| clase.equalsIgnoreCase("Mago") || clase.equalsIgnoreCase("Caballero") || clase.equalsIgnoreCase("Druida"))
 			consumidor.add(clase);
 		
@@ -188,20 +188,20 @@ public class Estado {
 		estaLibre.remove(personaje);
 	}
 
-	public void añadirPersonajeConPrincesa(String personaje, String princesa) {
-		personajeConPrincesa.put(nombreCorrecto(personaje), nombreCorrecto(princesa));
+	public void añadirPersonajeConVictima(String personaje, String victima) {
+		personajeConVictima.put(nombreCorrecto(personaje), nombreCorrecto(victima));
 	}
 
-	public void borrarPersonajeConPrincesa(String personaje) {
-		personajeConPrincesa.remove(nombreCorrecto(personaje));
+	public void borrarPersonajeConVictima(String personaje) {
+		personajeConVictima.remove(nombreCorrecto(personaje));
 	}
 
-	public void secuestrar(String princesa) {
-		princesasSecuestradas.add(nombreCorrecto(princesa));
+	public void secuestrar(String victima) {
+		victimasSecuestradas.add(nombreCorrecto(victima));
 	}
 
-	public void liberar(String princesa) {
-		princesasSecuestradas.remove(princesa);
+	public void liberar(String victima) {
+		victimasSecuestradas.remove(victima);
 	}
 
 	public void añadirNombre(String nombre) {
@@ -214,12 +214,12 @@ public class Estado {
 		casasDePersonajes.put(nombre, loc);
 	}
 
-	public void añadirPrincesaSalvada(String princesa) {
-		princesasSalvadas.add(princesa);
+	public void añadirVictimaSalvada(String victima) {
+		victimasSalvadas.add(victima);
 	}
 
-	public void eliminarPrincesaSalvada(String princesa) {
-		princesasSalvadas.remove(princesa);
+	public void eliminarVictimaSalvada(String victima) {
+		victimasSalvadas.remove(victima);
 	}
 
 	public void añadirHeroe(String caballero) {
@@ -274,7 +274,7 @@ public class Estado {
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
 
-			if (personajes.get("Princesa").contains(nombrePersonaje)) {
+			if (personajes.get("Victima").contains(nombrePersonaje)) {
 				if (nombrePersonaje.equals(e.getKey()))
 					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 			} else {
@@ -328,7 +328,7 @@ public class Estado {
 			for (String nombre : nombres) {
 				estado += "(es" + e.getKey() + " " + nombre + ")\n";
 
-				if (e.getKey().toString().equalsIgnoreCase("Princesa") || e.getKey().toString().equalsIgnoreCase("Rey"))
+				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
 					estado += "(esPrincipal ";
 
 				else
@@ -352,19 +352,19 @@ public class Estado {
 		for (String personaje : vivos)
 			estado += "(vivo " + personaje + ")\n";
 
-		// Princesas salvadas
+		// Victimas salvadas
 
-		for (String princesa : princesasSalvadas)
-			estado += "(salvada " + princesa + ")\n";
+		for (String victima : victimasSalvadas)
+			estado += "(salvada " + victima + ")\n";
 
 		// Caballeros que han llegado a ser Heroes
 
 		for (String heroe : heroes)
 			estado += "(esHeroe " + heroe + ")\n";
 
-		// Si un personaje está con la princesa
+		// Si un personaje está con la victima
 
-		it = personajeConPrincesa.entrySet().iterator();
+		it = personajeConVictima.entrySet().iterator();
 
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
@@ -372,21 +372,21 @@ public class Estado {
 			estado += "(conPrinc " + e.getKey() + " " + e.getValue() + ")\n";
 		}
 
-		// Si está secuestrada la princesa
+		// Si está secuestrada la victima
 
-		for (String princesa : princesasSecuestradas)
-			estado += "(secuestrada " + princesa + ")\n";
+		for (String victima : victimasSecuestradas)
+			estado += "(secuestrada " + victima + ")\n";
 
 		return estado;
 
 	}
 
-	public String getPrincesaObjetivo(String secuestrador) {
-		return princesaObjetivo.get(secuestrador);
+	public String getVictimaObjetivo(String secuestrador) {
+		return victimaObjetivo.get(secuestrador);
 	}
 
-	public void setPrincesaObjetivo(String secuestrador, String princesaObjetivo) {
-		this.princesaObjetivo.put(secuestrador, princesaObjetivo);
+	public void setVictimaObjetivo(String secuestrador, String victimaObjetivo) {
+		this.victimaObjetivo.put(secuestrador, victimaObjetivo);
 	}
 
 	public String getObjetivos(String personaje) {

@@ -17,17 +17,17 @@ import jade.lang.acl.MessageTemplate;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Princesa extends Protagonista {
+public class Victima extends Protagonista {
 	private AID padre;
 	public AID secuestrador;
 
 	protected void setup(){
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0) {
-			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 
+			iniciarPrincipal((String) args[0], (String) args[1], 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), false);
-			super.principal = Integer.parseInt((String) args[2]);//la princesa da como atributo principal la fuerza
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false);
+			super.principal = Integer.parseInt((String) args[2]);//la victima da como atributo principal la fuerza
 		}
 		
 		addBehaviour(new Huerfana());
@@ -43,7 +43,7 @@ public class Princesa extends Protagonista {
 	private class Huerfana extends Behaviour{
 
 		/**
-		 * Asigna un padre aleatorio a la princesa
+		 * Asigna un padre aleatorio a la victima
 		 */
 		boolean ok;
 		@Override
@@ -63,7 +63,7 @@ public class Princesa extends Protagonista {
 				
 				if (reyes.length != 0) {
 					padre = reyes[new Random().nextInt(reyes.length)];
-					//Hacemos que la princesa se posicione en el mismo lugar que su padre
+					//Hacemos que la victima se posicione en el mismo lugar que su padre
 					setLocalizacion(new DondeEsta(myAgent, padre.getLocalName()).execute());
 					
 					localizarPersonaje();
@@ -114,7 +114,7 @@ public class Princesa extends Protagonista {
 			
 			MessageTemplate mt = MessageTemplate.and(
 					MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-					MessageTemplate.MatchConversationId("Mover-Princesa"));
+					MessageTemplate.MatchConversationId("Mover-Victima"));
 			ACLMessage receive = myAgent.receive(mt);
 			
 			if ( receive != null ) {
@@ -150,7 +150,7 @@ public class Princesa extends Protagonista {
 				secuestrador = receive.getSender();
 				send(receive.createReply());	
 			
-				Gui.setHistoria("* La Princesa " + myAgent.getLocalName() + " ha sido secuestrada. \n");
+				Gui.setHistoria("* La Victima " + myAgent.getLocalName() + " ha sido secuestrada. \n");
 				
 				ACLMessage inform = new ACLMessage(ACLMessage.REQUEST);
 				inform.setConversationId("Ayuda");
@@ -187,14 +187,14 @@ public class Princesa extends Protagonista {
 								stop();
 								try {
 									
-									ACLMessage liberarPrincesa = new ACLMessage(ACLMessage.REQUEST);
-									liberarPrincesa.addReceiver(getAgenteMundo());
-									liberarPrincesa.setConversationId("Liberar");
-									liberarPrincesa.setReplyWith("liberar" + System.currentTimeMillis());
-									liberarPrincesa.setContent(getLocalName()+ " " + secuestrador.getLocalName());
-									myAgent.send(liberarPrincesa);
+									ACLMessage liberarVictima = new ACLMessage(ACLMessage.REQUEST);
+									liberarVictima.addReceiver(getAgenteMundo());
+									liberarVictima.setConversationId("Liberar");
+									liberarVictima.setReplyWith("liberar" + System.currentTimeMillis());
+									liberarVictima.setContent(getLocalName()+ " " + secuestrador.getLocalName());
+									myAgent.send(liberarVictima);
 
-									MessageTemplate mt = MessageTemplate.MatchInReplyTo(liberarPrincesa.getReplyWith());
+									MessageTemplate mt = MessageTemplate.MatchInReplyTo(liberarVictima.getReplyWith());
 									ACLMessage reply2 = myAgent.blockingReceive(mt);
 									
 									

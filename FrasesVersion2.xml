@@ -7,7 +7,7 @@
 	<!-- El tipo va en función del XML de Personajes para el atributo clase -->	
 	<personaje tipo="Caballero">
 	</personaje>
-	<personaje tipo="Princesa">
+	<personaje tipo="Victima">
 	</personaje>
 	<personaje tipo="Rey">
 	</personaje>
@@ -92,7 +92,7 @@
 		<frase id="Inicio">Se levanta con la armadura hecha polvo.</frase>
 		<frase id="Inicio">¿Este será por fin el día en que será un héroe?.</frase>
 	</personaje>
-	<personaje tipo="Princesa">
+	<personaje tipo="Victima">
 		<frase id="Inicio">En una ataque de rebeldia ha huido de la seguridad del castillo.</frase>
 		<frase id="Inicio">Ha decidido dar un paseo por el reino.</frase>
 	</personaje>
@@ -102,7 +102,7 @@
 	</personaje>
 	<personaje tipo="Dragon">
 		<frase id="Inicio">El imponente rugido del dragópn se escucha por todo el reino.</frase>
-		<frase id="Inicio">Está preparado para buscar y secuestrar a aquellas princesas insensatas.</frase>
+		<frase id="Inicio">Está preparado para buscar y secuestrar a aquellas victimas insensatas.</frase>
 	</personaje>
 	<personaje tipo="Fantasma">
 		<frase id="Inicio">Comienza a preparar su venganza hacia el rey.</frase>

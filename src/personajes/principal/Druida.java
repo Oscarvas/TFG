@@ -14,15 +14,15 @@ import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
 public class Druida extends Protagonista {
-	private String princesa;
+	private String victima;
 	private String dragon;
 
 	protected void setup(){
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0) {
-			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 
+			iniciarPrincipal((String) args[0], (String) args[1], 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), false);
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), true);
 		}
 
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -57,12 +57,12 @@ public class Druida extends Protagonista {
 		}
 	}
 
-	public String getPrincesa() {
-		return princesa;
+	public String getVictima() {
+		return victima;
 	}
 
-	public void setPrincesa(String princesa) {
-		this.princesa = princesa;
+	public void setVictima(String victima) {
+		this.victima = victima;
 	}
 
 	public String getDragon() {
@@ -84,13 +84,13 @@ public class Druida extends Protagonista {
 			if (msg != null) {
 
 				String[] contrato = msg.getContent().split(" ");
-				setPrincesa(contrato[0]);
+				setVictima(contrato[0]);
 				setDragon(contrato[1]);
 
 				ACLMessage salvar = new ACLMessage(ACLMessage.INFORM);
 				salvar.setConversationId("ObjetivoSecuestro");
 				salvar.addReceiver(getAgenteMundo());
-				salvar.setContent(getPrincesa());
+				salvar.setContent(getVictima());
 				myAgent.send(salvar);
 
 				try {

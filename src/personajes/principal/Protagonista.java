@@ -7,7 +7,8 @@ import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class Protagonista extends Personaje {
-
+	
+	private String rol;
 	private int fuerza;
 	private int destreza;
 	private int inteligencia;
@@ -21,8 +22,9 @@ public class Protagonista extends Personaje {
 		super();
 	}
 	
-	public void iniciarPrincipal(String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+	public void iniciarPrincipal(String rol, String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		cargarMundo();
+		setRol(rol);
 		Raza raza = Vocabulario.RAZAS2.get(nombreRaza);
 		setVida(vida * raza.getVidaModificador());
 		setFuerza(fuerza * raza.getFuerzaModificador());
@@ -37,7 +39,16 @@ public class Protagonista extends Personaje {
 			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
 		}
 	}
-
+	
+	public String getRol() {
+		return rol;
+	}
+	
+	public String setRol(String rol) {
+		return this.rol = rol;
+		
+	}
+	
 	public int getFuerza() {
 		return fuerza;
 	}

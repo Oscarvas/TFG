@@ -9,14 +9,14 @@ import personajes.Personaje;
 public class Secuestrar {
 
 	private Personaje personaje;
-	private String princesa;
+	private String victima;
 	private AID agenteMundo;
 	
 	
-	public Secuestrar(Personaje personaje, String princesa) {
+	public Secuestrar(Personaje personaje, String victima) {
 		
 		this.personaje = personaje;
-		this.princesa = princesa;
+		this.victima = victima;
 		this.agenteMundo = personaje.getAgenteMundo();
 		
 	}
@@ -27,7 +27,7 @@ public class Secuestrar {
 		secuestro.addReceiver(agenteMundo);
 		secuestro.setConversationId("Secuestro");
 		secuestro.setReplyWith("secuestro" + System.currentTimeMillis());
-		secuestro.setContent(princesa);
+		secuestro.setContent(victima);
 		personaje.send(secuestro);
 		
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(secuestro.getReplyWith());

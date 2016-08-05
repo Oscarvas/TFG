@@ -180,7 +180,7 @@ public class Mundo extends GuiAgent {
 		addBehaviour(new ObjetivoSecuestro());
 		addBehaviour(new LocalizarPersonajes());
 		addBehaviour(new ToPDDLfile());
-		addBehaviour(new MoverPrincesaSecuestrada());
+		addBehaviour(new MoverVictimaSecuestrada());
 		addBehaviour(new Secuestro());
 		addBehaviour(new Liberar());
 		addBehaviour(new PersonajeEnCasa());
@@ -278,7 +278,7 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 				ACLMessage reply = receive.createReply();
 
-				reply.setContent(estado.getPrincesaObjetivo(receive.getSender().getLocalName()));
+				reply.setContent(estado.getVictimaObjetivo(receive.getSender().getLocalName()));
 
 				send(reply);
 			} else
@@ -579,27 +579,27 @@ public class Mundo extends GuiAgent {
 		}
 	}
 	
-	private class MoverPrincesaSecuestrada extends CyclicBehaviour {
+	private class MoverVictimaSecuestrada extends CyclicBehaviour {
 
 		public void action() {
 
 			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-					MessageTemplate.MatchConversationId("Mundo-Mover-Princesa"));
+					MessageTemplate.MatchConversationId("Mundo-Mover-Victima"));
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
 
 				String[] contenido = receive.getContent().split(" ");
-				ACLMessage moverPrincesa = new ACLMessage(ACLMessage.REQUEST);
-				moverPrincesa.setReplyWith("mover-princesa" + System.currentTimeMillis());
-				moverPrincesa.setConversationId("Mover-Princesa");
-				moverPrincesa.setContent(contenido[0] + " " + receive.getSender().getLocalName());
+				ACLMessage moverVictima = new ACLMessage(ACLMessage.REQUEST);
+				moverVictima.setReplyWith("mover-victima" + System.currentTimeMillis());
+				moverVictima.setConversationId("Mover-Victima");
+				moverVictima.setContent(contenido[0] + " " + receive.getSender().getLocalName());
 
-				AID princesa = new AID((String) estado.nombreCorrecto(contenido[1]), AID.ISLOCALNAME);
-				moverPrincesa.addReceiver(princesa);
-				send(moverPrincesa);
+				AID victima = new AID((String) estado.nombreCorrecto(contenido[1]), AID.ISLOCALNAME);
+				moverVictima.addReceiver(victima);
+				send(moverVictima);
 
-				mt = MessageTemplate.MatchInReplyTo(moverPrincesa.getReplyWith());
+				mt = MessageTemplate.MatchInReplyTo(moverVictima.getReplyWith());
 				ACLMessage rec1 = receive(mt);
 				while (rec1 == null)
 					block();
@@ -670,16 +670,16 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 
 				ACLMessage reply = receive.createReply();
-				String princesa = receive.getContent();
+				String victima = receive.getContent();
 				String secuestrador = receive.getSender().getLocalName();
 
-				if (estado.estanMismaLocalizacion(secuestrador, princesa)) {
-					estado.añadirPersonajeConPrincesa(secuestrador, princesa);
-					estado.secuestrar(princesa);
+				if (estado.estanMismaLocalizacion(secuestrador, victima)) {
+					estado.añadirPersonajeConVictima(secuestrador, victima);
+					estado.secuestrar(victima);
 					estado.estaLlenoPersonaje(secuestrador);
 					estado.estaCansado(secuestrador);
 
-					reply.setContent(estado.nombreCorrecto(princesa));
+					reply.setContent(estado.nombreCorrecto(victima));
 
 				} else
 					reply.setContent("fallo");
@@ -706,13 +706,13 @@ public class Mundo extends GuiAgent {
 				String[] contenido = receive.getContent().split(" ");
 
 				if (contenido.length == 3) { // cuando el caballero rescata a la
-												// princesa
+												// victima
 					estado.estaLlenoPersonaje(contenido[0]);
-					estado.añadirPersonajeConPrincesa(contenido[0], contenido[1]);
-					estado.borrarPersonajeConPrincesa(contenido[2]);
-				} else if (contenido.length == 2) { // cuando la princesa se
+					estado.añadirPersonajeConVictima(contenido[0], contenido[1]);
+					estado.borrarPersonajeConVictima(contenido[2]);
+				} else if (contenido.length == 2) { // cuando la victima se
 													// escapa
-					estado.borrarPersonajeConPrincesa(contenido[1]);
+					estado.borrarPersonajeConVictima(contenido[1]);
 					estado.liberar(contenido[0]);
 					estado.estaLibrePersonaje(contenido[0]);
 				}
@@ -737,14 +737,14 @@ public class Mundo extends GuiAgent {
 
 			if (receive != null) {
 
-				String princesa = receive.getContent();
-				estado.liberar(princesa);
-				estado.borrarPersonajeConPrincesa(receive.getSender().getLocalName());
-				estado.añadirPrincesaSalvada(princesa);
+				String victima = receive.getContent();
+				estado.liberar(victima);
+				estado.borrarPersonajeConVictima(receive.getSender().getLocalName());
+				estado.añadirVictimaSalvada(victima);
 				estado.estaLibrePersonaje(receive.getSender().getLocalName());
 
 				ACLMessage reply = receive.createReply();
-				reply.setContent(estado.nombreCorrecto(princesa));
+				reply.setContent(estado.nombreCorrecto(victima));
 				send(reply);
 
 			} else
@@ -799,7 +799,7 @@ public class Mundo extends GuiAgent {
 			ACLMessage receive = myAgent.receive(mt);
 			if (receive != null) {
 
-				estado.setPrincesaObjetivo(receive.getSender().getLocalName(), receive.getContent());
+				estado.setVictimaObjetivo(receive.getSender().getLocalName(), receive.getContent());
 				ACLMessage reply = receive.createReply();
 				send(reply);
 

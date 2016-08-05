@@ -26,7 +26,7 @@ public class Emboscar extends CyclicBehaviour {
 
 				/*
 				 * se puede modificar para que al añadir el comportamiento se especifique que clase
-				 * nos interesa emboscar, asi tendriamos personajes que atracan princesas y otros a caballeros por ejemplo
+				 * nos interesa emboscar, asi tendriamos personajes que atracan victimas y otros a caballeros por ejemplo
 				 * */
 				if (msg.getContent().equalsIgnoreCase("caballero")){ 
 					reply.setPerformative(ACLMessage.PROPOSE);

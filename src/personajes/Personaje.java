@@ -262,20 +262,20 @@ public class Personaje extends Agent {
 						}
 					}
 					
-					else if (accion.equalsIgnoreCase("moverpersonajeconprincesa")) {
+					else if (accion.equalsIgnoreCase("moverpersonajeconvictima")) {
 						new Mover(this, accionActual[3], accionActual[4]).execute();
 						
-						ACLMessage moverPrincesa = new ACLMessage(
+						ACLMessage moverVictima = new ACLMessage(
 								ACLMessage.REQUEST);
-						moverPrincesa.setConversationId("Mover-Princesa");
-						moverPrincesa.setReplyWith("mover-princesa"
+						moverVictima.setConversationId("Mover-Victima");
+						moverVictima.setReplyWith("mover-victima"
 								+ System.currentTimeMillis());
-						moverPrincesa.addReceiver(getAID(accionActual[2]));
-						moverPrincesa.setContent(accionActual[4]);
-						send(moverPrincesa);
+						moverVictima.addReceiver(getAID(accionActual[2]));
+						moverVictima.setContent(accionActual[4]);
+						send(moverVictima);
 
 						MessageTemplate mt = MessageTemplate
-								.MatchInReplyTo(moverPrincesa.getReplyWith());
+								.MatchInReplyTo(moverVictima.getReplyWith());
 						blockingReceive(mt);
 						
 
@@ -286,8 +286,8 @@ public class Personaje extends Agent {
 					else if( accion.equalsIgnoreCase("venganza"))
 						new Agonia(this, accionActual[2]).execute();
 
-					else if (accion.equalsIgnoreCase("liberarprincesa"))
-						new LiberarPrincesa(this, accionActual[2], accionActual[3]).execute();
+					else if (accion.equalsIgnoreCase("liberarvictima"))
+						new LiberarVictima(this, accionActual[2], accionActual[3]).execute();
 
 					else if (accion.equalsIgnoreCase("dejarencasa"))
 						new DejarEnCasa(this, accionActual[2]).execute();

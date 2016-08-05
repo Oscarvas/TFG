@@ -5,7 +5,7 @@
 		rey
 		caballero
 		secuestrador
-		princesa
+		victima
 		guardian
 		emboscador
 		maligno
@@ -27,7 +27,7 @@
 		(esPrincipal ?per)
 		(esSecundario ?per)
 		(esRey ?per)
-		(esPrincesa ?per)
+		(esVictima ?per)
 		(esCaballero ?per)
 		(esMago ?per)
 		(esDruida ?per)
@@ -39,14 +39,14 @@
 		(vivo ?per)
 	)
 
-;; escape de la princesa
+;; escape de la victima
 	(:action moverPrincipal
 		:parameters (?per ?locOrig ?locDest)
 		:precondition (and	
 			(vivo ?per)
 			(adyacente ?locOrig ?locDest)
 			(enLoc ?per ?locOrig)
-			(esPrincesa ?per) 
+			(esVictima ?per) 
 			(estaLibre ?per))
 		:effect (and
 			(enLoc ?per ?locDest)
@@ -71,13 +71,13 @@
 	)
 	
 	
-;; un dragón se mueve con la princesa entre sus zarpas
+;; un dragón se mueve con la victima entre sus zarpas
 
-	(:action moverPersonajeConPrincesa
+	(:action moverPersonajeConVictima
 		:parameters (?per ?p ?locOrig ?locDest)
 		:precondition (and
 			(esSecundario ?per)
-			(esPrincesa ?p)
+			(esVictima ?p)
 			(vivo ?per)
 			(adyacente ?locOrig ?locDest)
 			(enLoc ?per ?locOrig)
@@ -123,12 +123,12 @@
 			(not (vivo ?d)))
 	)
 	
-	;; batalla entre secndario y princesa
+	;; batalla entre secndario y victima
 	(:action criminal
 		:parameters (?c ?p ?loc)
 		:precondition (and
 			(esSecundario ?c)
-			(esPrincesa ?p)
+			(esVictima ?p)
 			(not (= ?c ?p))
 			(enLoc ?c ?loc)
 			(enLoc ?p ?loc)
@@ -142,12 +142,12 @@
 	)
 
 
-;; el caballero escolta a la princesa
-	(:action liberarPrincesa
+;; el caballero escolta a la victima
+	(:action liberarVictima
 		:parameters (?c ?p ?d ?loc)
 		:precondition (and
 			(esCaballero ?c)
-			(esPrincesa ?p)
+			(esVictima ?p)
 			(esSecuestrador ?d)	
 			(vivo ?c)
 			(vivo ?p)
@@ -164,7 +164,7 @@
 	)
 
 
-;; un dragón secuestra a una princesa
+;; un dragón secuestra a una victima
 	(:action secuestrar
 		:parameters (?d ?p ?loc)
 		:precondition (and
@@ -172,7 +172,7 @@
 			(vivo ?p)
 			(esSecuestrador ?d)
 			(estaLibre ?d)
-			(esPrincesa ?p)
+			(esVictima ?p)
 			(not (salvada ?p))
 			(not (secuestrada ?p))
 			(enLoc ?d ?loc)
@@ -186,12 +186,12 @@
 
 
 
-;; el caballero deja a la princesa en su hogar
+;; el caballero deja a la victima en su hogar
 	(:action dejarEnCasa
 		:parameters (?c ?p ?loc)
 		:precondition (and
 			(esCaballero ?c)
-			(esPrincesa ?p)
+			(esVictima ?p)
 			(enLoc ?c ?loc)
 			(conPrinc ?c ?p)
 			(esCasa ?p ?loc))

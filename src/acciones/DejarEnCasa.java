@@ -9,13 +9,13 @@ import personajes.Personaje;
 public class DejarEnCasa {
 
 	private Personaje personaje;
-	private String princesa;
+	private String victima;
 	private AID agenteMundo;
 
-	public DejarEnCasa(Personaje personaje, String princesa) {
+	public DejarEnCasa(Personaje personaje, String victima) {
 
 		this.personaje = personaje;
-		this.princesa = princesa;
+		this.victima = victima;
 		this.agenteMundo = personaje.getAgenteMundo();
 
 	}
@@ -26,7 +26,7 @@ public class DejarEnCasa {
 		dejarCasa.addReceiver(agenteMundo);
 		dejarCasa.setConversationId("Dejar en Casa");
 		dejarCasa.setReplyWith("dejar-casa" + System.currentTimeMillis());
-		dejarCasa.setContent(princesa);
+		dejarCasa.setContent(victima);
 		personaje.send(dejarCasa);
 
 		MessageTemplate mt = MessageTemplate.and(
@@ -35,7 +35,7 @@ public class DejarEnCasa {
 
 		ACLMessage msg = personaje.blockingReceive(mt);
 		
-		Gui.setHistoria(" El caballero " +personaje.getLocalName() + " ha dejado a la princesa "+ msg.getContent() + " donde desperto. \n");
+		Gui.setHistoria(" El caballero " +personaje.getLocalName() + " ha dejado a la victima "+ msg.getContent() + " donde desperto. \n");
 
 	}
 }

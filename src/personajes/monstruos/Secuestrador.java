@@ -14,7 +14,7 @@ import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
 public class Secuestrador extends Monstruo {
-	public AID princesaSecuestrada;
+	public AID victimaSecuestrada;
 
 	protected void setup(){
 		Object[] args = getArguments();		
@@ -58,21 +58,21 @@ public class Secuestrador extends Monstruo {
 						
 				try{
 					DFAgentDescription[] result = DFService.search(myAgent, template);
-					AID[] PrincesasSecuestrables = new AID[result.length];
+					AID[] VictimasSecuestrables = new AID[result.length];
 					for (int i = 0; i < result.length; i++){
-						PrincesasSecuestrables[i] = result[i].getName();
+						VictimasSecuestrables[i] = result[i].getName();
 					}
 					
-					if (PrincesasSecuestrables.length != 0) {
-						princesaSecuestrada = PrincesasSecuestrables[new Random().nextInt(PrincesasSecuestrables.length)];
+					if (VictimasSecuestrables.length != 0) {
+						victimaSecuestrada = VictimasSecuestrables[new Random().nextInt(VictimasSecuestrables.length)];
 						
 						ACLMessage secuestrar = new ACLMessage(ACLMessage.INFORM);
 						secuestrar.setConversationId("ObjetivoSecuestro");
 						secuestrar.addReceiver(getAgenteMundo());
-						secuestrar.setContent(princesaSecuestrada.getLocalName());
+						secuestrar.setContent(victimaSecuestrada.getLocalName());
 						myAgent.send(secuestrar);
 						
-						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la princesa "+princesaSecuestrada.getLocalName());
+						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la victima "+victimaSecuestrada.getLocalName());
 						planificar(null);
 						
 						/*
@@ -118,14 +118,14 @@ public class Secuestrador extends Monstruo {
 			if ( receive != null ) {
 				ACLMessage secuestrar = new ACLMessage(ACLMessage.INFORM);
 				secuestrar.setConversationId("Te secuestro");
-				secuestrar.addReceiver(princesaSecuestrada);
+				secuestrar.addReceiver(victimaSecuestrada);
 		
 				myAgent.send(secuestrar);
 				
 				MessageTemplate mt1 = MessageTemplate.MatchConversationId("Te secuestro");
 				myAgent.blockingReceive(mt1);
 			
-				addBehaviour(new HayQueJoderseConLaPrincesa());
+				addBehaviour(new HayQueJoderseConLaVictima());
 				
 			} else
 				block();
@@ -171,7 +171,7 @@ public class Secuestrador extends Monstruo {
 		
 
 
-	private class HayQueJoderseConLaPrincesa extends CyclicBehaviour{
+	private class HayQueJoderseConLaVictima extends CyclicBehaviour{
 
 		@Override
 		public void action() {

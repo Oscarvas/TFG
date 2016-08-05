@@ -21,7 +21,7 @@ import ontologia.Vocabulario;
 @SuppressWarnings("serial")
 public class Rey extends Protagonista {
 	public AID[] CaballerosDisponibles;
-	public AID princesaSecuestrada;
+	public AID victimaSecuestrada;
 	public String dragon;
 	public int repliesCnt;
 	public AID mejorCaballero;
@@ -36,9 +36,9 @@ public class Rey extends Protagonista {
 		numeroHijas= Vocabulario.NUM_HIJAS();
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0 && numeroHijas > 0 ) {
-			iniciarPrincipal((String) args[0], Integer.parseInt((String) args[1]), 
+			iniciarPrincipal((String) args[0], (String) args[1], 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), true);
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), true);
 			localizarPersonaje();
 			
 			DFAgentDescription dfd = new DFAgentDescription();
@@ -63,16 +63,16 @@ public class Rey extends Protagonista {
 			m.registerState(new Ayuda(), "Pedir Ayuda");
 			m.registerState(new RecibirOfertas(), "Ofertas");
 			m.registerState(new AceptarOferta(), "Aceptar");
-			m.registerState(new Salvada(), "Princesa Salvada");
+			m.registerState(new Salvada(), "Victima Salvada");
 
 			m.registerDefaultTransition("Atento", "Rescate");
 			m.registerDefaultTransition("Rescate", "Pedir Ayuda");
 			m.registerDefaultTransition("Pedir Ayuda", "Ofertas");
 			m.registerTransition("Ofertas", "Rescate", 1);
 			m.registerTransition("Ofertas", "Aceptar", 2);
-			m.registerTransition("Aceptar", "Princesa Salvada", 1);
+			m.registerTransition("Aceptar", "Victima Salvada", 1);
 			m.registerTransition("Aceptar", "Rescate", 2);
-			m.registerDefaultTransition("Princesa Salvada", "Atento");
+			m.registerDefaultTransition("Victima Salvada", "Atento");
 			
 //			ParallelBehaviour p = new ParallelBehaviour(this, ParallelBehaviour.WHEN_ALL);
 //			p.addSubBehaviour(m);
@@ -114,11 +114,11 @@ public class Rey extends Protagonista {
 					MessageTemplate.MatchConversationId("Ayuda"),
 					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 			ACLMessage receive = myAgent.blockingReceive(mt);
-			princesaSecuestrada = receive.getSender();
+			victimaSecuestrada = receive.getSender();
 			dragon = receive.getContent();	
 			
 			/*
-			 * Una vez hemos recibido el llamado de auxilio de una princesa, activamos a los monstruos malignos
+			 * Una vez hemos recibido el llamado de auxilio de una victima, activamos a los monstruos malignos
 			 * que deberan empezar su planificacion
 			 * 
 			 * Se seleccionara a un fantasma aleatorio
@@ -175,7 +175,7 @@ public class Rey extends Protagonista {
 				CaballerosDisponibles = new AID[result.length];
 				
 				if (done()) {					
-					Gui.setHistoria("- Intentando pedir rescate para la princesa "+ princesaSecuestrada.getLocalName() + ".");
+					Gui.setHistoria("- Intentando pedir rescate para la victima "+ victimaSecuestrada.getLocalName() + ".");
 					Gui.setHistoria("Encontrados los siguientes caballeros:");
 										
 					for (int i = 0; i < result.length; i++) {
@@ -208,7 +208,7 @@ public class Rey extends Protagonista {
 		public void action() {
 
 			ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-			cfp.setContent(princesaSecuestrada.getLocalName());
+			cfp.setContent(victimaSecuestrada.getLocalName());
 			cfp.setConversationId("SolicitarServicio");
 
 			for (int i = 0; i < CaballerosDisponibles.length; i++) {
@@ -268,7 +268,7 @@ public class Rey extends Protagonista {
 
 			ACLMessage aceptar = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
 			aceptar.addReceiver(mejorCaballero);
-			aceptar.setContent(princesaSecuestrada.getLocalName() + " "
+			aceptar.setContent(victimaSecuestrada.getLocalName() + " "
 					+ dragon);
 			aceptar.setConversationId("TratoHecho");
 			myAgent.send(aceptar);
@@ -297,8 +297,8 @@ public class Rey extends Protagonista {
 
 		public void action() {
 			
-			Gui.setHistoria("- La Princesa "
-					+ princesaSecuestrada.getLocalName() + " fue liberada.");
+			Gui.setHistoria("- La Victima "
+					+ victimaSecuestrada.getLocalName() + " fue liberada.");
 			Gui.setHistoria("- El Rey entrega " + menosDineroPedido
 					+ " monedas al caballero " + mejorCaballero.getLocalName() + ". \n");
 			setTesoro(getTesoro()-menosDineroPedido);
@@ -307,7 +307,7 @@ public class Rey extends Protagonista {
 			inform.setConversationId("Rescatada");
 			inform.setReplyWith("inform" + System.currentTimeMillis());
 			inform.setContent(mejorCaballero.getLocalName());
-			inform.addReceiver(princesaSecuestrada);
+			inform.addReceiver(victimaSecuestrada);
 
 			myAgent.send(inform);
 			numeroHijas--;

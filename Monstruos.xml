@@ -3,7 +3,7 @@
 <!-- Para configurar correctamente un pnj debes: -->
 <!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
 <!-- CLASE = Definir que clase de monstruo queremos crear, existen 4 tipos: -->
-<!--		Secuestrador: un monstruo que se dedicara a secuestrar princesas desprevenidas -->
+<!--		Secuestrador: un monstruo que se dedicara a secuestrar victimas desprevenidas -->
 <!--		Guardian: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
 <!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
 <!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->

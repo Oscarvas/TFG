@@ -40,7 +40,7 @@ Draco
 (esCasa Alonso Pueblo)
 (esGuarida Draco Montana)
 (esRey Felipe)
-(esPrincesa Violeta)
+(esVictima Violeta)
 (esCaballero Quijano)
 (esCaballero Alonso)
 (esDragon Draco)
