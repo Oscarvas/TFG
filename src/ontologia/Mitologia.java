@@ -13,9 +13,8 @@ package ontologia;
  * En el caso del personaje Maligno, puede aparecer en cualquier localizacion
 */
 public enum Mitologia {
-	CABALLERO(Vocabulario.TIPOS_LOCALIZACION[0]),
-	DRUIDA(Vocabulario.TIPOS_LOCALIZACION[1]),
-	MAGO(Vocabulario.TIPOS_LOCALIZACION[2]),
+	ASPIRANTE(Vocabulario.TIPOS_LOCALIZACION[0]),
+	AYUDANTE(Vocabulario.TIPOS_LOCALIZACION[2]),
 	REY(Vocabulario.TIPOS_LOCALIZACION[3]),
 	VICTIMA(Vocabulario.TIPOS_LOCALIZACION[3]),
 	SECUESTRADOR(Vocabulario.TIPOS_LOCALIZACION[4]),

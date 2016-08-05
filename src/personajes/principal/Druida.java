@@ -130,7 +130,7 @@ public class Druida extends Protagonista {
 
 				if (estaMuerto()) {
 
-					Gui.setHistoria("+ El caballero " + getLocalName() + " ha muerto en combate. \n");
+					Gui.setHistoria("+ El aspirante " + getLocalName() + " ha muerto en combate. \n");
 
 					rescate.setPerformative(ACLMessage.FAILURE);
 				}

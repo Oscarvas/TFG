@@ -36,7 +36,7 @@ public class LiberarVictima {
 		ACLMessage reply = personaje.blockingReceive(mt);
 
 		
-		Gui.setHistoria( " El caballero "+ personaje.getLocalName() + " ha liberado a la victima "+ reply.getContent() + ". \n");
+		Gui.setHistoria( " El aspirante "+ personaje.getLocalName() + " ha liberado a la victima "+ reply.getContent() + ". \n");
 
 	}
 }

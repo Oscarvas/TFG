@@ -63,7 +63,7 @@ public class Emboscador extends Monstruo {
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
-				String hist=getLocalName()+": ¿Es aquello un caballero?... ¡¡¡Día de paga!!!";
+				String hist=getLocalName()+": ¿Es aquello un aspirante?... ¡¡¡Día de paga!!!";
 				Gui.setHistoria(hist);
 				
 				ACLMessage impuestos = new ACLMessage(ACLMessage.REQUEST);
@@ -79,7 +79,7 @@ public class Emboscador extends Monstruo {
 				ACLMessage asesinar = reply.createReply();
 				
 				if (reply.getContent() != null ){
-					Gui.setHistoria(getLocalName()+": Un caballero con dinero es un caballero vivo, puedes continuar "+reply.getSender().getLocalName());
+					Gui.setHistoria(getLocalName()+": Un aspirante con dinero es un aspirante vivo, puedes continuar "+reply.getSender().getLocalName());
 				}
 				else{
 					Gui.setHistoria(getLocalName()+": ¡Tuuuuuuuuuuuu, no llevarte vela !");
@@ -89,7 +89,7 @@ public class Emboscador extends Monstruo {
 				
 
 //				send(receive.createReply());//respuesta al mundo
-				send(asesinar);//respuesta al caballero
+				send(asesinar);//respuesta al aspirante
 				try {
 					planificar(null);
 				} catch (Exception e) {

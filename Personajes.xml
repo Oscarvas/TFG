@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Actores>
 <!-- Los atributos vida, fuerza... deben tener valores comprendidos entre 1 y 10 -->
-<!-- CLASES = {"Rey","Victima","Caballero","Mago","Druida","Villano"} -->
+<!-- CLASES = {"Rey","Victima","Aspirante","Ayudante","Druida","Villano"} -->
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
 
@@ -9,14 +9,14 @@
 	
 	<personaje nombre="Leia" clase="Victima" rol="Victima" raza="LUCS" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<!-- <personaje nombre="Voljin" clase="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/> -->
+	<!-- <personaje nombre="Voljin" clase="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/> -->
 	
-	<personaje nombre="Alonso" clase="Caballero" rol="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Alonso" clase="Aspirante" rol="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="SergioRammus" clase="Caballero" rol="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="SergioRammus" clase="Aspirante" rol="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
 	<personaje nombre="JuanK" clase="Rey" rol="Rey" raza="TESQ" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Merlin" clase="Mago" rol="Mago" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	<personaje nombre="Merlin" clase="Ayudante" rol="Ayudante" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
 	
 </Actores>

@@ -5,13 +5,13 @@
 	<!-- Frase id indica para que acciones se utilizara la frase -->
 	<!-- Principal -->
 	<!-- El tipo va en función del XML de Personajes para el atributo clase -->	
-	<personaje tipo="Caballero">
+	<personaje tipo="Aspirante">
 	</personaje>
 	<personaje tipo="Victima">
 	</personaje>
 	<personaje tipo="Rey">
 	</personaje>
-	<personaje tipo="Mago">
+	<personaje tipo="Ayudante">
 	</personaje>
 	<personaje tipo="Druida">
 	</personaje>
@@ -88,7 +88,7 @@
 		<frase id="Inicio">Calienta la forja.</frase>
 	</personaje>
 	<!-- Protagonistas -->
-	<personaje tipo="Caballero">
+	<personaje tipo="Aspirante">
 		<frase id="Inicio">Se levanta con la armadura hecha polvo.</frase>
 		<frase id="Inicio">¿Este será por fin el día en que será un héroe?.</frase>
 	</personaje>
@@ -108,8 +108,8 @@
 		<frase id="Inicio">Comienza a preparar su venganza hacia el rey.</frase>
 		<frase id="Inicio">Recuerda una y otra vez su agónica muerte.</frase>
 	</personaje>
-	<personaje tipo="Mago">
-		<frase id="Inicio">Este mago solo tiene muchísimas cartas bajo la túnica.</frase>
+	<personaje tipo="Ayudante">
+		<frase id="Inicio">Este ayudante solo tiene muchísimas cartas bajo la túnica.</frase>
 		<frase id="Inicio">Es aquel que controla los vótices oscuros.</frase>
 	</personaje>
 	<personaje tipo="Rey">

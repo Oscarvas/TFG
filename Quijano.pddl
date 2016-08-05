@@ -1,4 +1,4 @@
-(define (problem Caballero)
+(define (problem Aspirante)
 (:domain Historia)
 
 (:objects
@@ -41,8 +41,8 @@ Draco
 (esGuarida Draco Montana)
 (esRey Felipe)
 (esVictima Violeta)
-(esCaballero Quijano)
-(esCaballero Alonso)
+(esAspirante Quijano)
+(esAspirante Alonso)
 (esDragon Draco)
 (estaLibre Quijano)
 (estaLibre Alonso)

@@ -71,7 +71,7 @@ public class Mover {
 		if (receive != null && receive.getContent()!=null) {
 			ACLMessage reply = receive.createReply();
 			int balance = personaje.getTesoro()-Integer.parseInt(receive.getContent());
-			//aqui condicion de si el caballero puede pagar lo pedido
+			//aqui condicion de si el aspirante puede pagar lo pedido
 			if ( balance >= 0){
 				personaje.setTesoro(balance);
 				Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");

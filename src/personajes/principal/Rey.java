@@ -20,11 +20,11 @@ import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
 public class Rey extends Protagonista {
-	public AID[] CaballerosDisponibles;
+	public AID[] AspirantesDisponibles;
 	public AID victimaSecuestrada;
 	public String dragon;
 	public int repliesCnt;
-	public AID mejorCaballero;
+	public AID mejorAspirante;
 	public int menosDineroPedido;
 	public MessageTemplate mt;
 	public int numeroHijas;
@@ -172,15 +172,15 @@ public class Rey extends Protagonista {
 			try {
 				DFAgentDescription[] result = DFService.search(myAgent,
 						template);
-				CaballerosDisponibles = new AID[result.length];
+				AspirantesDisponibles = new AID[result.length];
 				
 				if (done()) {					
 					Gui.setHistoria("- Intentando pedir rescate para la victima "+ victimaSecuestrada.getLocalName() + ".");
-					Gui.setHistoria("Encontrados los siguientes caballeros:");
+					Gui.setHistoria("Encontrados los siguientes aspirantes:");
 										
 					for (int i = 0; i < result.length; i++) {
-						CaballerosDisponibles[i] = result[i].getName();
-						Gui.setHistoria("\t" + CaballerosDisponibles[i]
+						AspirantesDisponibles[i] = result[i].getName();
+						Gui.setHistoria("\t" + AspirantesDisponibles[i]
 								.getLocalName());
 					}
 					
@@ -198,7 +198,7 @@ public class Rey extends Protagonista {
 		@Override
 		public boolean done() {
 
-			return CaballerosDisponibles.length != 0;
+			return AspirantesDisponibles.length != 0;
 
 		}
 	}
@@ -211,12 +211,12 @@ public class Rey extends Protagonista {
 			cfp.setContent(victimaSecuestrada.getLocalName());
 			cfp.setConversationId("SolicitarServicio");
 
-			for (int i = 0; i < CaballerosDisponibles.length; i++) {
-				cfp.addReceiver(CaballerosDisponibles[i]);
+			for (int i = 0; i < AspirantesDisponibles.length; i++) {
+				cfp.addReceiver(AspirantesDisponibles[i]);
 			}
 
-			repliesCnt = CaballerosDisponibles.length;
-			mejorCaballero = null;
+			repliesCnt = AspirantesDisponibles.length;
+			mejorAspirante = null;
 			menosDineroPedido = Integer.MAX_VALUE;
 
 			cfp.setReplyWith("cfp" + System.currentTimeMillis());
@@ -235,11 +235,11 @@ public class Rey extends Protagonista {
 
 			int dineroPedido = Integer.parseInt(msg.getContent());
 
-			if ((mejorCaballero == null || dineroPedido < menosDineroPedido)
+			if ((mejorAspirante == null || dineroPedido < menosDineroPedido)
 					&& (dineroPedido <= getTesoro())) {
 				
 				menosDineroPedido = dineroPedido;
-				mejorCaballero = msg.getSender();
+				mejorAspirante = msg.getSender();
 			}
 
 			repliesCnt--;
@@ -255,7 +255,7 @@ public class Rey extends Protagonista {
 
 		public int onEnd() {
 
-			if (mejorCaballero == null)
+			if (mejorAspirante == null)
 				return 1;
 			else
 				return 2;
@@ -267,7 +267,7 @@ public class Rey extends Protagonista {
 		public void action() {
 
 			ACLMessage aceptar = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
-			aceptar.addReceiver(mejorCaballero);
+			aceptar.addReceiver(mejorAspirante);
 			aceptar.setContent(victimaSecuestrada.getLocalName() + " "
 					+ dragon);
 			aceptar.setConversationId("TratoHecho");
@@ -284,7 +284,7 @@ public class Rey extends Protagonista {
 				return 1;
 
 			else {
-				Gui.setHistoria("- El Rey recibe la noticia de la muerte del caballero, así que busca a otro. \n");
+				Gui.setHistoria("- El Rey recibe la noticia de la muerte del aspirante, así que busca a otro. \n");
 
 				return 2;
 
@@ -300,13 +300,13 @@ public class Rey extends Protagonista {
 			Gui.setHistoria("- La Victima "
 					+ victimaSecuestrada.getLocalName() + " fue liberada.");
 			Gui.setHistoria("- El Rey entrega " + menosDineroPedido
-					+ " monedas al caballero " + mejorCaballero.getLocalName() + ". \n");
+					+ " monedas al aspirante " + mejorAspirante.getLocalName() + ". \n");
 			setTesoro(getTesoro()-menosDineroPedido);
 
 			ACLMessage inform = new ACLMessage(ACLMessage.INFORM);
 			inform.setConversationId("Rescatada");
 			inform.setReplyWith("inform" + System.currentTimeMillis());
-			inform.setContent(mejorCaballero.getLocalName());
+			inform.setContent(mejorAspirante.getLocalName());
 			inform.addReceiver(victimaSecuestrada);
 
 			myAgent.send(inform);

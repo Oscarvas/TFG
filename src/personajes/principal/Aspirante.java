@@ -13,7 +13,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Caballero extends Protagonista {
+public class Aspirante extends Protagonista {
 
 	private String victima;
 	private String dragon;
@@ -24,7 +24,7 @@ public class Caballero extends Protagonista {
 			iniciarPrincipal((String) args[0], (String) args[1], Integer.parseInt((String) args[2]),
 					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
 					Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false );
-			super.principal = Integer.parseInt((String) args[2]);//el caballero da como atributo principal la fuerza
+			super.principal = Integer.parseInt((String) args[2]);//el aspirante da como atributo principal la fuerza
 		}
 
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -41,7 +41,7 @@ public class Caballero extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("El caballero " + getLocalName() + " se ha despertado en " + getLocalizacion()
+		Gui.setHistoria("El aspirante " + getLocalName() + " se ha despertado en " + getLocalizacion()
 				+ " con su armadura hecha polvo.");
 
 		addBehaviour(new OfrecerServicios(getTesoro()));
@@ -137,7 +137,7 @@ public class Caballero extends Protagonista {
 
 				if (estaMuerto()) {
 
-					Gui.setHistoria("+ El caballero " + getLocalName() + " ha muerto en combate. \n");
+					Gui.setHistoria("+ El aspirante " + getLocalName() + " ha muerto en combate. \n");
 
 					rescate.setPerformative(ACLMessage.FAILURE);
 				}

@@ -13,7 +13,7 @@ public interface Vocabulario {
 	public static final int INICIAR_HISTORIA = 2;
 	public static final String[] RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"};
 	public static final String[] RAZAS_REY = {"LUCS","TESQ"};
-	public static final String[] CLASES = {"Rey","Victima","Caballero","Mago","Druida"};
+	public static final String[] CLASES = {"Rey","Victima","Aspirante","Ayudante","Druida"};
 	public static final String[] TIPOS_LOCALIZACION = {"Pueblo","Bosque","Urbano","Castillo","Guarida","Lago"};
 	public static final int SALARIO = 40;
 	public static final int SALARIO_REY = 100;

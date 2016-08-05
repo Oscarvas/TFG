@@ -3,13 +3,13 @@
 	(:types
 		localizacion
 		rey
-		caballero
+		aspirante
 		secuestrador
 		victima
 		guardian
 		emboscador
 		maligno
-		mago
+		ayudante
 		druida
 	)
 	
@@ -28,8 +28,8 @@
 		(esSecundario ?per)
 		(esRey ?per)
 		(esVictima ?per)
-		(esCaballero ?per)
-		(esMago ?per)
+		(esAspirante ?per)
+		(esAyudante ?per)
 		(esDruida ?per)
 		(esSecuestrador ?per)
 		(esGuardian ?per)
@@ -105,7 +105,7 @@
 			(derrocar ?p2)
 	)
 	
-;; batalla entre caballero y Secuestrador
+;; batalla entre aspirante y Secuestrador
 	(:action batalla
 		:parameters (?c ?d ?loc)
 		:precondition (and
@@ -142,11 +142,11 @@
 	)
 
 
-;; el caballero escolta a la victima
+;; el aspirante escolta a la victima
 	(:action liberarVictima
 		:parameters (?c ?p ?d ?loc)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(esVictima ?p)
 			(esSecuestrador ?d)	
 			(vivo ?c)
@@ -186,11 +186,11 @@
 
 
 
-;; el caballero deja a la victima en su hogar
+;; el aspirante deja a la victima en su hogar
 	(:action dejarEnCasa
 		:parameters (?c ?p ?loc)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(esVictima ?p)
 			(enLoc ?c ?loc)
 			(conPrinc ?c ?p)
@@ -204,11 +204,11 @@
 	)		
 		
 		
-;; el caballero se convierte en héroe
+;; el aspirante se convierte en héroe
 	(:action convertirseEnHeroe
 		:parameters (?c ?locCab)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(vivo ?c)
 			(enLoc ?c ?locCab)
 			(esCasa ?c ?locCab)
@@ -218,11 +218,11 @@
 			(esHeroe ?c)
 	)
 	
-	;; el caballero se convierte en villano
+	;; el aspirante se convierte en villano
 	(:action convertirseEnVillano
 		:parameters (?c ?locCab)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(vivo ?c)
 			(enLoc ?c ?locCab)
 			(esCasa ?c ?locCab)
@@ -267,7 +267,7 @@
 		)
 	)
 
-;; batalla entre mago y Guardian
+;; batalla entre ayudante y Guardian
 	(:action batallaArcana
 		:parameters (?mg ?g ?loc)
 		:precondition (and
@@ -286,11 +286,11 @@
 		)
 	)
 
-;; el mago consigue el objeto del guardian
+;; el ayudante consigue el objeto del guardian
 	(:action cogerObjeto
 		:parameters (?mg ?g ?o ?loc)
 		:precondition (and
-			(esMago ?mg)
+			(esAyudante ?mg)
 			(esGuardian ?g)
 			(vivo ?mg)
 			(not (vivo ?g))
@@ -307,11 +307,11 @@
 	
 
 
-;; el mago restaura el objeto en su hogar
+;; el ayudante restaura el objeto en su hogar
 	(:action restaurarObjeto
 		:parameters (?mg ?o ?loc)
 		:precondition (and
-			(esMago ?mg)
+			(esAyudante ?mg)
 			(conObjeto ?mg ?o)
 			(enLoc ?mg ?loc)
 			(objetoEnLoc ?o ?loc)
@@ -326,11 +326,11 @@
 		)
 	)	
 
-;; el mago se convierte en sabio
+;; el ayudante se convierte en sabio
 	(:action convertirseEnSabio
 		:parameters (?mg ?locMg)
 		:precondition (and
-			(esMago ?mg)
+			(esAyudante ?mg)
 			(vivo ?mg)
 			(enLoc ?mg ?locMg)
 			(esCasa ?mg ?locMg)

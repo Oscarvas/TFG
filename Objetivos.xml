@@ -15,7 +15,7 @@
     <personaje tipo="Victima" >
     	<objetivo>(enLoc Victima Biblioteca)</objetivo>
     	<objetivo>(enLoc Victima Establos)</objetivo>
-        <!-- <objetivo>(casarse Caballero Victima)</objetivo>
+        <!-- <objetivo>(casarse Aspirante Victima)</objetivo>
         <objetivo>(enamorarse Monstruo)</objetivo>
         <objetivo>(almaLibre Victima)</objetivo> -->
     </personaje>
@@ -26,12 +26,12 @@
      -->
     
     <!-- Heroes -->
-    <personaje tipo="Caballero" >
-    	<objetivo>(and (esHeroe Caballero) (salvada Victima))</objetivo>
-    	<objetivo>(esVillano Caballero)</objetivo>
-       <!--  <objetivo>(esHeroe Caballero)</objetivo>
-        <objetivo>(casarse Caballero Victima)</objetivo>
-        <objetivo>(reinar Caballero)</objetivo> -->
+    <personaje tipo="Aspirante" >
+    	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>
+    	<objetivo>(esVillano Aspirante)</objetivo>
+       <!--  <objetivo>(esHeroe Aspirante)</objetivo>
+        <objetivo>(casarse Aspirante Victima)</objetivo>
+        <objetivo>(reinar Aspirante)</objetivo> -->
     </personaje>
     <!-- o Rescatan Victimas.
 o Matan Monstruos.
@@ -41,8 +41,8 @@ o Compiten contra otros Héroes.
 o Casarse con Victimas.
      -->
     
-    <personaje tipo="Mago" >
-        <objetivo>(and (esSabio Mago) (restaurado MountainHearth))</objetivo>
+    <personaje tipo="Ayudante" >
+        <objetivo>(and (esSabio Ayudante) (restaurado MountainHearth))</objetivo>
     </personaje>
     <!-- o Rescatan Victimas.
 o Matan Monstruos.
@@ -71,8 +71,8 @@ o Habla con los animales.
    <!--  • Derrocar al Rey.
 • Casarse con la Victima.
 • Almacenar oro (objetos brillantes).
-• Matar ‘Caballeros'.
-• Robar a los ‘Magos'.
+• Matar ‘Aspirantes'.
+• Robar a los ‘Ayudantes'.
 • Confundir y distraer a los Personajes.
      -->
     

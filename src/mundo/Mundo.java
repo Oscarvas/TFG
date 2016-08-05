@@ -387,10 +387,10 @@ public class Mundo extends GuiAgent {
 						loc2.añadirPersonaje(personaje.getLocalName());
 						estado.añadirLocalizacion(personaje.getLocalName(), locDest);
 
-						// si un caballero coincide con un emboscador
+						// si un aspirante coincide con un emboscador
 						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
 						
-						// si un caballero coincide con un guardian
+						// si un aspirante coincide con un guardian
 						EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
 
 						reply.setPerformative(ACLMessage.CONFIRM);
@@ -534,13 +534,13 @@ public class Mundo extends GuiAgent {
 				int i = 0;
 				while (i < result.length && !hayGuardian) {
 					guardianes[i] = result[i].getName();
-					if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el caballero y el guardian estan en la misma loc
+					if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el aspirante y el guardian estan en la misma loc
 						hayGuardian = true;
 					i++;
 				}
 				
 				if (hayGuardian)
-					AcudeMago(myAgent);
+					AcudeAyudante(myAgent);
 			}
 
 		} catch (Exception fe) {
@@ -548,7 +548,7 @@ public class Mundo extends GuiAgent {
 		}
 	}
 	
-	private void AcudeMago(Agent myAgent){
+	private void AcudeAyudante(Agent myAgent){
 
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
@@ -564,11 +564,11 @@ public class Mundo extends GuiAgent {
 				for (int i = 0; i < result.length; i++) {
 					hechiceros[i] = result[i].getName();
 				}
-				AID mago = hechiceros[new Random().nextInt(hechiceros.length)];
+				AID ayudante = hechiceros[new Random().nextInt(hechiceros.length)];
 				
 				ACLMessage fairytail = new ACLMessage(ACLMessage.INFORM);
 				fairytail.setConversationId("HoraMagica");
-				fairytail.addReceiver(mago);
+				fairytail.addReceiver(ayudante);
 				fairytail.setContent("nombreObjeto");
 				myAgent.send(fairytail);
 
@@ -705,7 +705,7 @@ public class Mundo extends GuiAgent {
 
 				String[] contenido = receive.getContent().split(" ");
 
-				if (contenido.length == 3) { // cuando el caballero rescata a la
+				if (contenido.length == 3) { // cuando el aspirante rescata a la
 												// victima
 					estado.estaLlenoPersonaje(contenido[0]);
 					estado.añadirPersonajeConVictima(contenido[0], contenido[1]);

@@ -142,7 +142,7 @@ public class Estado {
 			estaLibrePersonaje(nombre);
 
 		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Victima") 
-				|| clase.equalsIgnoreCase("Mago") || clase.equalsIgnoreCase("Caballero") || clase.equalsIgnoreCase("Druida"))
+				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
 			consumidor.add(clase);
 		
 		nombres.add(nombre);
@@ -222,12 +222,12 @@ public class Estado {
 		victimasSalvadas.remove(victima);
 	}
 
-	public void añadirHeroe(String caballero) {
-		heroes.add(caballero);
+	public void añadirHeroe(String aspirante) {
+		heroes.add(aspirante);
 	}
 
-	public void eliminarHeroe(String caballero) {
-		heroes.remove(caballero);
+	public void eliminarHeroe(String aspirante) {
+		heroes.remove(aspirante);
 	}
 
 	public String nombreCorrecto(String nombre) {
@@ -278,14 +278,14 @@ public class Estado {
 				if (nombrePersonaje.equals(e.getKey()))
 					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 			} else {
-				if (!personajes.get("Caballero").contains(nombrePersonaje))// si
+				if (!personajes.get("Aspirante").contains(nombrePersonaje))// si
 																			// no
 																			// soy
 																			// un
-																			// caballero
+																			// aspirante
 					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 				else {
-					if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Caballero").contains(e.getKey()))
+					if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Aspirante").contains(e.getKey()))
 						estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 				}
 			}
@@ -357,7 +357,7 @@ public class Estado {
 		for (String victima : victimasSalvadas)
 			estado += "(salvada " + victima + ")\n";
 
-		// Caballeros que han llegado a ser Heroes
+		// Aspirantes que han llegado a ser Heroes
 
 		for (String heroe : heroes)
 			estado += "(esHeroe " + heroe + ")\n";

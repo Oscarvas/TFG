@@ -29,7 +29,7 @@ public class ConvertirseEnSabio {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serSabio.getReplyWith());
 		personaje.blockingReceive(mt);
 
-		Gui.setHistoria("+ El mago " + personaje.getLocalName()+ " se ha convertido en sabio. \n");
+		Gui.setHistoria("+ El ayudante " + personaje.getLocalName()+ " se ha convertido en sabio. \n");
 		
 	}
 }

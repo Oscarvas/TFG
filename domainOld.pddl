@@ -3,7 +3,7 @@
 	(:types
 		localizacion
 		rey
-		caballero
+		aspirante
 		villano
 		dragon
 		victima
@@ -14,7 +14,7 @@
 		(enLoc ?per ?loc)
 		(esRey ?r)
 		(esVictima ?p)
-		(esCaballero ?c)
+		(esAspirante ?c)
 		(esVillano ?v)
 		(esDragon ?d)
 		
@@ -57,12 +57,12 @@
 	)
 
 
-;; batalla entre caballero y dragon
+;; batalla entre aspirante y dragon
 	(:action combateHeroico
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			
 			(not (= ?p1 ?p2))
-			(esCaballero ?p1)
+			(esAspirante ?p1)
 			(esDragon ?p2)
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
@@ -72,21 +72,21 @@
 			(not (vivo ?p2))
 	)
 
-;; batalla entre caballero y dragon
+;; batalla entre aspirante y dragon
 	(:action ajusteDeCuentas
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			
 			(not (= ?p1 ?p2))
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
-			(esCaballero ?p2)
+			(esAspirante ?p2)
 			(vivo ?p1)
 			(vivo ?p2))
 		:effect
 			(putote ?p1)
 	)
 
-;; batalla entre caballero y dragon
+;; batalla entre aspirante y dragon
 	(:action golpeDeEstado
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			
@@ -102,11 +102,11 @@
 			(golpista ?p1))
 	)
 
-;; el caballero escolta a la victima
+;; el aspirante escolta a la victima
 	(:action liberarVictima
 		:parameters (?c ?p ?d ?loc)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(esVictima ?p)
 			(esDragon ?d)	
 			(vivo ?c)
@@ -143,11 +143,11 @@
 			(secuestrada ?p))
 	)
 
-;; el caballero deja a la victima en su hogar
+;; el aspirante deja a la victima en su hogar
 	(:action dejarEnCasa
 		:parameters (?c ?p ?loc)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(esVictima ?p)
 			(conPrinc ?c ?p)
 			(enLoc ?c ?loc)
@@ -161,11 +161,11 @@
 	)		
 		
 		
-;; el caballero se convierte en heroe
+;; el aspirante se convierte en heroe
 	(:action convertirseEnHeroe
 		:parameters (?c ?locCab)
 		:precondition (and
-			(esCaballero ?c)
+			(esAspirante ?c)
 			(vivo ?c)
 			(enLoc ?c ?locCab)
 			(esCasa ?c ?locCab)
@@ -173,7 +173,7 @@
 		:effect 
 			(esHeroe ?c)
 	)	
-;; batalla entre caballero y dragon
+;; batalla entre aspirante y dragon
 	(:action escapar
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			

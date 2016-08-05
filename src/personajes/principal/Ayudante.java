@@ -10,14 +10,14 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Mago extends Protagonista {
+public class Ayudante extends Protagonista {
 	protected void setup() {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], (String) args[1], Integer.parseInt((String) args[2]),
 					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
 					Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false);
-			super.principal = Integer.parseInt((String) args[4]);// el mago da
+			super.principal = Integer.parseInt((String) args[4]);// el ayudante da
 																	// como
 																	// atributo
 																	// principal
@@ -39,7 +39,7 @@ public class Mago extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("Aquel al que llaman mago, " + getLocalName()
+		Gui.setHistoria("Aquel al que llaman ayudante, " + getLocalName()
 				+ ", realmente sólo tiene muchísimas cartas bajo la túnica.");
 
 		addBehaviour(new AyudaArcana());
