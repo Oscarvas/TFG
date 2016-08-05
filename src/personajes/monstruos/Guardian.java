@@ -5,6 +5,8 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 import gui.Gui;
 
 @SuppressWarnings("serial")
@@ -52,9 +54,25 @@ public class Guardian extends Monstruo {
 		public void action() {
 			// TODO Auto-generated method stub
 			try {
-				Thread.sleep(7000);
-				planificar(null);
-				ok = true;
+				
+				MessageTemplate mt = MessageTemplate.and(
+						MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+						MessageTemplate.MatchConversationId("DespiertaGuardian"));
+				ACLMessage receive = myAgent.receive(mt);
+				
+				if (receive != null) {
+					
+					Gui.setHistoria(getLocalName()+": Ha despertado de la siesta");
+					planificar(null);
+					ok = true;
+					
+				}
+				else {
+					Thread.sleep(3000);
+					reset();
+				}
+				
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
