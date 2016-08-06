@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Mapa>
+
+	<region>
+	    <localizacion id="Tesqua" ><!-- Puerto -->
+	        <conectadoCon>Taberna</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Taberna" tipo="Urbano" >
+	        <conectadoCon>Tesqua Cruce</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Cruce" tipo="Camino" >
+	        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
+	        <conectadoCon>Fatum Cruce</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Fatum" tipo="Guarida"><!-- Montana -->
+	        <conectadoCon>Inibi</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
+	        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
+	        <conectadoCon>Ignis</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->
+	        <conectadoCon>Ignis</conectadoCon>
+	    </localizacion>
+	</region>
+        
+</Mapa>
