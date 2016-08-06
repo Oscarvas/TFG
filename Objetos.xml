@@ -2,7 +2,7 @@
 <Objetos>
 	<tipo tipo="clave">
 		<objeto nombre="Espejito" descripcion="Muestra la verdadrea naturaleza de nuestro interior...." localizacion="Taberna"/>
-		<objeto nombre="MountainHearth" descripcion="Es muy brillante, seguro que podemos entrar en la montaña gracias a él" localizacion="Minas"/>
+		<objeto nombre="MountainHearth" descripcion="Es muy brillante, seguro que podemos entrar en la montaña gracias a él" localizacion="Egestas"/>
 	</tipo>
 	
 	<tipo tipo="consumible">

@@ -68,7 +68,7 @@ public class Mundo extends GuiAgent {
 		this.mapa = new Mapa();
 
 		try {
-			File fXmlFile = new File("Mapa.xml");
+			File fXmlFile = new File("MapaReducido.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);

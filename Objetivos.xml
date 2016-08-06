@@ -13,8 +13,8 @@
      -->
     
     <personaje tipo="Victima" >
-    	<objetivo>(enLoc Victima Biblioteca)</objetivo>
-    	<objetivo>(enLoc Victima Establos)</objetivo>
+    	<objetivo>(enLoc Victima Tesqua)</objetivo>
+    	<objetivo>(enLoc Victima Ignis)</objetivo>
         <!-- <objetivo>(casarse Aspirante Victima)</objetivo>
         <objetivo>(enamorarse Monstruo)</objetivo>
         <objetivo>(almaLibre Victima)</objetivo> -->
@@ -52,33 +52,11 @@ o Pasan a trabajar para el Rey, obtienen titulo de ‘Archivado’.
 o Compiten contra otros Héroes.
      -->
     
-    <personaje tipo="Druida" >
-        <objetivo>(encantar Monstruo)</objetivo>
-        <objetivo>(competir Druida Villano)</objetivo>
-        <objetivo>(esHeroe Druida)</objetivo>
-    </personaje>
-    <!-- o Rescatan Victimas.
-o Matan Monstruos.
-o Inspiran miedo en otros Héroes.
-o Compite contra el Villano.
-o Habla con los animales.
-     -->
-    
     <!-- Antagonistas -->
-<!--     <personaje tipo="Villano" >
-        <objetivo>(not (vivo Dragon))</objetivo>
-    </personaje> -->
-   <!--  • Derrocar al Rey.
-• Casarse con la Victima.
-• Almacenar oro (objetos brillantes).
-• Matar ‘Aspirantes'.
-• Robar a los ‘Ayudantes'.
-• Confundir y distraer a los Personajes.
-     -->
     
     <!-- Monstruos -->
     <personaje tipo="Secuestrador" >
-        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Cuevas))</objetivo>
+        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Taberna))</objetivo>
         <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Fatum))</objetivo>
     </personaje>
    <!--  o Secuestrar victimas.
@@ -89,8 +67,8 @@ o Proveedor de material magico.
     <personaje tipo="Guardian" >
         <objetivo>(conObjeto Guardian Espejito)</objetivo>
         <objetivo>(conObjeto Guardian MountainHearth)</objetivo>
-        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Turis))</objetivo>
-        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Lucta))</objetivo>
+        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Tesqua))</objetivo>
+        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Illunis))</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
 o Alimentarse (de Personajes).
@@ -99,11 +77,6 @@ o Impide atravesar el Lago.
     
     <personaje tipo="Emboscador" >
         <objetivo>(enLoc Emboscador Ignis)</objetivo>
-        <objetivo>(enLoc Emboscador Lucta)</objetivo>
-    	<objetivo>(enLoc Emboscador Establos)</objetivo>
-    	<objetivo>(enLoc Emboscador Caligo)</objetivo>
-        <objetivo>(enLoc Emboscador Tragus)</objetivo>
-    	<objetivo>(enLoc Emboscador Nordrassil)</objetivo>
     	<objetivo>(enLoc Emboscador Cruce)</objetivo>
     </personaje>
    <!--  o Cobrar peaje (objetos brillantes).
