@@ -224,7 +224,7 @@ public class Personaje extends Agent {
 			ok = true;
 
 			mandarCrearArchivo();
-			String[] args = { "domain.pddl", getLocalName() + ".pddl" };
+			String[] args = { "domainReduced.pddl", getLocalName() + ".pddl" };
 
 			String ff = JavaFF.crearPlan(args);
 			String[] cadena = ff.split("\n");

@@ -14,7 +14,7 @@
     
     <personaje tipo="Victima" >
     	<objetivo>(enLoc Victima Tesqua)</objetivo>
-    	<objetivo>(enLoc Victima Ignis)</objetivo>
+    	<objetivo>(enLoc Victima Establos)</objetivo>
         <!-- <objetivo>(casarse Aspirante Victima)</objetivo>
         <objetivo>(enamorarse Monstruo)</objetivo>
         <objetivo>(almaLibre Victima)</objetivo> -->
