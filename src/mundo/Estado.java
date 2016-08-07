@@ -31,6 +31,7 @@ public class Estado {
 	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
 	private ArrayList<String> consumidor;//guardara las clases que puden usar objetos consumibles
 	private ArrayList<Objeto> objetosClave; //guarda una copia de los objetos clave
+	private ArrayList<String> atracable; //guarda las clases susceptible a interactuar con el ladron
 	
 	public Estado() {
 
@@ -53,6 +54,7 @@ public class Estado {
 		this.objetoEnLoc = new HashMap<String, String>();
 		this.consumidor = new ArrayList<String>();
 		this.objetosClave = new ArrayList<Objeto>();
+		this.atracable = new ArrayList<String>();
 	}
 	public void guardaClave(Objeto obj){
 		this.objetosClave.add(obj);
@@ -127,6 +129,10 @@ public class Estado {
 	public boolean esConsumidor(String clase){
 		return this.consumidor.contains(clase);		
 	}
+	
+	public boolean esAtracable(String clase){
+		return this.atracable.contains(clase);		
+	}
 
 	public void añadirPersonaje(String clase, String nombre) {
 
@@ -141,9 +147,14 @@ public class Estado {
 		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Victima"))
 			estaLibrePersonaje(nombre);
 
-		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Victima") 
-				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
+//		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Victima") 
+//				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
+//			consumidor.add(clase);
+		if ( clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante"))
 			consumidor.add(clase);
+		
+		if (clase.equalsIgnoreCase("Aspirante"))
+			atracable.add(clase);
 		
 		nombres.add(nombre);
 		personajes.put(clase, nombres);

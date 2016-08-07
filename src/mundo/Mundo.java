@@ -451,9 +451,12 @@ public class Mundo extends GuiAgent {
 				cfp.setContent(clase);
 				cfp.setConversationId("SolicitarServicio");
 
-				for (int i = 0; i < emboscadores.length; i++) {
-					cfp.addReceiver(emboscadores[i]);
+				for (AID emboscador : emboscadores) {
+					cfp.addReceiver(emboscador);
 				}
+//				for (int i = 0; i < emboscadores.length; i++) {
+//					cfp.addReceiver(emboscadores[i]);
+//				}
 
 				cfp.setReplyWith("cfp" + System.currentTimeMillis());
 				myAgent.send(cfp);
@@ -515,36 +518,38 @@ public class Mundo extends GuiAgent {
 	}
 
 	/*
-	 * Avisamos a todos los emboscadores por si les interesa/pueden actuar
+	 * Avisamos a todos los ladrones por si les interesa/pueden actuar
 	 */
 	private void EncuentroGuardian(Agent myAgent, String clase, String nombre) {
 		
-		DFAgentDescription template = new DFAgentDescription();
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Guardian");
-		template.addServices(sd);
+		if(estado.esAtracable(clase)){
+			DFAgentDescription template = new DFAgentDescription();
+			ServiceDescription sd = new ServiceDescription();
+			sd.setType("Guardian");
+			template.addServices(sd);
 
-		try {
+			try {
 
-			DFAgentDescription[] result = DFService.search(myAgent, template);
-			AID[] guardianes = new AID[result.length];
+				DFAgentDescription[] result = DFService.search(myAgent, template);
+				AID[] guardianes = new AID[result.length];
 
-			if (guardianes.length > 0) {
-				boolean hayGuardian = false;
-				int i = 0;
-				while (i < result.length && !hayGuardian) {
-					guardianes[i] = result[i].getName();
-					if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el aspirante y el guardian estan en la misma loc
-						hayGuardian = true;
-					i++;
+				if (guardianes.length > 0) {
+					boolean hayGuardian = false;
+					int i = 0;
+					while (i < result.length && !hayGuardian) {
+						guardianes[i] = result[i].getName();
+						if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el aspirante y el guardian estan en la misma loc
+							hayGuardian = true;
+						i++;
+					}
+					
+					if (hayGuardian)
+						AcudeAyudante(myAgent);
 				}
-				
-				if (hayGuardian)
-					AcudeAyudante(myAgent);
-			}
 
-		} catch (Exception fe) {
-			fe.printStackTrace();
+			} catch (Exception fe) {
+				fe.printStackTrace();
+			}
 		}
 	}
 	
