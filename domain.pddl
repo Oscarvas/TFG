@@ -245,11 +245,12 @@
 		:effect (and
 			(not (estaLibre ?g))
 			(conObjeto ?g ?o)
+			(cansado ?g)
 		)
 	)
 	
 ;; El guardian se mueve con un objeto
-	(:action escoltarObjeto
+	(:action escoltarObjetoRobado
 		:parameters (?per ?o ?locOrigen ?locDest)
 		:precondition (and
 			(esSecundario ?per)
@@ -267,12 +268,34 @@
 		)
 	)
 
+;; El guardian se mueve con un objeto
+	(:action escoltarObjeto
+		:parameters (?per ?o ?locOrigen ?locDest)
+		:precondition (and
+			(esSecundario ?per)
+			(conObjeto ?per ?o)
+			(vivo ?per)
+			(objetoEnLoc ?o ?locOrigen)
+			(enLoc ?per ?locOrigen)
+			(adyacente ?locOrigen ?locDest)
+			(not (cansado ?per))
+		)
+		:effect (and
+			(enLoc ?per ?locDest)
+			(objetoEnLoc ?o ?locDest)
+			(not (enLoc ?per ?locOrigen))
+			(not (objetoEnLoc ?o ?locOrigen))
+		)
+	)
+
 ;; batalla entre ayudante y Guardian
 	(:action batallaArcana
 		:parameters (?mg ?g ?loc)
 		:precondition (and
 			(esSecundario ?mg)
 			(esSecundario ?g)
+			(esAyudante ?mg)
+			(esGuardian ?g)
 			(not (= ?mg ?g))
 			(enLoc ?mg ?loc)
 			(enLoc ?g ?loc)

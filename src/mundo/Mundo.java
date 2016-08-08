@@ -654,7 +654,8 @@ public class Mundo extends GuiAgent {
 				Objeto obj = estado.extraerObjeto(nombre);
 				
 				reply.setContent(nombre +" "+obj.getDesc());
-
+				estado.estaLlenoPersonaje(receive.getSender().getLocalName());
+				estado.estaCansado(receive.getSender().getLocalName());
 				estado.guardaObjeto(receive.getSender().getLocalName(), nombre);
 				myAgent.send(reply);
 

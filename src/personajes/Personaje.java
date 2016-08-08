@@ -249,7 +249,8 @@ public class Personaje extends Agent {
 						new Mover(this, accionActual[2], accionActual[3]).execute();
 					}
 					
-					else if (accion.equalsIgnoreCase("escoltarObjeto")){
+					else if (accion.equalsIgnoreCase("escoltarObjeto") 
+							||	accion.equalsIgnoreCase("escoltarObjetoRobado")){
 						//Gui.setHistoria(this.getLocalName()+" se mueve con la reliquia "+accionActual[2]+" a "+accionActual[4]);
 						new Mover(this, accionActual[3], accionActual[4]).execute();
 						new MoverObjetos(this).execute();;

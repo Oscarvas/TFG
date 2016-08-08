@@ -393,6 +393,16 @@ public class Estado {
 
 			estado += "(conPrinc " + e.getKey() + " " + e.getValue() + ")\n";
 		}
+		
+		// Personajes y objetos que tienen
+
+		it = poseeObjeto.entrySet().iterator();
+
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry) it.next();
+
+			estado += "(conObjeto " + e.getKey() + " " + e.getValue() + ")\n";
+		}
 
 		// Si está secuestrada la victima
 
