@@ -544,7 +544,7 @@ public class Mundo extends GuiAgent {
 					}
 					
 					if (hayGuardian)
-						AcudeAyudante(myAgent);
+						AcudeAyudante(myAgent,guardianes[i-1].getLocalName());
 				}
 
 			} catch (Exception fe) {
@@ -553,7 +553,7 @@ public class Mundo extends GuiAgent {
 		}
 	}
 	
-	private void AcudeAyudante(Agent myAgent){
+	private void AcudeAyudante(Agent myAgent, String ladron){
 
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
@@ -573,8 +573,8 @@ public class Mundo extends GuiAgent {
 				
 				ACLMessage fairytail = new ACLMessage(ACLMessage.INFORM);
 				fairytail.setConversationId("HoraMagica");
-				fairytail.addReceiver(ayudante);
-				fairytail.setContent("nombreObjeto");
+				fairytail.addReceiver(ayudante);				
+				fairytail.setContent(estado.tieneObjeto(ladron));
 				myAgent.send(fairytail);
 
 			}
@@ -655,6 +655,7 @@ public class Mundo extends GuiAgent {
 				
 				reply.setContent(nombre +" "+obj.getDesc());
 
+				estado.guardaObjeto(receive.getSender().getLocalName(), nombre);
 				myAgent.send(reply);
 
 			} else

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Objetivos>
-    <!-- Realeza -->
-    <personaje tipo="Rey" >
-        <objetivo>(procrear Rey)</objetivo>
-        <objetivo>(avaro Rey)</objetivo>
-    </personaje>
-    <!-- • Genera Recompensas por objetivos.
-• Otorga ‘Fama’ y ‘Conocimiento’ a héroes correspondientes.
-• Generador de Victimas.
-• Si el Heroe fracasa, intenta rescatar a la victima.
-     -->
     
     <personaje tipo="Victima" >
     	<objetivo>(enLoc Victima Tesqua)</objetivo>
@@ -42,7 +32,7 @@ o Casarse con Victimas.
      -->
     
     <personaje tipo="Ayudante" >
-        <objetivo>(and (esSabio Ayudante) (restaurado MountainHearth))</objetivo>
+        <objetivo>(and (esSabio Ayudante) (restaurado Tesoro))</objetivo>
     </personaje>
     <!-- o Rescatan Victimas.
 o Matan Monstruos.

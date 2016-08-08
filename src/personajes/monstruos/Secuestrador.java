@@ -4,6 +4,7 @@ import java.util.Random;
 
 import gui.Gui;
 import jade.core.AID;
+import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
@@ -45,6 +46,40 @@ public class Secuestrador extends Monstruo {
 			
 	}
 	
+	private void esquadronSuicida(Agent myAgent){
+		//Aviso al guardian
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription sd = new ServiceDescription();
+		sd.setType("Guardian");
+		template.addServices(sd);
+		
+		DFAgentDescription[] result;
+		try {
+			result = DFService.search(myAgent, template);
+			AID[] guardianes = new AID[result.length];
+			for (int i = 0; i < result.length; i++){
+				guardianes[i] = result[i].getName();
+			}
+			
+			if (guardianes.length != 0){						
+				ACLMessage despiertaGuardian = new ACLMessage(ACLMessage.INFORM);
+				despiertaGuardian.setConversationId("DespiertaGuardian");						
+				
+				for (AID guardian : guardianes) {
+					
+					despiertaGuardian.addReceiver(guardian);
+					despiertaGuardian.setContent(guardian.getLocalName());
+					myAgent.send(despiertaGuardian);
+					
+				}
+			}
+			
+			
+		} catch (FIPAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	private class Secuestro extends Behaviour {
 			
@@ -74,6 +109,7 @@ public class Secuestrador extends Monstruo {
 						myAgent.send(secuestrar);
 						
 						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la victima "+victimaSecuestrada.getLocalName());
+						esquadronSuicida(myAgent);
 						planificar(null);
 						
 						/*
@@ -126,38 +162,7 @@ public class Secuestrador extends Monstruo {
 				MessageTemplate mt1 = MessageTemplate.MatchConversationId("Te secuestro");
 				myAgent.blockingReceive(mt1);
 				
-				//Aviso al guardian
-				DFAgentDescription template = new DFAgentDescription();
-				ServiceDescription sd = new ServiceDescription();
-				sd.setType("Guardian");
-				template.addServices(sd);
 				
-				DFAgentDescription[] result;
-				try {
-					result = DFService.search(myAgent, template);
-					AID[] guardianes = new AID[result.length];
-					for (int i = 0; i < result.length; i++){
-						guardianes[i] = result[i].getName();
-					}
-					
-					if (guardianes.length != 0){						
-						ACLMessage despiertaGuardian = new ACLMessage(ACLMessage.INFORM);
-						despiertaGuardian.setConversationId("DespiertaGuardian");						
-						
-						for (AID guardian : guardianes) {
-							
-							despiertaGuardian.addReceiver(guardian);
-							despiertaGuardian.setContent(guardian.getLocalName());
-							myAgent.send(despiertaGuardian);
-							
-						}
-					}
-					
-					
-				} catch (FIPAException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
 				
 			

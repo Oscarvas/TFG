@@ -32,6 +32,7 @@ public class Estado {
 	private ArrayList<String> consumidor;//guardara las clases que puden usar objetos consumibles
 	private ArrayList<Objeto> objetosClave; //guarda una copia de los objetos clave
 	private ArrayList<String> atracable; //guarda las clases susceptible a interactuar con el ladron
+	private HashMap<String, String> poseeObjeto; // <personaje, objeto> indica que objeto tiene un personaje dado 
 	
 	public Estado() {
 
@@ -55,7 +56,17 @@ public class Estado {
 		this.consumidor = new ArrayList<String>();
 		this.objetosClave = new ArrayList<Objeto>();
 		this.atracable = new ArrayList<String>();
+		this.poseeObjeto = new HashMap<String, String>();
 	}
+	
+	public void guardaObjeto(String personaje, String objeto){
+		poseeObjeto.put(personaje, objeto);
+	}
+	
+	public String tieneObjeto(String personaje){
+		return poseeObjeto.get(personaje);
+	}
+	
 	public void guardaClave(Objeto obj){
 		this.objetosClave.add(obj);
 	}

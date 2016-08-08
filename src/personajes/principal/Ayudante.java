@@ -74,7 +74,7 @@ public class Ayudante extends Protagonista {
 			if (msg != null) {
 				try {
 					ok = true;
-					//planificar(null);
+					planificar(msg.getContent());
 					Gui.setHistoria(getLocalName() + " me planifico muy guay madafakas !!! ----------");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

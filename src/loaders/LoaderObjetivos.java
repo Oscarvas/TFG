@@ -112,6 +112,7 @@ public class LoaderObjetivos {
 							
 						
 						String objetivo = cadena
+								.replace("Tesoro", this.objetivo)
 								.replace("Rey", this.objetivo)
 								.replace("Victima", polivalente) 
 								.replace("Aspirante", myAgent.getLocalName())
