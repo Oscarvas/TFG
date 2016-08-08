@@ -55,10 +55,10 @@ o Proveedor de material magico.
      -->
     
     <personaje tipo="Guardian" >
-        <objetivo>(conObjeto Guardian Espejito)</objetivo>
-        <objetivo>(conObjeto Guardian MountainHearth)</objetivo>
-        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Tesqua))</objetivo>
-        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Illunis))</objetivo>
+        <!-- <objetivo>(conObjeto Guardian Espejito)</objetivo>
+        <objetivo>(conObjeto Guardian MountainHearth)</objetivo> -->
+        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Cruce))</objetivo>
+        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Fatum))</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
 o Alimentarse (de Personajes).

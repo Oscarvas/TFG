@@ -61,7 +61,7 @@ public class LoaderObjetivos {
 		
 		
 		try {
-			File fXmlFile = new File("Objetivos.xml");
+			File fXmlFile = new File("ObjetivosReduced.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
