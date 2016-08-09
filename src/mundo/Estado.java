@@ -289,7 +289,7 @@ public class Estado {
 		return estado;
 	}
 	@SuppressWarnings("rawtypes")
-	private String enLoc (String nombrePersonaje,ArrayList<String> lista){
+	private String enLoc (ArrayList<String> lista){
 		String estado = "";
 		Iterator<?> it;
 		// Localización de personajes
@@ -357,18 +357,20 @@ public class Estado {
 
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			//String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
+			String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
 
-			for (String nombre : lista) {				
-				estado += "(es" + e.getKey() + " " + nombre + ")\n";
+			for (String nombre : nombres) {				
+				if(lista.contains(nombre)){
+					estado += "(es" + e.getKey() + " " + nombre + ")\n";
 
-				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
-					estado += "(esPrincipal ";
+					if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
+						estado += "(esPrincipal ";
 
-				else
-					estado += "(esSecundario ";
+					else
+						estado += "(esSecundario ";
 
-				estado += nombre + ")\n";
+					estado += nombre + ")\n";
+				}
 			}
 		}
 		
@@ -472,7 +474,7 @@ public class Estado {
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -491,7 +493,7 @@ public class Estado {
 		lista.addAll(personajes.get("Victima"));
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -507,11 +509,11 @@ public class Estado {
 	private String conocimientoAyudante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
-		lista.addAll(personajes.get("Ladron"));
+		lista.addAll(personajes.get("Guardian"));
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -529,7 +531,7 @@ public class Estado {
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -548,7 +550,7 @@ public class Estado {
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -565,7 +567,7 @@ public class Estado {
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -581,7 +583,7 @@ public class Estado {
 		
 		String estado = "";
 		
-		estado+=enLoc(nombre, lista);
+		estado+=enLoc(lista);
 		estado+=esHogar(lista);
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
@@ -634,13 +636,13 @@ public class Estado {
 		else if(personajes.get("Secuestrador").contains(nombrePersonaje))
 			estado+=conocimientoSecuestrador(nombrePersonaje);
 		
-		else if(personajes.get("Ladron").contains(nombrePersonaje))
+		else if(personajes.get("Guardian").contains(nombrePersonaje))
 			estado+=conocimientoLadron(nombrePersonaje);
 		
 		else if(personajes.get("Emboscador").contains(nombrePersonaje))
 			estado+=conocimientoEmboscador(nombrePersonaje);
 		
-		else if(personajes.get("Asesino").contains(nombrePersonaje))
+		else if(personajes.get("Maligno").contains(nombrePersonaje))
 			estado+=conocimientoAsesino(nombrePersonaje);
 
 		return estado;
