@@ -25,6 +25,8 @@ public class Estado {
 	private HashMap<String, String> casasDePersonajes;
 	private ArrayList<String> victimasSalvadas;
 	private ArrayList<String> heroes;
+	private ArrayList<String> sabios;
+	private ArrayList<String> villanos;
 	private HashMap<String, String> victimaObjetivo; // <Secuestrador/salvador,objetivoSecuestro>
 	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
 	private Almacen almacen;
@@ -48,6 +50,8 @@ public class Estado {
 		this.casasDePersonajes = new HashMap<String, String>();
 		this.victimasSalvadas = new ArrayList<String>();
 		this.heroes = new ArrayList<String>();
+		this.sabios = new ArrayList<String>();
+		this.villanos = new ArrayList<String>();
 		this.victimaObjetivo = new HashMap<String, String>();
 		this.objetivos = new HashMap<String, String>();
 		this.cansado = new ArrayList<String>();
@@ -61,6 +65,10 @@ public class Estado {
 	
 	public void guardaObjeto(String personaje, String objeto){
 		poseeObjeto.put(personaje, objeto);
+	}
+	
+	public void pierdeObjeto(String personaje){
+		poseeObjeto.remove(personaje);
 	}
 	
 	public String tieneObjeto(String personaje){
@@ -244,12 +252,26 @@ public class Estado {
 		victimasSalvadas.remove(victima);
 	}
 
+	public void añadirSabio(String ayudante) {
+		sabios.add(ayudante);
+	}
+
+	public void eliminarSabio(String ayudante) {
+		sabios.remove(ayudante);
+	}
 	public void añadirHeroe(String aspirante) {
 		heroes.add(aspirante);
 	}
 
 	public void eliminarHeroe(String aspirante) {
 		heroes.remove(aspirante);
+	}
+	public void añadirVillano(String aspirante) {
+		villanos.add(aspirante);
+	}
+
+	public void eliminarVillano(String aspirante) {
+		villanos.remove(aspirante);
 	}
 
 	public String nombreCorrecto(String nombre) {
@@ -425,6 +447,27 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	private String esSabio (){
+		String estado = "";
+		// Ayudantes que han llegado a ser Sabios
+
+		for (String heroe : heroes)
+			estado += "(esSabio " + heroe + ")\n";
+		
+		return estado;
+	}
+	
+	private String esVillano (){
+		String estado = "";
+		// Aspirantes que han llegado a ser Villanos
+
+		for (String heroe : heroes)
+			estado += "(esVillano " + heroe + ")\n";
+		
+		return estado;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	private String conPrincesa (){
 		String estado = "";
@@ -502,6 +545,7 @@ public class Estado {
 		estado+=conPrincesa();
 		estado+=estaSecuestrada();
 		estado+=esHeroe();
+		estado+=esVillano();
 		estado+=estanCansados(lista);
 		
 		return estado;
@@ -518,6 +562,7 @@ public class Estado {
 		estado+=esPrincipal(lista);
 		estado+=estaLibre(lista);
 		estado+=estanVivos(lista);
+		estado+=esSabio();
 		estado+=objetoEnLoc();
 		estado+=conObjeto();
 		estado+=estanCansados(lista);

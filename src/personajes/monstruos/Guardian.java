@@ -64,6 +64,8 @@ public class Guardian extends Monstruo {
 					
 					Gui.setHistoria(getLocalName()+": Ha despertado de la siesta");
 					planificar(null);
+					//Igual que el secuestrador, la ultima localizacion se convierte en guarida
+					localizarPersonaje();
 					ok = true;
 					
 				}

@@ -34,6 +34,9 @@ public class Batalla {
 		
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(batalla.getReplyWith());
 		ACLMessage reply = personaje.blockingReceive(mt);
+		System.err.println("\n se recibe respuesta de la batalla entre: "+ personaje.getLocalName()+" y "+ secundario);
+		System.err.println(personaje.getLocalName()+" recibe una hostia de "+reply.getContent() + " y la va a devolver de "+
+				personaje.getPrincipal()+", su vida actual es "+personaje.getVida());
 		personaje.añadirVida( -Integer.parseInt(reply.getContent()) );
 		
 	}

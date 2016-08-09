@@ -26,6 +26,7 @@ public class Defender extends CyclicBehaviour {
 			ACLMessage reply = receive.createReply();
 				
 			reply.setContent(Integer.toString(personaje.getVida()));
+			System.err.println("En esta esquina, "+personaje.getLocalName()+" va a meter una hostia de "+ personaje.getVida());
 			personaje.añadirVida(-Integer.parseInt(receive.getContent()));				
 			
 			myAgent.send(reply);

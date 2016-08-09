@@ -185,9 +185,13 @@ public class Mundo extends GuiAgent {
 		addBehaviour(new Liberar());
 		addBehaviour(new PersonajeEnCasa());
 		addBehaviour(new ConvertirEnHeroe());
+		addBehaviour(new ConvertirEnSabio());
+		addBehaviour(new ConvertirEnVillano());
 		addBehaviour(new MuertePersonaje());
 		addBehaviour(new DondeEstaPersonaje());
 		addBehaviour(new Proteger());
+		addBehaviour(new RecuperarObjeto());
+		addBehaviour(new RestaurarObjeto());
 		addBehaviour(new MoverObjetos());
 	}
 
@@ -666,6 +670,66 @@ public class Mundo extends GuiAgent {
 		
 	}
 	
+	private class RecuperarObjeto extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Recuperar"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				ACLMessage reply = receive.createReply();
+				String contenido [] = receive.getContent().split(" ");
+				
+				String guardian = estado.nombreCorrecto(contenido[0]);
+				String objeto = estado.nombreCorrecto(contenido[1]);
+				Objeto obj = estado.extraerObjeto(objeto);
+				
+				reply.setContent(objeto +" "+obj.getDesc());
+				estado.estaLlenoPersonaje(receive.getSender().getLocalName());
+				//estado.estaCansado(receive.getSender().getLocalName());
+				estado.pierdeObjeto(guardian);
+				estado.guardaObjeto(receive.getSender().getLocalName(), objeto);
+				myAgent.send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
+	
+	private class RestaurarObjeto extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Restaurar"));
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				ACLMessage reply = receive.createReply();
+				String contenido = receive.getContent();
+				
+				String objeto = estado.nombreCorrecto(contenido);
+				Objeto obj = estado.extraerObjeto(objeto);				
+				reply.setContent(objeto +" "+obj.getDesc());
+				estado.estaLibrePersonaje(receive.getSender().getLocalName());
+				estado.pierdeObjeto(receive.getSender().getLocalName());
+				myAgent.send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
+	
 	private class Secuestro extends CyclicBehaviour {
 
 		public void action() {
@@ -771,6 +835,45 @@ public class Mundo extends GuiAgent {
 			if (receive != null) {
 
 				estado.añadirHeroe(receive.getSender().getLocalName());
+				send(receive.createReply());
+
+			} else
+				block();
+
+		}
+	}
+	
+	private class ConvertirEnSabio extends CyclicBehaviour {
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Ser Sabio"));
+
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				estado.añadirSabio(receive.getSender().getLocalName());
+				send(receive.createReply());
+
+			} else
+				block();
+
+		}
+	}
+	private class ConvertirEnVillano extends CyclicBehaviour {
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
+					MessageTemplate.MatchConversationId("Ser Villano"));
+
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				estado.añadirVillano(receive.getSender().getLocalName());
 				send(receive.createReply());
 
 			} else

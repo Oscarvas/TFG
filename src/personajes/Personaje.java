@@ -281,7 +281,7 @@ public class Personaje extends Agent {
 						
 
 					} 
-					else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("criminal"))
+					else if (accion.equalsIgnoreCase("batalla") || accion.equalsIgnoreCase("criminal") || accion.equalsIgnoreCase("batallaarcana"))
 						new Batalla(this, accionActual[2]).execute();
 					
 					else if( accion.equalsIgnoreCase("venganza"))
@@ -292,19 +292,27 @@ public class Personaje extends Agent {
 
 					else if (accion.equalsIgnoreCase("dejarencasa"))
 						new DejarEnCasa(this, accionActual[2]).execute();
-
-					else if (accion.equalsIgnoreCase("convertirseenheroe"))
-						new ConvertirseEnHeroe(this).execute();
 					
 					else if (accion.equalsIgnoreCase("proteger"))
 						new ProtegerObjeto(this, accionActual[2]).execute();
+					
+					else if (accion.equalsIgnoreCase("cogerObjeto"))
+						new RecuperarObjeto(this, accionActual[2], accionActual[3]).execute();
 						
+					else if (accion.equalsIgnoreCase("restaurarObjeto"))
+						new RecuperarObjeto(this, accionActual[2], accionActual[3]).execute();
+					
+					else if (accion.equalsIgnoreCase("convertirseenheroe"))
+						new ConvertirseEnHeroe(this).execute();
+					
+					else if (accion.equalsIgnoreCase("convertirseEnSabio"))
+						new ConvertirseEnSabio(this).execute();
 					
 					else if (accion.equalsIgnoreCase("convertirseenvillano"))
-						Gui.setHistoria(accionActual[1]+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
+						new ConvertirseEnVillano(this).execute();
 
 					else {
-						System.out.println(sigAccion);
+						System.err.println(sigAccion);
 						throw new Exception("Accion no reconocible");
 					}
 				} catch (Exception e) {
@@ -355,6 +363,9 @@ public class Personaje extends Agent {
 	
 	public void guardarObjeto(Clave obj){
 		this.mochila.add(obj);
+	}
+	public void tirarObjeto(Clave obj){
+		this.mochila.remove(obj);
 	}
 	
 	//actualiza la localizacion de todos los objetos
