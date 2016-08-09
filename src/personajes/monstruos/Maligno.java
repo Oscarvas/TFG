@@ -1,6 +1,7 @@
 package personajes.monstruos;
 
 import gui.Gui;
+import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -61,6 +62,7 @@ public class Maligno extends Monstruo {
 				
 				try {
 					planificar(receive.getContent());
+					addBehaviour(new FinPlanificacion());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -70,5 +72,29 @@ public class Maligno extends Monstruo {
 				block();
 		}
 		
+	}
+	
+	private class FinPlanificacion extends Behaviour {
+		ACLMessage receive;
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Fin-Plan"),
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+
+			receive = receive(mt);
+
+			if (receive != null) {
+
+				doDelete();
+
+			} else
+				block();
+		}
+
+		@Override
+		public boolean done() {
+			return receive != null;
+		}
 	}
 }

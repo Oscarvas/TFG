@@ -62,8 +62,9 @@ public class Guardian extends Monstruo {
 				
 				if (receive != null) {
 					
-					Gui.setHistoria(getLocalName()+": Ha despertado de la siesta");
+					Gui.setHistoria(getLocalName()+": Va en busca de algun tesoro desprotegido");
 					planificar(null);
+					addBehaviour(new FinPlanificacion());
 					//Igual que el secuestrador, la ultima localizacion se convierte en guarida
 					localizarPersonaje();
 					ok = true;
@@ -87,6 +88,30 @@ public class Guardian extends Monstruo {
 			return ok;
 		}
 		
+	}
+	
+	private class FinPlanificacion extends Behaviour {
+		ACLMessage receive;
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Fin-Plan"),
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+
+			receive = receive(mt);
+
+			if (receive != null) {
+
+				Gui.setHistoria(getLocalName()+": Hora de apreciar el botin conseguido");
+
+			} else
+				block();
+		}
+
+		@Override
+		public boolean done() {
+			return receive != null;
+		}
 	}
 	
 }

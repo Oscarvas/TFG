@@ -199,7 +199,7 @@ public class Victima extends Protagonista {
 									
 									
 									planificar(null);
-									doDelete();
+									addBehaviour(new FinPlanificacion());
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -243,5 +243,29 @@ public class Victima extends Protagonista {
 		}
 	}
 
+	
+	private class FinPlanificacion extends Behaviour {
+		ACLMessage receive;
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Fin-Plan"),
+					MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+
+			receive = receive(mt);
+
+			if (receive != null) {
+
+				doDelete();
+
+			} else
+				block();
+		}
+
+		@Override
+		public boolean done() {
+			return receive != null;
+		}
+	}
 	
 }

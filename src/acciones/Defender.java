@@ -32,6 +32,7 @@ public class Defender extends CyclicBehaviour {
 			myAgent.send(reply);
 			
 			if ( personaje.estaMuerto() )
+				System.err.println(personaje.getLocalName()+" HA SIDO ANIQUILADO ****");
 				myAgent.doDelete();
 			
 		} else

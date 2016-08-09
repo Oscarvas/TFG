@@ -8,7 +8,6 @@ import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
-import jade.core.behaviours.ParallelBehaviour;
 import jade.core.behaviours.ThreadedBehaviourFactory;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -73,17 +72,13 @@ public class Rey extends Protagonista {
 			m.registerTransition("Aceptar", "Victima Salvada", 1);
 			m.registerTransition("Aceptar", "Rescate", 2);
 			m.registerDefaultTransition("Victima Salvada", "Atento");
-			
-//			ParallelBehaviour p = new ParallelBehaviour(this, ParallelBehaviour.WHEN_ALL);
-//			p.addSubBehaviour(m);
-//			p.addSubBehaviour(new Tortura(this));
 
-//			addBehaviour(p);
 			addBehaviour(tbf.wrap(m));
 			addBehaviour(tbf.wrap(new Tortura(this)));
 		}
 		else{
 			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no tengo hijas por las cuales preocuparme");
+			doDelete();
 		}
 		
 		
