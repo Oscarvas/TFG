@@ -270,13 +270,11 @@ public class Estado {
 
 		return nombres;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
-	public String toString(String nombrePersonaje) {
-
+	private String adyacente (){
 		String estado = "";
 		Iterator<?> it;
-
 		// Adyacencias
 
 		it = adyacencias.entrySet().iterator();
@@ -288,31 +286,30 @@ public class Estado {
 			for (String adyacenteCon : valor)
 				estado += "(adyacente " + e.getKey() + " " + adyacenteCon + ")\n";
 		}
-
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String enLoc (String nombrePersonaje,ArrayList<String> lista){
+		String estado = "";
+		Iterator<?> it;
 		// Localización de personajes
 
 		it = persEnLoc.entrySet().iterator();
 
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-
-			if (personajes.get("Victima").contains(nombrePersonaje)) {
-				if (nombrePersonaje.equals(e.getKey()))
-					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
-			} else {
-				if (!personajes.get("Aspirante").contains(nombrePersonaje))// si
-																			// no
-																			// soy
-																			// un
-																			// aspirante
-					estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
-				else {
-					if (nombrePersonaje.equals(e.getKey()) || !personajes.get("Aspirante").contains(e.getKey()))
-						estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
-				}
-			}
+			
+			if(lista.contains(e.getKey()))
+				estado += "(enLoc " + e.getKey() + " " + e.getValue() + ")\n";
 
 		}
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String objetoEnLoc(){
+		String estado = "";
+		Iterator<?> it;
+		
 		// Localizaciones de objetos
 		
 		it = objetoEnLoc.entrySet().iterator();
@@ -322,6 +319,12 @@ public class Estado {
 			estado += "(objetoEnLoc " + e.getKey() + " " + e.getValue() + ")\n";
 		}
 		
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String esHogar (ArrayList<String> lista){
+		String estado = "";
+		Iterator<?> it;
 		
 		// Hogar / Guarida de cada Personaje
 
@@ -329,25 +332,34 @@ public class Estado {
 
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
+			
+			if(lista.contains(e.getKey())){
+				if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Guardian").contains(e.getKey().toString()))
+					estado += "(esGuarida ";
 
-			if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Guardian").contains(e.getKey().toString()))
-				estado += "(esGuarida ";
+				else
+					estado += "(esCasa ";
 
-			else
-				estado += "(esCasa ";
-
-			estado += e.getKey() + " " + e.getValue() + ")\n";
+				estado += e.getKey() + " " + e.getValue() + ")\n";
+			}
 		}
-
+		
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String esPrincipal (ArrayList<String> lista){
+		String estado = "";
+		Iterator<?> it;
+		
 		// Pseudónimos de personajes
 
 		it = personajes.entrySet().iterator();
 
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
+			//String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
 
-			for (String nombre : nombres) {
+			for (String nombre : lista) {				
 				estado += "(es" + e.getKey() + " " + nombre + ")\n";
 
 				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
@@ -359,31 +371,62 @@ public class Estado {
 				estado += nombre + ")\n";
 			}
 		}
-
+		
+		return estado;
+	}
+	private String estaLibre (ArrayList<String> lista){
+		String estado = "";
+		
 		// Personajes libres
 
 		for (String personaje : estaLibre)
-			estado += "(estaLibre " + personaje + ")\n";
+			if(lista.contains(personaje))
+				estado += "(estaLibre " + personaje + ")\n";
 
+		return estado;
+	}
+	private String estanCansados (ArrayList<String> lista){
+		String estado = "";
+		
 		// Personajes cansados
 		for (String personaje : cansado)
-			estado += "(cansado " + personaje + ")\n";
-
+			if(lista.contains(personaje))
+				estado += "(cansado " + personaje + ")\n";
+		
+		return estado;
+	}
+	private String estanVivos (ArrayList<String> lista){
+		String estado = "";
 		// Personajes vivos o muertos
 
 		for (String personaje : vivos)
-			estado += "(vivo " + personaje + ")\n";
-
+			if(lista.contains(personaje))
+				estado += "(vivo " + personaje + ")\n";
+		
+		return estado;
+	}
+	private String estaSalvada (){
+		String estado = "";
 		// Victimas salvadas
 
 		for (String victima : victimasSalvadas)
 			estado += "(salvada " + victima + ")\n";
-
+		
+		return estado;
+	}
+	private String esHeroe (){
+		String estado = "";
 		// Aspirantes que han llegado a ser Heroes
 
 		for (String heroe : heroes)
 			estado += "(esHeroe " + heroe + ")\n";
-
+		
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String conPrincesa (){
+		String estado = "";
+		Iterator<?> it;
 		// Si un personaje está con la victima
 
 		it = personajeConVictima.entrySet().iterator();
@@ -394,6 +437,12 @@ public class Estado {
 			estado += "(conPrinc " + e.getKey() + " " + e.getValue() + ")\n";
 		}
 		
+		return estado;
+	}
+	@SuppressWarnings("rawtypes")
+	private String conObjeto (){
+		String estado = "";
+		Iterator<?> it;
 		// Personajes y objetos que tienen
 
 		it = poseeObjeto.entrySet().iterator();
@@ -403,11 +452,196 @@ public class Estado {
 
 			estado += "(conObjeto " + e.getKey() + " " + e.getValue() + ")\n";
 		}
-
+		
+		return estado;
+	}
+	private String estaSecuestrada (){
+		String estado = "";		
 		// Si está secuestrada la victima
 
 		for (String victima : victimasSecuestradas)
 			estado += "(secuestrada " + victima + ")\n";
+
+		return estado;
+	}
+
+	
+	private String conocimientoVictima(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=estaSalvada();
+		estado+=conPrincesa();
+		estado+=estaSecuestrada();
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	private String conocimientoAspirante(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		lista.addAll(personajes.get("Secuestrador"));
+		lista.addAll(personajes.get("Victima"));
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=estaSalvada();
+		estado+=conPrincesa();
+		estado+=estaSecuestrada();
+		estado+=esHeroe();
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	private String conocimientoAyudante(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		lista.addAll(personajes.get("Ladron"));
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=objetoEnLoc();
+		estado+=conObjeto();
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	private String conocimientoSecuestrador(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		lista.addAll(personajes.get("Victima"));
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=estaSalvada();
+		estado+=conPrincesa();
+		estado+=estaSecuestrada();
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	
+	private String conocimientoLadron(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=objetoEnLoc();
+		estado+=conObjeto();
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	private String conocimientoEmboscador(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	private String conocimientoAsesino(String nombre){
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add(nombre);
+		lista.addAll(personajes.get("Rey"));
+		
+		String estado = "";
+		
+		estado+=enLoc(nombre, lista);
+		estado+=esHogar(lista);
+		estado+=esPrincipal(lista);
+		estado+=estaLibre(lista);
+		estado+=estanVivos(lista);
+		estado+=estanCansados(lista);
+		
+		return estado;
+	}
+	
+	public String toString(String nombrePersonaje) {
+
+		String estado = "";
+		
+		
+		//Todos los personajes necesitan conocer el mapa de adyacencias
+		estado+=adyacente();
+		
+//		Modificar este trozo de codigo para cargar de forma mas limpia el metodo correspondiente
+//		
+//		Iterator<?> it;
+//		it = personajes.entrySet().iterator();
+//
+//		while (it.hasNext()) {
+//			Map.Entry e = (Map.Entry) it.next();
+//			String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
+//
+//			for (String nombre : nombres) {
+//				estado += "(es" + e.getKey() + " " + nombre + ")\n";
+//
+//				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
+//					estado += "(esPrincipal ";
+//
+//				else
+//					estado += "(esSecundario ";
+//
+//				estado += nombre + ")\n";
+//			}
+//		}
+		
+		
+		if(personajes.get("Victima").contains(nombrePersonaje))
+			estado+=conocimientoVictima(nombrePersonaje);
+		
+		else if(personajes.get("Aspirante").contains(nombrePersonaje))
+			estado+=conocimientoAspirante(nombrePersonaje);
+		
+		else if(personajes.get("Ayudante").contains(nombrePersonaje))
+			estado+=conocimientoAyudante(nombrePersonaje);			
+			
+		else if(personajes.get("Secuestrador").contains(nombrePersonaje))
+			estado+=conocimientoSecuestrador(nombrePersonaje);
+		
+		else if(personajes.get("Ladron").contains(nombrePersonaje))
+			estado+=conocimientoLadron(nombrePersonaje);
+		
+		else if(personajes.get("Emboscador").contains(nombrePersonaje))
+			estado+=conocimientoEmboscador(nombrePersonaje);
+		
+		else if(personajes.get("Asesino").contains(nombrePersonaje))
+			estado+=conocimientoAsesino(nombrePersonaje);
 
 		return estado;
 
