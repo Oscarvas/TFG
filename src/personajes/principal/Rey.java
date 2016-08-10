@@ -131,7 +131,6 @@ public class Rey extends Protagonista {
 				for (int i = 0; i < result.length; i++){
 					malignos[i] = result[i].getName();
 				}
-				System.err.println("ahora vamos en la buscqueda de asesinos---------");
 				
 				AID fantasma;
 				if (malignos.length != 0){
@@ -142,7 +141,6 @@ public class Rey extends Protagonista {
 					herejia.addReceiver(fantasma);
 					herejia.setContent(getLocalName());
 					myAgent.send(herejia);
-					System.err.println("encontrado asesino "+fantasma.getLocalName());
 				}
 				
 				

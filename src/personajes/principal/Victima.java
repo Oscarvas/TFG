@@ -27,7 +27,7 @@ public class Victima extends Protagonista {
 			iniciarPrincipal((String) args[0], (String) args[1], 
 					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
 					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false);
-			super.principal = Integer.parseInt((String) args[2]);//la victima da como atributo principal la fuerza
+			cargaPrincipal(getFuerza());//la victima da como atributo principal la fuerza
 		}
 		
 		addBehaviour(new Huerfana());
