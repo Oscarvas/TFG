@@ -131,7 +131,7 @@ public class NuevoPersonaje extends JDialog {
 		txtrLaClaseDetermina.setFont(new Font("Monotype Corsiva", Font.PLAIN, 16));
 		txtrLaClaseDetermina.setLineWrap(true);
 		txtrLaClaseDetermina.setEditable(false);
-		txtrLaClaseDetermina.setText("La Clase determina las acciones que \r\ntomar\u00E1 el personaje.\r\n\r\nLa Raza influir\u00E1 en la regi\u00F3n donde nacer\u00E1 el personaje.\r\n\r\nLos atributos de vida, fuerza, \r\ndestreza... van a afectar a las \r\ncaracter\u00EDsticas iniciales del personaje, teniendo en cuenta que cada Raza dispone de modificadores que \r\ninfluir\u00E1n en los que se definan aqu\u00ED.\r\n\r\nM\u00E1ximo 10pts en cada atributo.");
+		txtrLaClaseDetermina.setText("La Clase determina las acciones que \r\ntomar\u00E1 el personaje.\r\n\r\nLos atributos de vida, fuerza, \r\ndestreza... van a afectar a las \r\ncaracter\u00EDsticas iniciales del personaje, teniendo en cuenta que cada Raza dispone de modificadores que \r\ninfluir\u00E1n en los que se definan aqu\u00ED.\r\n\r\nM\u00E1ximo 10pts en cada atributo.\r\n\r\nNota: Los nombres no deben estar repetidos entre ning\u00FAn personaje y no deben contener espacios.");
 		txtrLaClaseDetermina.setBounds(10, 253, 209, 364);
 		contentPanel.add(txtrLaClaseDetermina);
 		{
