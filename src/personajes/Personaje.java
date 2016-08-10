@@ -229,7 +229,7 @@ public class Personaje extends Agent {
 			String ff = JavaFF.crearPlan(args);
 			String[] cadena = ff.split("\n");
 			//para hacer un seguimiento desde la interfaz sobre la planificacion que se ha enviado a cada personaje
-			System.out.println(ff);//en consola
+			System.err.println(ff);//en consola
 			for (String sigAccion : cadena) {
 				String[] accionActual = sigAccion.split(" ");
 				String accion = accionActual[0];
