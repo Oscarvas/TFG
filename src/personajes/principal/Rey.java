@@ -179,7 +179,7 @@ public class Rey extends Protagonista {
 					
 				} else {
 					//Gui.setHistoria("\n - Esperando 10 segundos... \n");
-					Thread.sleep(500);
+					Thread.sleep(10000);
 				}
 				
 			} catch (Exception fe) {
@@ -265,6 +265,13 @@ public class Rey extends Protagonista {
 					+ dragon);
 			aceptar.setConversationId("TratoHecho");
 			myAgent.send(aceptar);
+			
+			//Se da a conocer al mundo que caballero va a rescatar a la victima
+			ACLMessage contratado = new ACLMessage(ACLMessage.INFORM);
+			contratado.addReceiver(getAgenteMundo());
+			contratado.setContent(victimaSecuestrada.getLocalName()+ " "+ mejorAspirante.getLocalName());
+			contratado.setConversationId("Contratado");
+			myAgent.send(contratado);
 			
 		}
 

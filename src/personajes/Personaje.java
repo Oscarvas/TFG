@@ -233,11 +233,21 @@ public class Personaje extends Agent {
 			for (String sigAccion : cadena) {
 				String[] accionActual = sigAccion.split(" ");
 				String accion = accionActual[0];
+				
+				MessageTemplate plantilla = MessageTemplate.and(MessageTemplate.MatchConversationId("Retirada"),
+						MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+				ACLMessage receive = receive(plantilla);
 
 				try {
 					if (estaMuerto())
 						break;
-
+					
+					if ( receive != null ) {
+						new LoaderObjetivos(this).dismiss();
+						ok = false;
+						break;
+					}
+					
 					if (!accionActual[1].equalsIgnoreCase(getLocalName())) {
 						ok = false;
 						break;

@@ -28,6 +28,7 @@ public class Estado {
 	private ArrayList<String> sabios;
 	private ArrayList<String> villanos;
 	private HashMap<String, String> victimaObjetivo; // <Secuestrador/salvador,objetivoSecuestro>
+	private HashMap<String, String> victimaHeroe; // <Victima,heroe> par que determina el salvador dada una victima
 	private ArrayList<String> cansado; // flag para el pddl,. Ha realizado alguna accion que no le deja moverse solo
 	private Almacen almacen;
 	private HashMap<String, String> objetoEnLoc; // <nombreObjetoClave, localizacion>
@@ -53,6 +54,7 @@ public class Estado {
 		this.sabios = new ArrayList<String>();
 		this.villanos = new ArrayList<String>();
 		this.victimaObjetivo = new HashMap<String, String>();
+		this.victimaHeroe = new HashMap<String, String>();
 		this.objetivos = new HashMap<String, String>();
 		this.cansado = new ArrayList<String>();
 		this.almacen = LoaderObjetos.loaderObjetos();
@@ -702,6 +704,14 @@ public class Estado {
 		this.victimaObjetivo.put(secuestrador, victimaObjetivo);
 	}
 
+	public String getAspirante(String victima) {
+		return victimaHeroe.get(victima);
+	}
+
+	public void setAspirante(String victima, String aspirante) {
+		this.victimaHeroe.put(victima, aspirante);
+	}
+	
 	public String getObjetivos(String personaje) {
 		return objetivos.get(personaje);
 	}

@@ -46,7 +46,7 @@ public class LoaderObjetivos {
 		miObjetivo.addReceiver(agenteMundo);
 		miObjetivo.setConversationId("guardaObjetivos");
 		miObjetivo.setReplyWith("guardaObjetivos" + System.currentTimeMillis());
-		miObjetivo.setContent(objetivo);
+		miObjetivo.setContent("(enLoc "+myAgent.getLocalName()+" "+((Personaje) myAgent).getCasa()+")");
 		myAgent.send(miObjetivo);
 
 		MessageTemplate mt = MessageTemplate.and(

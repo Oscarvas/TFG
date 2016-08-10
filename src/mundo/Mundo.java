@@ -182,6 +182,7 @@ public class Mundo extends GuiAgent {
 		addBehaviour(new ToPDDLfile());
 		addBehaviour(new MoverVictimaSecuestrada());
 		addBehaviour(new Secuestro());
+		addBehaviour(new Contratado());
 		addBehaviour(new Liberar());
 		addBehaviour(new PersonajeEnCasa());
 		addBehaviour(new ConvertirEnHeroe());
@@ -783,12 +784,40 @@ public class Mundo extends GuiAgent {
 					estado.borrarPersonajeConVictima(contenido[1]);
 					estado.liberar(contenido[0]);
 					estado.estaLibrePersonaje(contenido[0]);
+					
+					//aviso al aspirante
+					String aspirante = estado.getAspirante(contenido[0]);
+					
+					ACLMessage retirada = new ACLMessage(ACLMessage.INFORM);
+					retirada.addReceiver(new AID ((String) aspirante, AID.ISLOCALNAME));
+					retirada.setConversationId("Retirada");
+					retirada.setContent("La victima ha escapado por su cuenta");
+					myAgent.send(retirada);
 				}
 
 				ACLMessage reply = receive.createReply();
 				reply.setContent(estado.nombreCorrecto(contenido[1]));
 				send(reply);
 
+			} else
+				block();
+		}
+	}
+	
+	private class Contratado extends CyclicBehaviour {
+
+		public void action() {
+
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+					MessageTemplate.MatchConversationId("Contratado"));
+
+			ACLMessage receive = myAgent.receive(mt);
+
+			if (receive != null) {
+
+				String[] contenido = receive.getContent().split(" ");
+				estado.setAspirante(estado.nombreCorrecto(contenido[0]), estado.nombreCorrecto(contenido[1]));
+				
 			} else
 				block();
 		}
