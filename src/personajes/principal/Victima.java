@@ -166,7 +166,7 @@ public class Victima extends Protagonista {
 				escapar.setConversationId("mujerIndependiente");
 				
 				
-				myAgent.addBehaviour(new TickerBehaviour(myAgent, 12500){
+				myAgent.addBehaviour(new TickerBehaviour(myAgent, 2000){
 						
 						@SuppressWarnings("unused")
 						@Override

@@ -788,11 +788,34 @@ public class Mundo extends GuiAgent {
 					//aviso al aspirante
 					String aspirante = estado.getAspirante(contenido[0]);
 					
-					ACLMessage retirada = new ACLMessage(ACLMessage.INFORM);
-					retirada.addReceiver(new AID ((String) aspirante, AID.ISLOCALNAME));
-					retirada.setConversationId("Retirada");
-					retirada.setContent("La victima ha escapado por su cuenta");
-					myAgent.send(retirada);
+					DFAgentDescription template = new DFAgentDescription();
+					ServiceDescription sd = new ServiceDescription();
+					sd.setType("Matadragones");
+					template.addServices(sd);
+					
+					DFAgentDescription[] result;
+					try {
+						result = DFService.search(myAgent, template);
+						AID[] aspirantes = new AID[result.length];
+						for (int i = 0; i < result.length; i++)
+							aspirantes[i] = result[i].getName();
+						
+						for (AID aid : aspirantes) {
+							if (aid.getLocalName().equalsIgnoreCase(aspirante)){
+								ACLMessage retirada = new ACLMessage(ACLMessage.INFORM);
+								retirada.addReceiver(aid);
+								retirada.setConversationId("Retirada");
+								retirada.setContent("La victima ha escapado por su cuenta");
+								myAgent.send(retirada);
+							}
+						}
+						
+					} catch (FIPAException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					
 				}
 
 				ACLMessage reply = receive.createReply();
