@@ -55,8 +55,8 @@ public class Gui extends JFrame {
 		JMenu mnPersonajes = new JMenu("Personajes");
 		menuBar.add(mnPersonajes);
 		
-		JMenuItem mntmCrearPersonaje = new JMenuItem("Crear Personaje");
-		mntmCrearPersonaje.addActionListener(new ActionListener() {
+		JMenuItem mntmNuevoProtagonista = new JMenuItem("Nuevo Protagonista");
+		mntmNuevoProtagonista.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -66,10 +66,13 @@ public class Gui extends JFrame {
 				dialog.setVisible(true);
 			}
 		});
-		mnPersonajes.add(mntmCrearPersonaje);
+		mnPersonajes.add(mntmNuevoProtagonista);
 		
-		JMenuItem mntmVerPersonajes = new JMenuItem("Ver Personajes");
-		mnPersonajes.add(mntmVerPersonajes);
+		JMenuItem mntmNuevoAntagonista = new JMenuItem("Nuevo Antagonista");
+		mnPersonajes.add(mntmNuevoAntagonista);
+		
+		JMenuItem mntmNuevoPNJ = new JMenuItem("Nuevo PNJ");
+		mnPersonajes.add(mntmNuevoPNJ);
 		
 		JMenu mnMapa = new JMenu("Mapa");
 		menuBar.add(mnMapa);
