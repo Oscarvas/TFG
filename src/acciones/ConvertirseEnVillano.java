@@ -20,13 +20,13 @@ public class ConvertirseEnVillano {
 	
 	public void execute() {
 		
-		ACLMessage serSabio = new ACLMessage(ACLMessage.REQUEST);
-		serSabio.addReceiver(agenteMundo);
-		serSabio.setConversationId("Ser Villano");
-		serSabio.setReplyWith("servillano" + System.currentTimeMillis());
-		personaje.send(serSabio);
+		ACLMessage serVillano = new ACLMessage(ACLMessage.REQUEST);
+		serVillano.addReceiver(agenteMundo);
+		serVillano.setConversationId("Ser Villano");
+		serVillano.setReplyWith("servillano" + System.currentTimeMillis());
+		personaje.send(serVillano);
 		
-		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serSabio.getReplyWith());
+		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serVillano.getReplyWith());
 		personaje.blockingReceive(mt);
 
 		Gui.setHistoria(personaje.getLocalName()+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
