@@ -4,7 +4,6 @@ import gui.Gui;
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import objetos.Clave;
 import personajes.Personaje;
 
 public class RecuperarObjeto {
@@ -34,10 +33,7 @@ public class RecuperarObjeto {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(proteger.getReplyWith());
 		ACLMessage reply = personaje.blockingReceive(mt);
 		
-		String [] info = reply.getContent().split(" ");
-		
-		personaje.guardarObjeto(new Clave(info[0], info[1], personaje.getLocalizacion()));
-		Gui.setHistoria(personaje.getLocalName() + " ha recuperado el objeto "+ info[0] + " en "+ personaje.getLocalizacion()+" \n");
+		Gui.setHistoria(personaje.getLocalName() + " ha recuperado el objeto "+ reply.getContent() + " en "+ personaje.getLocalizacion()+" \n");
 
 	}
 }

@@ -299,8 +299,8 @@ public class Personaje extends Agent {
 					else if (accion.equalsIgnoreCase("cogerObjeto"))
 						new RecuperarObjeto(this, accionActual[2], accionActual[3]).execute();
 						
-					else if (accion.equalsIgnoreCase("restaurarObjeto"))
-						new RecuperarObjeto(this, accionActual[2], accionActual[3]).execute();
+					else if (accion.equalsIgnoreCase("restaurarobjeto"))
+						new RestaurarObjeto(this, accionActual[2]).execute();
 					
 					else if (accion.equalsIgnoreCase("convertirseenheroe"))
 						new ConvertirseEnHeroe(this).execute();

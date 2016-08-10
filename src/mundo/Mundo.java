@@ -676,7 +676,7 @@ public class Mundo extends GuiAgent {
 		public void action() {
 			// TODO Auto-generated method stub
 			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
-					MessageTemplate.MatchConversationId("Recuperar"));
+					MessageTemplate.MatchConversationId("RecuperarObjeto"));
 			ACLMessage receive = myAgent.receive(mt);
 
 			if (receive != null) {
@@ -686,11 +686,9 @@ public class Mundo extends GuiAgent {
 				
 				String guardian = estado.nombreCorrecto(contenido[0]);
 				String objeto = estado.nombreCorrecto(contenido[1]);
-				Objeto obj = estado.extraerObjeto(objeto);
 				
-				reply.setContent(objeto +" "+obj.getDesc());
+				reply.setContent(objeto);
 				estado.estaLlenoPersonaje(receive.getSender().getLocalName());
-				//estado.estaCansado(receive.getSender().getLocalName());
 				estado.pierdeObjeto(guardian);
 				estado.guardaObjeto(receive.getSender().getLocalName(), objeto);
 				myAgent.send(reply);
@@ -716,9 +714,8 @@ public class Mundo extends GuiAgent {
 				ACLMessage reply = receive.createReply();
 				String contenido = receive.getContent();
 				
-				String objeto = estado.nombreCorrecto(contenido);
-				Objeto obj = estado.extraerObjeto(objeto);				
-				reply.setContent(objeto +" "+obj.getDesc());
+				String objeto = estado.nombreCorrecto(contenido);		
+				reply.setContent(objeto);
 				estado.estaLibrePersonaje(receive.getSender().getLocalName());
 				estado.pierdeObjeto(receive.getSender().getLocalName());
 				myAgent.send(reply);
