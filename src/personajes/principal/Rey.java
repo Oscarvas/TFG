@@ -27,8 +27,10 @@ public class Rey extends Protagonista {
 	public int menosDineroPedido;
 	public MessageTemplate mt;
 	public int numeroHijas;
+	private String casoParticular;
 	private ThreadedBehaviourFactory tbf = new
 			ThreadedBehaviourFactory();
+	
 	
 	protected void setup(){		
 		
@@ -279,6 +281,8 @@ public class Rey extends Protagonista {
 
 			mt = MessageTemplate.MatchConversationId("Rescate");
 			ACLMessage reply = myAgent.blockingReceive(mt);
+			
+			casoParticular = reply.getContent();
 
 			if (reply.getPerformative() == ACLMessage.INFORM)
 				return 1;
@@ -297,11 +301,26 @@ public class Rey extends Protagonista {
 
 		public void action() {
 			
-			Gui.setHistoria("- La Victima "
-					+ victimaSecuestrada.getLocalName() + " fue liberada.");
-			Gui.setHistoria("- El Rey entrega " + menosDineroPedido
-					+ " monedas al aspirante " + mejorAspirante.getLocalName() + ". \n");
-			setTesoro(getTesoro()-menosDineroPedido);
+			switch (casoParticular) {
+			case "heroe":
+				Gui.setHistoria(myAgent.getLocalName()+": Gracias por liberar a "+ victimaSecuestrada.getLocalName() + ".");
+				Gui.setHistoria(myAgent.getLocalName()+": Obten " + menosDineroPedido + " monedas " + mejorAspirante.getLocalName() + ".");
+				setTesoro(getTesoro()-menosDineroPedido);
+				
+				break;
+			case "villano":
+				Gui.setHistoria(myAgent.getLocalName()+": ¿Como te atreves a hacerme esto "+mejorAspirante.getLocalName()+"? Te maldigo !!!");
+				
+				break;
+			case "escape":
+				Gui.setHistoria(myAgent.getLocalName()+": Me alegra saber que "+victimaSecuestrada.getLocalName()+" puede defenderse en cualquier situacion.");
+				
+				break;
+			default:
+				Gui.setHistoria(myAgent.getLocalName()+": Dejenme llorar la muerte de "+victimaSecuestrada.getLocalName()+" por favor...");
+				break;
+			}
+			
 
 			ACLMessage inform = new ACLMessage(ACLMessage.INFORM);
 			inform.setConversationId("Rescatada");

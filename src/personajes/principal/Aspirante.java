@@ -134,6 +134,7 @@ public class Aspirante extends Protagonista {
 				ACLMessage rescate = new ACLMessage(ACLMessage.INFORM);
 				rescate.setConversationId("Rescate");
 				rescate.addReceiver(rey);
+				rescate.setContent(receive.getContent());
 
 				if (estaMuerto()) {
 

@@ -219,6 +219,7 @@ public class Personaje extends Agent {
 
 		boolean ok;
 		boolean falloSecuestro = false;
+		String finPlanAspirante = ""; //solo es relevante para el aspirante
 
 		do {
 			ok = true;
@@ -244,6 +245,7 @@ public class Personaje extends Agent {
 					
 					if ( receive != null ) {
 						new LoaderObjetivos(this).dismiss();
+						finPlanAspirante = "escape"; //si la victima escapa, el aspirante debe informar del caso particular
 						ok = false;
 						break;
 					}
@@ -312,14 +314,18 @@ public class Personaje extends Agent {
 					else if (accion.equalsIgnoreCase("restaurarobjeto"))
 						new RestaurarObjeto(this, accionActual[2]).execute();
 					
-					else if (accion.equalsIgnoreCase("convertirseenheroe"))
+					else if (accion.equalsIgnoreCase("convertirseenheroe")){
+						finPlanAspirante = "heroe";
 						new ConvertirseEnHeroe(this).execute();
+					}						
 					
 					else if (accion.equalsIgnoreCase("convertirseEnSabio"))
 						new ConvertirseEnSabio(this).execute();
 					
-					else if (accion.equalsIgnoreCase("convertirseenvillano"))
+					else if (accion.equalsIgnoreCase("convertirseenvillano")){
+						finPlanAspirante = "villano"; //el aspirante informa de este caso particular
 						new ConvertirseEnVillano(this).execute();
+					}						
 
 					else {
 						System.err.println(sigAccion);
@@ -327,11 +333,6 @@ public class Personaje extends Agent {
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
-					/*
-					 * Este bloque de control captura el error que produce el planificador
-					 * sobre un objetivo que no se puede cumplir. En cuyo caso el personaje debera volver a su casa
-					 * */
-					new LoaderObjetivos(this).dismiss();
 				}
 				
 			}
@@ -349,6 +350,7 @@ public class Personaje extends Agent {
 			ACLMessage finPlan = new ACLMessage(ACLMessage.INFORM);
 			finPlan.setConversationId("Fin-Plan");
 			finPlan.addReceiver(getAID());
+			finPlan.setContent(finPlanAspirante);
 			send(finPlan);
 		}
 	}
