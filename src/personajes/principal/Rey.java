@@ -169,15 +169,17 @@ public class Rey extends Protagonista {
 						template);
 				AspirantesDisponibles = new AID[result.length];
 				
-				if (done()) {					
-					Gui.setHistoria("- Intentando pedir rescate para la victima "+ victimaSecuestrada.getLocalName() + ".");
-					Gui.setHistoria("Encontrados los siguientes aspirantes:");
-										
+				if (done()) {
+					
+					String mensaje = myAgent.getLocalName()+": Necesito negociar con los siguientes aspirantes para rescatar a "+
+							victimaSecuestrada.getLocalName()+":\n";
+															
 					for (int i = 0; i < result.length; i++) {
 						AspirantesDisponibles[i] = result[i].getName();
-						Gui.setHistoria("\t" + AspirantesDisponibles[i]
-								.getLocalName());
+						mensaje+="\t" + AspirantesDisponibles[i].getLocalName();
 					}
+					
+					Gui.setHistoria(mensaje);
 					
 				} else {
 					//Gui.setHistoria("\n - Esperando 10 segundos... \n");
