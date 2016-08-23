@@ -70,6 +70,8 @@ public class Personaje extends Agent {
 			
 			if(!getClase().equalsIgnoreCase("PNJ"))
 				localizarInicial();
+			else
+				localizarPersonaje();
 			
 		} catch (FIPAException e) {
 			e.printStackTrace();

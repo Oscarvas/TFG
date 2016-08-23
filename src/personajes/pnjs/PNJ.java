@@ -21,7 +21,7 @@ public class PNJ extends Personaje {
 		
 		//cargamos sus propiedades
 		setSexo((String)args[0]); 
-		setoficio((String)args[1]); 
+		setOficio((String)args[1]); 
 		setLocalizacion((String)args[2]);		
 		cargarMundo();
 		
@@ -47,7 +47,7 @@ public class PNJ extends Personaje {
 		addBehaviour(new ModificarEstadisticas());
 		
 	}
-	
+
 	private class ModificarEstadisticas extends CyclicBehaviour{
 
 		@Override
@@ -64,19 +64,22 @@ public class PNJ extends Personaje {
 				
 				switch (destino) {
 				case 0:
-					Gui.setHistoria(getLocalName()+": Recibe mi bendicion "+msg.getSender().getLocalName()+".");
-					reply.setContent(buff());
+					String bonificacion = buff();
+					Gui.setHistoria(getLocalName()+": Recibe mi bendicion "+msg.getSender().getLocalName()+". "+bonificacion);
+					reply.setContent(bonificacion);
 					break;
 					
 				case 1:
-					Gui.setHistoria(getLocalName()+": Recibe mi maldicion "+msg.getSender().getLocalName()+"!!!");
-					reply.setContent(debuff());
+					String deuda = debuff();
+					Gui.setHistoria(getLocalName()+": Recibe mi maldicion "+msg.getSender().getLocalName()+"!!! "+deuda);
+					reply.setContent(deuda);
 					break;
 				default:
 					break;
 				}
 				
 				myAgent.send(reply);
+				System.err.println("----------se ha enviado la respuesta al aspirante");
 
 			} else
 				block();
@@ -111,7 +114,7 @@ public class PNJ extends Personaje {
 		return this.oficio;
 	}
 	
-	public void setoficio(String oficio){
+	public void setOficio(String oficio){
 		this.oficio = oficio;
 	}
 	

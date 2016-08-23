@@ -407,6 +407,10 @@ public class Mundo extends GuiAgent {
 							estado.añadirPersonaje(mensaje[0], personaje.getLocalName());
 							estado.añadirCasa(personaje.getLocalName(), locDest);
 							estado.añadirNombre(personaje.getLocalName());
+							
+							if (mensaje[0].equalsIgnoreCase("PNJ"))
+								estado.setPnjEnLoc(loc2.getNombre(), personaje.getLocalName());
+							
 						}
 						else{
 							if (estado.esConsumidor(mensaje[0]) && !loc2.cofreVacio("consumible")) {
@@ -418,6 +422,15 @@ public class Mundo extends GuiAgent {
 								send(consume);
 								
 								Gui.setHistoria(personaje.getLocalName()+" ha encontrado "+bocado.toString());
+								
+								//evaluamos la existencia de un pnj en dicha localizacion
+								if (estado.getPnjEnLoc(loc2.getNombre())!=null){
+									ACLMessage bendicion = new ACLMessage(ACLMessage.INFORM);
+									bendicion.addReceiver(personaje);
+									bendicion.setConversationId("Bendicion");
+									bendicion.setContent(estado.getPnjEnLoc(loc2.getNombre()));
+									send(bendicion);
+								}
 							}
 						}
 						

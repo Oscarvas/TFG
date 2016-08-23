@@ -1,5 +1,6 @@
 package personajes.protagonistas;
 
+import gui.Gui;
 import objetos.Objeto;
 import ontologia.Raza;
 import ontologia.Vocabulario;
@@ -109,6 +110,22 @@ public class Protagonista extends Personaje {
 			+" Destreza:"+this.destreza
 			+" Inteligencia"+this.inteligencia
 			+" Codicia:"+this.codicia+ ".";
+	}
+	
+	public void bendicionPnj(String atributos){
+		String [] attr = atributos.split(" ");
+		
+		this.fuerza += Integer.parseInt((String) attr[0]);
+		this.destreza += Integer.parseInt((String) attr[1]);
+		this.inteligencia += Integer.parseInt((String) attr[2]);
+		this.codicia += Integer.parseInt((String) attr[3]);
+		
+		Gui.setHistoria(getLocalName()+ ": Vida:" + getVida()
+			+" Fuerza:"+this.fuerza
+			+" Destreza:"+this.destreza
+			+" Inteligencia"+this.inteligencia
+			+" Codicia:"+this.codicia+ ".");
+		
 	}
 
 

@@ -36,6 +36,8 @@ public class Estado {
 	private ArrayList<Objeto> objetosClave; //guarda una copia de los objetos clave
 	private ArrayList<String> atracable; //guarda las clases susceptible a interactuar con el ladron
 	private HashMap<String, String> poseeObjeto; // <personaje, objeto> indica que objeto tiene un personaje dado 
+	private HashMap<String, String> pnjEnLoc; // <localizacion, nombrePNJ> dada la localizacion devuelve el pnj
+	
 	
 	public Estado() {
 
@@ -63,6 +65,7 @@ public class Estado {
 		this.objetosClave = new ArrayList<Objeto>();
 		this.atracable = new ArrayList<String>();
 		this.poseeObjeto = new HashMap<String, String>();
+		this.pnjEnLoc = new HashMap<String, String>();
 	}
 	
 	public void guardaObjeto(String personaje, String objeto){
@@ -726,5 +729,13 @@ public class Estado {
 
 	public void setObjetoEnLoc(String objeto, String localizacion) {
 		this.objetoEnLoc.put(objeto, localizacion);
+	}
+
+	public String getPnjEnLoc(String localizacion) {
+		return this.pnjEnLoc.get(localizacion);
+	}
+
+	public void setPnjEnLoc(String localizacion, String nombrePnj) {
+		this.pnjEnLoc.put(localizacion, nombrePnj);
 	}
 }

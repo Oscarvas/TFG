@@ -43,8 +43,11 @@ public class Mover {
 			if (msg.getPerformative() == ACLMessage.CONFIRM) {
 
 				personaje.setLocalizacion(msg.getContent());
+				
+				//posibles eventos y situaciones a evaluar por los personajes
 				evento();
 				objetoEncontrado();
+				bendiciones();
 
 				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
 				
@@ -102,6 +105,31 @@ public class Mover {
 		if (msg != null && msg.getContent()!=null) {
 			
 			Gui.setHistoria(((Protagonista)personaje).usarObjeto(msg.getContent()));;
+
+		}
+	}
+	
+	private void bendiciones(){
+		MessageTemplate mt = MessageTemplate.and(
+				MessageTemplate.MatchConversationId("Bendicion"),
+				MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		ACLMessage msg = personaje.receive(mt);
+
+		if (msg != null && msg.getContent()!=null) {
+			
+			Gui.setHistoria(personaje.getLocalName()+": Que deparara el futuro cuando hable con "+msg.getContent());
+			
+			ACLMessage truco = new ACLMessage(ACLMessage.REQUEST);
+			truco.addReceiver(new AID ((String) msg.getContent(), AID.ISLOCALNAME));
+			truco.setConversationId("TrucoTrato");
+			truco.setReplyWith("trucotrato"+ System.currentTimeMillis());
+			personaje.send(truco);
+			
+			MessageTemplate plnt = MessageTemplate
+					.MatchInReplyTo(truco.getReplyWith());
+			ACLMessage auraRecibida = personaje.blockingReceive(plnt);
+			System.err.println("-----------recibida respuesta del pnj");			
+			((Protagonista) personaje).bendicionPnj(auraRecibida.getContent());
 
 		}
 	}
