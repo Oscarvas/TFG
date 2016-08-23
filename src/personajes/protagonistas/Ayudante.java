@@ -1,4 +1,4 @@
-package personajes.principal;
+package personajes.protagonistas;
 
 import gui.Gui;
 import jade.core.behaviours.Behaviour;

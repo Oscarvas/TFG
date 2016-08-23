@@ -23,6 +23,7 @@ public class PNJ extends Personaje {
 		setSexo((String)args[0]); 
 		setoficio((String)args[1]); 
 		setLocalizacion((String)args[2]);		
+		cargarMundo();
 		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -37,7 +38,8 @@ public class PNJ extends Personaje {
 		} catch (FIPAException fe) {
 			fe.printStackTrace();
 		}
-		
+
+		//localizarPersonaje();
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
 		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ " se levanta en " +getLocalizacion() + " con ganas de trabajar.");
@@ -62,14 +64,15 @@ public class PNJ extends Personaje {
 				
 				switch (destino) {
 				case 0:
+					Gui.setHistoria(getLocalName()+": Recibe mi bendicion "+msg.getSender().getLocalName()+".");
 					reply.setContent(buff());
 					break;
 					
 				case 1:
+					Gui.setHistoria(getLocalName()+": Recibe mi maldicion "+msg.getSender().getLocalName()+"!!!");
 					reply.setContent(debuff());
 					break;
 				default:
-					reply.setContent(buff());
 					break;
 				}
 				

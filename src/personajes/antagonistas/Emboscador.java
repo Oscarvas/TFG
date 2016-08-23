@@ -1,4 +1,4 @@
-package personajes.monstruos;
+package personajes.antagonistas;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Emboscador extends Monstruo {
+public class Emboscador extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);

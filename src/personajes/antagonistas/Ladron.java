@@ -1,4 +1,4 @@
-package personajes.monstruos;
+package personajes.antagonistas;
 
 import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
@@ -10,7 +10,7 @@ import jade.lang.acl.MessageTemplate;
 import gui.Gui;
 
 @SuppressWarnings("serial")
-public class Ladron extends Monstruo {
+public class Ladron extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);

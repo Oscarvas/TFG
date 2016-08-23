@@ -1,4 +1,4 @@
-package personajes.monstruos;
+package personajes.antagonistas;
 
 import gui.Gui;
 import jade.core.behaviours.Behaviour;
@@ -11,7 +11,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Asesino extends Monstruo {
+public class Asesino extends Antagonista {
 	
 	protected void setup(){
 		Object[] args = getArguments();		

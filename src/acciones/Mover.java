@@ -5,7 +5,7 @@ import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import personajes.Personaje;
-import personajes.principal.Protagonista;
+import personajes.protagonistas.Protagonista;
 
 public class Mover {
 

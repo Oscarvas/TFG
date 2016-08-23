@@ -1,10 +1,10 @@
-package personajes.monstruos;
+package personajes.antagonistas;
 
 import ontologia.Vocabulario;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
-public class Monstruo extends Personaje {
+public class Antagonista extends Personaje {
 	String especie;
 
 	public void iniciarMonstruo(String especie, String sexo){

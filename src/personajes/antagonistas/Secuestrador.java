@@ -1,4 +1,4 @@
-package personajes.monstruos;
+package personajes.antagonistas;
 
 import java.util.Random;
 
@@ -15,7 +15,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Secuestrador extends Monstruo {
+public class Secuestrador extends Antagonista {
 	public AID victimaSecuestrada;
 
 	protected void setup(){

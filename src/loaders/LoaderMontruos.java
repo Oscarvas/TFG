@@ -49,7 +49,7 @@ public class LoaderMontruos {
 					clase = eElement.getAttribute("clase");
 					String[] args = {eElement.getAttribute("especie"), eElement.getAttribute("sexo")};
 			
-					guest = container.createNewAgent(nombre, "personajes.monstruos."+clase, args);
+					guest = container.createNewAgent(nombre, "personajes.antagonistas."+clase, args);
 					guest.start();
 				}				
 			}
