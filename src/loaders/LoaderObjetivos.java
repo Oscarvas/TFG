@@ -119,9 +119,9 @@ public class LoaderObjetivos {
 								.replace("Druida", myAgent.getLocalName())
 								.replace("Ayudante", myAgent.getLocalName())
 								.replace("Emboscador", myAgent.getLocalName())
-								.replace("Guardian", myAgent.getLocalName())
+								.replace("Ladron", myAgent.getLocalName())
 								.replace("Secuestrador", myAgent.getLocalName())
-								.replace("Maligno", myAgent.getLocalName());
+								.replace("Asesino", myAgent.getLocalName());
 						
 						ACLMessage miObjetivo = new ACLMessage(ACLMessage.REQUEST);
 						miObjetivo.addReceiver(agenteMundo);

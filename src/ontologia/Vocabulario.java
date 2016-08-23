@@ -27,7 +27,7 @@ public interface Vocabulario {
 		return  new Random().nextInt(11);
 	}
 	
-	public static int LOC_MALIGNO(){
+	public static int LOC_ASESINO(){
 		return  new Random().nextInt(TIPOS_LOCALIZACION.length);
 	}
 	

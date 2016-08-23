@@ -11,7 +11,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 @SuppressWarnings("serial")
-public class Maligno extends Monstruo {
+public class Asesino extends Monstruo {
 	
 	protected void setup(){
 		Object[] args = getArguments();		
@@ -21,8 +21,8 @@ public class Maligno extends Monstruo {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Maligno");
-		sd.setName(getLocalName()+"-Maligno");
+		sd.setType("Asesino");
+		sd.setName(getLocalName()+"-Asesino");
 		dfd.addServices(sd);
 		
 		try {

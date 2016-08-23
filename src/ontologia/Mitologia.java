@@ -10,7 +10,7 @@ package ontologia;
  * Lago = 5
  * 
  * Esta clase mantiene la asociacion entre la clase de un personaje y su localizacion predeterminada en funcion de la clase
- * En el caso del personaje Maligno, puede aparecer en cualquier localizacion
+ * En el caso del personaje Asesino, puede aparecer en cualquier localizacion
 */
 public enum Mitologia {
 	ASPIRANTE(Vocabulario.TIPOS_LOCALIZACION[0]),
@@ -19,8 +19,8 @@ public enum Mitologia {
 	VICTIMA(Vocabulario.TIPOS_LOCALIZACION[3]),
 	SECUESTRADOR(Vocabulario.TIPOS_LOCALIZACION[4]),
 	EMBOSCADOR(Vocabulario.TIPOS_LOCALIZACION[1]),
-	GUARDIAN(Vocabulario.TIPOS_LOCALIZACION[5]),
-	MALIGNO(Vocabulario.TIPOS_LOCALIZACION[Vocabulario.LOC_MALIGNO()]); 
+	LADRON(Vocabulario.TIPOS_LOCALIZACION[5]),
+	ASESINO(Vocabulario.TIPOS_LOCALIZACION[Vocabulario.LOC_ASESINO()]); 
 	
 	private final String tipo;
 	

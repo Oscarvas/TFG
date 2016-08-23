@@ -6,9 +6,9 @@
 		aspirante
 		secuestrador
 		victima
-		guardian
+		ladron
 		emboscador
-		maligno
+		asesino
 		ayudante
 		druida
 	)
@@ -32,8 +32,8 @@
 		(esAyudante ?per)
 		(esDruida ?per)
 		(esSecuestrador ?per)
-		(esGuardian ?per)
-		(esMaligno ?per)
+		(esLadron ?per)
+		(esAsesino ?per)
 		(esEmboscador ?per)
 		
 		(vivo ?per)
@@ -97,7 +97,7 @@
 			(not (= ?p1 ?p2))
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
-			(esMaligno ?p1)
+			(esAsesino ?p1)
 			(esRey ?p2)
 			(vivo ?p1)
 			(vivo ?p2))
@@ -232,13 +232,13 @@
 			(esVillano ?c)
 	)
 
-;; el guardian consigue un objeto
+;; el ladron consigue un objeto
 	(:action proteger
 		:parameters (?g ?o ?loc)
 		:precondition (and
 			(vivo ?g)
 			(objetoEnLoc ?o ?loc)
-			(esGuardian ?g)
+			(esLadron ?g)
 			(estaLibre ?g)
 			(enLoc ?g ?loc)
 		)
@@ -249,7 +249,7 @@
 		)
 	)
 	
-;; El guardian se mueve con un objeto
+;; El ladron se mueve con un objeto
 	(:action escoltarObjetoRobado
 		:parameters (?per ?o ?locOrigen ?locDest)
 		:precondition (and
@@ -268,7 +268,7 @@
 		)
 	)
 
-;; El guardian se mueve con un objeto
+;; El ladron se mueve con un objeto
 	(:action escoltarObjeto
 		:parameters (?per ?o ?locOrigen ?locDest)
 		:precondition (and
@@ -288,14 +288,14 @@
 		)
 	)
 
-;; batalla entre ayudante y Guardian
+;; batalla entre ayudante y Ladron
 	(:action batallaArcana
 		:parameters (?mg ?g ?loc)
 		:precondition (and
 			(esSecundario ?mg)
 			(esSecundario ?g)
 			(esAyudante ?mg)
-			(esGuardian ?g)
+			(esLadron ?g)
 			(not (= ?mg ?g))
 			(enLoc ?mg ?loc)
 			(enLoc ?g ?loc)
@@ -309,12 +309,12 @@
 		)
 	)
 
-;; el ayudante consigue el objeto del guardian
+;; el ayudante consigue el objeto del ladron
 	(:action cogerObjeto
 		:parameters (?mg ?g ?o ?loc)
 		:precondition (and
 			(esAyudante ?mg)
-			(esGuardian ?g)
+			(esLadron ?g)
 			(vivo ?mg)
 			(not (vivo ?g))
 			(objetoEnLoc ?o ?loc)

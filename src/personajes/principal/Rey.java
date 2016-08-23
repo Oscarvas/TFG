@@ -115,7 +115,7 @@ public class Rey extends Protagonista {
 			dragon = receive.getContent();	
 			
 			/*
-			 * Una vez hemos recibido el llamado de auxilio de una victima, activamos a los monstruos malignos
+			 * Una vez hemos recibido el llamado de auxilio de una victima, activamos a los monstruos asesinos
 			 * que deberan empezar su planificacion
 			 * 
 			 * Se seleccionara a un fantasma aleatorio
@@ -124,19 +124,19 @@ public class Rey extends Protagonista {
 				
 				DFAgentDescription template = new DFAgentDescription();
 				ServiceDescription sd = new ServiceDescription();
-				sd.setType("Maligno");
+				sd.setType("Asesino");
 				template.addServices(sd);
 				
 				DFAgentDescription[] result;
 				result = DFService.search(myAgent, template);
-				AID[] malignos = new AID[result.length];
+				AID[] asesinos = new AID[result.length];
 				for (int i = 0; i < result.length; i++){
-					malignos[i] = result[i].getName();
+					asesinos[i] = result[i].getName();
 				}
 				
 				AID fantasma;
-				if (malignos.length != 0){
-					fantasma = malignos[new Random().nextInt(malignos.length)];
+				if (asesinos.length != 0){
+					fantasma = asesinos[new Random().nextInt(asesinos.length)];
 					
 					ACLMessage herejia = new ACLMessage(ACLMessage.INFORM);
 					herejia.setConversationId("Derrocar");

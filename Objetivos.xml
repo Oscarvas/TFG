@@ -64,11 +64,11 @@ o Almacenar oro (objetos brillantes).
 o Proveedor de material magico.
      -->
     
-    <personaje tipo="Guardian" >
-        <objetivo>(conObjeto Guardian Espejito)</objetivo>
-        <objetivo>(conObjeto Guardian MountainHearth)</objetivo>
-        <objetivo>(and (conObjeto Guardian Espejito) (enLoc Guardian Tesqua))</objetivo>
-        <objetivo>(and (conObjeto Guardian MountainHearth) (enLoc Guardian Illunis))</objetivo>
+    <personaje tipo="Ladron" >
+        <objetivo>(conObjeto Ladron Espejito)</objetivo>
+        <objetivo>(conObjeto Ladron MountainHearth)</objetivo>
+        <objetivo>(and (conObjeto Ladron Espejito) (enLoc Ladron Tesqua))</objetivo>
+        <objetivo>(and (conObjeto Ladron MountainHearth) (enLoc Ladron Illunis))</objetivo>
     </personaje>
    <!--  o Proteger progenie (huevos, material magico).
 o Alimentarse (de Personajes).
@@ -84,7 +84,7 @@ o Distraible para cruzar.
 o Te persigue (hasta matarte o cobrar peaje).
      -->
     
-    <personaje tipo="Maligno" >
+    <personaje tipo="Asesino" >
         <objetivo>(derrocar Rey)</objetivo>
     </personaje>
    <!--  o Roba comida (objetos comestibles).

@@ -395,8 +395,8 @@ public class Mundo extends GuiAgent {
 						// si un aspirante coincide con un emboscador
 						Emboscadores(myAgent, mensaje[0], personaje.getLocalName());
 						
-						// si un aspirante coincide con un guardian
-						EncuentroGuardian(myAgent, mensaje[0], personaje.getLocalName());
+						// si un aspirante coincide con un ladron
+						EncuentroLadron(myAgent, mensaje[0], personaje.getLocalName());
 
 						reply.setPerformative(ACLMessage.CONFIRM);
 						reply.setContent(loc2.getNombre());
@@ -525,31 +525,31 @@ public class Mundo extends GuiAgent {
 	/*
 	 * Avisamos a todos los ladrones por si les interesa/pueden actuar
 	 */
-	private void EncuentroGuardian(Agent myAgent, String clase, String nombre) {
+	private void EncuentroLadron(Agent myAgent, String clase, String nombre) {
 		
 		if(estado.esAtracable(clase)){
 			DFAgentDescription template = new DFAgentDescription();
 			ServiceDescription sd = new ServiceDescription();
-			sd.setType("Guardian");
+			sd.setType("Ladron");
 			template.addServices(sd);
 
 			try {
 
 				DFAgentDescription[] result = DFService.search(myAgent, template);
-				AID[] guardianes = new AID[result.length];
+				AID[] ladrones = new AID[result.length];
 
-				if (guardianes.length > 0) {
-					boolean hayGuardian = false;
+				if (ladrones.length > 0) {
+					boolean hayLadron = false;
 					int i = 0;
-					while (i < result.length && !hayGuardian) {
-						guardianes[i] = result[i].getName();
-						if(estado.estanMismaLocalizacion(guardianes[i].getLocalName(), nombre)) //si el aspirante y el guardian estan en la misma loc
-							hayGuardian = true;
+					while (i < result.length && !hayLadron) {
+						ladrones[i] = result[i].getName();
+						if(estado.estanMismaLocalizacion(ladrones[i].getLocalName(), nombre)) //si el aspirante y el ladron estan en la misma loc
+							hayLadron = true;
 						i++;
 					}
 					
-					if (hayGuardian)
-						AcudeAyudante(myAgent,guardianes[i-1].getLocalName());
+					if (hayLadron)
+						AcudeAyudante(myAgent,ladrones[i-1].getLocalName());
 				}
 
 			} catch (Exception fe) {
@@ -685,12 +685,12 @@ public class Mundo extends GuiAgent {
 				ACLMessage reply = receive.createReply();
 				String contenido [] = receive.getContent().split(" ");
 				
-				String guardian = estado.nombreCorrecto(contenido[0]);
+				String ladron = estado.nombreCorrecto(contenido[0]);
 				String objeto = estado.nombreCorrecto(contenido[1]);
 				
 				reply.setContent(objeto);
 				estado.estaLlenoPersonaje(receive.getSender().getLocalName());
-				estado.pierdeObjeto(guardian);
+				estado.pierdeObjeto(ladron);
 				estado.guardaObjeto(receive.getSender().getLocalName(), objeto);
 				myAgent.send(reply);
 

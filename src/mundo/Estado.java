@@ -358,7 +358,7 @@ public class Estado {
 			Map.Entry e = (Map.Entry) it.next();
 			
 			if(lista.contains(e.getKey())){
-				if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Guardian").contains(e.getKey().toString()))
+				if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Ladron").contains(e.getKey().toString()))
 					estado += "(esGuarida ";
 
 				else
@@ -555,7 +555,7 @@ public class Estado {
 	private String conocimientoAyudante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
-		lista.addAll(personajes.get("Guardian"));
+		lista.addAll(personajes.get("Ladron"));
 		
 		String estado = "";
 		
@@ -683,13 +683,13 @@ public class Estado {
 		else if(personajes.get("Secuestrador").contains(nombrePersonaje))
 			estado+=conocimientoSecuestrador(nombrePersonaje);
 		
-		else if(personajes.get("Guardian").contains(nombrePersonaje))
+		else if(personajes.get("Ladron").contains(nombrePersonaje))
 			estado+=conocimientoLadron(nombrePersonaje);
 		
 		else if(personajes.get("Emboscador").contains(nombrePersonaje))
 			estado+=conocimientoEmboscador(nombrePersonaje);
 		
-		else if(personajes.get("Maligno").contains(nombrePersonaje))
+		else if(personajes.get("Asesino").contains(nombrePersonaje))
 			estado+=conocimientoAsesino(nombrePersonaje);
 
 		return estado;

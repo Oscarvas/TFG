@@ -4,16 +4,16 @@
 <!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
 <!-- CLASE = Definir que clase de monstruo queremos crear, existen 4 tipos: -->
 <!--		Secuestrador: un monstruo que se dedicara a secuestrar victimas desprevenidas -->
-<!--		Guardian: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
+<!--		Ladron: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
 <!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
-<!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->
+<!--		Asesino: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
 	<monstruo nombre="Smaug" clase="Secuestrador" especie="Dragon" sexo="F"/>
 	
-	<monstruo nombre="Casper" clase="Maligno" especie="Queso Azul Mortifero" sexo="M"/>
+	<monstruo nombre="Casper" clase="Asesino" especie="Queso Azul Mortifero" sexo="M"/>
 	
-	<monstruo nombre="Jormundgander" clase="Guardian" especie="Gyarados" sexo="F"/>
+	<monstruo nombre="Jormundgander" clase="Ladron" especie="Gyarados" sexo="F"/>
 		
 	<monstruo nombre="UnaBolaDeNieve" clase="Emboscador" especie="MissUniverse" sexo="M"/>
 	

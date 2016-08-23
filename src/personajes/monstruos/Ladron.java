@@ -10,7 +10,7 @@ import jade.lang.acl.MessageTemplate;
 import gui.Gui;
 
 @SuppressWarnings("serial")
-public class Guardian extends Monstruo {
+public class Ladron extends Monstruo {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
@@ -19,8 +19,8 @@ public class Guardian extends Monstruo {
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Guardian");
-		sd.setName(getLocalName()+"-Guardian");
+		sd.setType("Ladron");
+		sd.setName(getLocalName()+"-Ladron");
 		dfd.addServices(sd);
 		
 		try {
@@ -57,7 +57,7 @@ public class Guardian extends Monstruo {
 				
 				MessageTemplate mt = MessageTemplate.and(
 						MessageTemplate.MatchPerformative(ACLMessage.INFORM),
-						MessageTemplate.MatchConversationId("DespiertaGuardian"));
+						MessageTemplate.MatchConversationId("DespiertaLadron"));
 				ACLMessage receive = myAgent.receive(mt);
 				
 				if (receive != null) {

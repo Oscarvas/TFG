@@ -9,13 +9,13 @@ import personajes.Personaje;
 public class RecuperarObjeto {
 
 	private Personaje personaje;
-	private String objeto,guardian;
+	private String objeto,ladron;
 	private AID agenteMundo;
 
-	public RecuperarObjeto(Personaje personaje, String guardian, String objeto) {
+	public RecuperarObjeto(Personaje personaje, String ladron, String objeto) {
 
 		this.personaje = personaje;
-		this.guardian = guardian;
+		this.ladron = ladron;
 		this.objeto = objeto;
 		this.agenteMundo = personaje.getAgenteMundo();
 
@@ -27,7 +27,7 @@ public class RecuperarObjeto {
 		proteger.addReceiver(agenteMundo);
 		proteger.setConversationId("RecuperarObjeto");
 		proteger.setReplyWith("RecuperarObjeto" + System.currentTimeMillis());
-		proteger.setContent(guardian + " " +objeto);
+		proteger.setContent(ladron + " " +objeto);
 		personaje.send(proteger);
 
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(proteger.getReplyWith());

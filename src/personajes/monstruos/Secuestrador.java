@@ -47,29 +47,29 @@ public class Secuestrador extends Monstruo {
 	}
 	
 	private void esquadronSuicida(Agent myAgent){
-		//Aviso al guardian
+		//Aviso al ladron
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
-		sd.setType("Guardian");
+		sd.setType("Ladron");
 		template.addServices(sd);
 		
 		DFAgentDescription[] result;
 		try {
 			result = DFService.search(myAgent, template);
-			AID[] guardianes = new AID[result.length];
+			AID[] ladrones = new AID[result.length];
 			for (int i = 0; i < result.length; i++){
-				guardianes[i] = result[i].getName();
+				ladrones[i] = result[i].getName();
 			}
 			
-			if (guardianes.length != 0){						
-				ACLMessage despiertaGuardian = new ACLMessage(ACLMessage.INFORM);
-				despiertaGuardian.setConversationId("DespiertaGuardian");						
+			if (ladrones.length != 0){						
+				ACLMessage despiertaLadron = new ACLMessage(ACLMessage.INFORM);
+				despiertaLadron.setConversationId("DespiertaLadron");						
 				
-				for (AID guardian : guardianes) {
+				for (AID ladron : ladrones) {
 					
-					despiertaGuardian.addReceiver(guardian);
-					despiertaGuardian.setContent(guardian.getLocalName());
-					myAgent.send(despiertaGuardian);
+					despiertaLadron.addReceiver(ladron);
+					despiertaLadron.setContent(ladron.getLocalName());
+					myAgent.send(despiertaLadron);
 					
 				}
 			}
