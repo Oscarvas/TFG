@@ -1,8 +1,9 @@
 package personajes.pnjs;
 
+import java.util.Random;
+
 import gui.Gui;
-import jade.core.AID;
-import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
@@ -13,18 +14,15 @@ import personajes.Personaje;
 
 @SuppressWarnings("serial")
 public class PNJ extends Personaje {
-	private String sexo;
 	private String oficio;
-	private String localizacion;	
-	private AID agenteMundo;	
 	
 	protected void setup(){
 		Object[] args = getArguments(); 
 		
 		//cargamos sus propiedades
-		setSexo((String)args[0]); //this.sexo = (String)args[0];
-		setoficio((String)args[1]); //this.oficio = (String)args[1];
-		setLocalizacion((String)args[2]); //this.localizacion = (String)args[2];		
+		setSexo((String)args[0]); 
+		setoficio((String)args[1]); 
+		setLocalizacion((String)args[2]);		
 		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -40,14 +38,71 @@ public class PNJ extends Personaje {
 			fe.printStackTrace();
 		}
 		
-		//localizarPnj();
-		
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
 		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ " se levanta en " +getLocalizacion() + " con ganas de trabajar.");
 		
+		addBehaviour(new ModificarEstadisticas());
+		
 	}
 	
+	private class ModificarEstadisticas extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			
+			MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("TrucoTrato"),
+					MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+			ACLMessage msg = myAgent.receive(mt);
+
+			if (msg != null) {
+				ACLMessage reply = msg.createReply();
+				int destino = new Random().nextInt(2);
+				
+				switch (destino) {
+				case 0:
+					reply.setContent(buff());
+					break;
+					
+				case 1:
+					reply.setContent(debuff());
+					break;
+				default:
+					reply.setContent(buff());
+					break;
+				}
+				
+				myAgent.send(reply);
+
+			} else
+				block();
+			
+		}
+		
+	}
+	
+	private int num(){
+		return new Random().nextInt(11);
+	}
+	
+	private String buff(){
+		String f,d,i,c;
+		f= String.valueOf(num());
+		d= String.valueOf(num());
+		i= String.valueOf(num());
+		c= String.valueOf(num());
+		return f+" "+d+" "+i+" "+c;
+	}
+	
+	private String debuff(){
+		String f,d,i,c;
+		f= String.valueOf(num()*-1);
+		d= String.valueOf(num()*-1);
+		i= String.valueOf(num()*-1);
+		c= String.valueOf(num()*-1);
+		return f+" "+d+" "+i+" "+c;		
+	}
 	
 	public String getOficio(){
 		return this.oficio;
@@ -57,33 +112,4 @@ public class PNJ extends Personaje {
 		this.oficio = oficio;
 	}
 	
-//	//sitúa al pnj en el lugar correcto a la hora de su creación
-//	public void localizarPnj() {
-//		DFAgentDescription template = new DFAgentDescription();
-//		ServiceDescription sd = new ServiceDescription();
-//		sd.setType("Mundo");
-//		template.addServices(sd);
-//
-//		try {
-//
-//			DFAgentDescription[] result = DFService.search(this, template);
-//			setAgenteMundo(result[0].getName());
-//
-//			ACLMessage localizar = new ACLMessage(ACLMessage.REQUEST);
-//			localizar.addReceiver(getAgenteMundo());
-//			localizar.setConversationId("Mover");
-//			localizar.setContent(this.oficio + " " + this.localizacion);
-//			localizar.setReplyWith("localizar" + System.currentTimeMillis());
-//			send(localizar);
-//
-//			MessageTemplate mt = MessageTemplate.and(
-//					MessageTemplate.MatchConversationId("Mover"),
-//					MessageTemplate.MatchInReplyTo(localizar.getReplyWith()));
-//			blockingReceive(mt);
-//
-//		} catch (FIPAException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
 }
