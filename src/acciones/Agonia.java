@@ -30,7 +30,7 @@ public class Agonia {
 		/*
 		 * Enviamos como mensaje la cantidad de vida a perder por el personaje afectado
 		 * */
-		agonia.setContent(Integer.toString(new Random().nextInt(personaje.getVida()+1)));
+		agonia.setContent(Integer.toString(new Random().nextInt(personaje.getVida())+1));
 		
 		Gui.setHistoria(personaje.getLocalName()+ ": " + secundario + ", ahora sentirás la agonía de una muerte lenta");
 		
