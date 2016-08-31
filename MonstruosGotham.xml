@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actores>
+<!-- Para configurar correctamente un pnj debes: -->
+<!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
+<!-- CLASE = Definir que clase de monstruo queremos crear, existen 4 tipos: -->
+<!--		Secuestrador: un monstruo que se dedicara a secuestrar victimas desprevenidas -->
+<!--		Guardian: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
+<!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
+<!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->
+<!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
+
+	<monstruo nombre="El Joker" clase="Secuestrador" especie="Psicópata" sexo="F"/>
+	
+	<monstruo nombre="Dos Caras" clase="Maligno" especie="Ex-Fiscal Socipata" sexo="M"/>
+	
+	<monstruo nombre="Hiedra Venenosa" clase="Guardian" especie="Doctora Loca" sexo="F"/>
+		
+	<monstruo nombre="Bane" clase="Emboscador" especie="Monstruo Imparable" sexo="M"/>
+	
+	<monstruo nombre="El Pingüino" clase="Emboscador" especie="Supervillano" sexo="M"/>
+	
+</Actores>
