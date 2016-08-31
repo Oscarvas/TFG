@@ -14,7 +14,7 @@ public class Guardian extends Monstruo {
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
-		Gui.setHistoria(getLocalizacion()+ getFrase("Inicio") + getSexo() + " " + getEspecie()+ " "+getLocalName()+".");
+		Gui.setHistoria(getLocalizacion()+ hablar("Inicio") + getSexo() + " " + getEspecie()+ " "+getLocalName()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

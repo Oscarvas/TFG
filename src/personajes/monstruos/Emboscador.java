@@ -20,7 +20,7 @@ public class Emboscador extends Monstruo {
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
-		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+ getFrase("Inicio"));
+		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+ hablar("Inicio"));
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

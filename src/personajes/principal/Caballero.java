@@ -43,7 +43,7 @@ public class Caballero extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("El caballero " + getLocalName() + getFrase("Inicio") + getLocalizacion()
+		Gui.setHistoria("El caballero " + getLocalName() + hablar("Inicio") + getLocalizacion()
 				+ " con su armadura hecha polvo.");
 
 		addBehaviour(new OfrecerServicios(getTesoro()));

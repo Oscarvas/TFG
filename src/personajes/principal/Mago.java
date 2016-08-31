@@ -42,7 +42,7 @@ public class Mago extends Protagonista {
 
 		localizarPersonaje();
 		Gui.setHistoria("Aquel al que llaman mago, " + getLocalName()
-				+ getFrase("Inicio"));
+				+ hablar("Inicio"));
 
 		addBehaviour(new AyudaArcana());
 	}

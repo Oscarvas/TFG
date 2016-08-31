@@ -17,7 +17,7 @@ public class Maligno extends Monstruo {
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
-		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() + getFrase("Inicio") +getLocalizacion()+".");
+		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() + hablar("Inicio") +getLocalizacion()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

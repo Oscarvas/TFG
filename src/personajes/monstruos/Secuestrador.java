@@ -21,7 +21,7 @@ public class Secuestrador extends Monstruo {
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(getEspecie()));
-		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+ getFrase("Inicio"));
+		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+ hablar("Inicio"));
 		addBehaviour(new Secuestro());
 	}
 	protected void takeDown() {

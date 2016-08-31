@@ -27,7 +27,7 @@ public class Frases {
 		this.frases.put(accion, aux);
 	}
 	
-	public String getFrasesAccion(String accion){
+	public String getFraseAccion(String accion){
 		//int i = (int) (Math.random() * this.frases.get(accion).size());
 		return this.frases.get(accion).get(0);
 	}

@@ -55,7 +55,7 @@ public class Rey extends Protagonista {
 			}			
 			
 			
-			Gui.setHistoria("El rey "+getLocalName()+ getFrase("Inicio"));
+			Gui.setHistoria("El rey "+getLocalName()+ hablar("Inicio"));
 						
 			FSMBehaviour m = new FSMBehaviour(this);
 			m.registerFirstState(new Atento(), "Atento");

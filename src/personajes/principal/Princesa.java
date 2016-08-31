@@ -70,7 +70,7 @@ public class Princesa extends Protagonista {
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(myAgent.getLocalName()+ getFrase("Inicio") + getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
+					Gui.setHistoria(myAgent.getLocalName()+ hablar("Inicio") + getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());
