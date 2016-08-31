@@ -7,37 +7,37 @@
 	<!-- El tipo va en función del XML de Personajes para el atributo rol -->	
 	<personaje tipo="Caballero">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Caballero prueba </f> 
-			<f> frase Inicio 2 Caballero prueba </f> 
+			<f> se despierta otra mañana dispuesto a entrenar en </f> 
+			<f> perezosamente se hecha una siesta en </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Caballero prueba </f> 
-			<f> frase Batalla 2 Caballero prueba </f> 
+			<f> preparate para morir dragón </f> 
+			<f> os partire la cara ya lo creo, daos por muerto </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Caballero prueba </f> 
-			<f> frase Coger 2 Caballero prueba </f> 
+			<f> me ayudara en mi aventura </f> 
+			<f> al cesar lo que es del cesar </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Caballero prueba </f> 
-			<f> frase Muerte 2 Caballero prueba </f> 
+			<f> un dia largo, a descansar </f> 
+			<f> se emborracha para olvidar sus penas </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Caballero prueba </f> 
-			<f> frase Muerte 2 Caballero prueba </f> 
+			<f> aghhhh!!! </f> 
+			<f> no... no puedo morir </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> descansa en </f> 
+			<f> continua su travesia por </f> 
+			<f> se echa un piti al llegar a </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Princesa">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Princesa prueba </f> 
-			<f> frase Inicio 2 Princesa prueba </f> 
+			<f> se peina en </f> 
+			<f> flirtea con los caballeros en un restaurante de </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Princesa prueba </f> 
@@ -48,25 +48,25 @@
 			<f> frase Coger 2 Princesa prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Princesa prueba </f> 
-			<f> frase Muerte 2 Princesa prueba </f> 
+			<f> frase Fin 1 Princesa prueba </f> 
+			<f> frase Fin 2 Princesa prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Princesa prueba </f> 
 			<f> frase Muerte 2 Princesa prueba </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> descansa en </f> 
+			<f> continua su travesia por </f> 
+			<f> se echa un piti al llegar a </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Rey">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Rey prueba </f> 
-			<f> frase Inicio 2 Rey prueba </f> 
+			<f> juguetea con su centro en su trono en </f> 
+			<f> hace los preparativos del banquete en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Rey prueba </f> 
@@ -77,25 +77,29 @@
 			<f> frase Coger 2 Rey prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Rey prueba </f> 
-			<f> frase Muerte 2 Rey prueba </f> 
+			<f> frase Fin 1 Rey prueba </f> 
+			<f> frase Fin 2 Rey prueba </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Rey prueba </f> 
-			<f> frase Muerte 2 Rey prueba </f> 
+			<f> Rey Muerto </f> 
+			<f> Rey No-Muerto </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> descansa en </f> 
+			<f> continua su travesia por </f> 
+			<f> se echa un piti al llegar a </f> 
+		</frase>
+		<frase accion="OtroAspirante">
+			<f> frase Muerte 1 Rey prueba </f> 
+			<f> frase Muerte 2 Rey prueba </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Mago">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Mago prueba </f> 
-			<f> frase Inicio 2 Mago prueba </f> 
+			<f> se prepara para otra mañana de duro estudio en </f> 
+			<f> espia a las mozas con su magia en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Mago prueba </f> 
@@ -106,19 +110,19 @@
 			<f> frase Coger 2 Mago prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Mago prueba </f> 
-			<f> frase Muerte 2 Mago prueba </f> 
+			<f> frase Fin 1 Mago prueba </f> 
+			<f> frase Fin 2 Mago prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Mago prueba </f> 
 			<f> frase Muerte 2 Mago prueba </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> descansa en </f> 
+			<f> continua su travesia por </f> 
+			<f> se echa un piti al llegar a </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Druida">
@@ -135,19 +139,19 @@
 			<f> frase Coger 2 Druida prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Druida prueba </f> 
-			<f> frase Muerte 2 Druida prueba </f> 
+			<f> frase Fin 1 Druida prueba </f> 
+			<f> frase Fin 2 Druida prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Druida prueba </f> 
 			<f> frase Muerte 2 Druida prueba </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> descansa en </f> 
+			<f> continua su travesia por </f> 
+			<f> se echa un piti al llegar a </f> 
 		</frase>
 	</personaje>
 	<!-- Monstruos -->
@@ -166,19 +170,19 @@
 			<f> frase Coger 2 Dragon prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Dragon prueba </f> 
-			<f> frase Muerte 2 Dragon prueba </f> 
+			<f> frase Fin 1 Dragon prueba </f> 
+			<f> frase Fin 2 Dragon prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Dragon prueba </f> 
 			<f> frase Muerte 2 Dragon prueba </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> llega a </f> 
+			<f> camina por </f> 
+			<f> aterroriza en </f> 
+			<f> planea hasta </f> 
+			<f> incinera ovejas en </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Queso Azul Mortifero">
@@ -195,8 +199,8 @@
 			<f> frase Coger 2 Queso Azul Mortifero prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Muerte 2 Queso Azul Mortifero prueba </f> 
+			<f> frase Fin 1 Queso Azul Mortifero prueba </f> 
+			<f> frase Fin 2 Queso Azul Mortifero prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Queso Azul Mortifero prueba </f> 
@@ -224,8 +228,8 @@
 			<f> frase Coger 2 Gyarados prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Gyarados prueba </f> 
-			<f> frase Muerte 2 Gyarados prueba </f> 
+			<f> frase Fin 1 Gyarados prueba </f> 
+			<f> frase Fin 2 Gyarados prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Gyarados prueba </f> 
@@ -253,8 +257,8 @@
 			<f> frase Coger 2 MissUniverse prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 MissUniverse prueba </f> 
-			<f> frase Muerte 2 MissUniverse prueba </f> 
+			<f> frase Fin 1 MissUniverse prueba </f> 
+			<f> frase Fin 2 MissUniverse prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 MissUniverse prueba </f> 
@@ -284,8 +288,8 @@
 			<f> frase Coger 2 Chaman prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Chaman prueba </f> 
-			<f> frase Muerte 2 Chaman prueba </f> 
+			<f> frase Fin 1 Chaman prueba </f> 
+			<f> frase Fin 2 Chaman prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Chaman prueba </f> 
@@ -313,8 +317,8 @@
 			<f> frase Coger 2 Tabernero prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Tabernero prueba </f> 
-			<f> frase Muerte 2 Tabernero prueba </f> 
+			<f> frase Fin 1 Tabernero prueba </f> 
+			<f> frase Fin 2 Tabernero prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Tabernero prueba </f> 
@@ -342,8 +346,8 @@
 			<f> frase Coger 2 Herrero prueba </f> 
 		</frase>	
 		<frase accion="Fin">
-			<f> frase Muerte 1 Herrero prueba </f> 
-			<f> frase Muerte 2 Herrero prueba </f> 
+			<f> frase Fin 1 Herrero prueba </f> 
+			<f> frase Fin 2 Herrero prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Herrero prueba </f> 
@@ -371,8 +375,8 @@
 			<f> frase Coger 2 Medico Brujo prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Muerte 1 Medico Brujo prueba </f> 
-			<f> frase Muerte 2 Medico Brujo prueba </f> 
+			<f> frase Fin 1 Medico Brujo prueba </f> 
+			<f> frase Fin 2 Medico Brujo prueba </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> frase Muerte 1 Medico Brujo prueba </f> 

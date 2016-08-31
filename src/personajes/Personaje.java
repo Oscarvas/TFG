@@ -177,8 +177,10 @@ public class Personaje extends Agent {
 	public String getSexo(){
 		if (this.sexo.equals("M"))
 			return "El";
-		else
+		else if (this.sexo.equals("F"))
 			return "La";
+		else
+			return "";
 	}
 	
 	public void setSexo(String sexo){

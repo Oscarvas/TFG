@@ -71,7 +71,7 @@ public class NuevoPersonaje extends JDialog {
 		clases.setSelectedIndex(-1);
 		clases.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				if(!clases.getSelectedItem().equals("Rey"))
+				if(!clases.getSelectedItem().equals("Allegado"))
 					razas.setModel(new DefaultComboBoxModel<>(Vocabulario.RAZAS));
 				else
 					razas.setModel(models[0]);

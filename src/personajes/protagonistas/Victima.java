@@ -25,8 +25,9 @@ public class Victima extends Protagonista {
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0) {
 			iniciarPrincipal((String) args[0], (String) args[1], 
-					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false);
+					(String) args[2], Integer.parseInt((String) args[3]), 
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]),
+					Integer.parseInt((String) args[7]), false);
 			cargaPrincipal(getFuerza());//la victima da como atributo principal la fuerza
 		}
 		
@@ -51,24 +52,24 @@ public class Victima extends Protagonista {
 			// TODO Auto-generated method stub
 			DFAgentDescription template = new DFAgentDescription();
 			ServiceDescription sd = new ServiceDescription();
-			sd.setType("Rey");
+			sd.setType("Allegado");
 			template.addServices(sd);
 			
 			try{
 				DFAgentDescription[] result = DFService.search(myAgent, template);
-				AID[] reyes = new AID[result.length];
+				AID[] allegadoes = new AID[result.length];
 				for (int i = 0; i < result.length; i++){
-					reyes[i] = result[i].getName();
+					allegadoes[i] = result[i].getName();
 				}
 				
-				if (reyes.length != 0) {
-					padre = reyes[new Random().nextInt(reyes.length)];
+				if (allegadoes.length != 0) {
+					padre = allegadoes[new Random().nextInt(allegadoes.length)];
 					//Hacemos que la victima se posicione en el mismo lugar que su padre
 					setLocalizacion(new DondeEsta(myAgent, padre.getLocalName()).execute());
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(myAgent.getLocalName() + hablar("Inicio") + getLocalizacion());
+					Gui.setHistoria(getSexo() + " " + getRol() + " " +  myAgent.getLocalName() + hablar("Inicio") + getLocalizacion());
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());

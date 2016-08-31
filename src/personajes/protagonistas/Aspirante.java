@@ -21,9 +21,10 @@ public class Aspirante extends Protagonista {
 	protected void setup() {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
-			iniciarPrincipal((String) args[0], (String) args[1], Integer.parseInt((String) args[2]),
-					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
-					Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false );
+			iniciarPrincipal((String) args[0], (String) args[1], 
+					(String) args[2], Integer.parseInt((String) args[3]), 
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]),
+					Integer.parseInt((String) args[7]), false);
 			cargaPrincipal(getFuerza());//el aspirante da como atributo principal la fuerza
 		}
 
@@ -41,8 +42,7 @@ public class Aspirante extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("El aspirante " + getLocalName() + hablar("Inicio") + getLocalizacion()
-				+ " con su armadura hecha polvo.");
+		Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName() + hablar("Inicio") + getLocalizacion());
 
 		addBehaviour(new OfrecerServicios(getTesoro()));
 		addBehaviour(new AceptarOfertaRescate());
@@ -115,11 +115,11 @@ public class Aspirante extends Protagonista {
 
 	private class FinPlanificacion extends Behaviour {
 
-		AID rey;
+		AID allegado;
 		ACLMessage receive;
 
-		public FinPlanificacion(AID rey) {
-			this.rey = rey;
+		public FinPlanificacion(AID allegado) {
+			this.allegado = allegado;
 		}
 
 		public void action() {
@@ -133,7 +133,7 @@ public class Aspirante extends Protagonista {
 
 				ACLMessage rescate = new ACLMessage(ACLMessage.INFORM);
 				rescate.setConversationId("Rescate");
-				rescate.addReceiver(rey);
+				rescate.addReceiver(allegado);
 				rescate.setContent(receive.getContent());
 
 				if (estaMuerto()) {

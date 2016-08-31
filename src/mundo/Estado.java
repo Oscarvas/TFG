@@ -168,10 +168,10 @@ public class Estado {
 		else
 			nombres = personajes.get(clase);
 
-		if (!clase.equalsIgnoreCase("Rey") && !clase.equalsIgnoreCase("Victima"))
+		if (!clase.equalsIgnoreCase("Allegado") && !clase.equalsIgnoreCase("Victima"))
 			estaLibrePersonaje(nombre);
 
-//		if (clase.equalsIgnoreCase("Rey") || clase.equalsIgnoreCase("Victima") 
+//		if (clase.equalsIgnoreCase("Allegado") || clase.equalsIgnoreCase("Victima") 
 //				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
 //			consumidor.add(clase);
 		if ( clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante"))
@@ -390,7 +390,7 @@ public class Estado {
 				if(lista.contains(nombre)){
 					estado += "(es" + e.getKey() + " " + nombre + ")\n";
 
-					if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
+					if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Allegado"))
 						estado += "(esPrincipal ";
 
 					else
@@ -663,7 +663,7 @@ public class Estado {
 //			for (String nombre : nombres) {
 //				estado += "(es" + e.getKey() + " " + nombre + ")\n";
 //
-//				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Rey"))
+//				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Allegado"))
 //					estado += "(esPrincipal ";
 //
 //				else

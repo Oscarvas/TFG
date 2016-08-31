@@ -16,7 +16,7 @@ public class Asesino extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() + hablar("Inicio") + getLocalizacion()+".");
+		Gui.setHistoria("Desde "+getLocalizacion()+ " " + getSexo() + " " + getEspecie() + " " + getLocalName()+ hablar("Inicio"));
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

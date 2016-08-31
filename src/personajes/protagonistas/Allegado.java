@@ -38,15 +38,16 @@ public class Allegado extends Protagonista {
 		Object[] args = getArguments(); 
 		if (args != null && args.length > 0 && numeroHijas > 0 ) {
 			iniciarPrincipal((String) args[0], (String) args[1], 
-					Integer.parseInt((String) args[2]), Integer.parseInt((String) args[3]), 
-					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), true);
+					(String) args[2], Integer.parseInt((String) args[3]), 
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]),
+					Integer.parseInt((String) args[7]), true);
 			localizarPersonaje();
 			
 			DFAgentDescription dfd = new DFAgentDescription();
 			dfd.setName(getAID());
 			ServiceDescription sd = new ServiceDescription();
-			sd.setType("Rey");
-			sd.setName(getLocalName()+"-Rey");
+			sd.setType("Allegado");
+			sd.setName(getLocalName()+"-Allegado");
 			dfd.addServices(sd);
 			
 			try {
@@ -56,7 +57,7 @@ public class Allegado extends Protagonista {
 			}			
 			
 			
-			Gui.setHistoria("El rey "+getLocalName()+ hablar("Inicio"));
+			Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName()+ hablar("Inicio") + getLocalizacion());
 						
 			FSMBehaviour m = new FSMBehaviour(this);
 			m.registerFirstState(new Atento(), "Atento");
@@ -79,7 +80,7 @@ public class Allegado extends Protagonista {
 			addBehaviour(tbf.wrap(new Tortura(this)));
 		}
 		else{
-			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no tengo hijas por las cuales preocuparme");
+			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no me preocupo por nadie");
 			doDelete();
 		}
 		
@@ -290,7 +291,7 @@ public class Allegado extends Protagonista {
 				return 1;
 
 			else {
-				Gui.setHistoria("- El Rey recibe la noticia de la muerte del aspirante, así que busca a otro. \n");
+				Gui.setHistoria(hablar("OtroAspirante"));
 
 				return 2;
 
@@ -334,12 +335,12 @@ public class Allegado extends Protagonista {
 			numeroHijas--;
 
 			if (numeroHijas == 0) {
-				Gui.setHistoria("- Todas las hijas del Rey están a salvo, puede morir tranquilo. \n");
+				Gui.setHistoria("- Todas las hijas del Allegado están a salvo, puede morir tranquilo. \n");
 				doDelete();
 			}
 
 			else if (getTesoro() == 0) {
-				Gui.setHistoria("- El Rey ha perdido todo su dinero con el rescate, asi que deja de ser Rey. \n");
+				Gui.setHistoria("- El Allegado ha perdido todo su dinero con el rescate, asi que deja de ser Allegado. \n");
 				doDelete();
 			}
 		}

@@ -18,7 +18,7 @@ public class Emboscador extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+ hablar("Inicio"));
+		Gui.setHistoria("Desde "+getLocalizacion()+ " " + getSexo() + " " + getEspecie() + " " + getLocalName()+ hablar("Inicio"));
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());

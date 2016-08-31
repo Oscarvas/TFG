@@ -14,9 +14,10 @@ public class Ayudante extends Protagonista {
 	protected void setup() {
 		Object[] args = getArguments();
 		if (args != null && args.length > 0) {
-			iniciarPrincipal((String) args[0], (String) args[1], Integer.parseInt((String) args[2])*4,
-					Integer.parseInt((String) args[3]), Integer.parseInt((String) args[4]),
-					Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]), false);
+			iniciarPrincipal((String) args[0], (String) args[1], 
+					(String) args[2], Integer.parseInt((String) args[3]), 
+					Integer.parseInt((String) args[4]), Integer.parseInt((String) args[5]), Integer.parseInt((String) args[6]),
+					Integer.parseInt((String) args[7]), false);
 			cargaPrincipal(getInteligencia()*2);// el ayudante da
 																	// como
 																	// atributo
@@ -39,7 +40,7 @@ public class Ayudante extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("Aquel al que llaman ayudante, " + getLocalName() + hablar("Inicio"));
+		Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName() + hablar("Inicio") + getLocalizacion());
 
 		addBehaviour(new AyudaArcana());
 	}

@@ -24,17 +24,18 @@ public class Protagonista extends Personaje {
 		super();
 	}
 	
-	public void iniciarPrincipal(String rol, String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
+	public void iniciarPrincipal(String rol, String nombreRaza, String sexo, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean allegado){
 		cargarMundo();
 		setRol(rol);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(this.rol));
 		Raza raza = Vocabulario.RAZAS2.get(nombreRaza);
+		setSexo(sexo);
 		setVida(vida * raza.getVidaModificador());
 		setFuerza(fuerza * raza.getFuerzaModificador());
 		setDestreza(destreza * raza.getDestrezaModificador());
 		setInteligencia(inteligencia * raza.getDestrezaModificador());
 		setCodicia(codicia * raza.getCodiciaModificador());
-		if (!rey){
+		if (!allegado){
 			setTesoro(Vocabulario.SALARIO * getCodicia());
 		}			
 		else{

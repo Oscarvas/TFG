@@ -44,7 +44,7 @@ public class PNJ extends Personaje {
 		//localizarPersonaje();
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
-		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ hablar("Inicio") +getLocalizacion() + " con ganas de trabajar.");
+		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ hablar("Inicio") +getLocalizacion());
 		
 		addBehaviour(new ModificarEstadisticas());
 		

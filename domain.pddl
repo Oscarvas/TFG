@@ -2,7 +2,7 @@
 	(:requirements :typing)
 	(:types
 		localizacion
-		rey
+		allegado
 		aspirante
 		secuestrador
 		victima
@@ -26,7 +26,7 @@
 		
 		(esPrincipal ?per)
 		(esSecundario ?per)
-		(esRey ?per)
+		(esAllegado ?per)
 		(esVictima ?per)
 		(esAspirante ?per)
 		(esAyudante ?per)
@@ -90,7 +90,7 @@
 			(not (enLoc ?p ?locOrig)))
 	)
 
-;; batalla entre fantasma y rey
+;; batalla entre fantasma y allegado
 	(:action venganza
 		:parameters (?p1 ?p2 ?loc)
 		:precondition (and			
@@ -98,7 +98,7 @@
 			(enLoc ?p1 ?loc)
 			(enLoc ?p2 ?loc)
 			(esAsesino ?p1)
-			(esRey ?p2)
+			(esAllegado ?p2)
 			(vivo ?p1)
 			(vivo ?p2))
 		:effect
