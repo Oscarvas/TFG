@@ -84,8 +84,8 @@ public class Personaje extends Agent {
 		
 	}
 
-	public Frases getFrases() {
-		return frases;
+	public String hablar(String accion) {
+		return frases.getFraseAccion(accion);
 	}
 
 	public void setFrases(Frases frases) {

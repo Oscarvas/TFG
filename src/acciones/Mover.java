@@ -49,7 +49,7 @@ public class Mover {
 				objetoEncontrado();
 				bendiciones();
 
-				Gui.setHistoria(personaje.getLocalName() + ": ¡He llegado hasta "+ personaje.getLocalizacion()+"!");
+				Gui.setHistoria(personaje.getLocalName() + personaje.hablar("Mover") +  personaje.getLocalizacion()+"!");
 				
 
 			} else {

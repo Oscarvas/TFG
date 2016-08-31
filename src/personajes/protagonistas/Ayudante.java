@@ -39,8 +39,7 @@ public class Ayudante extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("Aquel al que llaman ayudante, " + getLocalName()
-				+ ", realmente sólo tiene muchísimas cartas bajo la túnica.");
+		Gui.setHistoria("Aquel al que llaman ayudante, " + getLocalName() + hablar("Inicio"));
 
 		addBehaviour(new AyudaArcana());
 	}
@@ -53,9 +52,9 @@ public class Ayudante extends Protagonista {
 		}
 
 		if (estaMuerto()) {
-			Gui.setHistoria(getLocalName() + ": An'u belore delen'na...\n");
+			Gui.setHistoria(getLocalName() + hablar("Muerte")+ "\n");
 		} else {
-			Gui.setHistoria(getLocalName() + ": El conocimiento es poder...\n");
+			Gui.setHistoria(getLocalName() + hablar("Fin")+ "\n");
 		}
 	}
 

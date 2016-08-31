@@ -18,7 +18,7 @@ import jade.lang.acl.MessageTemplate;
 import ontologia.Vocabulario;
 
 @SuppressWarnings("serial")
-public class Rey extends Protagonista {
+public class Allegado extends Protagonista {
 	public AID[] AspirantesDisponibles;
 	public AID victimaSecuestrada;
 	public String dragon;
@@ -56,7 +56,7 @@ public class Rey extends Protagonista {
 			}			
 			
 			
-			Gui.setHistoria("El rey "+getLocalName()+" apenas despierta, y la que se ha liado en su reino es digna de una buena historia.");
+			Gui.setHistoria("El rey "+getLocalName()+ hablar("Inicio"));
 						
 			FSMBehaviour m = new FSMBehaviour(this);
 			m.registerFirstState(new Atento(), "Atento");
@@ -94,9 +94,9 @@ public class Rey extends Protagonista {
 		}
 			
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Solo veo... oscuridad... ante mí...\n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": He tenido otra visión del Rey Exánime. ¡Ha restaurado mis poderes! ahora sé lo que tengo que hacer. Es hora de poner fin al juego... de una vez\n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 		}
 				
 	}

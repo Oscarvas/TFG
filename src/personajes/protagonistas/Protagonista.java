@@ -1,6 +1,7 @@
 package personajes.protagonistas;
 
 import gui.Gui;
+import mundo.Mundo;
 import objetos.Objeto;
 import ontologia.Raza;
 import ontologia.Vocabulario;
@@ -26,6 +27,7 @@ public class Protagonista extends Personaje {
 	public void iniciarPrincipal(String rol, String nombreRaza, int vida,int fuerza, int destreza, int inteligencia, int codicia, boolean rey){
 		cargarMundo();
 		setRol(rol);
+		setFrases(Mundo.diccionario.getFrasesPersonaje(this.rol));
 		Raza raza = Vocabulario.RAZAS2.get(nombreRaza);
 		setVida(vida * raza.getVidaModificador());
 		setFuerza(fuerza * raza.getFuerzaModificador());

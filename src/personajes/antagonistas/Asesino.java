@@ -16,7 +16,7 @@ public class Asesino extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() +" ha decidido que es la hora de la venganza en el castillo "+getLocalizacion()+".");
+		Gui.setHistoria(getLocalName()+ " " + getSexo() +" " + getEspecie() + hablar("Inicio") + getLocalizacion()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
@@ -43,9 +43,9 @@ public class Asesino extends Antagonista {
 		}
 		
 		if (estaMuerto())
-			Gui.setHistoria(getLocalName()+": Si he de morir,os llevare a todos conmigo,MI DESTINO ES MIO!..\n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		else
-			Gui.setHistoria(getLocalName()+" El Rey Exánime debe caer...\n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 	}
 	
 	private class Maldad extends CyclicBehaviour{

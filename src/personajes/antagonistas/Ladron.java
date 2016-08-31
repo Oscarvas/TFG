@@ -14,7 +14,7 @@ public class Ladron extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria(getLocalizacion()+" se ha sumergido en la penumbra tras el paseo de "+getSexo() +" " + getEspecie()+ " "+getLocalName()+".");
+		Gui.setHistoria(getLocalizacion()+ hablar("Inicio") + getSexo() +" " + getEspecie()+ " "+getLocalName()+".");
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
@@ -42,9 +42,9 @@ public class Ladron extends Antagonista {
 		}
 		
 		if(estaMuerto())
-			Gui.setHistoria(getLocalName()+": La amabilidad se traduce en debilidad y esa debilidad retrasará el disparo por un instante... ¿y sabes? Este Mundo no es para nada amable con las personas débiles. \n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		else
-			Gui.setHistoria(getLocalName()+": Devoro las cinco tierras y seco los tres océanos, mientras que el cielo es lo único imposible de alcanzar con este cuerpo sin alas, brazos ni piernas. Soy la Serpiente del Mundo. Soy Jormungander.  \n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 	}
 
 	private class Acecho extends Behaviour{

@@ -629,7 +629,7 @@ public class Estado {
 	private String conocimientoAsesino(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
-		lista.addAll(personajes.get("Rey"));
+		lista.addAll(personajes.get("Allegado"));
 		
 		String estado = "";
 		

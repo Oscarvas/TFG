@@ -1,5 +1,6 @@
 package personajes.antagonistas;
 
+import mundo.Mundo;
 import ontologia.Vocabulario;
 import personajes.Personaje;
 
@@ -15,6 +16,7 @@ public class Antagonista extends Personaje {
 		localizarPersonaje();
 		setEspecie(especie);
 		setSexo(sexo);
+		setFrases(Mundo.diccionario.getFrasesPersonaje(this.especie));
 	}
 	
 	public String getEspecie(){

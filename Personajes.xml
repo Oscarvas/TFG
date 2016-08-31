@@ -5,18 +5,16 @@
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
 
-	<personaje nombre="Felipe" clase="Rey" rol="Rey" raza="LUCS" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Felipe" clase="Allegado" rol="Rey" raza="LUCS" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Leia" clase="Victima" rol="Victima" raza="LUCS" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Leia" clase="Victima" rol="Princesa" raza="LUCS" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+		
+	<personaje nombre="Alonso" clase="Aspirante" rol="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<!-- <personaje nombre="Voljin" clase="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/> -->
+	<personaje nombre="SergioRammus" clase="Aspirante" rol="Caballero" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Alonso" clase="Aspirante" rol="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="JuanK" clase="Allegado" rol="Rey" raza="TESQ" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="SergioRammus" clase="Aspirante" rol="Aspirante" raza="TESQ" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
-	
-	<personaje nombre="JuanK" clase="Rey" rol="Rey" raza="TESQ" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
-	
-	<personaje nombre="Merlin" clase="Ayudante" rol="Ayudante" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	<personaje nombre="Merlin" clase="Ayudante" rol="Mago" raza="ILLIDAR" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
 	
 </Actores>

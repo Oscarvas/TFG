@@ -10,6 +10,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import mundo.Mundo;
 import personajes.Personaje;
 
 @SuppressWarnings("serial")
@@ -22,7 +23,8 @@ public class PNJ extends Personaje {
 		//cargamos sus propiedades
 		setSexo((String)args[0]); 
 		setOficio((String)args[1]); 
-		setLocalizacion((String)args[2]);		
+		setLocalizacion((String)args[2]);
+		setFrases(Mundo.diccionario.getFrasesPersonaje(this.oficio));
 		cargarMundo();
 		
 		//aqui debemos coger los args que hacemos al crear el pnj [0]sexo [1]oficio [2]localizacion
@@ -42,7 +44,7 @@ public class PNJ extends Personaje {
 		//localizarPersonaje();
 		// Se formaran frases del estilo "El [oficio] [nombre] se levanta en [localizacion] dispuesto a trabajar
 		// "La bibliotecaria Luisa se levanta en la biblioteca con ganas de trabajar."
-		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ " se levanta en " +getLocalizacion() + " con ganas de trabajar.");
+		Gui.setHistoria(getSexo() + " " + getOficio() + " " + getLocalName()+ hablar("Inicio") +getLocalizacion() + " con ganas de trabajar.");
 		
 		addBehaviour(new ModificarEstadisticas());
 		

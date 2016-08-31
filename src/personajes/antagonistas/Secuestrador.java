@@ -21,16 +21,16 @@ public class Secuestrador extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + " " +getLocalName()+" se escucha por todo el reino.");
+		Gui.setHistoria("Desde "+getLocalizacion()+ ", el imponente rugido de "+getSexo() + " " + getEspecie() + getLocalName()+ hablar("Inicio"));
 		addBehaviour(new Secuestro());
 	}
 	protected void takeDown() {
 		
 		if ( estaMuerto() )
-			Gui.setHistoria(getLocalName()+": Es la hora del Crepusculo\n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		
 		else
-			Gui.setHistoria(getLocalName()+": Todo ardera bajo la sombra de mis alas\n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 		
 		MessageTemplate mt = MessageTemplate.and(MessageTemplate.MatchConversationId("mujerIndependiente"),
 				MessageTemplate.MatchPerformative(ACLMessage.REQUEST));

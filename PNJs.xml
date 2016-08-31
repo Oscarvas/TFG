@@ -7,8 +7,8 @@
 <!-- LOCALIZACIÓN = Indicarle un lugar de tu mapa donde el personaje trabajará y vivirá -->
 
 	<pnj nombre="Thrall" sexo="M" oficio="Chaman" localizacion="Ignis"/>
-	<pnj nombre="Fulgencio" sexo="M" oficio="obrero" localizacion="Cruce"/>
-	<pnj nombre="Sylvanas" sexo="M" oficio="MedicoBrujo" localizacion="Inibi"/>
-	<pnj nombre="Velen" sexo="M" oficio="Batman" localizacion="Taberna"/>
+	<pnj nombre="Fulgencio" sexo="M" oficio="Obrero" localizacion="Cruce"/>
+	<pnj nombre="Sylvanas" sexo="M" oficio="Medico Brujo" localizacion="Inibi"/>
+	<pnj nombre="Velen" sexo="M" oficio="Tabernero" localizacion="Taberna"/>
 	
 </Actores>

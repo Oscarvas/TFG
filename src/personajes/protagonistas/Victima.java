@@ -35,9 +35,9 @@ public class Victima extends Protagonista {
 	
 	protected void takeDown() {
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Otro lugar infestado de los horrores de este mundo. Otra tierra que salvar\n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": Elije bien en quien confías...\n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 		}
 	}
 	private class Huerfana extends Behaviour{
@@ -68,7 +68,7 @@ public class Victima extends Protagonista {
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(myAgent.getLocalName()+": Las ventanas en el castillo "+getLocalizacion()+" dejan pasar demasiada luz, asi no hay quien duerma");
+					Gui.setHistoria(myAgent.getLocalName() + hablar("Inicio") + getLocalizacion());
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());

@@ -18,7 +18,7 @@ public class Emboscador extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+", la desgracia caerá sobre cada insensato que pase por ahí.");
+		Gui.setHistoria("Parece que mientras "+getSexo() +" " + getEspecie()+ " "+getLocalName()+" sea guardián de "+getLocalizacion()+ hablar("Inicio"));
 		
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
@@ -47,9 +47,9 @@ public class Emboscador extends Antagonista {
 		}
 		
 		if(estaMuerto())
-			Gui.setHistoria(getLocalName()+": ¿Quereis quedaros?... ¡Que sea pa' siempre!... Os enterraremo' aquí\n");
+			Gui.setHistoria(getLocalName()+ hablar("Muerte")+ "\n");
 		else
-			Gui.setHistoria(getLocalName()+": Loh amanih nunca olvidamoh!!!\n");
+			Gui.setHistoria(getLocalName()+ hablar("Fin")+ "\n");
 	}
 	
 	private class Acecho extends CyclicBehaviour {

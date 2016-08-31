@@ -41,7 +41,7 @@ public class Aspirante extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria("El aspirante " + getLocalName() + " se ha despertado en " + getLocalizacion()
+		Gui.setHistoria("El aspirante " + getLocalName() + hablar("Inicio") + getLocalizacion()
 				+ " con su armadura hecha polvo.");
 
 		addBehaviour(new OfrecerServicios(getTesoro()));
@@ -56,9 +56,9 @@ public class Aspirante extends Protagonista {
 		}
 		
 		if (estaMuerto()){
-			Gui.setHistoria(getLocalName()+": Ve con honor...\n");
+			Gui.setHistoria(getLocalName() + hablar("Muerte")+ "\n");
 		}else{
-			Gui.setHistoria(getLocalName()+": Que la luz te guíe...\n");
+			Gui.setHistoria(getLocalName() + hablar("Fin")+ "\n");
 		}
 	}
 
