@@ -5,11 +5,11 @@
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
 
-	<personaje nombre="James Gordon" clase="Rey" raza="Americano" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="James_Gordon" clase="Allegado" raza="Americano" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Barbara Gordon" clase="Victima" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Barbara_Gordon" clase="Victima" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Bruce Wayne" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Bruce_Wayne" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
 	<personaje nombre="Batman" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	

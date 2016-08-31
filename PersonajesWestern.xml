@@ -5,14 +5,14 @@
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
 
-	<personaje nombre="Jhon Ford" clase="Rey" raza="Americano" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Jhon_Ford" clase="Allegado" raza="Americano" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Sobrina de Ethan" clase="Victima" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Sobrina_de_Ethan" clase="Victima" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Ethan Edwars" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Ethan_Edwars" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Jhon Wayne" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<personaje nombre="Jhon_Wayne" clase="Aspirante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 	
-	<personaje nombre="Martin Edwars" clase="Ayudante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
+	<personaje nombre="Martin_Edwars" clase="Ayudante" raza="Americano" vida="10" fuerza="10" destreza="1" inteligencia="10" codicia="1"/>
 	
 </Actores>

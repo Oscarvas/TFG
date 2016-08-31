@@ -9,14 +9,14 @@
 <!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<monstruo nombre="El Joker" clase="Secuestrador" especie="Psicópata" sexo="F"/>
+	<monstruo nombre="El_Joker" clase="Secuestrador" especie="Psicópata" sexo="M"/>
 	
-	<monstruo nombre="Dos Caras" clase="Maligno" especie="Ex-Fiscal Socipata" sexo="M"/>
+	<monstruo nombre="Dos_Caras" clase="Asesino" especie="Ex-Fiscal_Socipata" sexo="M"/>
 	
-	<monstruo nombre="Hiedra Venenosa" clase="Guardian" especie="Doctora Loca" sexo="F"/>
+	<monstruo nombre="Hiedra_Venenosa" clase="Ladron" especie="Doctora_Loca" sexo="F"/>
 		
-	<monstruo nombre="Bane" clase="Emboscador" especie="Monstruo Imparable" sexo="M"/>
+	<monstruo nombre="Bane" clase="Emboscador" especie="Monstruo_Imparable" sexo="M"/>
 	
-	<monstruo nombre="El Pingüino" clase="Emboscador" especie="Supervillano" sexo="M"/>
+	<monstruo nombre="El_Pingüino" clase="Emboscador" especie="Supervillano" sexo="M"/>
 	
 </Actores>

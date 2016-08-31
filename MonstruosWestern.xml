@@ -9,12 +9,12 @@
 <!--		Maligno: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<monstruo nombre="Gran Aguila" clase="Secuestrador" especie="Indio Comanche" sexo="F"/>
+	<monstruo nombre="Gran_Aguila" clase="Secuestrador" especie="Indio_Comanche" sexo="F"/>
 	
-	<monstruo nombre="C. V. Whitney" clase="Maligno" especie="Productor de la Peli" sexo="M"/>
+	<monstruo nombre="C._V._Whitney" clase="Asesino" especie="Productor_de_la_Peli" sexo="M"/>
 	
-	<monstruo nombre="Fantasma de la mujer de Ethan" clase="Guardian" especie="Espectro" sexo="F"/>
+	<monstruo nombre="Fantasma_de_la_mujer_de_Ethan" clase="Ladron" especie="Espectro" sexo="F"/>
 		
-	<monstruo nombre="Caballo Desbocado" clase="Emboscador" especie="Indio Comanche" sexo="M"/>
+	<monstruo nombre="Caballo_Desbocado" clase="Emboscador" especie="Indio_Comanche" sexo="M"/>
 	
 </Actores>
