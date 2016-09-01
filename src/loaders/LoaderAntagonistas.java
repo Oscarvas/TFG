@@ -15,29 +15,30 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.PlatformController;
 import mundo.Mundo;
 
-public class LoaderPersonajes {
-	public LoaderPersonajes(Mundo mundo) throws ControllerException{
+public class LoaderAntagonistas {
+	public LoaderAntagonistas(Mundo mundo) throws ControllerException{
 		String nombre;
 		String clase;
 		PlatformController container = mundo.getContainerController();
 		
 		AgentController guest;
 		
-		
 		try {
-			File fXmlFile = new File("Personajes.xml");
+			//indicar el fichero de configuracion y crear el builder
+			File fXmlFile = new File("Antagonistas.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
 			doc.getDocumentElement().normalize();
+			
+			//volcar en una lista de nodos los pnjs que se quieren coger
+			NodeList nList = doc.getElementsByTagName("antagonista");
+			//crear un numero n de pnjs a hacer
+			for (int n = 0; n < nList.getLength(); n++) {
 
-			NodeList nList = doc.getElementsByTagName("personaje");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
+				Node nNode = nList.item(n);
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -45,17 +46,16 @@ public class LoaderPersonajes {
 
 					nombre = eElement.getAttribute("nombre");
 					clase = eElement.getAttribute("clase");
-					String[] args = {eElement.getAttribute("rol"),eElement.getAttribute("raza"),eElement.getAttribute("sexo"),eElement.getAttribute("vida"),eElement.getAttribute("fuerza"),
-							eElement.getAttribute("destreza"), eElement.getAttribute("inteligencia"),eElement.getAttribute("codicia")};
-					
-					guest = container.createNewAgent(nombre, "personajes.protagonistas."+clase, args);
+					String[] args = {eElement.getAttribute("especie"), eElement.getAttribute("sexo")};
+			
+					guest = container.createNewAgent(nombre, "personajes.antagonistas."+clase, args);
 					guest.start();
-				}
+				}				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		
 	}
-
 }
