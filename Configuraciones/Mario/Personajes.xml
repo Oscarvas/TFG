@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actores>
+<!-- Los atributos vida, fuerza... deben tener valores comprendidos entre 1 y 10 -->
+<!-- CLASES = {"Rey","Victima","Aspirante","Ayudante","Druida","Villano"} -->
+<!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
+<!-- RAZAS_REY = {"LUCS","TESQ"} -->
+	<personaje nombre="Toad" clase="Allegado" rol="Seta" raza="" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>	
+	<personaje nombre="Peach" clase="Victima" rol="Princesa" raza="" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>		
+	<personaje nombre="Mario" clase="Aspirante" rol="Fontanero" raza="" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+</Actores>

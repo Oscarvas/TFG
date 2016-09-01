@@ -138,8 +138,7 @@ public class Aspirante extends Protagonista {
 
 				if (estaMuerto()) {
 
-					Gui.setHistoria("+ El aspirante " + getLocalName() + " ha muerto en combate. \n");
-
+					//Gui.setHistoria(getLocalName() + hablar("Muerte")+ "\n");
 					rescate.setPerformative(ACLMessage.FAILURE);
 				}
 

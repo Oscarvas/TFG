@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Actores>
+<!-- Para configurar correctamente una raza debes: -->
+<!-- NOMBRE = Darle un nombre característico que la diferencie del resto -->
+<!-- ATRIBUTOS = debes deginir los atributos específicos de cada raza: -->
+<!--		vida: atributo referente a lo que durara un personaje -->
+<!--		fuerza: atributo referente a la capacidad de combate del personaje. Util para los aspirantes -->
+<!--		destreza: atributo referente a la capacidad de combate del personaje. Util para los cazadores -->
+<!--		inteligencia: atributo referente a la capacidad de combate del personaje. Util para los ayudantes -->
+<!--		codicia: atributo que definira como actuara el pj ante su dinero -->
+
+	<raza nombre="EGERIAN" vida="5" fuerza="5" destreza="2" inteligencia="2"  codicia="1"/>
+	
+	<raza nombre="ILLIDAR" vida="4" fuerza="2" destreza="5" inteligencia="6"  codicia="2"/>
+	
+	<raza nombre="TRAG" vida="1" fuerza="6" destreza="4" inteligencia="3"  codicia="4"/>
+		
+	<raza nombre="LUCS" vida="3" fuerza="1" destreza="6" inteligencia="5"  codicia="3"/>
+	
+	<raza nombre="TESQ" vida="6" fuerza="4" destreza="1" inteligencia="1"  codicia="6"/>
+	
+	<raza nombre="SCRULL" vida="2" fuerza="3" destreza="3" inteligencia="4"  codicia="5"/>
+	
+</Actores>
