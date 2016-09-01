@@ -80,7 +80,7 @@ public class Allegado extends Protagonista {
 			addBehaviour(tbf.wrap(new Tortura(this)));
 		}
 		else{
-			Gui.setHistoria(getLocalName()+": Como he sido rancio toda la vida, no me preocupo por nadie");
+			Gui.setHistoria(getLocalName()+ hablar("Solitario"));
 			doDelete();
 		}
 		
@@ -172,7 +172,7 @@ public class Allegado extends Protagonista {
 				
 				if (done()) {
 					
-					String mensaje = myAgent.getLocalName()+": Necesito negociar con los siguientes aspirantes para rescatar a "+
+					String mensaje = myAgent.getLocalName()+ hablar("Rescate")+
 							victimaSecuestrada.getLocalName()+":\n";
 															
 					for (int i = 0; i < result.length; i++) {
@@ -306,21 +306,21 @@ public class Allegado extends Protagonista {
 			
 			switch (casoParticular) {
 			case "heroe":
-				Gui.setHistoria(myAgent.getLocalName()+": Gracias por liberar a "+ victimaSecuestrada.getLocalName() + ".");
-				Gui.setHistoria(myAgent.getLocalName()+": Obten " + menosDineroPedido + " monedas " + mejorAspirante.getLocalName() + ".");
+				Gui.setHistoria(myAgent.getLocalName()+ hablar("SalvadaHeroe") + victimaSecuestrada.getLocalName() + ".");
+				Gui.setHistoria(mejorAspirante.getLocalName() + hablar("SalvadaHeroeRecompensa") + menosDineroPedido + ".");
 				setTesoro(getTesoro()-menosDineroPedido);
 				
 				break;
 			case "villano":
-				Gui.setHistoria(myAgent.getLocalName()+": ¿Como te atreves a hacerme esto "+mejorAspirante.getLocalName()+"? Te maldigo !!!");
+				Gui.setHistoria(myAgent.getLocalName() + hablar("SalvadaVillano") + mejorAspirante.getLocalName()+ ".");
 				
 				break;
 			case "escape":
-				Gui.setHistoria(myAgent.getLocalName()+": Me alegra saber que "+victimaSecuestrada.getLocalName()+" puede defenderse en cualquier situacion.");
+				Gui.setHistoria(myAgent.getLocalName()+ hablar("SalvadaEscape") +victimaSecuestrada.getLocalName()+ ".");
 				
 				break;
 			default:
-				Gui.setHistoria(myAgent.getLocalName()+": Dejenme llorar la muerte de "+victimaSecuestrada.getLocalName()+" por favor...");
+				Gui.setHistoria(myAgent.getLocalName()+ hablar("SalvadaDefault") +victimaSecuestrada.getLocalName()+ ".");
 				break;
 			}
 			

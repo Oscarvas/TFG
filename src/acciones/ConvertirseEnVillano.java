@@ -29,7 +29,7 @@ public class ConvertirseEnVillano {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serVillano.getReplyWith());
 		personaje.blockingReceive(mt);
 
-		Gui.setHistoria(personaje.getLocalName()+": ¡¡¡ Muaaajajajaja, os jodeis insensatos !!!");
+		Gui.setHistoria(personaje.getLocalName()+ personaje.hablar("Villano"));
 		
 	}
 }

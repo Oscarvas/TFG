@@ -151,7 +151,7 @@ public class Victima extends Protagonista {
 				secuestrador = receive.getSender();
 				send(receive.createReply());	
 			
-				Gui.setHistoria("* La Victima " + myAgent.getLocalName() + " ha sido secuestrada. \n");
+				Gui.setHistoria(getSexo() + " " + getRol() + " "  + myAgent.getLocalName() + hablar("Secuestro") + "\n");
 				
 				ACLMessage inform = new ACLMessage(ACLMessage.REQUEST);
 				inform.setConversationId("Ayuda");
@@ -160,7 +160,7 @@ public class Victima extends Protagonista {
 				inform.setContent(secuestrador.getLocalName());
 				myAgent.send(inform);
 				
-				Gui.setHistoria(getLocalName()+": ¡Libérame "+secuestrador.getLocalName()+"!");
+				Gui.setHistoria(getLocalName()+ hablar("Secuestrador") +secuestrador.getLocalName());
 				
 				ACLMessage escapar = new ACLMessage(ACLMessage.REQUEST);
 				escapar.addReceiver(secuestrador);
@@ -184,7 +184,7 @@ public class Victima extends Protagonista {
 							}
 							else if (reply.getPerformative() == ACLMessage.CONFIRM) {
 
-								Gui.setHistoria(getLocalName()+": ¡Me he escapado de las zarpas de "+secuestrador.getLocalName()+"!");
+								Gui.setHistoria(getLocalName()+ hablar("Liberacion") + secuestrador.getLocalName());
 								stop();
 								try {
 									

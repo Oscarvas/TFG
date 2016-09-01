@@ -29,7 +29,7 @@ public class ConvertirseEnHeroe {
 		MessageTemplate mt = MessageTemplate.MatchInReplyTo(serHeroe.getReplyWith());
 		personaje.blockingReceive(mt);
 
-		Gui.setHistoria("+ El aspirante " + personaje.getLocalName()+ " se ha convertido en héroe. \n");
+		Gui.setHistoria(personaje.getSexo() +" "+ personaje.getClase() +" "+ personaje.getLocalName() + personaje.hablar("Heroe")+ "\n");
 		
 	}
 	

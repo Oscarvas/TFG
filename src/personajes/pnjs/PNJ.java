@@ -67,13 +67,15 @@ public class PNJ extends Personaje {
 				switch (destino) {
 				case 0:
 					String bonificacion = buff();
-					Gui.setHistoria(getLocalName()+": Recibe mi bendicion "+msg.getSender().getLocalName()+". "+bonificacion);
+					//Gui.setHistoria(getLocalName()+": Recibe mi bendicion "+msg.getSender().getLocalName()+". "+bonificacion);
+					Gui.setHistoria(getLocalName() + hablar("Bendicion") + msg.getSender().getLocalName()+".");
 					reply.setContent(bonificacion);
 					break;
 					
 				case 1:
 					String deuda = debuff();
-					Gui.setHistoria(getLocalName()+": Recibe mi maldicion "+msg.getSender().getLocalName()+"!!! "+deuda);
+					//Gui.setHistoria(getLocalName()+": Recibe mi maldicion "+msg.getSender().getLocalName()+"!!! "+deuda);
+					Gui.setHistoria(getLocalName() + hablar("Maldicion") + msg.getSender().getLocalName()+".");
 					reply.setContent(deuda);
 					break;
 				default:

@@ -8,11 +8,11 @@
 	<personaje tipo="Caballero">
 		<frase accion="Inicio">
 			<f> se despierta otra mañana dispuesto a entrenar en </f> 
-			<f> perezosamente se hecha una siesta en </f> 
+			<f> perezosamente se hecha una buena taza de café en su casa de </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> preparate para morir dragón </f> 
-			<f> os partire la cara ya lo creo, daos por muerto </f> 
+			<f> preparate para morir </f> 
+			<f> os partire la cara, ya lo creo, daos por muerto </f> 
 		</frase>
 		<frase accion="Coger">
 			<f> me ayudara en mi aventura </f> 
@@ -33,6 +33,21 @@
 			<f> continua su travesia por </f> 
 			<f> se echa un piti al llegar a </f> 
 		</frase>
+		<frase accion="Villano">
+			<f>: ¡¡¡ Muaaajajajaja, os jodeis insensatos!!! </f> 
+			<f>: Me encanta matar </f>
+			<f>: Uppss parece que se ha escapado la espada </f> 
+		</frase>
+		<frase accion="DejarVictima">
+			<f> ha logrado salvar a la princesa y dejarla en su casa de </f> 
+			<f> ha acompañado a la princesa </f>
+			<f> despues de llegar con la princesa han pasado la noche juntos. Al dia siguiente partió de </f> 
+		</frase>
+		<frase accion="Heroe">
+			<f> es recibido como un autentico heroe. </f> 
+			<f> se da cuenta que nadie se ha enterado de su gesta.\n Se tendrá que resignar uno no se hace heroe por la fama.</f>
+			<f> despues de un dia duro reciben al nuevo heroe de la zona con un gran festin.</f> 
+		</frase>
 	</personaje>
 	<personaje tipo="Princesa">
 		<frase accion="Inicio">
@@ -40,20 +55,20 @@
 			<f> flirtea con los caballeros en un restaurante de </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Princesa prueba </f> 
-			<f> frase Batalla 2 Princesa prueba </f> 
+			<f> no penseis que soy fragil </f> 
+			<f> no podeis alcanzarme </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Princesa prueba </f> 
-			<f> frase Coger 2 Princesa prueba </f> 
+			<f> creo que me lo voy a quedar </f> 
+			<f> estaba rico </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Princesa prueba </f> 
-			<f> frase Fin 2 Princesa prueba </f> 
+			<f> termina un dia duro </f> 
+			<f> llega al fin a casa </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Princesa prueba </f> 
-			<f> frase Muerte 2 Princesa prueba </f> 
+			<f> como habeis osado hacerme esto </f> 
+			<f> y os haceis llamar caballero </f> 
 		</frase>
 		<frase accion="Mover">
 			<f> llega a </f> 
@@ -62,6 +77,19 @@
 			<f> continua su travesia por </f> 
 			<f> se echa un piti al llegar a </f> 
 		</frase>
+		<frase accion="Secuestro">
+			<f> grita desesperada mientras se aleja con captor.</f> 
+			<f> no se esta dando cuenta que la estan secuestrando.</f>
+		</frase>
+		<frase accion="Secuestrador">
+			<f> suplica compasión a </f> 
+			<f> no para de intentar zafarse de su captor, </f>
+		</frase>
+		<frase accion="Liberacion">
+			<f> ha escapado de las garras de </f> 
+			<f> sigilosamente huye de la guarida de </f> 
+			<f> no puede parar de reir despues de escabuyirse al pensar la cara que podrá </f>
+		</frase>
 	</personaje>
 	<personaje tipo="Rey">
 		<frase accion="Inicio">
@@ -69,16 +97,16 @@
 			<f> hace los preparativos del banquete en </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Rey prueba </f> 
-			<f> frase Batalla 2 Rey prueba </f> 
+			<f> pelea real </f> 
+			<f> real pelea </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Rey prueba </f> 
-			<f> frase Coger 2 Rey prueba </f> 
+			<f> va para las arcas </f> 
+			<f> otro que se acumula en el castillo </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Rey prueba </f> 
-			<f> frase Fin 2 Rey prueba </f> 
+			<f> este dia llega a su fin </f> 
+			<f> me gusta que los flanes salgan bien </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> Rey Muerto </f> 
@@ -92,8 +120,36 @@
 			<f> se echa un piti al llegar a </f> 
 		</frase>
 		<frase accion="OtroAspirante">
-			<f> frase Muerte 1 Rey prueba </f> 
-			<f> frase Muerte 2 Rey prueba </f> 
+			<f> buscad a otro caballero </f> 
+			<f> por favor alguien capaz de ayudarme </f> 
+		</frase>		
+		<frase accion="Solitario">
+			<f>: Como he sido rancio toda la vida, no me preocupo por nadie.</f> 
+			<f> parece que no tiene a nadie que le acompañe.</f> 
+		</frase>
+		<frase accion="Rescate">
+			<f>: Necesito negociar con los siguientes caballeros para rescatar a </f> 
+			<f> lanza un aviso por todo el reino para buscar a alguien capaz de rescatar a </f> 
+		</frase>
+		<frase accion="SalvadaHeroe">
+			<f>: Gracias por liberar a </f> 
+			<f> agradece al caballero por salvar a su pequeña princesa </f> 
+		</frase>
+		<frase accion="SalvadaHeroeRecompensa">
+			<f> recibe una bolsa de monedas.\n Hay </f> 
+			<f> se ha ganado a pulso su premio de </f> 
+		</frase>
+		<frase accion="SalvadaVillano">
+			<f>: Maldito bastardo como has sido capaz de matar a la princesa, </f> 
+			<f> jura venganza despues de enterarse de la muerte de la princesa a manos de </f> 
+		</frase>
+		<frase accion="SalvadaEscape">
+			<f>: Siempre he sabido que eres una princesa muy fuerte y gracias a eso has sido capaz de escapar, </f> 
+			<f> se enorguellece y le otorga un dia festivo en el reino por la hazaña lograda por la princesa </f> 
+		</frase>
+		<frase accion="SalvadaDefault">
+			<f>: Me entristece no poder volver a ver a </f> 
+			<f> serezó a los dioses para que ellos al menosp uedan proteger a </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Mago">
@@ -102,20 +158,20 @@
 			<f> espia a las mozas con su magia en </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Mago prueba </f> 
-			<f> frase Batalla 2 Mago prueba </f> 
+			<f> fireblast </f> 
+			<f> guingardium leviosa </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Mago prueba </f> 
-			<f> frase Coger 2 Mago prueba </f> 
+			<f> ayudara en mi magia </f> 
+			<f> ha estado rico </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Mago prueba </f> 
-			<f> frase Fin 2 Mago prueba </f> 
+			<f> volvere a karazan </f> 
+			<f> me retirare a seguir estudiando </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Mago prueba </f> 
-			<f> frase Muerte 2 Mago prueba </f> 
+			<f> hoy me junto con mis ancestros </f> 
+			<f> mi magia perdurara </f> 
 		</frase>
 		<frase accion="Mover">
 			<f> llega a </f> 
@@ -124,129 +180,101 @@
 			<f> continua su travesia por </f> 
 			<f> se echa un piti al llegar a </f> 
 		</frase>
-	</personaje>
-	<personaje tipo="Druida">
-		<frase accion="Inicio">
-			<f> frase Inicio 1 Druida prueba </f> 
-			<f> frase Inicio 2 Druida prueba </f> 
-		</frase>
-		<frase accion="Batalla">
-			<f> frase Batalla 1 Druida prueba </f> 
-			<f> frase Batalla 2 Druida prueba </f> 
-		</frase>
-		<frase accion="Coger">
-			<f> frase Coger 1 Druida prueba </f> 
-			<f> frase Coger 2 Druida prueba </f> 
-		</frase>
-		<frase accion="Fin">
-			<f> frase Fin 1 Druida prueba </f> 
-			<f> frase Fin 2 Druida prueba </f> 
-		</frase>
-		<frase accion="Muerte">
-			<f> frase Muerte 1 Druida prueba </f> 
-			<f> frase Muerte 2 Druida prueba </f> 
-		</frase>
-		<frase accion="Mover">
-			<f> llega a </f> 
-			<f> camina por </f> 
-			<f> descansa en </f> 
-			<f> continua su travesia por </f> 
-			<f> se echa un piti al llegar a </f> 
+		<frase accion="Sabio">
+			<f> ha logrado alcanzar la sabiduria absoluta.</f> 
+			<f> se ha convertido en el mago más poderoso del mundo.\n ¿Esto será un peligro?</f>
 		</frase>
 	</personaje>
+
 	<!-- Monstruos -->
 	<!-- El tipo va en función del XML de Monstruos para el atributo especie -->
 	<personaje tipo="Dragon">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Dragon prueba </f> 
-			<f> frase Inicio 2 Dragon prueba </f> 
+			<f> se siente lleno de energía, es momento de salir de </f> 
+			<f> empieza el dia cazando criaturas por </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Dragon prueba </f> 
-			<f> frase Batalla 2 Dragon prueba </f> 
+			<f> arde entre mis llamas </f> 
+			<f> prueba mis garras </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Dragon prueba </f> 
-			<f> frase Coger 2 Dragon prueba </f> 
+			<f> dragon coger </f> 
+			<f> dragon comer </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Dragon prueba </f> 
-			<f> frase Fin 2 Dragon prueba </f> 
+			<f>: todo ha salido como esperaba </f> 
+			<f>: estoy lleno de comer tanto caballero </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Dragon prueba </f> 
-			<f> frase Muerte 2 Dragon prueba </f> 
+			<f>: arrrgggg, maldiitoo.. </f> 
+			<f>: noooooooooo </f> 
 		</frase>
 		<frase accion="Mover">
 			<f> llega a </f> 
-			<f> camina por </f> 
-			<f> aterroriza en </f> 
+			<f> vuela por </f> 
+			<f> aterroriza la zona de </f> 
 			<f> planea hasta </f> 
 			<f> incinera ovejas en </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Queso Azul Mortifero">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Inicio 2 Queso Azul Mortifero prueba </f> 
+			<f> queso queso </f> 
+			<f> queso queso queso </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Batalla 2 Queso Azul Mortifero prueba </f> 
+			<f> eswink</f> 
+			<f> fium </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Coger 2 Queso Azul Mortifero prueba </f> 
+			<f> zasca </f> 
+			<f> ummmm </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Fin 2 Queso Azul Mortifero prueba </f> 
+			<f> bye bye </f> 
+			<f> chao </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Queso Azul Mortifero prueba </f> 
-			<f> frase Muerte 2 Queso Azul Mortifero prueba </f> 
+			<f> oooooohohoho </f> 
+			<f> buuuuuuuuuuaaaaaaahh </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> atraviesa </f> 
+			<f> cruza </f> 
+			<f> llega a </f>
 		</frase>
 	</personaje>
 	<personaje tipo="Gyarados">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Gyarados prueba </f> 
-			<f> frase Inicio 2 Gyarados prueba </f> 
+			<f> magikarp </f> 
+			<f> karp karp </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> frase Batalla 1 Gyarados prueba </f> 
-			<f> frase Batalla 2 Gyarados prueba </f> 
+			<f> guarrr </f> 
+			<f> guiiarrr </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> frase Coger 1 Gyarados prueba </f> 
-			<f> frase Coger 2 Gyarados prueba </f> 
+			<f> ñam </f> 
+			<f> ñam ñam </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Gyarados prueba </f> 
-			<f> frase Fin 2 Gyarados prueba </f> 
+			<f> volando volando </f> 
+			<f> al agua </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Gyarados prueba </f> 
-			<f> frase Muerte 2 Gyarados prueba </f> 
+			<f> muere lentamente </f> 
+			<f> agrads </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> cruza sigilosamente </f> 
+			<f> se hurga la nariz mientras recorre </f> 
+			<f> rapidamente atraviesa </f>
 		</frase>
 	</personaje>
 	<personaje tipo="MissUniverse">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 MissUniverse prueba </f> 
-			<f> frase Inicio 2 MissUniverse prueba </f> 
+			<f> inicia en </f> 
+			<f> acaba de nacer en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 MissUniverse prueba </f> 
@@ -276,8 +304,8 @@
 	<!-- El tipo va en función del XML de PNJs para el atributo oficio -->
 	<personaje tipo="Chaman">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Chaman prueba </f> 
-			<f> frase Inicio 2 Chaman prueba </f> 
+			<f> empieza el dia hablando con los espiritus de </f> 
+			<f> recoge toda la energia que hay en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Chaman prueba </f> 
@@ -288,25 +316,33 @@
 			<f> frase Coger 2 Chaman prueba </f> 
 		</frase>
 		<frase accion="Fin">
-			<f> frase Fin 1 Chaman prueba </f> 
-			<f> frase Fin 2 Chaman prueba </f> 
+			<f> decidme elementos </f> 
+			<f> gracias por un dia mas </f> 
 		</frase>
 		<frase accion="Muerte">
-			<f> frase Muerte 1 Chaman prueba </f> 
-			<f> frase Muerte 2 Chaman prueba </f> 
+			<f> vuelvo a la naturaleza </f> 
+			<f> cenizas somos y en cenizas me convierto </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> frase Frase de movimiento 1 prueba </f> 
-			<f> frase Frase de movimiento 2 prueba </f> 
-			<f> frase Frase de movimiento 3 prueba </f> 
-			<f> frase Frase de movimiento 4 prueba </f> 
-			<f> frase Frase de movimiento 5 prueba </f> 
+			<f> caminando junto a los espiritus por </f> 
+			<f> pasea por </f> 
+			<f> llega a </f>
+		</frase>
+		<frase accion="Bendicion">
+			<f>: Me alegro de ayudarte en tu camino, </f> 
+			<f>: Parece que me has pillado en un buen momento, </f> 
+			<f> acaba de fabricar un objeto será de ayuda para </f>
+		</frase>
+		<frase accion="Maldicion">
+			<f>: Jajajaja. Buena suerte </f> 
+			<f>: Parece que me has pillado en un mal momento, </f> 
+			<f> ha reflejado toda su maldad en un objeto que ha sido perjudicial para </f>
 		</frase>
 	</personaje>
 	<personaje tipo="Tabernero">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Tabernero prueba </f> 
-			<f> frase Inicio 2 Tabernero prueba </f> 
+			<f> tiene que abrir un dia más la </f> 
+			<f> recambia los barriles de hidromiel para que nadie pase sed en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Tabernero prueba </f> 
@@ -331,11 +367,21 @@
 			<f> frase Frase de movimiento 4 prueba </f> 
 			<f> frase Frase de movimiento 5 prueba </f> 
 		</frase>
+		<frase accion="Bendicion">
+			<f>: Me alegro de ayudarte en tu camino, </f> 
+			<f>: Parece que me has pillado en un buen momento, </f> 
+			<f> acaba de fabricar un objeto será de ayuda para </f>
+		</frase>
+		<frase accion="Maldicion">
+			<f>: Jajajaja. Buena suerte </f> 
+			<f>: Parece que me has pillado en un mal momento, </f> 
+			<f> ha reflejado toda su maldad en un objeto que ha sido perjudicial para </f>
+		</frase>
 	</personaje>
 	<personaje tipo="Obrero">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Herrero prueba </f> 
-			<f> frase Inicio 2 Herrero prueba </f> 
+			<f> parece que le toca ir a trabajar desde </f> 
+			<f> queria dormir cinco minutos más pero tiene que trabajo que hacer en </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Herrero prueba </f> 
@@ -359,6 +405,16 @@
 			<f> frase Frase de movimiento 3 prueba </f> 
 			<f> frase Frase de movimiento 4 prueba </f> 
 			<f> frase Frase de movimiento 5 prueba </f> 
+		</frase>
+		<frase accion="Bendicion">
+			<f>: Me alegro de ayudarte en tu camino, </f> 
+			<f>: Parece que me has pillado en un buen momento, </f> 
+			<f> acaba de fabricar un objeto será de ayuda para </f>
+		</frase>
+		<frase accion="Maldicion">
+			<f>: Jajajaja. Buena suerte </f> 
+			<f>: Parece que me has pillado en un mal momento, </f> 
+			<f> ha reflejado toda su maldad en un objeto que ha sido perjudicial para </f>
 		</frase>
 	</personaje>
 	<personaje tipo="Medico Brujo">
@@ -388,6 +444,16 @@
 			<f> frase Frase de movimiento 3 prueba </f> 
 			<f> frase Frase de movimiento 4 prueba </f> 
 			<f> frase Frase de movimiento 5 prueba </f> 
+		</frase>
+		<frase accion="Bendicion">
+			<f>: Me alegro de ayudarte en tu camino, </f> 
+			<f>: Parece que me has pillado en un buen momento, </f> 
+			<f> acaba de fabricar un objeto será de ayuda para </f>
+		</frase>
+		<frase accion="Maldicion">
+			<f>: Jajajaja. Buena suerte </f> 
+			<f>: Parece que me has pillado en un mal momento, </f> 
+			<f> ha reflejado toda su maldad en un objeto que ha sido perjudicial para </f>
 		</frase>
 	</personaje>
 </Frases>

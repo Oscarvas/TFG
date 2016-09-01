@@ -35,7 +35,7 @@ public class DejarEnCasa {
 
 		ACLMessage msg = personaje.blockingReceive(mt);
 		
-		Gui.setHistoria(" El aspirante " +personaje.getLocalName() + " ha dejado a la victima "+ msg.getContent() + " donde desperto. \n");
+		Gui.setHistoria(personaje.getSexo() +" "+ personaje.getClase() +" "+ personaje.getLocalName() + personaje.hablar("DejarVictima")+ msg.getContent() + " .\n");
 
 	}
 }
