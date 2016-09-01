@@ -149,7 +149,7 @@
 		</frase>
 		<frase accion="SalvadaDefault">
 			<f>: Me entristece no poder volver a ver a </f> 
-			<f> serezó a los dioses para que ellos al menosp uedan proteger a </f> 
+			<f> serezó a los dioses para que ellos al menos ellos puedan proteger a </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Mago">
@@ -419,8 +419,7 @@
 	</personaje>
 	<personaje tipo="Medico Brujo">
 		<frase accion="Inicio">
-			<f> frase Inicio 1 Medico Brujo prueba </f> 
-			<f> frase Inicio 2 Medico Brujo prueba </f> 
+			<f> despierta lleno de magia negra en </f> 			
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 Medico Brujo prueba </f> 

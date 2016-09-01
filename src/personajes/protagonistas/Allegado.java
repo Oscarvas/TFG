@@ -173,8 +173,8 @@ public class Allegado extends Protagonista {
 				if (done()) {
 					
 					String mensaje = myAgent.getLocalName()+ hablar("Rescate")+
-							victimaSecuestrada.getLocalName()+":\n";
-															
+							victimaSecuestrada.getLocalName()+"\n";
+					mensaje += "Parece que se puede contar con :\n";										
 					for (int i = 0; i < result.length; i++) {
 						AspirantesDisponibles[i] = result[i].getName();
 						mensaje+="\t" + AspirantesDisponibles[i].getLocalName();
