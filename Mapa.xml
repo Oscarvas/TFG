@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Mapa>
+<!-- Para configurar correctamente una mapa debes: -->
+<!-- NOMBRE = Darle un nombre característico que la diferencie del resto -->
+<!-- REGION = Definir una region del mapa, esta region tendrá un nombre y un nº de localizaciones asignadas, por cada region debes: -->
+<!-- 	LOCALIZACION = Cada region contiene un nº de localizaciones específicas, estas localizaciones poseen las propiedades: -->
+<!--		nombre: el nombre de la localizacion -->
+<!--		tipo: de que tipo es esa localizacion, forestal, acuatica, urbana,... -->
+<!--		!advertencia: no cambies el tipo de las localizaciones del mapa, o los dibujos no concordaran -->
 
-	<region>
-	    <localizacion id="Tesqua" ><!-- Puerto -->
-	        <conectadoCon>Taberna</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Taberna" tipo="Urbano" >
-	        <conectadoCon>Tesqua Cruce</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Cruce" tipo="Camino" >
-	        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
-	        <conectadoCon>Fatum Cruce</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Fatum" tipo="Guarida"><!-- Montana -->
-	        <conectadoCon>Inibi</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
-	        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
-	        <conectadoCon>Ignis</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->
-	        <conectadoCon>Ignis</conectadoCon>
+
+<Mapa>
+ 	<region nombre="Reino Champiñon"> <!-- Isla Egeria -->
+	    <localizacion id="Castillo" tipo="Castillo" >
+	        <conectadoCon>Tesqua Caligo</conectadoCon>
 	    </localizacion>
-	</region>
-        
+	    <localizacion id="Tuberia" tipo="Pueblo" >
+	        <conectadoCon>Castillo</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Monte" tipo="Bosque" >
+	        <conectadoCon>Castillo Nubes</conectadoCon>
+	    </localizacion>
+	    <localizacion id="Nubes" tipo="Lago" >
+	        <conectadoCon>Monte Torre</conectadoCon>
+	    </localizacion>	
+	    <localizacion id="Torre" tipo="Guarida" >
+	        <conectadoCon>Nubes</conectadoCon>
+	    </localizacion>	     
+     </region>     
 </Mapa>

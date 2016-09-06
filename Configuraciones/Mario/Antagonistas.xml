@@ -11,7 +11,7 @@
 
 	<monstruo nombre="Bowser" clase="Secuestrador" especie="Monstruo" sexo="F"/>
 	<!--
-	<monstruo nombre="Shy Guy" clase="Asesino" especie="Fantasma" sexo="M"/>
+	<monstruo nombre="Shy Guy" clase="Asesino" especie="Jason" sexo="M"/>
 	
 	<monstruo nombre="Boo" clase="Ladron" especie="Fantasma" sexo="F"/>
 		

@@ -10,110 +10,21 @@
 
 
 <Mapa>
-
- 	<region nombre="Isla Egeria"> <!-- Isla Egeria -->
-	    <localizacion id="Egeria" tipo="Pueblo" > <!-- Pueblo -->
+ 	<region nombre="Reino Champiñon"> <!-- Isla Egeria -->
+	    <localizacion id="Castillo" tipo="Castillo" >
 	        <conectadoCon>Tesqua Caligo</conectadoCon>
 	    </localizacion>
-	    <localizacion id="Caligo" tipo="Bosque" > <!-- Bosque -->
-	        <conectadoCon>Egeria Turis</conectadoCon>
+	    <localizacion id="Tuberia" tipo="Pueblo" >
+	        <conectadoCon>Castillo</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Turis" tipo="Pueblo" > <!-- Pueblo -->
-	        <conectadoCon>Caligo</conectadoCon>
-	    </localizacion>	    
-     </region>
-    
-    <!-- Isla Illuc -->
-    <region>
-	    <localizacion id="Illuc" tipo="Pueblo" ><!-- Pueblo -->
-	        <conectadoCon>Tesqua Hospital</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Hospital" tipo="Urbano" >
-	        <conectadoCon>Illuc Sagren</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Sagren" tipo="Bosque" ><!-- Bosque -->
-	        <conectadoCon>Hospital</conectadoCon>
+	    <localizacion id="Monte" tipo="Bosque" >
+	        <conectadoCon>Castillo Nubes</conectadoCon>
 	    </localizacion>
-    </region>
-    
-    <!-- Isla Tragus -->
-    <region>
-	    <localizacion id="Tragus" tipo="Pueblo" >
-	        <conectadoCon>Tesqua Cuevas</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Cuevas" tipo="Guarida" >
-	        <conectadoCon>Tragus Minas</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Minas" tipo="Urbano" >
-	        <conectadoCon>Cuevas</conectadoCon>
-	    </localizacion>
-    </region>
-    
-    <!-- Continente Acua -->
-    <!-- Region de Tesqua -->
-    <region>
-	    <localizacion id="Tesqua" ><!-- Puerto -->
-	        <conectadoCon>Taberna Egeria Illuc Tragus</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Taberna" tipo="Urbano" >
-	        <conectadoCon>Tesqua Cruce</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Cruce" tipo="Camino" >
-	        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
-	        <conectadoCon>Fatum Cruce Segrex</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Fatum" tipo="Guarida"><!-- Montana -->
-	        <conectadoCon>Inibi</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
-	        <conectadoCon>Cruce Illunis Egestas Establos</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
-	        <conectadoCon>Ignis</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->
-	        <conectadoCon>Ignis Biblioteca</conectadoCon>
-	    </localizacion>
-    </region>
-    
-    <!-- Region de Lucta -->
-    <region>
-	    <localizacion id="Segrex" tipo="Castillo" > <!-- Castillo -->
-	        <conectadoCon>Inibi Lucta</conectadoCon>
-	    </localizacion>
-	    
-	    <localizacion id="Lucta" tipo="Pueblo" ><!-- Pueblo -->
-	        <conectadoCon>Segrex Nordrassil</conectadoCon>
-	    </localizacion>
-	    
-	    <localizacion id="Biblioteca" tipo="Urbano" >
-	        <conectadoCon>Egestas Nordrassil</conectadoCon>
-	    </localizacion>
-	    
-	    <localizacion id="Nordrassil" tipo="Bosque" ><!-- Bosque -->
-	        <conectadoCon>Lucta Biblioteca Sastreria</conectadoCon>
-	    </localizacion>
-    </region>
-    
-    <!-- Region de Scruthor -->
-    <region>
-	    <localizacion id="Sastreria" tipo="Urbano" >
-	        <conectadoCon>Nordrassil Herreria Scruthor</conectadoCon>
-	    </localizacion>
-	    <localizacion id="Herreria" tipo="Urbano" >
-	        <conectadoCon>Sastreria Establos</conectadoCon>
-	    </localizacion>
-	    <localizacion id="Establos" tipo="Urbano" >
-	        <conectadoCon>Herreria Ignis Echidna</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Echidna" tipo="Lago" ><!-- Pantano -->
-	        <conectadoCon>Establos Scruthor</conectadoCon>
-	    </localizacion>	    
-	    <localizacion id="Scruthor" tipo="Pueblo" ><!-- Pueblo -->
-	        <conectadoCon>Echidna Sastreria</conectadoCon>
-	    </localizacion>
-    </region>   
-     
+	    <localizacion id="Nubes" tipo="Lago" >
+	        <conectadoCon>Monte Torre</conectadoCon>
+	    </localizacion>	
+	    <localizacion id="Torre" tipo="Guarida" >
+	        <conectadoCon>Nubes</conectadoCon>
+	    </localizacion>	     
+     </region>     
 </Mapa>

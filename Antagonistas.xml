@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Actores>
-<!-- Para configurar correctamente un antagonista debes: -->
+<!-- Para configurar correctamente un pnj debes: -->
 <!-- NOMBRE = Darle un nombre característico que lo diferencie del resto -->
-<!-- CLASE = Definir que clase de antagonista queremos crear, existen 4 tipos: -->
+<!-- CLASE = Definir que clase de monstruo queremos crear, existen 4 tipos: -->
 <!--		Secuestrador: un monstruo que se dedicara a secuestrar victimas desprevenidas -->
 <!--		Ladron: un monstruo que guardara una localizacion en particular, y atacara a los que pasen por alli -->
 <!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
 <!--		Asesino: un monstruo que simplemente hara maldades por todo el mundo -->
-<!-- ESPECIE = Definir que queremos que se nuestro antagonista en la narración -->
-<!-- SEXO = Definir si nuestro antagonista es masculino(M) o femenino(F) -->
+<!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<antagonista nombre="Smaug" clase="Secuestrador" especie="Dragon" sexo="F"/>
+	<monstruo nombre="Bowser" clase="Secuestrador" especie="Monstruo" sexo="F"/>
+	<!--
+	<monstruo nombre="Shy Guy" clase="Asesino" especie="Jason" sexo="M"/>
 	
-	<antagonista nombre="Casper" clase="Asesino" especie="Queso Azul Mortifero" sexo="M"/>
-	
-	<antagonista nombre="Jormundgander" clase="Ladron" especie="Gyarados" sexo="F"/>
+	<monstruo nombre="Boo" clase="Ladron" especie="Fantasma" sexo="F"/>
 		
-	<antagonista nombre="UnaBolaDeNieve" clase="Emboscador" especie="MissUniverse" sexo="M"/>
-	
+	<monstruo nombre="Roca Picuda" clase="Emboscador" especie="Roca" sexo="M"/>
+	-->
 </Actores>

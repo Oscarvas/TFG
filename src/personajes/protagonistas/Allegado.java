@@ -271,7 +271,7 @@ public class Allegado extends Protagonista {
 			aceptar.setConversationId("TratoHecho");
 			myAgent.send(aceptar);
 			
-			//Se da a conocer al mundo que caballero va a rescatar a la victima
+			//Se da a conocer al mundo que aspirante va a rescatar a la victima
 			ACLMessage contratado = new ACLMessage(ACLMessage.INFORM);
 			contratado.addReceiver(getAgenteMundo());
 			contratado.setContent(victimaSecuestrada.getLocalName()+ " "+ mejorAspirante.getLocalName());
