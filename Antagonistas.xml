@@ -8,13 +8,5 @@
 <!--		Emboscador: un monstruo que tendera emboscadas en distintas localizaciones y exigirá dinero a los que pasen por ellas -->
 <!--		Asesino: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
-
-	<monstruo nombre="Bowser" clase="Secuestrador" especie="Monstruo" sexo="F"/>
-	<!--
-	<monstruo nombre="Shy Guy" clase="Asesino" especie="Jason" sexo="M"/>
-	
-	<monstruo nombre="Boo" clase="Ladron" especie="Fantasma" sexo="F"/>
-		
-	<monstruo nombre="Roca Picuda" clase="Emboscador" especie="Roca" sexo="M"/>
-	-->
+	<antagonista nombre="Bowser" clase="Secuestrador" especie="Rey Koopa" sexo="M"/>
 </Actores>

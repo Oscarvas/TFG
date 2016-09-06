@@ -1,58 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Objetivos>
-    <!-- Realeza -->
-    <personaje tipo="Allegado" >
-        <objetivo>(procrear Allegado)</objetivo>
-        <objetivo>(avaro Allegado)</objetivo>
-    </personaje>
-    <!-- • Genera Recompensas por objetivos.
-• Otorga ‘Fama’ y ‘Conocimiento’ a héroes correspondientes.
-• Generador de Victimas.
-• Si el Heroe fracasa, intenta rescatar a la victima.
-     -->
     
     <personaje tipo="Victima" >
-    	<objetivo>(enLoc Victima Tesqua)</objetivo>
-    	<objetivo>(enLoc Victima Establos)</objetivo>
-        <!-- <objetivo>(casarse Aspirante Victima)</objetivo>
-        <objetivo>(enamorarse Monstruo)</objetivo>
-        <objetivo>(almaLibre Victima)</objetivo> -->
+    	<objetivo>(enLoc Victima Castillo)</objetivo>
     </personaje>
-    <!-- • Enamorarse y casarse con Héroes.
-• Enamorarse y casarse con Monstruos (no rescatable).
-• Cambia de Arquetipo según se casa.
-• Se escapa y es libre.
-     -->
     
     <!-- Heroes -->
     <personaje tipo="Aspirante" >
-    	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>
-    	<objetivo>(esVillano Aspirante)</objetivo>
-       <!--  <objetivo>(esHeroe Aspirante)</objetivo>
-        <objetivo>(casarse Aspirante Victima)</objetivo>
-        <objetivo>(reinar Aspirante)</objetivo> -->
+    	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>    	
     </personaje>
-    <!-- o Rescatan Victimas.
-o Matan Monstruos.
-o Obtienen ‘Fama’ lo que los convierte en ‘Leyenda’.
-o Se convierten en Allegado
-o Compiten contra otros Héroes.
-o Casarse con Victimas.
-     -->
    
     
-    <!-- Antagonistas -->
-    
+    <!-- Antagonistas -->    
     <!-- Monstruos -->
     <personaje tipo="Secuestrador" >
-        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Taberna))</objetivo>
-        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Fatum))</objetivo>
+        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Torre))</objetivo>       
     </personaje>
-   <!--  o Secuestrar victimas.
-o Almacenar oro (objetos brillantes).
-o Proveedor de material magico.
-     -->
+
     
    
     

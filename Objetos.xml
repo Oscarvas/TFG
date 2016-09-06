@@ -5,8 +5,8 @@
 	</tipo>
 	
 	<tipo tipo="consumible">
-		<objeto nombre="Seta" descripcion="Roja con motas blancas y ... con ojos?" vida="+1" fuerza="+1" destreza="0" inteligencia="0" codicia="0"/>
-		<objeto nombre="Seta" descripcion="Nunca ví una así, verde con motas blancas" vida="7" fuerza="0" destreza="2" inteligencia="0" codicia="0"/>
+		<objeto nombre="una seta" descripcion="Es roja con motas blancas y parece que fortalece al personaje que la toma." vida="0" fuerza="+50" destreza="0" inteligencia="0" codicia="0"/>
+		<objeto nombre="la seta de vida" descripcion="Rara entre las setas. Es verde con motas blancas y otorga otra vida a quien se la come." vida="+100" fuerza="0" destreza="0" inteligencia="0" codicia="0"/>
 	</tipo>
 
 </Objetos>

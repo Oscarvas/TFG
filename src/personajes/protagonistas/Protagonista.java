@@ -108,11 +108,8 @@ public class Protagonista extends Personaje {
 		this.codicia += Integer.parseInt((String) args[Objeto.CODICIA]);
 		this.inteligencia += Integer.parseInt((String) args[Objeto.INTELIGENCIA]);
 		
-		return getLocalName()+ ": Vida:" + getVida()
-			+" Fuerza:"+this.fuerza
-			+" Destreza:"+this.destreza
-			+" Inteligencia"+this.inteligencia
-			+" Codicia:"+this.codicia+ ".";
+		return getLocalName() +	hablar("Coger");
+		
 	}
 	
 	public void bendicionPnj(String atributos){
@@ -123,12 +120,12 @@ public class Protagonista extends Personaje {
 		this.inteligencia += Integer.parseInt((String) attr[2]);
 		this.codicia += Integer.parseInt((String) attr[3]);
 		
-		Gui.setHistoria(getLocalName()+ ": Vida:" + getVida()
+		/*Gui.setHistoria(getLocalName()+ ": Vida:" + getVida()
 			+" Fuerza:"+this.fuerza
 			+" Destreza:"+this.destreza
 			+" Inteligencia"+this.inteligencia
 			+" Codicia:"+this.codicia+ ".");
-		
+		*/
 	}
 
 

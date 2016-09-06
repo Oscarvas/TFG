@@ -25,7 +25,7 @@ public abstract class Objeto {
 	}
 	
 	public String toString() {		
-		return "- " + this.nombre + ": " + this.descripcion;
+		return this.nombre + ". " + this.descripcion;
 	}
 	
 	public abstract String mensaje();

@@ -33,12 +33,31 @@ public class Consumible extends Objeto {
 	
 	public String toString(){
 		String mensaje = super.toString();
-		mensaje = mensaje + "\nAtributos: ";
-		mensaje = mensaje + "\n(" + this.vida 			+ ")\tVida";
-		mensaje = mensaje + "\n(" + this.fuerza 		+ ")\tFuerza";
-		mensaje = mensaje + "\n(" + this.destreza 		+ ")\tDestreza";
-		mensaje = mensaje + "\n(" + this.inteligencia 	+ ")\tInteligencia";
-		mensaje = mensaje + "\n(" + this.codicia 		+ ")\tCodicia";
+		int aux = 0;
+		mensaje = mensaje + "\nEl objeto condece una modificación en los atributos de: ";
+		if(this.vida != 0){
+			mensaje = mensaje + "\n\t" + this.vida 			+ " de Vida.";
+			aux++;
+		}
+		if(this.fuerza != 0){
+			mensaje = mensaje + "\n\t"  + this.fuerza 		+ " de Fuerza.";
+			aux++;
+		}
+		if(this.destreza != 0){
+			mensaje = mensaje + "\n\t"  + this.destreza 		+ " de Destreza.";
+			aux++;
+		}
+		if(this.inteligencia != 0){
+			mensaje = mensaje + "\n\t"  + this.inteligencia 	+ " de Inteligencia.";
+			aux++;
+		}
+		if(this.inteligencia != 0){
+			mensaje = mensaje + "\n\t"  + this.codicia 		+ " de Codicia.";
+			aux++;
+		}		
+		
+		if (aux == 0) mensaje = "El objeto no ha concedido nada."; 
+		
 		return mensaje;
 	}
 

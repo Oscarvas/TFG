@@ -69,7 +69,7 @@ public class Victima extends Protagonista {
 					
 					localizarPersonaje();
 										
-					Gui.setHistoria(getSexo() + " " + getRol() + " " +  myAgent.getLocalName() + hablar("Inicio") + getLocalizacion());
+					Gui.setHistoria(getSexo() + " " + getRol() + " " +  myAgent.getLocalName() + hablar("Inicio") + getLocalizacion() +".");
 					
 					DFAgentDescription dfd = new DFAgentDescription();
 					dfd.setName(myAgent.getAID());

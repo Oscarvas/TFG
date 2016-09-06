@@ -49,7 +49,7 @@ public class Mover {
 				objetoEncontrado();
 				bendiciones();
 
-				Gui.setHistoria(personaje.getLocalName() + personaje.hablar("Mover") +  personaje.getLocalizacion()+"!");
+				Gui.setHistoria(personaje.getLocalName() + personaje.hablar("Mover") +  personaje.getLocalizacion()+".");
 				
 
 			} else {
@@ -77,7 +77,7 @@ public class Mover {
 			//aqui condicion de si el aspirante puede pagar lo pedido
 			if ( balance >= 0){
 				personaje.setTesoro(balance);
-				Gui.setHistoria(personaje.getLocalName()+": ¡Uff!, menos mal que tenía "+receive.getContent()+" monedas en el bolsillo para pagar");
+				Gui.setHistoria(personaje.getLocalName()+ personaje.hablar("Pagar")+ receive.getContent() + "monedas.");
 				reply.setContent(receive.getContent());
 			}
 			else

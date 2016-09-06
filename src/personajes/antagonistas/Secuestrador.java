@@ -21,7 +21,7 @@ public class Secuestrador extends Antagonista {
 	protected void setup(){
 		Object[] args = getArguments();		
 		iniciarMonstruo((String) args[0], (String) args[1]);
-		Gui.setHistoria("Desde "+getLocalizacion()+ " " + getSexo() + " " + getEspecie() + " " + getLocalName()+ hablar("Inicio"));
+		Gui.setHistoria("En "+getLocalizacion()+ ", " + getSexo() + " " + getEspecie() + " " + getLocalName()+ hablar("Inicio"));
 		addBehaviour(new Secuestro());
 	}
 	protected void takeDown() {
@@ -108,7 +108,7 @@ public class Secuestrador extends Antagonista {
 						secuestrar.setContent(victimaSecuestrada.getLocalName());
 						myAgent.send(secuestrar);
 						
-						Gui.setHistoria("El dragón "+getLocalName()+" emprende el vuelo desde "+getLocalizacion()+" en busca de la victima "+victimaSecuestrada.getLocalName());
+						Gui.setHistoria(getSexo() + " " + getEspecie() + " " + getLocalName()+ hablar("Secuestrar")+victimaSecuestrada.getLocalName());
 						esquadronSuicida(myAgent);
 						planificar(null);
 						

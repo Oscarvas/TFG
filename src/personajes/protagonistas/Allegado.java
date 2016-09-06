@@ -57,7 +57,7 @@ public class Allegado extends Protagonista {
 			}			
 			
 			
-			Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName()+ hablar("Inicio") + getLocalizacion());
+			Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName()+ hablar("Inicio") + getLocalizacion() +".");
 						
 			FSMBehaviour m = new FSMBehaviour(this);
 			m.registerFirstState(new Atento(), "Atento");
@@ -307,7 +307,7 @@ public class Allegado extends Protagonista {
 			switch (casoParticular) {
 			case "heroe":
 				Gui.setHistoria(myAgent.getLocalName()+ hablar("SalvadaHeroe") + victimaSecuestrada.getLocalName() + ".");
-				Gui.setHistoria(mejorAspirante.getLocalName() + hablar("SalvadaHeroeRecompensa") + menosDineroPedido + ".");
+				Gui.setHistoria(mejorAspirante.getLocalName() + hablar("SalvadaHeroeRecompensa") + menosDineroPedido + " monedas.");
 				setTesoro(getTesoro()-menosDineroPedido);
 				
 				break;

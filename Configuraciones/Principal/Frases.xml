@@ -48,6 +48,10 @@
 			<f> se da cuenta que nadie se ha enterado de su gesta.\n Se tendrá que resignar uno no se hace heroe por la fama.</f>
 			<f> despues de un dia duro reciben al nuevo heroe de la zona con un gran festin.</f> 
 		</frase>
+		<frase accion="Pagar">
+			<f>: ¡Uff!, menos mal que tenía monedas en el bolsillo para pagar. El caballero pago </f>
+			<f>: Me ha dolido tener que pagar </f>  
+		</frase>
 	</personaje>
 	<personaje tipo="Princesa">
 		<frase accion="Inicio">
@@ -215,6 +219,9 @@
 			<f> aterroriza la zona de </f> 
 			<f> planea hasta </f> 
 			<f> incinera ovejas en </f> 
+		</frase>
+		<frase accion="Secuestrar">
+			<f> emprende el vuelo en busca de </f> 
 		</frase>
 	</personaje>
 	<personaje tipo="Queso Azul Mortifero">

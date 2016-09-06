@@ -361,7 +361,8 @@ public class Estado {
 			Map.Entry e = (Map.Entry) it.next();
 			
 			if(lista.contains(e.getKey())){
-				if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Ladron").contains(e.getKey().toString()))
+				//if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Ladron").contains(e.getKey().toString()))
+				if (personajes.get("Secuestrador").contains(e.getKey().toString()))	
 					estado += "(esGuarida ";
 
 				else
@@ -680,20 +681,20 @@ public class Estado {
 		else if(personajes.get("Aspirante").contains(nombrePersonaje))
 			estado+=conocimientoAspirante(nombrePersonaje);
 		
-		else if(personajes.get("Ayudante").contains(nombrePersonaje))
-			estado+=conocimientoAyudante(nombrePersonaje);			
+		//else if(personajes.get("Ayudante").contains(nombrePersonaje))
+		//	estado+=conocimientoAyudante(nombrePersonaje);			
 			
 		else if(personajes.get("Secuestrador").contains(nombrePersonaje))
 			estado+=conocimientoSecuestrador(nombrePersonaje);
 		
-		else if(personajes.get("Ladron").contains(nombrePersonaje))
-			estado+=conocimientoLadron(nombrePersonaje);
+		//else if(personajes.get("Ladron").contains(nombrePersonaje))
+		//	estado+=conocimientoLadron(nombrePersonaje);
 		
-		else if(personajes.get("Emboscador").contains(nombrePersonaje))
-			estado+=conocimientoEmboscador(nombrePersonaje);
+		//else if(personajes.get("Emboscador").contains(nombrePersonaje))
+		//	estado+=conocimientoEmboscador(nombrePersonaje);
 		
-		else if(personajes.get("Asesino").contains(nombrePersonaje))
-			estado+=conocimientoAsesino(nombrePersonaje);
+		//else if(personajes.get("Asesino").contains(nombrePersonaje))
+		//	estado+=conocimientoAsesino(nombrePersonaje);
 
 		return estado;
 

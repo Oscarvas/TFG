@@ -9,7 +9,7 @@
 <!--		Asesino: un monstruo que simplemente hara maldades por todo el mundo -->
 <!-- SEXO = Definir si nuestro monstruo es masculino(M) o femenino(F) -->
 
-	<monstruo nombre="Bowser" clase="Secuestrador" especie="Monstruo" sexo="F"/>
+	<monstruo nombre="Bowser" clase="Secuestrador" especie="Monstruo" sexo="M"/>
 	<!--
 	<monstruo nombre="Shy Guy" clase="Asesino" especie="Jason" sexo="M"/>
 	

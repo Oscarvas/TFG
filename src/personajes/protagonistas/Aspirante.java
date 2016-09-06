@@ -42,7 +42,7 @@ public class Aspirante extends Protagonista {
 		}
 
 		localizarPersonaje();
-		Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName() + hablar("Inicio") + getLocalizacion());
+		Gui.setHistoria(getSexo() + " " + getRol() + " " + getLocalName() + hablar("Inicio") + getLocalizacion() +".");
 
 		addBehaviour(new OfrecerServicios(getTesoro()));
 		addBehaviour(new AceptarOfertaRescate());

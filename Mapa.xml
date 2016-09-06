@@ -10,21 +10,21 @@
 
 
 <Mapa>
- 	<region nombre="Reino Champiñon"> <!-- Isla Egeria -->
+ 	<region nombre="Reino Champiñon">
 	    <localizacion id="Castillo" tipo="Castillo" >
-	        <conectadoCon>Tesqua Caligo</conectadoCon>
+	        <conectadoCon>Tuberia Desierto</conectadoCon>
 	    </localizacion>
 	    <localizacion id="Tuberia" tipo="Pueblo" >
 	        <conectadoCon>Castillo</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Monte" tipo="Bosque" >
-	        <conectadoCon>Castillo Nubes</conectadoCon>
+	    <localizacion id="Desierto" tipo="Bosque" >
+	        <conectadoCon>Castillo Cielo</conectadoCon>
 	    </localizacion>
-	    <localizacion id="Nubes" tipo="Lago" >
-	        <conectadoCon>Monte Torre</conectadoCon>
+	    <localizacion id="Cielo" tipo="Lago" >
+	        <conectadoCon>Desierto Trono</conectadoCon>
 	    </localizacion>	
-	    <localizacion id="Torre" tipo="Guarida" >
-	        <conectadoCon>Nubes</conectadoCon>
+	    <localizacion id="Trono" tipo="Guarida" >
+	        <conectadoCon>Cielo</conectadoCon>
 	    </localizacion>	     
      </region>     
 </Mapa>
