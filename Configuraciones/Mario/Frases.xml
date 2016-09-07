@@ -5,36 +5,39 @@
 	<!-- Frase id indica para que acciones se utilizara la frase -->
 	<!-- Principal -->
 	<!-- El tipo va en función del XML de Personajes para el atributo rol -->	
-	<personaje tipo="Fontanero">
+	<personaje tipo="fontanero">
 		<frase accion="Inicio">
-			<f> Hola soy yo, </f> 
+			<f> aparece saludando por una </f> 
 		</frase>
 		<frase accion="Batalla">
-			<f> cuanto tiempo </f> 
+			<f>: cuanto tiempo Bowser. Mario se abalanza sobre Bowser con su poderoso salto de culo. </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> mmm que rica </f>
+			<f>: mmm que rica. </f>
 		</frase>
 		<frase accion="Fin">
-			<f>: ZzZzZ... mmm Espagetis... mmm Pizza </f>
+			<f>: ZzZzZ... mmm Espagetis... mmm Raviolis </f>
 		</frase>
 		<frase accion="Muerte">
 			<f> Game over </f> 
 			<f> Aaaaaaaahhhhhhh!!! </f> 
 		</frase>
 		<frase accion="Mover">
-			<f> brica por las </f> 
+			<f> brica por el </f> 
 			<f> camina por el </f> 
-			<f> surca las </f> 
+			<f> surca el </f> 
 			<f> va a toda velocidad por el </f> 
-			<f> atraviesa la </f>
-			<f> cruza la </f> 
+			<f> atraviesa el </f>
+			<f> cruza el </f>
+			<f> llega al </f>
+			<f> salta por el </f>
+			<f> avanza por el </f>   
 		</frase>
 		<frase accion="Villano">
 			<f>: ¡¡¡ Muaaajajajaja!!! </f>
 		</frase>
 		<frase accion="DejarVictima">
-			<f> ha logrado salvar a la princesa y dejarla en el </f>
+			<f> ha logrado devolver al Castillo a la princesa </f>
 		</frase>
 		<frase accion="Heroe">
 			<f> es recibido como un autentico heroe. </f>
@@ -43,7 +46,7 @@
 	</personaje>
 	<personaje tipo="Princesa">
 		<frase accion="Inicio">
-			<f> mira a traves de una ventana del </f>
+			<f> contempla todo el Reino a traves de una ventana del </f>
 		</frase>
 		<frase accion="Batalla">
 			<f> no podeis alcanzarme </f> 
@@ -52,19 +55,22 @@
 			<f> creo que me lo voy a quedar </f>
 		</frase>
 		<frase accion="Fin">
-			<f> termina un dia duro en el Reino Champìñon </f> 
+			<f> termina un dia duro en el Reino Champìñon. </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> como me has hecho esto </f>
 		</frase>
 		<frase accion="Mover">
-			<f> brica por las </f> 
 			<f> camina por el </f> 
-			<f> surca las </f> 
-			<f> va a toda velocidad por el </f> 
+			<f> surca el </f> 
+			<f> continua por el </f> 
+			<f> atraviesa el </f>
+			<f> cruza el </f>
+			<f> llega al </f>
+			<f> avanza por el </f>  
 		</frase>
 		<frase accion="Secuestro">
-			<f> grita desesperada mientras Bowser se la lleva.</f>
+			<f> grita desesperada mientras Bowser la deja en su guarida.</f>
 		</frase>
 		<frase accion="Secuestrador">
 			<f> suplica su liberación a </f>
@@ -74,7 +80,7 @@
 			<f> sigilosamente huye de la guarida de </f>
 		</frase>
 	</personaje>
-	<personaje tipo="Seta">
+	<personaje tipo="seta">
 		<frase accion="Inicio">
 			<f> corretea junto a Toadette por el </f>
 		</frase>
@@ -85,16 +91,13 @@
 			<f> va para el cofre del Castillo </f>
 		</frase>
 		<frase accion="Fin">
-			<f> otro plan frustrado de Bowser </f> 
+			<f>: otro plan frustrado de Bowser </f> 
 		</frase>
 		<frase accion="Muerte">
 			<f> Champiñon al pilpil </f>
 		</frase>
 		<frase accion="Mover">
-			<f> brica por las </f> 
-			<f> camina por el </f> 
-			<f> surca las </f> 
-			<f> va a toda velocidad por el </f> 
+			<f> seta no se mueve </f>
 		</frase>
 		<frase accion="OtroAspirante">
 			<f> por favor alguien que me ayude </f> 
@@ -109,7 +112,7 @@
 			<f>: Gracias por liberar a </f> 
 		</frase>
 		<frase accion="SalvadaHeroeRecompensa">
-			<f> recibe una bolsa con monedas.\n Hay </f>
+			<f> recibió al llegar a casa una bolsa con </f>
 		</frase>
 		<frase accion="SalvadaVillano">
 			<f>: Maldito bastardo como has sido capaz de matar a la princesa, </f>
@@ -126,9 +129,9 @@
 
 	<!-- Monstruos -->
 	<!-- El tipo va en función del XML de Monstruos para el atributo especie -->
-	<personaje tipo="Monstruo">
+	<personaje tipo="Rey Koopa">
 		<frase accion="Inicio">
-			<f> se siente lleno de energía, es momento de salir de la </f>
+			<f> se siente lleno de energía, es momento de salir a por la princesa. </f>
 		</frase>
 		<frase accion="Batalla">
 			<f> arde entre mis llamas </f> 
@@ -139,19 +142,25 @@
 			<f> dragon comer </f> 
 		</frase>
 		<frase accion="Fin">
-			<f>: Muahahahaha </f> 
-			<f>: estoy lleno de comer tanto fontanero </f> 
+			<f>: Muahahahaha </f>
 		</frase>
 		<frase accion="Muerte">
-			<f>: Arrrgggg </f>
+			<f>: Arrrgggg. Bowser desapareció. </f>
 		</frase>
 		<frase accion="Mover">
 			<f> llega al </f>
-			<f> cruza el </f> 
-			<f> cruza por las </f> 
-			<f> atraviesa las </f> 
-			<f> incinera pajaros por las </f>  
-			<f> incinera pajaros por el </f> 
+			<f> surca el </f> 
+			<f> cruza por el </f> 
+			<f> atraviesa el </f>
+			<f> incinera pajaros por el </f>
+			<f> continua su travesia por el </f>
+			<f> avanza por el </f> 
+			<f> no cesa su objetivo mientras continua andando por el </f> 
+			<f> avanza velozmente por el </f>
+			<f> hace una pausa para comer y luego continua su viaje por el </f>  
+		</frase>
+		<frase accion="Secuestrar">
+			<f> emprende la marcha para secuestrar a la Princesa </f> 
 		</frase>
 	</personaje>
 </Frases>

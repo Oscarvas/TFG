@@ -171,9 +171,9 @@ public class Estado {
 		if (!clase.equalsIgnoreCase("Allegado") && !clase.equalsIgnoreCase("Victima"))
 			estaLibrePersonaje(nombre);
 
-		if (clase.equalsIgnoreCase("Allegado") || clase.equalsIgnoreCase("Victima") 
-				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
-			consumidor.add(clase);
+//		if (clase.equalsIgnoreCase("Allegado") || clase.equalsIgnoreCase("Victima") 
+//				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
+//			consumidor.add(clase);
 		if ( clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante"))
 			consumidor.add(clase);
 		
@@ -681,20 +681,20 @@ public class Estado {
 		else if(personajes.get("Aspirante").contains(nombrePersonaje))
 			estado+=conocimientoAspirante(nombrePersonaje);
 		
-		else if(personajes.get("Ayudante").contains(nombrePersonaje))
-			estado+=conocimientoAyudante(nombrePersonaje);			
+		//else if(personajes.get("Ayudante").contains(nombrePersonaje))
+		//	estado+=conocimientoAyudante(nombrePersonaje);			
 			
 		else if(personajes.get("Secuestrador").contains(nombrePersonaje))
 			estado+=conocimientoSecuestrador(nombrePersonaje);
 		
-		else if(personajes.get("Ladron").contains(nombrePersonaje))
-			estado+=conocimientoLadron(nombrePersonaje);
+		//else if(personajes.get("Ladron").contains(nombrePersonaje))
+		//	estado+=conocimientoLadron(nombrePersonaje);
 		
-		else if(personajes.get("Emboscador").contains(nombrePersonaje))
-			estado+=conocimientoEmboscador(nombrePersonaje);
+		//else if(personajes.get("Emboscador").contains(nombrePersonaje))
+		//	estado+=conocimientoEmboscador(nombrePersonaje);
 		
-		else if(personajes.get("Asesino").contains(nombrePersonaje))
-			estado+=conocimientoAsesino(nombrePersonaje);
+		//else if(personajes.get("Asesino").contains(nombrePersonaje))
+		//	estado+=conocimientoAsesino(nombrePersonaje);
 
 		return estado;
 

@@ -4,7 +4,7 @@
 <!-- CLASES = {"Rey","Victima","Aspirante","Ayudante","Druida","Villano"} -->
 <!-- RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"} -->
 <!-- RAZAS_REY = {"LUCS","TESQ"} -->
-	<personaje nombre="Toad" clase="Allegado" rol="Seta" raza="C" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>	
-	<personaje nombre="Peach" clase="Victima" rol="Princesa" raza="C" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>		
-	<personaje nombre="Mario" clase="Aspirante" rol="Fontanero" raza="C" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
+	<protagonista nombre="Toad" clase="Allegado" rol="seta" raza="C" sexo="F" vida="100" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>	
+	<protagonista nombre="Peach" clase="Victima" rol="Princesa" raza="C" sexo="F" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>		
+	<protagonista nombre="Mario" clase="Aspirante" rol="fontanero" raza="C" sexo="M" vida="10" fuerza="10" destreza="1" inteligencia="1" codicia="1"/>
 </Actores>

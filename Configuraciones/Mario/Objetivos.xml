@@ -8,14 +8,14 @@
     
     <!-- Heroes -->
     <personaje tipo="Aspirante" >
-    	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>    	
+    	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>       	
     </personaje>
    
     
     <!-- Antagonistas -->    
     <!-- Monstruos -->
     <personaje tipo="Secuestrador" >
-        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Torre))</objetivo>       
+        <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Trono))</objetivo>        
     </personaje>
 
     

@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Para configurar correctamente una mapa debes: -->
-<!-- NOMBRE = Darle un nombre característico que la diferencie del resto -->
-<!-- REGION = Definir una region del mapa, esta region tendrá un nombre y un nº de localizaciones asignadas, por cada region debes: -->
-<!-- 	LOCALIZACION = Cada region contiene un nº de localizaciones específicas, estas localizaciones poseen las propiedades: -->
-<!--		nombre: el nombre de la localizacion -->
-<!--		tipo: de que tipo es esa localizacion, forestal, acuatica, urbana,... -->
-<!--		!advertencia: no cambies el tipo de las localizaciones del mapa, o los dibujos no concordaran -->
-
-
 <Mapa>
- 	<region nombre="Reino Champiñon">
-	    <localizacion id="Castillo" tipo="Castillo" >
-	        <conectadoCon>Tuberia Desierto</conectadoCon>
-	    </localizacion>
-	    <localizacion id="Tuberia" tipo="Pueblo" >
-	        <conectadoCon>Castillo</conectadoCon>
+
+	<region>
+	    <localizacion id="Tesqua" ><!-- Puerto -->
+	        <conectadoCon>Taberna</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Desierto" tipo="Bosque" >
-	        <conectadoCon>Castillo Cielo</conectadoCon>
+	    <localizacion id="Taberna" tipo="Urbano" >
+	        <conectadoCon>Tesqua Cruce</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Cruce" tipo="Camino" >
+	        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
+	        <conectadoCon>Fatum Cruce</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Fatum" tipo="Guarida"><!-- Montana -->
+	        <conectadoCon>Inibi</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
+	        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
+	        <conectadoCon>Ignis</conectadoCon>
+	    </localizacion>	    
+	    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->
+	        <conectadoCon>Ignis</conectadoCon>
 	    </localizacion>
-	    <localizacion id="Cielo" tipo="Lago" >
-	        <conectadoCon>Desierto Trono</conectadoCon>
-	    </localizacion>	
-	    <localizacion id="Trono" tipo="Guarida" >
-	        <conectadoCon>Cielo</conectadoCon>
-	    </localizacion>	     
-     </region>     
+	</region>
+        
 </Mapa>
