@@ -194,8 +194,8 @@
 	<!-- El tipo va en función del XML de Monstruos para el atributo especie -->
 	<personaje tipo="Dragon">
 		<frase accion="Inicio">
-			<f> se siente lleno de energía, es momento de salir de </f> 
-			<f> empieza el dia cazando criaturas por </f> 
+			<f> se siente lleno de energía, es momento de salir </f> 
+			<f> empieza el dia cazando criaturas</f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> arde entre mis llamas </f> 
@@ -226,8 +226,8 @@
 	</personaje>
 	<personaje tipo="Queso Azul Mortifero">
 		<frase accion="Inicio">
-			<f> queso queso </f> 
-			<f> queso queso queso </f> 
+			<f> ha nacido </f> 
+			<f> acaba de aparecer </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> eswink</f> 
@@ -280,8 +280,8 @@
 	</personaje>
 	<personaje tipo="MissUniverse">
 		<frase accion="Inicio">
-			<f> inicia en </f> 
-			<f> acaba de nacer en </f> 
+			<f> se inicia </f> 
+			<f> acaba de nacer </f> 
 		</frase>
 		<frase accion="Batalla">
 			<f> frase Batalla 1 MissUniverse prueba </f> 

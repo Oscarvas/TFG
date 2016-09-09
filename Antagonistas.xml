@@ -10,7 +10,7 @@
 <!-- ESPECIE = Definir que queremos que se nuestro antagonista en la narración -->
 <!-- SEXO = Definir si nuestro antagonista es masculino(M) o femenino(F) -->
 
-	<antagonista nombre="Smaug" clase="Secuestrador" especie="Dragon" sexo="F"/>
+	<antagonista nombre="Smaug" clase="Secuestrador" especie="Dragon" sexo="M"/>
 	
 	<antagonista nombre="Casper" clase="Asesino" especie="Queso Azul Mortifero" sexo="M"/>
 	
