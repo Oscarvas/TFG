@@ -28,7 +28,8 @@ public class Batalla {
 		batalla.setReplyWith("batalla" + System.currentTimeMillis());
 		batalla.setContent(Integer.toString(personaje.getPrincipal()));
 		
-		Gui.setHistoria(personaje.getLocalName()+ personaje.hablar("Batalla") + ". \n");
+		Gui.setHistoria(personaje.getLocalName() +" se enfrenta a " +secundario+"\n"
+		+personaje.getLocalName()+ personaje.hablar("Batalla") + ". \n");
 		
 		personaje.send(batalla);
 		

@@ -278,7 +278,7 @@
 			<f> rapidamente atraviesa </f>
 		</frase>
 	</personaje>
-	<personaje tipo="MissUniverse">
+	<personaje tipo="Trol">
 		<frase accion="Inicio">
 			<f> se inicia </f> 
 			<f> acaba de nacer </f> 

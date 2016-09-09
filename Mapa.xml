@@ -9,7 +9,7 @@
 	    <localizacion id="Taberna" tipo="Urbano" >
 	        <conectadoCon>Tesqua Cruce</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Cruce" tipo="Camino" >
+	    <localizacion id="Cruce" tipo="Bosque" >
 	        <conectadoCon>Inibi Ignis Taberna</conectadoCon>
 	    </localizacion>	    
 	    <localizacion id="Inibi" tipo="Lago" ><!-- Lago -->
@@ -21,7 +21,7 @@
 	    <localizacion id="Ignis" tipo="Castillo" ><!-- Castillo -->
 	        <conectadoCon>Cruce Illunis Egestas</conectadoCon>
 	    </localizacion>	    
-	    <localizacion id="Illunis" tipo="Bosque" ><!-- Bosque -->
+	    <localizacion id="Illunis" tipo="Camino" ><!-- Bosque -->
 	        <conectadoCon>Ignis</conectadoCon>
 	    </localizacion>	    
 	    <localizacion id="Egestas" tipo="Pueblo" ><!-- Pueblo -->

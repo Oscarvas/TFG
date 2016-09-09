@@ -10,7 +10,6 @@
 		emboscador
 		asesino
 		ayudante
-		druida
 	)
 	
 	(:predicates
@@ -30,7 +29,6 @@
 		(esVictima ?per)
 		(esAspirante ?per)
 		(esAyudante ?per)
-		(esDruida ?per)
 		(esSecuestrador ?per)
 		(esLadron ?per)
 		(esAsesino ?per)

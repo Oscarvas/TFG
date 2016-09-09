@@ -171,9 +171,6 @@ public class Estado {
 		if (!clase.equalsIgnoreCase("Allegado") && !clase.equalsIgnoreCase("Victima"))
 			estaLibrePersonaje(nombre);
 
-		if (clase.equalsIgnoreCase("Allegado") || clase.equalsIgnoreCase("Victima") 
-				|| clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante") || clase.equalsIgnoreCase("Druida"))
-			consumidor.add(clase);
 		if ( clase.equalsIgnoreCase("Ayudante") || clase.equalsIgnoreCase("Aspirante"))
 			consumidor.add(clase);
 		
@@ -361,8 +358,8 @@ public class Estado {
 			Map.Entry e = (Map.Entry) it.next();
 			
 			if(lista.contains(e.getKey())){
-				//if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Ladron").contains(e.getKey().toString()))
-				if (personajes.get("Secuestrador").contains(e.getKey().toString()))	
+				if (personajes.get("Secuestrador").contains(e.getKey().toString()) || personajes.get("Ladron").contains(e.getKey().toString()))
+//				if (personajes.get("Secuestrador").contains(e.getKey().toString()))	
 					estado += "(esGuarida ";
 
 				else
