@@ -15,8 +15,8 @@
 			<f> os partire la cara, ya lo creo, daos por muerto </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> me ayudara en mi aventura </f> 
-			<f> al cesar lo que es del cesar </f> 
+			<f>: me ayudara en mi aventura </f> 
+			<f>: al cesar lo que es del cesar </f> 
 		</frase>
 		<frase accion="Fin">
 			<f> un dia largo, a descansar </f> 
@@ -63,8 +63,8 @@
 			<f> no podeis alcanzarme </f> 
 		</frase>
 		<frase accion="Coger">
-			<f> creo que me lo voy a quedar </f> 
-			<f> estaba rico </f> 
+			<f>: creo que me lo voy a quedar </f> 
+			<f>:mmm... estaba rico </f> 
 		</frase>
 		<frase accion="Fin">
 			<f> termina un dia duro </f> 
