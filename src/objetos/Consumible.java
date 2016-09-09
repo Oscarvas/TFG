@@ -34,7 +34,7 @@ public class Consumible extends Objeto {
 	public String toString(){
 		String mensaje = super.toString();
 		int aux = 0;
-		mensaje = mensaje + "\nEl objeto condece una modificación en los atributos de: ";
+		mensaje = mensaje + "\nEl objeto concede una modificación en los atributos de: ";
 		if(this.vida != 0){
 			mensaje = mensaje + "\n\t" + this.vida 			+ " de Vida.";
 			aux++;
