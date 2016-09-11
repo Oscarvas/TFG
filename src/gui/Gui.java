@@ -1,7 +1,5 @@
 package gui;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -69,9 +67,29 @@ public class Gui extends JFrame {
 		mnPersonajes.add(mntmNuevoProtagonista);
 		
 		JMenuItem mntmNuevoAntagonista = new JMenuItem("Nuevo Antagonista");
+		mntmNuevoAntagonista.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NuevoAntagonista dialog = new NuevoAntagonista(myAgent);
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
 		mnPersonajes.add(mntmNuevoAntagonista);
 		
 		JMenuItem mntmNuevoPNJ = new JMenuItem("Nuevo PNJ");
+		mntmNuevoPNJ.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NuevoPNJ dialog = new NuevoPNJ(myAgent);
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
 		mnPersonajes.add(mntmNuevoPNJ);
 		
 		JMenu mnMapa = new JMenu("Mapa");

@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
 @SuppressWarnings("serial")
-public class NuevoPersonaje extends JDialog {
+public class NuevoPNJ extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
@@ -34,7 +34,7 @@ public class NuevoPersonaje extends JDialog {
 	 * Create the dialog.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public NuevoPersonaje(Mundo mundo) {
+	public NuevoPNJ(Mundo mundo) {
 		setTitle("Creación de Personajes");
 		setBounds(100, 100, 243, 700);
 		getContentPane().setLayout(new BorderLayout());
