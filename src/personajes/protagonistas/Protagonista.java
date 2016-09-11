@@ -28,7 +28,7 @@ public class Protagonista extends Personaje {
 		cargarMundo();
 		setRol(rol);
 		setFrases(Mundo.diccionario.getFrasesPersonaje(this.rol));
-		Raza raza = Vocabulario.RAZAS2.get(nombreRaza);
+		Raza raza = Vocabulario.RAZAS.get(nombreRaza);
 		setSexo(sexo);
 		setVida(vida * raza.getVidaModificador());
 		setFuerza(fuerza * raza.getFuerzaModificador());
@@ -36,10 +36,10 @@ public class Protagonista extends Personaje {
 		setInteligencia(inteligencia * raza.getDestrezaModificador());
 		setCodicia(codicia * raza.getCodiciaModificador());
 		if (!allegado){
-			setTesoro(Vocabulario.SALARIO * getCodicia());
+			setTesoro(Vocabulario.SALARIO() * getCodicia());
 		}			
 		else{
-			setTesoro(Vocabulario.SALARIO_REY * getCodicia());
+			setTesoro(Vocabulario.SALARIO_REY() * getCodicia());
 		}
 	}
 	

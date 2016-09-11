@@ -5,20 +5,23 @@ import java.util.Random;
 
 import loaders.LoaderRazas;
 
-public interface Vocabulario {
+public abstract class Vocabulario {
 	public static final int STANDBY = -1;
 	
 	public static final int SALIR = 0;
 	public static final int CREAR_AGENTE = 1;
 	public static final int INICIAR_HISTORIA = 2;
-	public static final String[] RAZAS = {"EGERIAN","ILLIDAR","TRAG","LUCS","TESQ","SCRULL"};
-	public static final String[] RAZAS_REY = {"LUCS","TESQ"};
-	public static final String[] CLASES = {"Allegado","Victima","Aspirante","Ayudante","Druida"};
+	public static final String[] CLASES = {"Allegado","Victima","Aspirante","Ayudante"};
+	public static final String[] CLASES_ANT = {"Secuestrador","Emboscador","Ladron","Asesino"};
 	public static final String[] TIPOS_LOCALIZACION = {"Pueblo","Bosque","Urbano","Castillo","Guarida","Lago"};
-	public static final int SALARIO = 40;
-	public static final int SALARIO_REY = 100;
-	public static final HashMap<String, Raza> RAZAS2 = LoaderRazas.loaderRazas();
+	public static final HashMap<String, Raza> RAZAS = LoaderRazas.loaderRazas();
 	
+	public static int SALARIO (){
+		return  new Random().nextInt(100 + 1) + 40;
+	}
+	public static int SALARIO_REY (){
+		return  new Random().nextInt(100 + 1) + 100;
+	}
 	
 	public static int VIDA_MONSTRUO (){
 		return  new Random().nextInt(100 + 1) + 15;
