@@ -40,5 +40,9 @@ public class Mapa {
 
 		return localizacion;
 	}
+	
+	public ArrayList<Localizacion> getMapa(){
+		return this.localizaciones;
+	}
 
 }

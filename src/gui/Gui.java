@@ -106,7 +106,22 @@ public class Gui extends JFrame {
 				dialog.setVisible(true);				
 			}
 		});
+		
+		
+		JMenuItem mntmMostrarMinimapa = new JMenuItem("Mostrar Minimapa");
+		mntmMostrarMinimapa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogMiniMapa minimapa = new DialogMiniMapa();
+				minimapa.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//				minimapa.setLocation((int) (xFrame+this.getWidth()), yFrame);
+				minimapa.setVisible(true);				
+			}
+		});
 		mnMapa.add(mntmMostrarMapa);
+		mnMapa.add(mntmMostrarMinimapa);
 		
 		JMenuItem mntmIniciar = new JMenuItem("Iniciar");
 		mntmIniciar.setMaximumSize(new Dimension(70, 32767));
@@ -146,21 +161,7 @@ public class Gui extends JFrame {
 //		Este codigo habilita la barra de scroll vertical para el area de texto, se queda comentado porque no tiene transparencia
 //		contentPane.add(textAreaHistoria, BorderLayout.CENTER);
 		
-		
-		
 		this.setLocationRelativeTo(null);
-		int xFrame = this.getX();
-		int yFrame = this.getY();
-		
-		NuevoPersonaje dialog = new NuevoPersonaje(myAgent);
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.setLocation((int) (xFrame-dialog.getWidth()), yFrame);
-		dialog.setVisible(true);
-		
-		DialogMiniMapa minimapa = new DialogMiniMapa();
-		minimapa.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		minimapa.setLocation((int) (xFrame+this.getWidth()), yFrame);
-		minimapa.setVisible(true);
 	}
 		
 	public static synchronized void setHistoria(String hist){
@@ -172,7 +173,7 @@ public class Gui extends JFrame {
 		acumulado+=hist+"\n";
 		textAreaHistoria.setText(acumulado);
 		try {
-			Thread.sleep(500);
+			Thread.sleep(700);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,8 +9,11 @@ public abstract class Vocabulario {
 	public static final int STANDBY = -1;
 	
 	public static final int SALIR = 0;
-	public static final int CREAR_AGENTE = 1;
-	public static final int INICIAR_HISTORIA = 2;
+	public static final int INICIAR_HISTORIA = 1;
+	public static final int CREAR_PROTAGONISTA = 2;
+	public static final int CREAR_ANTAGONISTA = 3;
+	public static final int CREAR_PNJ = 4;
+	
 	public static final String[] CLASES = {"Allegado","Victima","Aspirante","Ayudante"};
 	public static final String[] CLASES_ANT = {"Secuestrador","Emboscador","Ladron","Asesino"};
 	public static final String[] TIPOS_LOCALIZACION = {"Pueblo","Bosque","Urbano","Castillo","Guarida","Lago"};
@@ -20,7 +23,7 @@ public abstract class Vocabulario {
 		return  new Random().nextInt(100 + 1) + 40;
 	}
 	public static int SALARIO_REY (){
-		return  new Random().nextInt(100 + 1) + 100;
+		return  new Random().nextInt(100 + 1) * 100;
 	}
 	
 	public static int VIDA_MONSTRUO (){

@@ -68,22 +68,52 @@ public class Estado {
 		this.pnjEnLoc = new HashMap<String, String>();
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void guardaObjeto(String personaje, String objeto){
 		poseeObjeto.put(personaje, objeto);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void pierdeObjeto(String personaje){
 		poseeObjeto.remove(personaje);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String tieneObjeto(String personaje){
 		return poseeObjeto.get(personaje);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void guardaClave(Objeto obj){
 		this.objetosClave.add(obj);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public Objeto extraerObjeto(String nombreObj){
 		Objeto ret = null;
 		for (Objeto obj : this.objetosClave)
@@ -94,14 +124,32 @@ public class Estado {
 		
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public Almacen getAlmacen() {
 		return almacen;
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setAlmacen(Almacen almacen) {
 		this.almacen = almacen;
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String toConVictima() {
 		String eh = "";
 		Iterator<?> it;
@@ -118,6 +166,12 @@ public class Estado {
 
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirAdyacente(String localizacion, String conectadoCon) {
 
 		ArrayList<String> estaConectadoCon;
@@ -132,6 +186,12 @@ public class Estado {
 		adyacencias.put(localizacion, estaConectadoCon);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void borrarAdyacente(String localizacion, String conectadoCon) {
 
 		ArrayList<String> estaConectadoCon = adyacencias.get(localizacion);
@@ -145,19 +205,43 @@ public class Estado {
 		}
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void esSegura(String nombre) {
 
 		locSeguras.add(nombre);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public boolean esConsumidor(String clase){
 		return this.consumidor.contains(clase);		
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public boolean esAtracable(String clase){
 		return this.atracable.contains(clase);		
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirPersonaje(String clase, String nombre) {
 
 		ArrayList<String> nombres;
@@ -183,6 +267,12 @@ public class Estado {
 
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirLocalizacion(String personaje, String loc) {
 		persEnLoc.put(personaje, loc);// nombreCorrecto(loc)
 	}
@@ -191,6 +281,12 @@ public class Estado {
 		persEnLoc.remove(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public boolean estanMismaLocalizacion(String pers1, String pers2) {
 		return persEnLoc.get(pers1).equalsIgnoreCase(persEnLoc.get(nombreCorrecto(pers2)));
 
@@ -200,6 +296,12 @@ public class Estado {
 		return persEnLoc.get(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadeVivo(String nombre) {
 		vivos.add(nombre);
 	}
@@ -208,74 +310,184 @@ public class Estado {
 		vivos.remove(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void estaLibrePersonaje(String personaje) {
 		estaLibre.add(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void estaCansado(String personaje) {
 		cansado.add(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void estaLlenoPersonaje(String personaje) {
 		estaLibre.remove(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirPersonajeConVictima(String personaje, String victima) {
 		personajeConVictima.put(nombreCorrecto(personaje), nombreCorrecto(victima));
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void borrarPersonajeConVictima(String personaje) {
 		personajeConVictima.remove(nombreCorrecto(personaje));
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void secuestrar(String victima) {
 		victimasSecuestradas.add(nombreCorrecto(victima));
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void liberar(String victima) {
 		victimasSecuestradas.remove(victima);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirNombre(String nombre) {
 		if (!todosNombres.contains(nombre))
 			todosNombres.add(nombre);
 
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirCasa(String nombre, String loc) {
 		casasDePersonajes.put(nombre, loc);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirVictimaSalvada(String victima) {
 		victimasSalvadas.add(victima);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void eliminarVictimaSalvada(String victima) {
 		victimasSalvadas.remove(victima);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirSabio(String ayudante) {
 		sabios.add(ayudante);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void eliminarSabio(String ayudante) {
 		sabios.remove(ayudante);
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirHeroe(String aspirante) {
 		heroes.add(aspirante);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void eliminarHeroe(String aspirante) {
 		heroes.remove(aspirante);
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void añadirVillano(String aspirante) {
 		villanos.add(aspirante);
 	}
-
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void eliminarVillano(String aspirante) {
 		villanos.remove(aspirante);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String nombreCorrecto(String nombre) {
 
 		for (String nombrePersonaje : todosNombres)
@@ -284,7 +496,13 @@ public class Estado {
 
 		return null;
 	}
-
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String nombresToString() {
 
 		String nombres = "";
@@ -295,6 +513,12 @@ public class Estado {
 		return nombres;
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String adyacente (){
 		String estado = "";
@@ -312,6 +536,13 @@ public class Estado {
 		}
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String enLoc (ArrayList<String> lista){
 		String estado = "";
@@ -329,6 +560,13 @@ public class Estado {
 		}
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String objetoEnLoc(){
 		String estado = "";
@@ -345,6 +583,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String esHogar (ArrayList<String> lista){
 		String estado = "";
@@ -371,6 +616,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String esPrincipal (ArrayList<String> lista){
 		String estado = "";
@@ -401,6 +653,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String estaLibre (ArrayList<String> lista){
 		String estado = "";
 		
@@ -412,6 +671,13 @@ public class Estado {
 
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String estanCansados (ArrayList<String> lista){
 		String estado = "";
 		
@@ -422,6 +688,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String estanVivos (ArrayList<String> lista){
 		String estado = "";
 		// Personajes vivos o muertos
@@ -432,6 +705,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String estaSalvada (){
 		String estado = "";
 		// Victimas salvadas
@@ -441,6 +721,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String esHeroe (){
 		String estado = "";
 		// Aspirantes que han llegado a ser Heroes
@@ -451,6 +738,13 @@ public class Estado {
 		return estado;
 	}
 	
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String esSabio (){
 		String estado = "";
 		// Ayudantes que han llegado a ser Sabios
@@ -461,6 +755,12 @@ public class Estado {
 		return estado;
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String esVillano (){
 		String estado = "";
 		// Aspirantes que han llegado a ser Villanos
@@ -471,6 +771,12 @@ public class Estado {
 		return estado;
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */	
 	@SuppressWarnings("rawtypes")
 	private String conPrincesa (){
 		String estado = "";
@@ -487,6 +793,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	@SuppressWarnings("rawtypes")
 	private String conObjeto (){
 		String estado = "";
@@ -503,6 +816,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String estaSecuestrada (){
 		String estado = "";		
 		// Si está secuestrada la victima
@@ -513,7 +833,12 @@ public class Estado {
 		return estado;
 	}
 
-	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoVictima(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -532,6 +857,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoAspirante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -553,6 +885,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoAyudante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -572,6 +911,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoSecuestrador(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -592,6 +938,12 @@ public class Estado {
 		return estado;
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoLadron(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -609,6 +961,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoEmboscador(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -624,6 +983,13 @@ public class Estado {
 		
 		return estado;
 	}
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	private String conocimientoAsesino(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
 		lista.add(nombre);
@@ -641,36 +1007,18 @@ public class Estado {
 		return estado;
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String toString(String nombrePersonaje) {
 
 		String estado = "";
-		
-		
+				
 		//Todos los personajes necesitan conocer el mapa de adyacencias
 		estado+=adyacente();
-		
-//		Modificar este trozo de codigo para cargar de forma mas limpia el metodo correspondiente
-//		
-//		Iterator<?> it;
-//		it = personajes.entrySet().iterator();
-//
-//		while (it.hasNext()) {
-//			Map.Entry e = (Map.Entry) it.next();
-//			String[] nombres = e.getValue().toString().replace("[", "").replace("]", "").replace(",", "").split(" ");
-//
-//			for (String nombre : nombres) {
-//				estado += "(es" + e.getKey() + " " + nombre + ")\n";
-//
-//				if (e.getKey().toString().equalsIgnoreCase("Victima") || e.getKey().toString().equalsIgnoreCase("Allegado"))
-//					estado += "(esPrincipal ";
-//
-//				else
-//					estado += "(esSecundario ";
-//
-//				estado += nombre + ")\n";
-//			}
-//		}
-		
 		
 		if(personajes.get("Victima").contains(nombrePersonaje))
 			estado+=conocimientoVictima(nombrePersonaje);
@@ -697,42 +1045,102 @@ public class Estado {
 
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String getVictimaObjetivo(String secuestrador) {
 		return victimaObjetivo.get(secuestrador);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setVictimaObjetivo(String secuestrador, String victimaObjetivo) {
 		this.victimaObjetivo.put(secuestrador, victimaObjetivo);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String getAspirante(String victima) {
 		return victimaHeroe.get(victima);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setAspirante(String victima, String aspirante) {
 		this.victimaHeroe.put(victima, aspirante);
 	}
 	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String getObjetivos(String personaje) {
 		return objetivos.get(personaje);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setObjetivos(String personaje, String objetivos) {
 		this.objetivos.put(personaje, objetivos);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String getObjetoEnLoc(String objeto) {
 		return this.objetoEnLoc.get(objeto);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setObjetoEnLoc(String objeto, String localizacion) {
 		this.objetoEnLoc.put(objeto, localizacion);
 	}
 
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public String getPnjEnLoc(String localizacion) {
 		return this.pnjEnLoc.get(localizacion);
 	}
-
+	
+	/**
+	 * Descripcion
+	 * 
+	 * @param 
+	 * @return 
+	 */
 	public void setPnjEnLoc(String localizacion, String nombrePnj) {
 		this.pnjEnLoc.put(localizacion, nombrePnj);
 	}

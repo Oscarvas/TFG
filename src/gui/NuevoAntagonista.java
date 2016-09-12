@@ -26,13 +26,17 @@ public class NuevoAntagonista extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField textEspecie;
 	/**
 	 * Create the dialog.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public NuevoAntagonista(Mundo mundo) {
-		setTitle("Creación de Personajes");
-		setBounds(100, 100, 243, 700);
+		setType(Type.POPUP);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setAlwaysOnTop(true);
+		setTitle("Nuevo Antagonista");
+		setBounds(100, 100, 243, 212);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -65,7 +69,7 @@ public class NuevoAntagonista extends JDialog {
 		contentPanel.add(lblSexo);
 		
 		JRadioButton rdbtnM = new JRadioButton("M");
-		
+		rdbtnM.setSelected(true);
 		rdbtnM.setBounds(86, 100, 56, 23);
 		contentPanel.add(rdbtnM);
 		
@@ -75,6 +79,15 @@ public class NuevoAntagonista extends JDialog {
 		
 		buttonGroup.add(rdbtnM);
 		buttonGroup.add(rdbtnF);		
+		
+		textEspecie = new JTextField();
+		textEspecie.setBounds(86, 73, 131, 20);
+		contentPanel.add(textEspecie);
+		textEspecie.setColumns(10);
+		
+		JLabel lblEspecie = new JLabel("Especie");
+		lblEspecie.setBounds(10, 76, 46, 14);
+		contentPanel.add(lblEspecie);
 
 		{
 			JPanel buttonPane = new JPanel();
@@ -85,10 +98,15 @@ public class NuevoAntagonista extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if(!txtNombre.getText().isEmpty()){
-							GuiEvent ge = new GuiEvent(this, Vocabulario.CREAR_AGENTE);
-				            ge.addParameter(txtNombre.getText());
+							GuiEvent ge = new GuiEvent(this, Vocabulario.CREAR_ANTAGONISTA);
+				            ge.addParameter(txtNombre.getText().replaceAll("\\s",""));
 				            ge.addParameter("personajes.antagonistas."+clases.getSelectedItem());
-				            ge.addParameter(buttonGroup.getSelection());
+				            ge.addParameter(textEspecie.getText().replaceAll("\\s",""));
+				            if(rdbtnM.isSelected())
+				            	ge.addParameter(rdbtnM.getText());
+				            else
+				            	ge.addParameter(rdbtnF.getText());				            
+				            
 				            mundo.postGuiEvent(ge);
 						}
 			            txtNombre.setText("");//vaciando el cuadro de txto al darle ok

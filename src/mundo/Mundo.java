@@ -64,7 +64,15 @@ public class Mundo extends GuiAgent {
 		this.agentes = new ArrayList<AgentController>();
 
 	}
-
+	
+//para su uso en la interfaz
+//	public ArrayList<String> getEntorno(){
+//		ArrayList<String> locs = new ArrayList<String>();
+//		for (Localizacion loc : this.mapa.getMapa()) {
+//			locs.add(loc.getNombre());
+//		}
+//		return locs;
+//	}
 	public Mapa cargarMapa() {
 
 		this.mapa = new Mapa();
@@ -216,7 +224,7 @@ public class Mundo extends GuiAgent {
 			doDelete();
 			System.exit(0);
 		}
-		if (comando == Vocabulario.CREAR_AGENTE) {
+		if (comando == Vocabulario.CREAR_PROTAGONISTA) {
 			try {
 				PlatformController container = getContainerController();
 
@@ -224,8 +232,51 @@ public class Mundo extends GuiAgent {
 				Iterator param = evento.getAllParameter();
 				String nomb = (String) param.next();
 				String clas = (String) param.next();
-				String[] args = { (String) param.next(), String.valueOf(param.next()), String.valueOf(param.next()),
+				
+				// rol, raza, sexo, vida, fuerza, destreza, inteligencia, codicia
+				String[] args = { (String) param.next(), (String) param.next(), (String) param.next(), 
+						String.valueOf(param.next()), String.valueOf(param.next()),
 						String.valueOf(param.next()), String.valueOf(param.next()), String.valueOf(param.next()) };
+				guest = container.createNewAgent(nomb, clas, args);
+				agentes.add(guest);
+
+			} catch (ControllerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (comando == Vocabulario.CREAR_ANTAGONISTA) {
+			try {
+				PlatformController container = getContainerController();
+
+				AgentController guest;
+				Iterator param = evento.getAllParameter();
+				String nomb = (String) param.next();
+				String clas = (String) param.next();
+				
+				// especie, sexo
+				String[] args = { (String) param.next(), (String) param.next() };
+				guest = container.createNewAgent(nomb, clas, args);
+				agentes.add(guest);
+
+			} catch (ControllerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (comando == Vocabulario.CREAR_PNJ) {
+			try {
+				PlatformController container = getContainerController();
+
+				AgentController guest;
+				Iterator param = evento.getAllParameter();
+				String nomb = (String) param.next();
+				String clas = (String) param.next();
+				
+				// sexo, oficio, localizacion
+				String[] args = { (String) param.next(), (String) param.next(), (String) param.next()};
 				guest = container.createNewAgent(nomb, clas, args);
 				agentes.add(guest);
 

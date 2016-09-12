@@ -50,9 +50,7 @@ public class LoaderFrases {
 									String personaje = eElementPersonaje.getAttribute("tipo");
 									String accion = eElementAccion.getAttribute("accion");
 									String frase = eElementFrase.getTextContent();
-									frases.addFraseConPersonaje(eElementPersonaje.getAttribute("tipo"),
-											eElementAccion.getAttribute("accion"), 
-											eElementFrase.getTextContent());
+									frases.addFraseConPersonaje(personaje.toLowerCase(),accion,frase);
 								}
 							}
 						}

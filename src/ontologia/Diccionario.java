@@ -23,6 +23,6 @@ public class Diccionario {
 	}
 	
 	public Frases getFrasesPersonaje(String personaje){
-		return this.diccionarioFrases.get(personaje);
+		return this.diccionarioFrases.get(personaje.toLowerCase());
 	}
 }
