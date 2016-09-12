@@ -20,10 +20,10 @@ public abstract class Vocabulario {
 	public static final HashMap<String, Raza> RAZAS = LoaderRazas.loaderRazas();
 	
 	public static int SALARIO (){
-		return  new Random().nextInt(100 + 1) + 40;
+		return  new Random().nextInt(100) + 1;
 	}
 	public static int SALARIO_REY (){
-		return  new Random().nextInt(100 + 1) * 100;
+		return  (new Random().nextInt(100)+ 100) * 100;
 	}
 	
 	public static int VIDA_MONSTRUO (){
