@@ -1,0 +1,9 @@
+Es necesario modificar lo siguiente en Run Configurations para que la aplicacion funcione:
+
+Main:
+	jade.Boot
+
+Arguments:
+	-gui [UnNombre]:mundo.Mundo
+	
+[UnNombre] puede ser cambiado por cualquier palabra, es este caso, el nombre de la historia
