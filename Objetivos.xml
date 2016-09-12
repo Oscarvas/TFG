@@ -5,42 +5,17 @@
     <personaje tipo="Victima" >
     	<objetivo>(enLoc Victima Tesqua)</objetivo>
     	<objetivo>(enLoc Victima Ignis)</objetivo>
-        <!-- <objetivo>(casarse Aspirante Victima)</objetivo>
-        <objetivo>(enamorarse Monstruo)</objetivo>
-        <objetivo>(almaLibre Victima)</objetivo> -->
     </personaje>
-    <!-- • Enamorarse y casarse con Héroes.
-• Enamorarse y casarse con Monstruos (no rescatable).
-• Cambia de Arquetipo según se casa.
-• Se escapa y es libre.
-     -->
     
     <!-- Heroes -->
     <personaje tipo="Aspirante" >
     	<objetivo>(and (esHeroe Aspirante) (salvada Victima))</objetivo>
     	<objetivo>(esVillano Aspirante)</objetivo>
-       <!--  <objetivo>(esHeroe Aspirante)</objetivo>
-        <objetivo>(casarse Aspirante Victima)</objetivo>
-        <objetivo>(reinar Aspirante)</objetivo> -->
     </personaje>
-    <!-- o Rescatan Victimas.
-o Matan Monstruos.
-o Obtienen ‘Fama’ lo que los convierte en ‘Leyenda’.
-o Se convierten en Rey
-o Compiten contra otros Héroes.
-o Casarse con Victimas.
-     -->
     
     <personaje tipo="Ayudante" >
         <objetivo>(and (esSabio Ayudante) (restaurado Tesoro))</objetivo>
     </personaje>
-    <!-- o Rescatan Victimas.
-o Matan Monstruos.
-o Recolectan objetos magicos.
-o Obtienen ‘Conocimientos’ lo que los convierte en ‘Sabios’.
-o Pasan a trabajar para el Rey, obtienen titulo de ‘Archivado’.
-o Compiten contra otros Héroes.
-     -->
     
     <!-- Antagonistas -->
     
@@ -49,37 +24,21 @@ o Compiten contra otros Héroes.
         <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Taberna))</objetivo>
         <objetivo>(and (conPrinc Secuestrador Victima) (enLoc Secuestrador Fatum))</objetivo>
     </personaje>
-   <!--  o Secuestrar victimas.
-o Almacenar oro (objetos brillantes).
-o Proveedor de material magico.
-     -->
     
     <personaje tipo="Ladron" >
-        <!-- <objetivo>(conObjeto Ladron Espejito)</objetivo>
-        <objetivo>(conObjeto Ladron MountainHearth)</objetivo> -->
+        <objetivo>(conObjeto Ladron Espejito)</objetivo>
+        <objetivo>(conObjeto Ladron MountainHearth)</objetivo>
         <objetivo>(and (conObjeto Ladron Espejito) (enLoc Ladron Cruce))</objetivo>
         <objetivo>(and (conObjeto Ladron MountainHearth) (enLoc Ladron Fatum))</objetivo>
     </personaje>
-   <!--  o Proteger progenie (huevos, material magico).
-o Alimentarse (de Personajes).
-o Impide atravesar el Lago.
-     -->
     
     <personaje tipo="Emboscador" >
         <objetivo>(enLoc Emboscador Ignis)</objetivo>
     	<objetivo>(enLoc Emboscador Cruce)</objetivo>
     </personaje>
-   <!--  o Cobrar peaje (objetos brillantes).
-o Distraible para cruzar.
-o Te persigue (hasta matarte o cobrar peaje).
-     -->
     
     <personaje tipo="Asesino" >
         <objetivo>(derrocar Allegado)</objetivo>
-    </personaje>
-   <!--  o Roba comida (objetos comestibles).
-o Venga sy muerte, derroca al Rey.
-o Asusta a la gente. -->
-    
+    </personaje>    
     
 </Objetivos>
