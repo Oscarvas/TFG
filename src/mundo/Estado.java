@@ -69,37 +69,37 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Asigna un objeto a un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void guardaObjeto(String personaje, String objeto){
 		poseeObjeto.put(personaje, objeto);
 	}
 	
 	/**
-	 * Descripcion
+	 * Elimina el objeto de un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void pierdeObjeto(String personaje){
 		poseeObjeto.remove(personaje);
 	}
 	
 	/**
-	 * Descripcion
+	 * Busca que objeto tiene un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * @return El objeto del personaje
 	 */
 	public String tieneObjeto(String personaje){
 		return poseeObjeto.get(personaje);
 	}
 	
 	/**
-	 * Descripcion
+	 * Guarda un nuevo objeto clave 
 	 * 
 	 * @param 
 	 * @return 
@@ -109,10 +109,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Busca y elimina un objeto para asignarselo a un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * @return el objeto, null si no se ha encontrado
 	 */
 	public Objeto extraerObjeto(String nombreObj){
 		Objeto ret = null;
@@ -125,52 +125,32 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Devuelve el almacen de objetos
 	 * 
 	 * @param 
-	 * @return 
+	 * @return el almacen
 	 */
 	public Almacen getAlmacen() {
 		return almacen;
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna un almacen al estado
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void setAlmacen(Almacen almacen) {
 		this.almacen = almacen;
 	}
 
-	/**
-	 * Descripcion
-	 * 
-	 * @param 
-	 * @return 
-	 */
-	public String toConVictima() {
-		String eh = "";
-		Iterator<?> it;
-		it = personajeConVictima.entrySet().iterator();
-
-		while (it.hasNext()) {
-			@SuppressWarnings("rawtypes")
-			Map.Entry e = (Map.Entry) it.next();
-
-			eh += "(conPrinc " + e.getKey() + " " + e.getValue() + ")\n";
-		}
-
-		return eh;
-
-	}
 
 	/**
-	 * Descripcion
+	 * Conecta dos localizaciones, ademas asigna nueva localizacion a la lista
+	 * de adyacentes de una localizacion
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirAdyacente(String localizacion, String conectadoCon) {
 
@@ -187,10 +167,10 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina la conexion entre dos localizaciones
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void borrarAdyacente(String localizacion, String conectadoCon) {
 
@@ -204,43 +184,38 @@ public class Estado {
 			adyacencias.put(localizacion, estaConectadoCon);
 		}
 	}
-
-	/**
-	 * Descripcion
-	 * 
-	 * @param 
-	 * @return 
-	 */
-	public void esSegura(String nombre) {
-
-		locSeguras.add(nombre);
-	}
 	
 	/**
-	 * Descripcion
+	 * Indica si la clase especificada esta en la lista de clases que
+	 * pueden interactuar con objetos y PNJs (es consumidora)
 	 * 
 	 * @param 
-	 * @return 
+	 * @return true si la clase es consumidora , false en caso contrario
 	 */
 	public boolean esConsumidor(String clase){
 		return this.consumidor.contains(clase);		
 	}
 	
 	/**
-	 * Descripcion
+	 * Se usa para verificar si esa clase dispara el evento con el ladron
 	 * 
 	 * @param 
-	 * @return 
+	 * @return true si la clase se ha encontrado, false en otro caso
 	 */
 	public boolean esAtracable(String clase){
 		return this.atracable.contains(clase);		
 	}
 
 	/**
-	 * Descripcion
+	 * Incorpora la informacion de la clase y nombre de un nuevo personaje.
+	 * Inicializa valores como:
+	 * 	consumidor
+	 * 	estaLibre
+	 * 	atracable
+	 * 	vivo
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void añadirPersonaje(String clase, String nombre) {
 
@@ -268,123 +243,142 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Indica que un personaje esta en la localizacion especificada
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirLocalizacion(String personaje, String loc) {
 		persEnLoc.put(personaje, loc);// nombreCorrecto(loc)
 	}
 
+	/**
+	 * Elimina a un personaje de su localizacion actual
+	 * 
+	 * @param 
+	 *  
+	 */
 	public void borrarLocalizacion(String personaje) {
 		persEnLoc.remove(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Evalua que dos personajes esten en la misma localizacion
 	 * 
 	 * @param 
-	 * @return 
+	 * @return true si ambos en la misma localizacion, false en otro caso
 	 */
 	public boolean estanMismaLocalizacion(String pers1, String pers2) {
 		return persEnLoc.get(pers1).equalsIgnoreCase(persEnLoc.get(nombreCorrecto(pers2)));
 
 	}
 
+	/**
+	 * Devuelve la localizacion actual de un personaje
+	 * 
+	 * @param 
+	 * @return String nombre de la locaclizacion del personaje
+	 */
 	public String getLocalizacion(String personaje) {
 		return persEnLoc.get(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega personaje a la lista de vivos
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void añadeVivo(String nombre) {
 		vivos.add(nombre);
 	}
 
+	/**
+	 * Elimina a un personaje de la lista de vivos
+	 *  
+	 * @param 
+	 * 
+	 */
 	public void mata(String personaje) {
 		vivos.remove(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega un personaje a la lista de personajes libres
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void estaLibrePersonaje(String personaje) {
 		estaLibre.add(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega un personaje a la lista de personajes cansados
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void estaCansado(String personaje) {
 		cansado.add(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina un personaje de la lista de personajes libres
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void estaLlenoPersonaje(String personaje) {
 		estaLibre.remove(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Indica que un personaje y la victima estan juntos 
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirPersonajeConVictima(String personaje, String victima) {
 		personajeConVictima.put(nombreCorrecto(personaje), nombreCorrecto(victima));
 	}
 
 	/**
-	 * Descripcion
+	 * Indica que el personaje y la victima ya no estan juntos
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void borrarPersonajeConVictima(String personaje) {
 		personajeConVictima.remove(nombreCorrecto(personaje));
 	}
 
 	/**
-	 * Descripcion
+	 * Indica que la victima ha sido secuestrada
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void secuestrar(String victima) {
 		victimasSecuestradas.add(nombreCorrecto(victima));
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina a la victima de la lista de victimas secuestradas
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void liberar(String victima) {
 		victimasSecuestradas.remove(victima);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega el nombre del nuevo agente a la lista para tener un registro
+	 * de todas las entidades que maneja el sistema
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirNombre(String nombre) {
 		if (!todosNombres.contains(nombre))
@@ -393,67 +387,67 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna una localizacion inicial a un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * 
 	 */
 	public void añadirCasa(String nombre, String loc) {
 		casasDePersonajes.put(nombre, loc);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega la victima a la lista de victimas salvadas
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirVictimaSalvada(String victima) {
 		victimasSalvadas.add(victima);
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina a la victima de la lista de victimas salvadas
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void eliminarVictimaSalvada(String victima) {
 		victimasSalvadas.remove(victima);
 	}
 
 	/**
-	 * Descripcion
+	 * Agrega un ayudante a la lista de sabios
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirSabio(String ayudante) {
 		sabios.add(ayudante);
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina a un ayudante de la lista de sabios
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void eliminarSabio(String ayudante) {
 		sabios.remove(ayudante);
 	}
 	
 	/**
-	 * Descripcion
+	 * Agrega un aspirante a la lista de heroes
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void añadirHeroe(String aspirante) {
 		heroes.add(aspirante);
 	}
 
 	/**
-	 * Descripcion
+	 * Elimina un aspirante de la lista de heroes
 	 * 
 	 * @param 
 	 * @return 
@@ -463,7 +457,7 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Agrega un aspirante a la lista de villanos
 	 * 
 	 * @param 
 	 * @return 
@@ -473,7 +467,7 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Elimina un aspirante de la lñista de villanos
 	 * 
 	 * @param 
 	 * @return 
@@ -483,10 +477,11 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Obtiene el nombre inicial con el que se registro 
+	 * en un principio la entidad en el sistema
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con el nombre original, null si no se ha encontrado
 	 */
 	public String nombreCorrecto(String nombre) {
 
@@ -498,10 +493,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Devuelve una lista de nombres de todas las entidades del sistema
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con todos los nombres de entidades 
 	 */
 	public String nombresToString() {
 
@@ -514,10 +509,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Devuelve un String con la lista de adyacencias
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la lista de adyacencias
 	 */
 	@SuppressWarnings("rawtypes")
 	private String adyacente (){
@@ -538,10 +533,11 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Para cada personaje de la lista
+	 * Devuelve String indicando que un personaje esta en cierta localizacion
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista con nombre de personajes
+	 * @return String indicando que un personaje esta en cierta localizacion
 	 */
 	@SuppressWarnings("rawtypes")
 	private String enLoc (ArrayList<String> lista){
@@ -562,10 +558,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Devuelve String lista con las localizaciones actuales de cada objeto
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista con las localizaciones actuales de cada objeto
 	 */
 	@SuppressWarnings("rawtypes")
 	private String objetoEnLoc(){
@@ -585,10 +581,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Devuelve string lista indicando guarida o casa de un personaje en funcion del tipo
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista de personajes
+	 * @return Lista de guaridas y casas de personajes
 	 */
 	@SuppressWarnings("rawtypes")
 	private String esHogar (ArrayList<String> lista){
@@ -618,10 +614,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica si un personaje es principal o secundario
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista de personajes
+	 * @return String lista de personajes principales y secundarios
 	 */
 	@SuppressWarnings("rawtypes")
 	private String esPrincipal (ArrayList<String> lista){
@@ -655,10 +651,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica si el personaje esta libre
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista de personajes
+	 * @return String lista de personajes libres
 	 */
 	private String estaLibre (ArrayList<String> lista){
 		String estado = "";
@@ -673,10 +669,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica si un personaje esta cansado
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista de personajes
+	 * @return String lista de personajes cansados
 	 */
 	private String estanCansados (ArrayList<String> lista){
 		String estado = "";
@@ -690,10 +686,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica si un personaje esta vivo
 	 * 
-	 * @param 
-	 * @return 
+	 * @param lista de personajes
+	 * @return String lista de personajes vivos
 	 */
 	private String estanVivos (ArrayList<String> lista){
 		String estado = "";
@@ -707,10 +703,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica todas las victimas que han sido salvadas
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de victimas salvadas
 	 */
 	private String estaSalvada (){
 		String estado = "";
@@ -723,10 +719,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica los aspirantes que han llegado a ser heroes 
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de personajes heroes
 	 */
 	private String esHeroe (){
 		String estado = "";
@@ -740,10 +736,10 @@ public class Estado {
 	
 	
 	/**
-	 * Descripcion
+	 * Indica los personajes que son sabios
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de personajes sabios
 	 */
 	private String esSabio (){
 		String estado = "";
@@ -756,10 +752,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica los personajes que ha llegado a ser villanos
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de personajes villanos
 	 */
 	private String esVillano (){
 		String estado = "";
@@ -772,10 +768,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica personajes con victimas
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de personajes con victimas
 	 */	
 	@SuppressWarnings("rawtypes")
 	private String conPrincesa (){
@@ -795,10 +791,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica que objeto tiene un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de personajes y que objeto tienen en caso de tenerlo
 	 */
 	@SuppressWarnings("rawtypes")
 	private String conObjeto (){
@@ -818,10 +814,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Indica que princesas estan secuestradas
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String lista de princesas secuestradas
 	 */
 	private String estaSecuestrada (){
 		String estado = "";		
@@ -834,10 +830,10 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer una victima en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para la victima
 	 */
 	private String conocimientoVictima(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -859,10 +855,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un aspirante en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el aspirante
 	 */
 	private String conocimientoAspirante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -887,10 +883,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un ayudante en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el ayudante
 	 */
 	private String conocimientoAyudante(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -913,10 +909,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un secuestrador en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el secuestrador
 	 */
 	private String conocimientoSecuestrador(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -939,10 +935,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un ladron en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el secuestrador
 	 */
 	private String conocimientoLadron(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -963,10 +959,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un emboscador en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el emboscador
 	 */
 	private String conocimientoEmboscador(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -985,10 +981,10 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion que debe conocer un asesino en su pddl
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el asesino
 	 */
 	private String conocimientoAsesino(String nombre){
 		ArrayList<String> lista = new ArrayList<String>();
@@ -1008,10 +1004,12 @@ public class Estado {
 	}
 	
 	/**
-	 * Descripcion
+	 * Genera la informacion especifica que debe conocer un personaje
+	 * en fuincion del tipo de personaje que sea.
+	 * Informacion para el PDDL problema
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con la informacion filtrada para el personaje
 	 */
 	public String toString(String nombrePersonaje) {
 
@@ -1046,20 +1044,20 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Indica que victima es objetivo del secuestrador
 	 * 
 	 * @param 
-	 * @return 
+	 * @return nombre de la victima
 	 */
 	public String getVictimaObjetivo(String secuestrador) {
 		return victimaObjetivo.get(secuestrador);
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna a un secuestrador una victima
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void setVictimaObjetivo(String secuestrador, String victimaObjetivo) {
 		this.victimaObjetivo.put(secuestrador, victimaObjetivo);
@@ -1076,70 +1074,68 @@ public class Estado {
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna a una victima, el aspirante que va a intentar ayudarla
 	 * 
 	 * @param 
-	 * @return 
 	 */
 	public void setAspirante(String victima, String aspirante) {
 		this.victimaHeroe.put(victima, aspirante);
 	}
 	
 	/**
-	 * Descripcion
+	 * Devuelve los objetivos que se han cargado para un personaje
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String con los objetivos en formato PDDL del personaje
 	 */
 	public String getObjetivos(String personaje) {
 		return objetivos.get(personaje);
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna unos objetivos a un personaje
 	 * 
 	 * @param 
-	 * @return 
 	 */
 	public void setObjetivos(String personaje, String objetivos) {
 		this.objetivos.put(personaje, objetivos);
 	}
 
 	/**
-	 * Descripcion
+	 * Dado un objeto , busca su localizacio actual
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String localizacion del objeto
 	 */
 	public String getObjetoEnLoc(String objeto) {
 		return this.objetoEnLoc.get(objeto);
 	}
 
 	/**
-	 * Descripcion
+	 * Asigna un objeto a una localizacion
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void setObjetoEnLoc(String objeto, String localizacion) {
 		this.objetoEnLoc.put(objeto, localizacion);
 	}
 
 	/**
-	 * Descripcion
+	 * Busca que pnj esta en cierta localizacion
 	 * 
 	 * @param 
-	 * @return 
+	 * @return String nombre del pnj en esa localizacion
 	 */
 	public String getPnjEnLoc(String localizacion) {
 		return this.pnjEnLoc.get(localizacion);
 	}
 	
 	/**
-	 * Descripcion
+	 * Asigna un pnj a una localizacion
 	 * 
 	 * @param 
-	 * @return 
+	 *  
 	 */
 	public void setPnjEnLoc(String localizacion, String nombrePnj) {
 		this.pnjEnLoc.put(localizacion, nombrePnj);
