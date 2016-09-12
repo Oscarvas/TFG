@@ -26,13 +26,11 @@ public class Defender extends CyclicBehaviour {
 			ACLMessage reply = receive.createReply();
 				
 			reply.setContent(Integer.toString(personaje.getVida()));
-			System.err.println("En esta esquina, "+personaje.getLocalName()+" va a meter una hostia de "+ personaje.getVida());
 			personaje.añadirVida(-Integer.parseInt(receive.getContent()));				
 			
 			myAgent.send(reply);
 			
 			if ( personaje.estaMuerto() )
-				System.err.println(personaje.getLocalName()+" HA SIDO ANIQUILADO ****");
 				myAgent.doDelete();
 			
 		} else

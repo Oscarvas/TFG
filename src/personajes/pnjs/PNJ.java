@@ -83,7 +83,6 @@ public class PNJ extends Personaje {
 				}
 				
 				myAgent.send(reply);
-				System.err.println("----------se ha enviado la respuesta al aspirante");
 
 			} else
 				block();

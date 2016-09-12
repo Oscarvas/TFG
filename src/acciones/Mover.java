@@ -127,8 +127,7 @@ public class Mover {
 			
 			MessageTemplate plnt = MessageTemplate
 					.MatchInReplyTo(truco.getReplyWith());
-			ACLMessage auraRecibida = personaje.blockingReceive(plnt);
-			System.err.println("-----------recibida respuesta del pnj");			
+			ACLMessage auraRecibida = personaje.blockingReceive(plnt);		
 			((Protagonista) personaje).bendicionPnj(auraRecibida.getContent());
 
 		}
